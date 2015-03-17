@@ -1,0 +1,41 @@
+package data;
+
+import static org.lwjgl.opengl.GL11.*;
+
+import static helpers.Artist.*;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
+public class Boot {
+	
+	public Boot()
+	{
+		beginSession();
+		
+		while(!Display.isCloseRequested())
+		{
+			glBegin(GL_LINES);
+			glVertex2f(10, 10);
+			glVertex2f(100, 100);
+			glEnd();
+			
+			glBegin(GL_QUADS);
+			glVertex2f(50,50);
+			glVertex2f(50,60);
+			glVertex2f(60,60);
+			glVertex2f(60,50);
+			glEnd();
+			
+			
+			Display.update();
+			Display.sync(60);
+		}
+	}
+	
+	public static void main(String args[])
+	{
+		new Boot();
+	}
+}

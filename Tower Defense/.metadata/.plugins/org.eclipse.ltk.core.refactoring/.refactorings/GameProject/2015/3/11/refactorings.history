@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;data.boot.java&apos; to &apos;Boot.java&apos;&#x0D;&#x0A;- Original project: &apos;GameProject&apos;&#x0D;&#x0A;- Original element: &apos;data.boot.java&apos;&#x0D;&#x0A;- Renamed element: &apos;data.Boot.java&apos;" description="Rename compilation unit &apos;boot.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;data{boot.java" name="Boot.java" references="false" stamp="1426365722597" version="1.0"/>
+</session>

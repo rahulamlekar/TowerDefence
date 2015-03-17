@@ -1,0 +1,297 @@
+package entities;
+
+
+import java.io.*;
+import java.util.LinkedList;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Yash Gupta
+ */
+public class TDMap {
+    private int grid[][];
+    // The grid will be ALWAYS initialized and used as a width by height, that
+    // will be implemented with graphics as horizontal by vertical blocks, that
+    // go from top-left to bottom right. ALSO, it is ROWxCOLUMN!!
+    private int width, height;
+    // width will range from 13 to 50 and height will range from 20 to 80
+    private String backdrop;
+    private int start1, start2, end1, end2;
+    private boolean isMapValid;
+    private static final int TOWER= 4;
+    private static final int PATH= 2;
+    private LinkedList<Integer> shortestPath;
+    
+    // Constructors
+    public TDMap()
+    {
+        width= 40;
+        height= 25;
+        grid= new int[40][25];
+        backdrop= "Generic";
+    }
+    
+    public TDMap(int l, int h, String back)
+    {
+        if(width>19&&width<81)
+            width= l;
+        else
+            width=40;
+        if(height>12&&height<51)
+            height= h;
+        else
+            height= 25;
+        grid= new int[l][h];
+        backdrop= back;
+    }
+    
+    public TDMap(String add)
+    {
+        if(!readMapFromFile(add))
+        {
+            width= 40;
+            height= 25;
+            grid= new int[40][25];
+            backdrop= "Generic";
+        }
+    }
+    
+    // This method initializes a new TDMap from a file.
+    private boolean readMapFromFile(String add)
+    {
+        File f= new File(add);
+        if(!f.exists())
+            return false;
+        else
+        {
+            FileInputStream fis;
+            DataInputStream dis;
+            try
+            {
+                fis = new FileInputStream(f);
+                dis = new DataInputStream(fis);
+                backdrop= dis.readUTF();
+                width= dis.readInt();
+                height= dis.readInt();
+                grid= new int[width][height];
+                for(int i=0; i< width; i++)
+                    for(int j=0; j< height; j++)
+                        grid[i][j]= dis.readInt();
+                start1= dis.readInt();
+                start2= dis.readInt();
+                end1= dis.readInt();
+                end2= dis.readInt();
+                dis.close();
+                fis.close();
+            }
+            catch(IOException e)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+    
+    // This method instantiates the current TDMap to a file.
+    public boolean writeMaptoFile(String add)
+    {
+        File f= new File(add);
+        FileOutputStream fos;
+        DataOutputStream dos;
+        try
+        {
+            fos = new FileOutputStream(f);
+            dos = new DataOutputStream(fos);
+            dos.writeUTF(backdrop);
+            dos.writeInt(width);
+            dos.writeInt(height);
+            for(int i=0; i< width; i++)
+                for(int j=0; j< height; j++)
+                    dos.writeInt(grid[i][j]);
+            dos.writeInt(start1);
+            dos.writeInt(start2);
+            dos.writeInt(end1);
+            dos.writeInt(end2);
+            dos.close();
+            fos.close();
+        }
+        catch(IOException e)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
+    // By convention, I will denote PATH cells to be 2.
+    public void setAsPath(int i, int j)
+    {
+        if((i<width)&&(j<height))
+            grid[i][j]= PATH;
+    }
+    
+    // By convention, I will denote background/TOWER cells to be 4.
+    public void refresh()
+    {
+        for(int i=0; i< width; i++)
+            for(int j=0; j< height; j++)
+                grid[i][j]= TOWER;
+        end1= 0;
+        end2= 0;
+        start1= 0;
+        start2= 0;
+    }
+    
+    public void setStart(int i, int j)
+    {
+        start1= i;
+        start2= j;
+        setAsPath(i,j);
+    }
+    
+    public void setEnd(int i, int j)
+    {
+        end1= i;
+        end2= j;
+        setAsPath(i,j);
+    }
+    
+    
+    // This method will return true if the Map is connected, and false
+    // otherwise.
+    // The way it is implemented is by applying a BREADTH-FIRST search algorithm
+    // from the starting cell and then checking if the ending cell has been
+    // explored or not. If the ending cell has been explored, then the PATH is
+    // valid. This BFS also explores the shortest path from the End Cell to the
+    // Start Cell to get rid of Loops, and the Critters optimize their attack.
+    // This will be stored in shortestPath, as a LinkedList.
+    // This method also initializes the boolean isMapValid to a T/F value.
+    public boolean isMap()
+    {
+        LinkedList<Integer> explored= new LinkedList<>();
+        LinkedList<Integer> frontier= new LinkedList<>();
+        int parent[]= new int [(width*height)];
+        frontier.addFirst(key(start1,start2));
+        int t;
+        while(!frontier.isEmpty())
+        {
+            t= frontier.removeFirst();
+            explored.add(t);
+            int i= arckeyi(t);
+            int j= arckeyj(t);
+            if((i-1)>-1)
+                if(grid[i-1][j]==PATH)
+                    if(!explored.contains(key(i-1,j)))
+                    {
+                        frontier.addLast(key(i-1,j));
+                        parent[key(i-1,j)]=t;
+                    }
+            if((i+1)<height)
+                if(grid[i+1][j]==PATH)
+                    if(!explored.contains(key(i+1,j)))
+                    {
+                        frontier.addLast(key(i+1,j));
+                        parent[key(i+1,j)]=t;
+                    }
+            if((j-1)>-1)
+                if(grid[i][j-1]==PATH)
+                    if(!explored.contains(key(i,j-1)))
+                    {
+                        frontier.addLast(key(i,j-1));
+                        parent[key(i,j-1)]=t;
+                    }
+            if((j+1)<height)
+                if(grid[i][j+1]==PATH)
+                    if(!explored.contains(key(i,j+1)))
+                    {
+                        frontier.add(key(i,j+1));
+                        parent[key(i,j+1)]=t;
+                    }
+        }
+        t= key(end1,end2);
+        isMapValid= explored.contains(t);
+        if(isMapValid)
+        {
+            shortestPath= new LinkedList<>();
+            while(t!=key(start1,start2))
+            {
+                shortestPath.addFirst(t);
+                t= parent[t];
+            }
+            shortestPath.addFirst(t);
+        }
+        return isMapValid;
+    }
+    
+    // These are miscellaneous methods that assign a unique key value to each
+    // individual cell in the grid and allow conversions between them.
+    public int key(int i, int j)
+    {
+        return (width*j+i+1);
+    }
+    public int arckeyi(int k)
+    {
+        return ((k-1)%width);
+    }
+    public int arckeyj(int k)
+    {
+        return ((k-1)/width);
+    }
+    
+    // This method provides an easy way to print out the grid to display the
+    // map. It also prints out the shortest path the critters will take to move
+    // from the Start cell to the End Cell.
+    public void print()
+    {
+        System.out.println("Grid Size is "+width+" in horizontal width by "+height+" in vertical height:");
+        for(int j=-2; j<width; j++)
+            System.out.print("-");
+        for(int i=0; i<height; i++)
+        {
+            System.out.print("\n|");
+            for(int j=0; j<width; j++)
+                if(grid[j][i]==TOWER)
+                    System.out.print(" ");
+                else if(grid[j][i]==PATH)
+                    System.out.print("O");
+            System.out.print("|");
+        }
+        System.out.println();
+        for(int j=-2; j<width; j++)
+            System.out.print("-");
+        if(isMapValid)
+            System.out.print("\nShortest path from Start to End is: ");
+        for(Integer shortestPath1 : shortestPath) {
+            System.out.print("(" + arckeyi(shortestPath1) + "," + arckeyj(shortestPath1) + ")\t");
+        }
+        System.out.println();
+    }
+    
+    
+    
+    public int getWidth()
+    {
+    	return width;
+    }
+    public int getHeight()
+    {
+    	return height;
+    }
+    public int getType(int x, int y)
+    {
+    	int type= grid[x][y];
+    	return type;
+    }
+    public String getBackdrop()
+    {
+    	return backdrop;
+    }
+}
+
