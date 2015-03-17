@@ -33,7 +33,7 @@ public class TDMap {
     {
         width= 40;
         height= 25;
-        grid= new int[40][25];
+        grid= new int[width][height];
         backdrop= "Generic";
     }
     

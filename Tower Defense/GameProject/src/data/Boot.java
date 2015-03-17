@@ -16,7 +16,7 @@ public class Boot {
 	{
 		beginSession();
 		
-		TDMap tdMap= new TDMap("C:\\Users\\Yash Gupta\\OneDrive\\NetBeansProjects\\ECSE321PA1\\Try1.TDMap");
+		TDMap tdMap= new TDMap("res/DIRTMAP1.TDMap");
 		while(!Display.isCloseRequested())
 		{
 			drawMap(tdMap);
