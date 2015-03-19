@@ -24,6 +24,9 @@ public class Boot {
 			Display.update();
 			Display.sync(20);
 		}
+		
+		//close the display instantly after this (otherwise there will be a delay)
+		Display.destroy();
 	}
 	
 	public static void main(String args[])
