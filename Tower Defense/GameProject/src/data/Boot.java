@@ -1,7 +1,8 @@
 package data;
-
+import entities.*;
 import static org.lwjgl.opengl.GL11.*;
 import static helpers.Artist.*;
+import helpers.Artist;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -20,7 +21,8 @@ public class Boot {
 		while(!Display.isCloseRequested())
 		{
 			drawMap(tdMap);
-			
+			Critter c1 = new Critter_X(1, tdMap);
+			c1.traversePath();
 			Display.update();
 			Display.sync(20);
 		}

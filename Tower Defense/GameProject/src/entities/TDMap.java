@@ -96,6 +96,7 @@ public class TDMap {
                 end2= dis.readInt();
                 dis.close();
                 fis.close();
+                System.out.println("Map is valid?: " + isMap());
             }
             catch(IOException e)
             {
@@ -302,8 +303,12 @@ public class TDMap {
     }
 	public ArrayList<Point> getPointsOfShortestPath(){
 		ArrayList<Point> pointsShortestPath = new ArrayList<Point>();
-		for(int i = 0; i < this.shortestPath.size(); i++){
-			pointsShortestPath.add(new Point(arckeyi(shortestPath.get(i)), arckeyj(shortestPath.get(i))));
+		if(shortestPath == null){
+			
+		}else{
+			for(int i = 0; i < this.shortestPath.size(); i++){
+				pointsShortestPath.add(new Point(arckeyi(shortestPath.get(i)), arckeyj(shortestPath.get(i))));
+			}
 		}
 		return pointsShortestPath;
 	}

@@ -83,12 +83,6 @@ public abstract class Critter {
 	}
 	//END OF Getters and Setters
 	
-	/*Moves the critter by ONE PIXEL in the correct direction. Note that this requires that the path is 
-	  created as a ONE dimensional line (which is the plan). The graphics will be different, but 
-	  underneath the path will have an effective width of 1 pixel.*/
-	public void takeAStep(){
-		
-	}
 	public void traversePath(){
 		
 		String fromWhere = "";
