@@ -104,7 +104,9 @@ public class Artist {
 		}
 	}
 	public static void drawCritter(Critter crit){
-		drawQuad(crit.getPixelPosition().getX(), crit.getPixelPosition().getY(), 5,5);
+		int critterSize = 6;
+		
+		drawQuad(crit.getPixelPosition().getX() - critterSize/2, crit.getPixelPosition().getY() - critterSize/2, critterSize,critterSize);
 		
 	}
 }

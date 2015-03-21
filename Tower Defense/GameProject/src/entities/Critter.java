@@ -90,7 +90,7 @@ public abstract class Critter {
 		if(indexInPixelPath == 0){
 			_pixelPosition = pixelPathToFollow.get(0);
 		}
-		indexInPixelPath +=3;
+		indexInPixelPath +=this.speed;
 		moveCritter(pixelPathToFollow.get(indexInPixelPath));
 	}
 	
