@@ -12,19 +12,19 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
+import entities.Critter;
 import entities.TDMap;
 
 public class Artist {
 	
-	public static final int WIDTH=1280;
-	public static final int HEIGHT=800;
-	
+	public static final int PIXELWIDTH=1280;
+	public static final int PIXELHEIGHT=800;
 	
 	public static void beginSession()
 	{
 		Display.setTitle("Tower Defense - Group 6");
 		try {
-			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+			Display.setDisplayMode(new DisplayMode(PIXELWIDTH, PIXELHEIGHT));
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -32,7 +32,7 @@ public class Artist {
 		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
+		glOrtho(0, PIXELWIDTH, PIXELHEIGHT, 0, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_TEXTURE_2D);
 		
@@ -84,8 +84,8 @@ public class Artist {
 	{
 		int mapWidth=tdMap.getWidth();
 		int mapHeight=tdMap.getHeight();
-		int scaledWidth=(int) WIDTH/mapWidth;
-		int scaledHeight=(int) HEIGHT/mapHeight;
+		int scaledWidth=(int) PIXELWIDTH/mapWidth;
+		int scaledHeight=(int) PIXELHEIGHT/mapHeight;
 		String back= tdMap.getBackdrop();
 		Texture texPath= null;
 		Texture texTower= null; 
@@ -102,5 +102,9 @@ public class Artist {
 					drawQuadTexture(texTower, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 			}
 		}
+	}
+	public static void drawCritter(Critter crit){
+		drawQuad(crit.getPixelPosition().getX(), crit.getPixelPosition().getY(), 5,5);
+		
 	}
 }

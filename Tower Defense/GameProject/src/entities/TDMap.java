@@ -1,7 +1,10 @@
 package entities;
 
 
+import helpers.Artist;
+
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /*
@@ -27,7 +30,9 @@ public class TDMap {
     private static final int TOWER= 4;
     private static final int PATH= 2;
     private LinkedList<Integer> shortestPath;
-    
+    public int xBlock;
+	public int yBlock;
+	
     // Constructors
     public TDMap()
     {
@@ -49,6 +54,8 @@ public class TDMap {
             height= 25;
         grid= new int[l][h];
         backdrop= back;
+        xBlock = Artist.PIXELWIDTH/width;
+        yBlock = Artist.PIXELHEIGHT/height;
     }
     
     public TDMap(String add)
@@ -293,5 +300,16 @@ public class TDMap {
     {
     	return backdrop;
     }
+	public ArrayList<Point> getPointsOfShortestPath(){
+		ArrayList<Point> pointsShortestPath = new ArrayList<Point>();
+		for(int i = 0; i < this.shortestPath.size(); i++){
+			pointsShortestPath.add(new Point(arckeyi(shortestPath.get(i)), arckeyj(shortestPath.get(i))));
+		}
+		return pointsShortestPath;
+	}
+	public Point getPosOfBlock_pixel(int x, int y){
+		Point result = new Point((int) (x*xBlock),(int) (y*yBlock));
+		return result;
+	}
 }
 
