@@ -1,4 +1,7 @@
 package entities;
+
+import helpers.EntityColor;
+
 /*
  * Circle critter is average, run of the mill critter
  */
@@ -14,12 +17,13 @@ public class Critter_Circle extends Critter{
 		//low regen
 		regen = (1*levelMultiplier);
 		//average speed
-		speed = (int) (15*levelMultiplier);
+		speed = (int) (8*levelMultiplier);
 		//no resistance
 		resistance = 0;
 		//set name
 		name = "Circle Critter";
 		strength = 1;
+		color = "Green";
 	}
 
 	

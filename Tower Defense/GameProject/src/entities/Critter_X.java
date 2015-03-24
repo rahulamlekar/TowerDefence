@@ -1,4 +1,7 @@
 package entities;
+
+import helpers.EntityColor;
+
 /*
  * Critter X is completely resitant to effects from towers. Average apart from that.
  */
@@ -13,11 +16,12 @@ public class Critter_X extends Critter {
 		//low regen
 		regen = 1*levelMultiplier;
 		//low speed
-		speed = (int) (10*levelMultiplier);
+		speed = (int) (5*levelMultiplier);
 		//pure resistancfe
 		resistance = 1;
 		//set name
 		name = "X Critter";
 		strength = 2;
+		color = "Red";
 	}
 }

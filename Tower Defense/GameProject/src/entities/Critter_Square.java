@@ -1,4 +1,7 @@
 package entities;
+
+import helpers.EntityColor;
+
 /*
  * Square Critters are weak but travel in groups
  */
@@ -14,12 +17,12 @@ public class Critter_Square extends Critter{
 		//no regen
 		regen = 0;
 		//low speed
-		speed = (int) (10*levelMultiplier);
+		speed = (int) (5*levelMultiplier);
 		resistance = 0;
 		//set name
 		name = "Square Critter";
 		strength = 1;
-		
+		color = "Cyan";
 	}
 
 }

@@ -17,7 +17,7 @@ import java.util.LinkedList;
  *
  * @author Yash Gupta
  */
-public class TDMap {
+public class TDMap implements DrawableEntity{
     private int grid[][];
     // The grid will be ALWAYS initialized and used as a width by height, that
     // will be implemented with graphics as horizontal by vertical blocks, that
@@ -32,12 +32,13 @@ public class TDMap {
     private LinkedList<Integer> shortestPath;
     public int xBlock;
 	public int yBlock;
-	
+	private final int DEFAULTGRIDWIDTH = 12;
+	private final int DEFAULTGRIDHEIGHT = 8;
     // Constructors
     public TDMap()
     {
-        width= 40;
-        height= 25;
+        width= DEFAULTGRIDWIDTH;
+        height= DEFAULTGRIDHEIGHT;
         grid= new int[width][height];
         backdrop= "Generic";
         xBlock = Artist.PIXELWIDTH/width;
@@ -49,11 +50,12 @@ public class TDMap {
         if(width>19&&width<81)
             width= l;
         else
-            width=40;
+            width=DEFAULTGRIDWIDTH;
         if(height>12&&height<51)
             height= h;
         else
-            height= 25;
+            height= DEFAULTGRIDHEIGHT;
+        
         grid= new int[l][h];
         backdrop= back;
         xBlock = Artist.PIXELWIDTH/width;
@@ -64,9 +66,9 @@ public class TDMap {
     {
         if(!readMapFromFile(add))
         {
-            width= 40;
-            height= 25;
-            grid= new int[40][25];
+        	width = DEFAULTGRIDWIDTH;
+        	height = DEFAULTGRIDHEIGHT;
+            grid= new int[width][height];
             backdrop= "Generic";
             xBlock = Artist.PIXELWIDTH/width;
             yBlock = Artist.PIXELHEIGHT/height;
@@ -309,10 +311,7 @@ public class TDMap {
 		ArrayList<Point> pointsShortestPath = new ArrayList<Point>();
 		if(shortestPath == null){
 			for(int j = 0; j < this.width; j++){
-					pointsShortestPath.add(new Point(j,j));
-					if(j+1 < this.width){
-					pointsShortestPath.add(new Point(j+1,j));
-			}
+					pointsShortestPath.add(new Point(j,0));
 			}
 		}else{
 			for(int i = 0; i < this.shortestPath.size(); i++){
@@ -496,6 +495,9 @@ public class TDMap {
 			System.out.println("Error with path points not lining up");
 		}
 	}
-
+	
+	public void updateAndDraw(){
+		Artist.drawMap(this);
+	}
 }
 

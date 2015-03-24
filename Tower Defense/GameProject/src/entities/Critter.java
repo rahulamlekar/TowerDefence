@@ -1,5 +1,7 @@
 package entities;
 import helpers.Artist;
+import helpers.EntityColor;
+import helpers.GameClock;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,7 +10,7 @@ import java.util.LinkedList;
  * Critter abstract class from which all critters extend. Has certain attributes and methods including 
  * taking a step, getting damaged, etc.
  */
-public abstract class Critter {
+public abstract class Critter implements DrawableEntity {
 	//Constants
 	public static final int MAXWAVENUMBER = 50;
 	//general attributes
@@ -25,15 +27,15 @@ public abstract class Critter {
 	 protected int hitboxRadius;
 	 
 	 protected Point _pixelPosition;
-	 //protected Point lastPixelPosition;
-	 //protected Point nextPixelPosition;
 	 
 	 protected boolean reachedEnd;
 	 protected int strength;
 	 protected ArrayList<Point> pixelPathToFollow;
 	 protected int indexInPixelPath;
+	 
 	 //this is an example map class from which we will use the (shell) functions.
 	 protected TDMap map;
+	 protected String color;
 	 
 	//constructor
 	public Critter(int level, TDMap m){
@@ -47,8 +49,10 @@ public abstract class Critter {
 		pixelPathToFollow = m.getPath_ListOfPixels();
 		indexInPixelPath = 0;
 	}
-
-	//Start of getters and setters
+	
+	public String getColor(){
+		return color;
+	}
 	public Point getPixelPosition(){
 		return _pixelPosition;
 	}
@@ -86,40 +90,50 @@ public abstract class Critter {
 	//END OF Getters and Setters
 	//so update call.... Stephen Poole. Basically, one second has passed. So I want to move my critter from 
 	//one position to a certain other position........ HOW........ HMMM......
-	public void Update(){
+	public void updateAndDraw(){
 		if(indexInPixelPath == 0){
 			_pixelPosition = pixelPathToFollow.get(0);
 		}
-		indexInPixelPath +=this.speed;
-		moveCritter(pixelPathToFollow.get(indexInPixelPath));
+		indexInPixelPath += this.speed*GameClock.getInstance().deltaTime(); //synced with time
+		//see if we will reach end...
+		if(indexInPixelPath < pixelPathToFollow.size()){
+			moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath));
+		}else{
+			//TODO: If the critter makes it to the end.
+		}
+		
 	}
 	
 
 	
-	public void moveCritter(Point toPosition){
-		System.out.println("Requested to move critter from " + this._pixelPosition.toString() + " to " + toPosition.toString());
+	public void moveAndDrawCritter(Point toPosition){
+		//For debugging
+		//System.out.println("Requested to move critter from " + this._pixelPosition.toString() + " to " + toPosition.toString());
 		
 		Point p1 = this._pixelPosition;
 		Point p2 = toPosition;
-		int step = -1;
-		int moveInX = Math.abs(p2.getX() - p1.getX());
-		if(p2.getX() > p1.getX()){
-			step = 1;
-		}
-		for(int i = 0; i < moveInX; i++){
-			_pixelPosition.setX(_pixelPosition.getX() + step);
+		if(p1.equals(p2)){
 			Artist.drawCritter(this);
-		}
+		}else{
+			int step = -1;
+			int moveInX = Math.abs(p2.getX() - p1.getX());
+			if(p2.getX() > p1.getX()){
+				step = 1;
+			}
+			for(int i = 0; i < moveInX; i++){
+				_pixelPosition.setX(_pixelPosition.getX() + step);
+				Artist.drawCritter(this);
+			}
 		
-		int moveInY = Math.abs(p2.getY() - p1.getY());
-		if(p2.getY() > p1.getY()){
-			step = 1;
+			int moveInY = Math.abs(p2.getY() - p1.getY());
+			if(p2.getY() > p1.getY()){
+					step = 1;
+			}
+			for(int i = 0; i < moveInY; i++){
+				_pixelPosition.setY(_pixelPosition.getY() + step);
+				Artist.drawCritter(this); //TODO: Fix this. Should be time dependent. 
+			}
 		}
-		for(int i = 0; i < moveInY; i++){
-			_pixelPosition.setY(_pixelPosition.getY() + step);
-			Artist.drawCritter(this); //TODO: Fix this. Should be time dependent. 
-		}
-		
 		//set the pixel position to the new position
 		this._pixelPosition = toPosition;
 		

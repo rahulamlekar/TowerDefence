@@ -17,9 +17,9 @@ import entities.TDMap;
 
 public class Artist {
 	
-	public static final int PIXELWIDTH=1280;
+	public static final int PIXELWIDTH=1200;
 	public static final int PIXELHEIGHT=800;
-	
+
 	public static void beginSession()
 	{
 		Display.setTitle("Tower Defense - Group 6");
@@ -70,6 +70,7 @@ public class Artist {
 	
 	public static Texture loadTexture(String path, String fileType)
 	{
+		
 		Texture tex= null;
 		InputStream in= ResourceLoader.getResourceAsStream(path);
 		try {
@@ -82,6 +83,7 @@ public class Artist {
 	
 	public static void drawMap(TDMap tdMap)
 	{
+		
 		int mapWidth=tdMap.getWidth();
 		int mapHeight=tdMap.getHeight();
 		int scaledWidth=(int) PIXELWIDTH/mapWidth;
@@ -96,17 +98,30 @@ public class Artist {
 			for(int j=0; j<mapHeight; j++)
 			{
 				int tileType= tdMap.getType(i, j);
-				if(tileType==2)
-					drawQuadTexture(texPath, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
-				else
-					drawQuadTexture(texTower, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+				if(tileType==2){
+					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+					glColor3f(0.5f, 0.5f, 0.5f);
+					drawQuad(i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+					//drawQuadTexture(texPath, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+				
+				}else{
+					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+					glColor3f(0.5f, 0.5f, 0.5f);
+					drawQuad(i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+					//drawQuadTexture(texTower, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+				}
 			}
 		}
 	}
 	public static void drawCritter(Critter crit){
 		int critterSize = 6;
-		
+		//Set the color
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		EntityColor col = new EntityColor(crit.getColor());
+		glColor3f(col.getR(), col.getG(), col.getB());
 		drawQuad(crit.getPixelPosition().getX() - critterSize/2, crit.getPixelPosition().getY() - critterSize/2, critterSize,critterSize);
-		
+
 	}
+	
+	
 }

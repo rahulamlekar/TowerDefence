@@ -1,4 +1,7 @@
 package entities;
+
+import helpers.EntityColor;
+
 /*
  * shuriken critter is Strong but slow
  */
@@ -13,11 +16,12 @@ public class Critter_Shuriken extends Critter{
 		//medium regen
 		regen = 2*levelMultiplier;
 		//low speed
-		speed = (int) (10*levelMultiplier);
+		speed = (int) (5*levelMultiplier);
 		//med resistance
 		resistance = 0.3*levelMultiplier;
 		//set name
 		name = "Shuriken Critter";
 		strength = 1;
+		color = "Purple";
 	}
 }

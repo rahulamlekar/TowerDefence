@@ -1,4 +1,7 @@
 package entities;
+
+import helpers.EntityColor;
+
 /*
  * Arrow critter is fast but weak compared to other critters
  */
@@ -13,11 +16,12 @@ public class Critter_Arrow extends Critter{
 		//does not regenerate health
 		regen = 0;
 		//fast
-		speed = (int) (30*levelMultiplier);
+		speed = (int) (15*levelMultiplier);
 		//does not resist effects
 		resistance = 0;
 		//set name
 		name = "Arrow Critter";
 		strength = 1;
+		color = "Blue";
 	}
 }
