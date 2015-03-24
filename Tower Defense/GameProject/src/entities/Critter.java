@@ -28,6 +28,8 @@ public abstract class Critter implements DrawableEntity {
 	 
 	 protected Point _pixelPosition;
 	 
+	 protected boolean active;
+	 
 	 protected boolean reachedEnd;
 	 protected int strength;
 	 protected ArrayList<Point> pixelPathToFollow;
@@ -48,6 +50,7 @@ public abstract class Critter implements DrawableEntity {
 		reachedEnd = false;
 		pixelPathToFollow = m.getPath_ListOfPixels();
 		indexInPixelPath = 0;
+		active = false;
 	}
 	
 	public String getColor(){
@@ -87,25 +90,29 @@ public abstract class Critter implements DrawableEntity {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	public boolean isActive(){
+		return active;
+	}
+	public void setActive(boolean act){
+		active = act;
+	}
 	//END OF Getters and Setters
 	//so update call.... Stephen Poole. Basically, one second has passed. So I want to move my critter from 
 	//one position to a certain other position........ HOW........ HMMM......
 	public void updateAndDraw(){
-		if(indexInPixelPath == 0){
-			_pixelPosition = pixelPathToFollow.get(0);
+		if(this.isActive()){
+			if(indexInPixelPath == 0){
+				_pixelPosition = pixelPathToFollow.get(0);
+			}
+			indexInPixelPath += this.speed*GameClock.getInstance().deltaTime(); //synced with time
+			//see if we will reach end...
+			if(indexInPixelPath < pixelPathToFollow.size()){
+				moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath));
+			}else{
+				//TODO: If the critter makes it to the end.
+			}
 		}
-		indexInPixelPath += this.speed*GameClock.getInstance().deltaTime(); //synced with time
-		//see if we will reach end...
-		if(indexInPixelPath < pixelPathToFollow.size()){
-			moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath));
-		}else{
-			//TODO: If the critter makes it to the end.
-		}
-		
 	}
-	
-
-	
 	public void moveAndDrawCritter(Point toPosition){
 		//For debugging
 		//System.out.println("Requested to move critter from " + this._pixelPosition.toString() + " to " + toPosition.toString());

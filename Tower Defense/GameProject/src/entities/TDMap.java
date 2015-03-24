@@ -32,8 +32,8 @@ public class TDMap implements DrawableEntity{
     private LinkedList<Integer> shortestPath;
     public int xBlock;
 	public int yBlock;
-	private final int DEFAULTGRIDWIDTH = 12;
-	private final int DEFAULTGRIDHEIGHT = 8;
+	private final int DEFAULTGRIDWIDTH = 40;
+	private final int DEFAULTGRIDHEIGHT = 24;
     // Constructors
     public TDMap()
     {

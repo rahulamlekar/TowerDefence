@@ -3,20 +3,14 @@ import java.util.ArrayList;
 /*
  * generates a group of critters for a certain wave number.
  */
-public class CritterGroupGenerator {
+public class CritterGenerator {
 	//attributes
-	private int waveLevel;
-	private ArrayList<Critter> critterGroup = new ArrayList<Critter>();
 	private final static int BASECRITTERS = 10; //this is the base amount of critters
 	private final static int MAXWAVE = 50; //THE maximum wave number
-	private TDMap exampleMap; //a shell map
 	//constructor
-	public CritterGroupGenerator(int l, TDMap m){
-		waveLevel = l;
-		exampleMap = m;
-	}
 	//This is where we create the current WAVE.
-	public ArrayList<Critter> generateCritterWave(){
+	public static ArrayList<Critter> getGeneratedCritterWave(int waveLevel, TDMap exampleMap){
+		ArrayList<Critter> critterGroup = new ArrayList<Critter>();
 		//what to multiply the amount of critters by (so more critters come each wave)
 		double critterMultiplier = 1.0 + 1.0*waveLevel/MAXWAVE;
 		int amountOfCritters = (int) (waveLevel + critterMultiplier*BASECRITTERS);

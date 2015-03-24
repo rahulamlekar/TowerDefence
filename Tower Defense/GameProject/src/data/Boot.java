@@ -1,6 +1,7 @@
 package data;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import entities.*;
@@ -22,48 +23,39 @@ public class Boot {
 	public Boot()
 	{
 		Artist.beginSession();
+		ArrayList<DrawableEntity> drawableEntities = new ArrayList<DrawableEntity>();
+		int activeCrittersIndex = 0;
 		
+		//get the map and add it to the drawableEntities (to be updated)
 		TDMap tdMap= new TDMap("res/DIRTMAP1.TDMap");
-		ArrayList<Point> pixelPathList = tdMap.getPath_ListOfPixels();
-		ArrayList<Point> pathList = tdMap.getPointsOfShortestPath();
-		//for(int i = 0; i < pathList.size(); i++){
-			//System.out.print(pathList.get(i).toString() + " --> ");
-		//}
-		//for(int i = 0; i < pixelPathList.size(); i ++){
-		//	System.out.println(pixelPathList.get(i).toString());
-		//}
-
-		Critter_Square c1 = new Critter_Square(1, tdMap);
-		Critter_Circle c2 = new Critter_Circle(1, tdMap);
-		Queue<Critter> allCritters = new Queue<Critter>();
-		allCritters.enqueue(c1);
-		allCritters.enqueue(c2);
+		drawableEntities.add(tdMap);
 		
-		ArrayList<Critter> crittersOnMap = new ArrayList<Critter>();
-		crittersOnMap.add(c1);
+		//get the critters and add them to the drawableEntities (to be updated)
+		ArrayList<Critter> crittersToBePlaced = CritterGenerator.getGeneratedCritterWave(1, tdMap);
+		for(int i = 0; i < crittersToBePlaced.size(); i++){
+			drawableEntities.add(crittersToBePlaced.get(i));
+		}
 		
 		//The drawing loop.
 		while(!Display.isCloseRequested())
 		{
-			tdMap.updateAndDraw();
-			//update all of my critters.
-			for(int i = 0; i < crittersOnMap.size(); i++){
-				crittersOnMap.get(i).updateAndDraw();
-			}
-			//once our first one has got somewhere...?
-			if(crittersOnMap.get(crittersOnMap.size()-1).getPixelPosition().getX() > 10 && allCritters.isEmpty() == false){
-				try {
-					crittersOnMap.add(allCritters.dequeue());
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			
+			if(activeCrittersIndex ==0){
+				crittersToBePlaced.get(activeCrittersIndex).setActive(true);
+				activeCrittersIndex +=1;
+			}else if(activeCrittersIndex < crittersToBePlaced.size()){
+				if(crittersToBePlaced.get(activeCrittersIndex-1).getPixelPosition().getX() > 50){
+					crittersToBePlaced.get(activeCrittersIndex).setActive(true);
+					activeCrittersIndex +=1;
 				}
 			}
-			//"pauses" the game
-			if(crittersOnMap.get(crittersOnMap.size()-1).getPixelPosition().getX()> 500){
-				GameClock.getInstance().setDeltaTime(0);
-			}
 			
+			//"pauses" the game
+			//if(crittersToBePlaced.get(0).getPixelPosition().getX()> 520){
+			//	GameClock.getInstance().setDeltaTime(0);
+			//}
+			
+			updateAndDrawAllEntities(drawableEntities);
 			Display.update();
 			Display.sync(20);
 		}
@@ -72,8 +64,14 @@ public class Boot {
 		Display.destroy();
 	}
 	
-	public static void main(String args[])
-	{
-		new Boot();
+	public void updateAndDrawAllEntities(ArrayList<DrawableEntity> entities){
+		//update and draw all drawableEntities.
+		for(int i = 0; i < entities.size(); i++){
+			entities.get(i).updateAndDraw();
+		}
 	}
+	public static void pause(){
+		GameClock.getInstance().setDeltaTime(0);
+	}
+
 }
