@@ -22,7 +22,6 @@ public class Critter_Circle extends Critter{
 		resistance = 0;
 		//set name
 		name = "Circle Critter";
-		strength = 1;
 		color = "Green";
 	}
 

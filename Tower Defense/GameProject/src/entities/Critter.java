@@ -13,46 +13,48 @@ import java.util.LinkedList;
 public abstract class Critter implements DrawableEntity {
 	//Constants
 	public static final int MAXWAVENUMBER = 50;
-	//general attributes
-	protected double levelMultiplier;
 	//attributes of the critter
-	 protected String name;
-	 protected int reward;
-	 protected double currHitPoints;
-	 protected double maxHitPoints;
-	 protected double regen;
-	 protected int speed;
-	 protected int level;
-	 protected double resistance;
-	 protected int hitboxRadius;
+	//tangible properties of critter
+	protected double currHitPoints;
+	protected double maxHitPoints;
+	protected int speed;
+	protected int size;
+	protected double regen;
+	protected double resistance;
+	protected String color;
+	
+	//intangible properties
+	protected int reward;
+	protected int level;
+	protected double levelMultiplier;
+	protected String name;
+	
+	//state properties
+	protected Point _pixelPosition;
+	protected boolean active;
+	protected boolean reachedEnd;
+	protected ArrayList<Point> pixelPathToFollow;
+	protected int indexInPixelPath;
 	 
-	 protected Point _pixelPosition;
-	 
-	 protected boolean active;
-	 
-	 protected boolean reachedEnd;
-	 protected int strength;
-	 protected ArrayList<Point> pixelPathToFollow;
-	 protected int indexInPixelPath;
-	 
-	 //this is an example map class from which we will use the (shell) functions.
-	 protected TDMap map;
-	 protected String color;
+	//MAP (gets the only instance of the map)
+	protected TDMap map;
+	
 	 
 	//constructor
 	public Critter(int level, TDMap m){
+		//set the level from input
 		this.level = level;
-		_pixelPosition = new Point(-1, -1);
-		//lastPixelPosition = new Point(-1,-1);
-		//nextPixelPosition = new Point(-1,-1);
-		map = m;
+		//set the default values for all critters
 		levelMultiplier = 1 + level/MAXWAVENUMBER;
-		reachedEnd = false;
+		reachedEnd = false; //none have reached end to start
+		active = false; //none are active to start
 		pixelPathToFollow = m.getPath_ListOfPixels();
-		indexInPixelPath = 0;
-		active = false;
+		indexInPixelPath = 0; //all start at beginning of path
+		size = 6; //this can be changed...
+		map = m; //shouldn't be here!
 	}
 	
+	//getters and setters
 	public String getColor(){
 		return color;
 	}
@@ -60,11 +62,11 @@ public abstract class Critter implements DrawableEntity {
 		return _pixelPosition;
 	}
 	
-	public int getHitboxRadius(){
-		return hitboxRadius;
+	public int getSize(){
+		return size;
 	}
-	public void setHitboxRadius(int hbr){
-		hitboxRadius = hbr;
+	public void setHitboxRadius(int size){
+		this.size = size;
 	}
 	public double getHitPoints() {
 		return currHitPoints;
@@ -97,22 +99,57 @@ public abstract class Critter implements DrawableEntity {
 		active = act;
 	}
 	//END OF Getters and Setters
-	//so update call.... Stephen Poole. Basically, one second has passed. So I want to move my critter from 
-	//one position to a certain other position........ HOW........ HMMM......
+	/*
+	 * @see entities.DrawableEntity#updateAndDraw()
+	 * This must have all properties of the critter that change with time
+	 * These properties are its position and its health.
+	 */
 	public void updateAndDraw(){
 		if(this.isActive()){
-			if(indexInPixelPath == 0){
-				_pixelPosition = pixelPathToFollow.get(0);
-			}
-			indexInPixelPath += this.speed*GameClock.getInstance().deltaTime(); //synced with time
-			//see if we will reach end...
-			if(indexInPixelPath < pixelPathToFollow.size()){
-				moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath));
-			}else{
-				//TODO: If the critter makes it to the end.
-			}
+			updateHealth();
+			updatePositionAndDraw();
 		}
 	}
+	/*
+	 * updates the health of the critter (called on every "tick" of the clock)
+	 */
+	public void updateHealth(){
+		//simply update the hitpoints. This should be called every update instance.
+		//if our regen will not push us over our limit, simply regen
+		if(this.currHitPoints + this.regen < this.maxHitPoints){
+			this.currHitPoints = this.currHitPoints + this.regen;	
+		}else{ //otherwise just set us to the max regen value.
+			this.currHitPoints = this.maxHitPoints;
+		}
+		
+	}
+	/*
+	 * updates the position (and draws it), called on every tick of clock
+	 */
+	public void updatePositionAndDraw(){
+		//if we haven't yet moved, 
+		if(indexInPixelPath == 0){
+			//place us on the map at the initial position.
+			_pixelPosition = pixelPathToFollow.get(0);
+		}
+		//the next index is our current index + our speed*our clock
+		indexInPixelPath += this.speed*GameClock.getInstance().deltaTime(); //synced with time
+		
+		//If we aren't going to pass the end, we move our critter.
+		if(indexInPixelPath < pixelPathToFollow.size()){
+			moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath));
+		}else{
+			//we have reached the end
+			reachedEnd = true; 
+			//this critter is no longer active
+			active = false;
+			//notify our observers.
+			//TODO: notify observers
+		}
+	}
+	/*
+	 * Moves the critter to a given position and draws it as it moves.
+	 */
 	public void moveAndDrawCritter(Point toPosition){
 		//For debugging
 		//System.out.println("Requested to move critter from " + this._pixelPosition.toString() + " to " + toPosition.toString());
@@ -138,24 +175,11 @@ public abstract class Critter implements DrawableEntity {
 			}
 			for(int i = 0; i < moveInY; i++){
 				_pixelPosition.setY(_pixelPosition.getY() + step);
-				Artist.drawCritter(this); //TODO: Fix this. Should be time dependent. 
+				Artist.drawCritter(this);
 			}
 		}
 		//set the pixel position to the new position
 		this._pixelPosition = toPosition;
-		
-	}
-	
-	
-	//updates the critter health.
-	public void updateCritterHealth(){
-		//simply update the hitpoints. This should be called every update instance.
-		//if our regen will not push us over our limit, simply regen
-		if(this.currHitPoints + this.regen < this.maxHitPoints){
-			this.currHitPoints = this.currHitPoints + this.regen;	
-		}else{ //otherwise just set us to the max regen value.
-			this.currHitPoints = this.maxHitPoints;
-		}
 		
 	}
 	//Damages the critter for a certain amount (Will likely be removed in final version)
@@ -167,10 +191,11 @@ public abstract class Critter implements DrawableEntity {
 			System.out.println("Critter has been killed. User will receive " + this.reward + " coins.\n");
 		}
 	}
+	
+	
 	//ToString
 	public String toString(){
 		String result = "";
-		result = name + "\n";// + currPixelPosition.toString();
 		result += "\nHP: " + currHitPoints + "/" + maxHitPoints + "\n";
 		result += "Regen = " + this.regen + "\n";
 		return result;

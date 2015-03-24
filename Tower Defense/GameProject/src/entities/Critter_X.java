@@ -21,7 +21,6 @@ public class Critter_X extends Critter {
 		resistance = 1;
 		//set name
 		name = "X Critter";
-		strength = 2;
 		color = "Red";
 	}
 }

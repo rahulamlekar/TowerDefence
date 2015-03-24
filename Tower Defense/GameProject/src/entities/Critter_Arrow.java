@@ -21,7 +21,6 @@ public class Critter_Arrow extends Critter{
 		resistance = 0;
 		//set name
 		name = "Arrow Critter";
-		strength = 1;
 		color = "Blue";
 	}
 }

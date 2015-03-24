@@ -21,7 +21,6 @@ public class Critter_Shuriken extends Critter{
 		resistance = 0.3*levelMultiplier;
 		//set name
 		name = "Shuriken Critter";
-		strength = 1;
 		color = "Purple";
 	}
 }

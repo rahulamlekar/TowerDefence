@@ -114,7 +114,7 @@ public class Artist {
 		}
 	}
 	public static void drawCritter(Critter crit){
-		int critterSize = 6;
+		int critterSize = crit.getSize();
 		//Set the color
 		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		EntityColor col = new EntityColor(crit.getColor());

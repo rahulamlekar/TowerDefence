@@ -73,5 +73,9 @@ public class Boot {
 	public static void pause(){
 		GameClock.getInstance().setDeltaTime(0);
 	}
-
+	
+	public static void main(String[] args){
+		new Boot();
+	}
+	
 }

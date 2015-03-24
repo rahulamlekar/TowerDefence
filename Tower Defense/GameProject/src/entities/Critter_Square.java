@@ -21,7 +21,6 @@ public class Critter_Square extends Critter{
 		resistance = 0;
 		//set name
 		name = "Square Critter";
-		strength = 1;
 		color = "Cyan";
 	}
 

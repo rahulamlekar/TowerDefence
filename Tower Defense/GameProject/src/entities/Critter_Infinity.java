@@ -21,7 +21,6 @@ public class Critter_Infinity extends Critter{
 		resistance = 0.5*levelMultiplier;
 		//set name
 		name = "Infinity Critter";
-		strength = 3;
 		color = "Yellow";
 	}
 }
