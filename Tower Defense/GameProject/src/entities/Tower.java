@@ -2,6 +2,8 @@ package entities;
 
 import helpers.*;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public abstract class Tower extends Subject implements DrawableEntity{
@@ -45,22 +47,31 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		return size;
 	}
 	
-	public void updateAndDraw(){	
+	public void updateAndDraw(Graphics g){	
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
-		Artist.drawTower(this, size);
+		this.drawTower(g);
 		inRangeC = this.findCrittersInRange(crittersOnMap);
 		Critter targeted = this.selectTarget(inRangeC);
 		if(targeted != null){
-			this.shootTarget(targeted);
+			this.shootTarget(targeted, g);
 		}
 	}
+	
+	public void drawTower(Graphics g) {
+		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
+		Artist_Swing.drawTower(this,g);
+    }
+	
 	public Critter selectTarget(ArrayList<Critter> inRange){
+		//Strategy.pickTarget(
 		Critter targetC = null;
 		if(inRange.size() > 0){
 			 targetC = inRange.get(0);
 		}
 		return targetC;
+		
 	}
+	
 	//checking if a critter is in range of a tower
 	public boolean inRange(Critter a){
 		
@@ -117,10 +128,10 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	}*/
 	
 	//deals damage based on amount of damage of the tower
-	public void shootTarget(Critter target){
+	public void shootTarget(Critter target, Graphics g){
 		for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
 		  target.damage(damage);
-		  Artist.drawShot(this, target);
+		  Artist_Swing.drawShot(this, target, g);
 		}
 	} 
 	//upgrade the towers values and level

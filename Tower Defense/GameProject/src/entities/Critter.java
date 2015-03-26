@@ -1,8 +1,10 @@
 package entities;
-import helpers.Artist;
+import helpers.Artist_Swing;
 import helpers.EntityColor;
 import helpers.GameClock;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -52,6 +54,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		indexInPixelPath = 0; //all start at beginning of path
 		size = 6; //this can be changed...
 		map = m; //shouldn't be here!
+		this._pixelPosition = new Point(-1,-1);
 	}
 	
 	//getters and setters
@@ -104,10 +107,10 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 * This must have all properties of the critter that change with time
 	 * These properties are its position and its health.
 	 */
-	public void updateAndDraw(){
+	public void updateAndDraw(Graphics g){
 		if(this.isActive()){
 			updateHealth();
-			updatePositionAndDraw();
+			updatePositionAndDraw(g);
 		}
 	}
 	/*
@@ -126,7 +129,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	/*
 	 * updates the position (and draws it), called on every tick of clock
 	 */
-	public void updatePositionAndDraw(){
+	public void updatePositionAndDraw(Graphics g){
 		//if we haven't yet moved, 
 		if(indexInPixelPath == 0){
 			//place us on the map at the initial position.
@@ -137,7 +140,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		
 		//If we aren't going to pass the end, we move our critter.
 		if(indexInPixelPath < pixelPathToFollow.size()){
-			moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath));
+			moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath),  g);
 		}else{
 			//we have reached the end
 			reachedEnd = true; 
@@ -147,17 +150,18 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			this.notifyObservers();
 		}
 	}
+
 	/*
 	 * Moves the critter to a given position and draws it as it moves.
 	 */
-	public void moveAndDrawCritter(Point toPosition){
+	public void moveAndDrawCritter(Point toPosition, Graphics g){
 		//For debugging
 		//System.out.println("Requested to move critter from " + this._pixelPosition.toString() + " to " + toPosition.toString());
 		
 		Point p1 = this._pixelPosition;
 		Point p2 = toPosition;
 		if(p1.equals(p2)){
-			Artist.drawCritter(this);
+			this.drawCritter(g);
 		}else{
 			int step = -1;
 			int moveInX = Math.abs(p2.getX() - p1.getX());
@@ -166,7 +170,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			}
 			for(int i = 0; i < moveInX; i++){
 				_pixelPosition.setX(_pixelPosition.getX() + step);
-				Artist.drawCritter(this);
+				this.drawCritter(g);
 			}
 		
 			int moveInY = Math.abs(p2.getY() - p1.getY());
@@ -175,13 +179,18 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			}
 			for(int i = 0; i < moveInY; i++){
 				_pixelPosition.setY(_pixelPosition.getY() + step);
-				Artist.drawCritter(this);
+				this.drawCritter(g);
 			}
 		}
 		//set the pixel position to the new position
 		this._pixelPosition = toPosition;
-		
 	}
+	
+	public void drawCritter(Graphics g) {
+		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
+		Artist_Swing.drawCritter(this,g);
+    }
+	
 	//Damages the critter for a certain amount (Will likely be removed in final version)
 	public void damage(double dam){
 		if(this.currHitPoints - dam > 0){
@@ -193,6 +202,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			//System.out.println("Critter has been killed. User will receive " + this.reward + " coins.\n");
 		}
 	}
+
 	
 	
 	//ToString
@@ -202,4 +212,5 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		result += "Regen = " + this.regen + "\n";
 		return result;
 	}
+	
 }

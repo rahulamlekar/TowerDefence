@@ -1,8 +1,9 @@
 package entities;
 
 
-import helpers.Artist;
+import helpers.Artist_Swing;
 
+import java.awt.Graphics;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,8 +42,9 @@ public class TDMap implements DrawableEntity{
         height= DEFAULTGRIDHEIGHT;
         grid= new int[width][height];
         backdrop= "Generic";
-        xBlock = Artist.PIXELWIDTH/width;
-        yBlock = Artist.PIXELHEIGHT/height;
+        xBlock = Artist_Swing.PIXELWIDTH/width;
+        yBlock = Artist_Swing.PIXELHEIGHT/height;
+        //this.isMap();
     }
     
     public TDMap(int l, int h, String back)
@@ -58,8 +60,9 @@ public class TDMap implements DrawableEntity{
         
         grid= new int[l][h];
         backdrop= back;
-        xBlock = Artist.PIXELWIDTH/width;
-        yBlock = Artist.PIXELHEIGHT/height;
+        xBlock = Artist_Swing.PIXELWIDTH/width;
+        yBlock = Artist_Swing.PIXELHEIGHT/height;
+        //this.isMap();
     }
     
     public TDMap(String add)
@@ -69,10 +72,14 @@ public class TDMap implements DrawableEntity{
         	width = DEFAULTGRIDWIDTH;
         	height = DEFAULTGRIDHEIGHT;
             grid= new int[width][height];
+            for(int i = 0; i < width; i++){
+            	grid[i][0] = 1;
+            }
             backdrop= "Generic";
-            xBlock = Artist.PIXELWIDTH/width;
-            yBlock = Artist.PIXELHEIGHT/height;
+            xBlock = Artist_Swing.PIXELWIDTH/width;
+            yBlock = Artist_Swing.PIXELHEIGHT/height;
         }
+        //this.isMap();
     }
     
     // This method initializes a new TDMap from a file.
@@ -495,8 +502,8 @@ public class TDMap implements DrawableEntity{
 		}
 	}
 	
-	public void updateAndDraw(){
-		Artist.drawMap(this);
+	public void updateAndDraw(Graphics g){
+		Artist_Swing.drawMap(this, g);
 	}
 }
 

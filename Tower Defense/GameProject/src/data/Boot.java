@@ -1,32 +1,19 @@
 package data;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Stack;
-
-import javax.swing.JOptionPane;
 
 import entities.*;
-import static org.lwjgl.opengl.GL11.*;
-import static helpers.Artist.*;
-import helpers.Artist;
 import helpers.GameClock;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
-import org.newdawn.slick.opengl.Texture;
-
-import sun.misc.Queue;
 import entities.TDMap;
+
 
 public class Boot implements IObserver {
 	private int lives;
+	//private ApplicationFrame game = new ApplicationFrame();
+	
 	public Boot()
 	{
-
 		lives = 10;
-		Artist.beginSession();
 		ArrayList<DrawableEntity> drawableEntities = new ArrayList<DrawableEntity>();
 		int activeCrittersIndex = 0;
 		
@@ -47,7 +34,8 @@ public class Boot implements IObserver {
 		drawableEntities.add(tf2);
 		
 		//The drawing loop.
-		while(!Display.isCloseRequested())
+		//while(!Display.isCloseRequested())
+		//while(1==1)
 		{
 			
 			if(activeCrittersIndex ==0){
@@ -60,25 +48,25 @@ public class Boot implements IObserver {
 				}
 			}
 			
+			
+			updateAndDrawAllEntities(drawableEntities);
 			//"pauses" the game
 			//if(crittersToBePlaced.get(0).getPixelPosition().getX()> 520){
 			//	GameClock.getInstance().setDeltaTime(0);
 			//}
-			
-			updateAndDrawAllEntities(drawableEntities);
-			Display.update();
-			Display.sync(20);
+			//Display.update();
+			//Display.sync(20);
 		}
 		
 		//close the display instantly after this (otherwise there will be a delay)
-		Display.destroy();
+		//Display.destroy();
 	}
 	
 	public void updateAndDrawAllEntities(ArrayList<DrawableEntity> entities){
 		//update and draw all drawableEntities.
 		for(int i = 0; i < entities.size(); i++){
 			//don't breakpoint here please
-			entities.get(i).updateAndDraw();
+		//	entities.get(i).updateAndDraw();
 		}
 	}
 	
@@ -95,8 +83,8 @@ public class Boot implements IObserver {
 		//check multiple things that could have changed. First, lives
 		lives -=1;
 		if(lives == 0){
-			Boot.pause();
-			JOptionPane.showMessageDialog(null, "Game Over", "InfoBox: Information", JOptionPane.INFORMATION_MESSAGE);
+			//Boot.pause();
+			//JOptionPane.showMessageDialog(null, "Game Over", "InfoBox: Information", JOptionPane.INFORMATION_MESSAGE);
 		}
 		//System.out.println("Lives = " + this.lives);
 	}

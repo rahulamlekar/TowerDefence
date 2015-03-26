@@ -16,7 +16,7 @@ public class Critter_Arrow extends Critter{
 		//does not regenerate health
 		regen = 0;
 		//fast
-		speed = (int) (15*levelMultiplier);
+		speed = (int) (5*levelMultiplier);
 		//does not resist effects
 		resistance = 0;
 		//set name
