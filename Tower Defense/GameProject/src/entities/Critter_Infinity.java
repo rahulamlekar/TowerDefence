@@ -1,6 +1,7 @@
 package entities;
 
-import helpers.EntityColor;
+import java.awt.Color;
+
 
 /*
  * infinity critter is BOSS critter. Hard to kill, but high rewards
@@ -21,6 +22,6 @@ public class Critter_Infinity extends Critter{
 		resistance = 0.5*levelMultiplier;
 		//set name
 		name = "Infinity Critter";
-		color = "Yellow";
+		cColor = Color.YELLOW;
 	}
 }

@@ -1,6 +1,6 @@
 package entities;
 
-import helpers.EntityColor;
+import java.awt.Color;
 
 /*
  * Circle critter is average, run of the mill critter
@@ -22,7 +22,7 @@ public class Critter_Circle extends Critter{
 		resistance = 0;
 		//set name
 		name = "Circle Critter";
-		color = "Green";
+		cColor = Color.CYAN;
 	}
 
 	

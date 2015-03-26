@@ -1,6 +1,6 @@
 package entities;
 
-import helpers.EntityColor;
+import java.awt.Color;
 
 /*
  * Critter X is completely resitant to effects from towers. Average apart from that.
@@ -21,6 +21,6 @@ public class Critter_X extends Critter {
 		resistance = 1;
 		//set name
 		name = "X Critter";
-		color = "Red";
+		cColor = Color.ORANGE;
 	}
 }

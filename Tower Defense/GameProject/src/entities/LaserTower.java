@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class LaserTower extends Tower{
@@ -17,7 +18,7 @@ public class LaserTower extends Tower{
 		slow = false;
 		damageOverTime = false;
 		areaOfAffect = false;
-	
+		tColor = new Color(150,150,150);
 	
 	}
 

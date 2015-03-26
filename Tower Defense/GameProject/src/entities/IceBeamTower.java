@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class IceBeamTower extends Tower {
@@ -17,6 +18,7 @@ public class IceBeamTower extends Tower {
 		slow = true;
 		damageOverTime = false;
 		areaOfAffect = false;
+		tColor = new Color(100,100,100);
 	}
 
 }

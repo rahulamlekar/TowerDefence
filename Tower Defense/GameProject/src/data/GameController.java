@@ -1,6 +1,5 @@
 package data;
 import helpers.ApplicationFrame;
-import helpers.Artist_Swing;
 import helpers.Field;
 import helpers.GameClock;
 
@@ -54,17 +53,13 @@ public class GameController extends Field implements ActionListener {
 		drawableEntities.add(tdMap);
 		
 		//get the critters and add them to the drawableEntities (to be updated)
-		//crittersToBePlaced = CritterGenerator.getGeneratedCritterWave(1, tdMap);
-		//just one for debugging....
-		crittersToBePlaced = new ArrayList<Critter>();
-		crittersToBePlaced.add(new Critter_Arrow(1, tdMap));
-		crittersToBePlaced.add(new Critter_Arrow(1, tdMap));
+		crittersToBePlaced = CritterGenerator.getGeneratedCritterWave(1, tdMap);
 		
 		for(int i = 0; i < crittersToBePlaced.size(); i++){
 			drawableEntities.add(crittersToBePlaced.get(i));
 			//crittersToBePlaced.get(i).addObserver(this); //makes this an observer of critter
 		}
-		
+		//create a couple towers and add them to the drawableEntitites.
 		tf1 = new IceBeamTower("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersToBePlaced);
 		tf2 = new LaserTower("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersToBePlaced);
 		drawableEntities.add(tf1);
@@ -80,13 +75,12 @@ public class GameController extends Field implements ActionListener {
 		for(int i = 0; i < drawableEntities.size(); i++){
 			drawableEntities.get(i).updateAndDraw(g);
 		}
-	
         Toolkit.getDefaultToolkit().sync();
 	}
 
 
 
-	//This method is called everytime the timer times out
+	//This method is called every time the timer times out
 	//The basic Game loop
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

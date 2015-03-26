@@ -1,6 +1,7 @@
 package entities;
 
-import helpers.EntityColor;
+import java.awt.Color;
+
 
 /*
  * Arrow critter is fast but weak compared to other critters
@@ -21,6 +22,6 @@ public class Critter_Arrow extends Critter{
 		resistance = 0;
 		//set name
 		name = "Arrow Critter";
-		color = "Blue";
+		cColor = Color.WHITE;
 	}
 }

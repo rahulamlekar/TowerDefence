@@ -1,6 +1,7 @@
 package entities;
 
-import helpers.EntityColor;
+import java.awt.Color;
+
 
 /*
  * shuriken critter is Strong but slow
@@ -21,6 +22,6 @@ public class Critter_Shuriken extends Critter{
 		resistance = 0.3*levelMultiplier;
 		//set name
 		name = "Shuriken Critter";
-		color = "Purple";
+		cColor = Color.PINK;
 	}
 }

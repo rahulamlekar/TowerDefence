@@ -1,12 +1,10 @@
 package entities;
 import helpers.Artist_Swing;
-import helpers.EntityColor;
 import helpers.GameClock;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /*
  * Critter abstract class from which all critters extend. Has certain attributes and methods including 
@@ -23,7 +21,8 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	protected int size;
 	protected double regen;
 	protected double resistance;
-	protected String color;
+	protected Color cColor;
+	
 	
 	//intangible properties
 	protected int reward;
@@ -58,8 +57,8 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	}
 	
 	//getters and setters
-	public String getColor(){
-		return color;
+	public Color getColor(){
+		return cColor;
 	}
 	public Point getPixelPosition(){
 		return _pixelPosition;

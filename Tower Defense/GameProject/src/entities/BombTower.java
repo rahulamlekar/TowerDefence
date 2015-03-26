@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class BombTower extends Tower {
@@ -17,6 +18,7 @@ public class BombTower extends Tower {
 		slow = false;
 		damageOverTime = false;
 		areaOfAffect = true;
+		tColor = new Color(175,175,175);
 	}
 
 }

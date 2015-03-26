@@ -1,6 +1,7 @@
 package entities;
 
-import helpers.EntityColor;
+import java.awt.Color;
+
 
 /*
  * Square Critters are weak but travel in groups
@@ -21,7 +22,7 @@ public class Critter_Square extends Critter{
 		resistance = 0;
 		//set name
 		name = "Square Critter";
-		color = "Cyan";
+		cColor = Color.RED;
 	}
 
 }

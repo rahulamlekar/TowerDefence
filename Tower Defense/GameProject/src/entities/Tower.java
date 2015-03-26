@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public abstract class Tower extends Subject implements DrawableEntity{
 
-//	  int posX;
-//	  int posY;
 	  Point position;
 	  int size;
 	  
@@ -24,6 +22,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	  boolean slow;
 	  boolean damageOverTime;
 	  boolean areaOfAffect;
+	  Color tColor;
 	  // inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
 	  //for the findCrittersInRange method to be called by an observer.
 	  //ArrayList<Critter> inRangeC;
@@ -39,6 +38,9 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		//inRangeC = new ArrayList<Critter>();
 		this.size = size;
 		this.crittersOnMap = crittersOnMap;
+	}
+	public Color getColor(){
+		return tColor;
 	}
 	public void setCrittersOnMap(ArrayList<Critter> crittersOnMap){
 		this.crittersOnMap = crittersOnMap;
