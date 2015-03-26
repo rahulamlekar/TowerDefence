@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * Critter abstract class from which all critters extend. Has certain attributes and methods including 
  * taking a step, getting damaged, etc.
  */
-public abstract class Critter implements DrawableEntity {
+public abstract class Critter extends Subject implements DrawableEntity {
 	//Constants
 	public static final int MAXWAVENUMBER = 50;
 	//attributes of the critter
@@ -144,7 +144,7 @@ public abstract class Critter implements DrawableEntity {
 			//this critter is no longer active
 			active = false;
 			//notify our observers.
-			//TODO: notify observers
+			this.notifyObservers();
 		}
 	}
 	/*
@@ -188,7 +188,9 @@ public abstract class Critter implements DrawableEntity {
 			this.currHitPoints -= dam;
 		}else{
 			this.currHitPoints = 0;
-			System.out.println("Critter has been killed. User will receive " + this.reward + " coins.\n");
+			this.active = false;
+			//TODO: Critter has died
+			//System.out.println("Critter has been killed. User will receive " + this.reward + " coins.\n");
 		}
 	}
 	

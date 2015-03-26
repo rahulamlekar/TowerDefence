@@ -13,7 +13,9 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import entities.Critter;
+import entities.Point;
 import entities.TDMap;
+import entities.Tower;
 
 public class Artist {
 	
@@ -121,6 +123,20 @@ public class Artist {
 		//glColor3f(col.getR(), col.getG(), col.getB());
 		drawQuad(crit.getPixelPosition().getX() - critterSize/2, crit.getPixelPosition().getY() - critterSize/2, critterSize,critterSize);
 
+	}
+	public static void drawTower(Tower tow, int size){
+		drawQuad(tow.getPosX(), tow.getPosY(), size, size);
+	}
+	public static void drawShot(Tower tow, Critter crit){
+		//get tower color info,
+		drawLine(new Point(tow.getPosX() +tow.getSize()/2, tow.getPosY() + tow.getSize()/2), crit.getPixelPosition());
+	}
+	
+	public static void drawLine(Point p1, Point p2){
+		glBegin(GL_LINE_STRIP);
+		glVertex2d(p1.getX(), p1.getY());
+		glVertex2d(p2.getX(), p2.getY());
+		glEnd();
 	}
 	
 	

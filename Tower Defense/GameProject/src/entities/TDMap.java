@@ -414,7 +414,6 @@ public class TDMap implements DrawableEntity{
 			toWhere = "bot";
 		}
 		
-		
 		Point finalPixelPosition = this.getPosOfBlock_pixel(lastPos.getX(), lastPos.getY());
 		Point finalPixelCenterOfBlock = new Point((int)(finalPixelPosition.getX() + this.xBlock/2), (int)(finalPixelPosition.getY() + this.yBlock/2));
 		finalPixelPosition = getPixelPositionH1(toWhere, finalPixelPosition, finalPixelCenterOfBlock);
