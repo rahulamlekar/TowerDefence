@@ -1,5 +1,5 @@
 package entities;
 
 public interface IObserver {
-	public void update();
+	public void observerUpdate();
 }

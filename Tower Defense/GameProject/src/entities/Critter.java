@@ -33,6 +33,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	//state properties
 	protected Point _pixelPosition;
 	protected boolean active;
+	protected boolean alive;
 	protected boolean reachedEnd;
 	protected ArrayList<Point> pixelPathToFollow;
 	protected int indexInPixelPath;
@@ -49,6 +50,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		levelMultiplier = 1 + level/MAXWAVENUMBER;
 		reachedEnd = false; //none have reached end to start
 		active = false; //none are active to start
+		alive = true;
 		pixelPathToFollow = m.getPath_ListOfPixels();
 		indexInPixelPath = 0; //all start at beginning of path
 		size = 6; //this can be changed...
@@ -63,9 +65,17 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	public Point getPixelPosition(){
 		return _pixelPosition;
 	}
-	
+	public boolean hasReachedEnd(){
+		return reachedEnd;
+	}
+	public boolean isAlive(){
+		return alive;
+	}
 	public int getSize(){
 		return size;
+	}
+	public int getLoot(){
+		return reward;
 	}
 	public void setHitboxRadius(int size){
 		this.size = size;
@@ -197,8 +207,8 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		}else{
 			this.currHitPoints = 0;
 			this.active = false;
-			//TODO: Critter has died
-			//System.out.println("Critter has been killed. User will receive " + this.reward + " coins.\n");
+			this.alive = false;
+			this.notifyObservers();
 		}
 	}
 

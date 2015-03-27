@@ -22,5 +22,8 @@ public class GameClock {
 	public void setDeltaTime(int dt){
 		dTime = dt;
 	}
+	public void pause(){
+		setDeltaTime(0);
+	}
 	
 }

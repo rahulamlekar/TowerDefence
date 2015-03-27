@@ -1,6 +1,7 @@
 package helpers;
 
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -35,10 +36,14 @@ public class ApplicationFrame extends JFrame {
 	private void init(){
 		
 		//set the Frame properties
+		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+		
 		add(controller.getField());
+		add(controller.getField().labelPanel);
+		
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
 		setTitle(APP_NAME);
-		pack();         												
+		//pack();         												
 		
 		//set the x button as the default close operation
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);					

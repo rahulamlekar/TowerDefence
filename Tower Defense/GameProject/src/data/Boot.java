@@ -2,8 +2,8 @@ package data;
 import java.util.ArrayList;
 
 import entities.*;
+import helpers.CritterGenerator;
 import helpers.GameClock;
-
 import entities.TDMap;
 
 
@@ -75,7 +75,7 @@ public class Boot implements IObserver {
 	}
 	
 	@Override
-	public void update() {
+	public void observerUpdate() {
 		//I know that something has changed about my subject.
 		//if subject.reachedEnd =true, then change lives
 		//if subject.died = true, give gold

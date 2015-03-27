@@ -8,7 +8,7 @@ public class CharacterObserver implements IObserver {
 		this.tower = tower;
 	}
 
-	public void update(){
+	public void observerUpdate(){
 		
 		//for(int i=0;i<tower.getInRangeC().size();i++){
 			//this will print the entire list of critters in range every time that a new critter comes into the range.

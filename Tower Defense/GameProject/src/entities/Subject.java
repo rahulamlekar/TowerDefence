@@ -12,7 +12,7 @@ public abstract class Subject {
 	}
 	protected void notifyObservers(){
 		for(IObserver o : observers){
-			o.update();
+			o.observerUpdate();
 		}
 	}
 }

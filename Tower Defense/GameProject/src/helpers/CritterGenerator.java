@@ -1,5 +1,14 @@
-package entities;
+package helpers;
 import java.util.ArrayList;
+
+import entities.Critter;
+import entities.Critter_Arrow;
+import entities.Critter_Circle;
+import entities.Critter_Infinity;
+import entities.Critter_Shuriken;
+import entities.Critter_Square;
+import entities.Critter_X;
+import entities.TDMap;
 /*
  * generates a group of critters for a certain wave number.
  */
