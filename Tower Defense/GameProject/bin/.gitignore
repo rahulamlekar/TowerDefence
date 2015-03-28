@@ -1,4 +1,9 @@
 /data/
+<<<<<<< HEAD
 /entities/
 /helpers/
 /res/
+=======
+/strategies/
+/strategy/
+>>>>>>> origin/asher

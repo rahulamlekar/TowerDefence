@@ -19,11 +19,15 @@ public class GameClock {
 	public int deltaTime(){
 		return dTime;
 	}
-	public void setDeltaTime(int dt){
+	
+	private void setDeltaTime(int dt){
 		dTime = dt;
 	}
 	public void pause(){
 		setDeltaTime(0);
+	}
+	public void unPause(){
+		setDeltaTime(1);
 	}
 	
 }
