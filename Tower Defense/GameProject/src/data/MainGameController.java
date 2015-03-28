@@ -242,6 +242,13 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			this.getControlPanel().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
 		}
 	}
+	
+	
+	public void addTower(Point point){
+		 Tower tf4 = new IceBeamTower("tower4",point,tdMap.xBlock,crittersInWave);
+		 towersOnMap.add(tf4);
+		 drawableEntities.add(tf4);
+	}
 
 	
 }
