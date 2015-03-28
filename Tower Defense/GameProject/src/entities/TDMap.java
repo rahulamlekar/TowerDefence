@@ -33,6 +33,7 @@ public class TDMap implements DrawableEntity{
     private LinkedList<Integer> shortestPath;
     public int xBlock;
 	public int yBlock;
+	public static final int MINWIDTH = 20, MAXWIDTH = 80, MINHEIGHT = 13, MAXHEIGHT = 50;
 	private final int DEFAULTGRIDWIDTH = 40;
 	private final int DEFAULTGRIDHEIGHT = 24;
     // Constructors
@@ -49,11 +50,11 @@ public class TDMap implements DrawableEntity{
     
     public TDMap(int l, int h, String back)
     {
-        if(width>19&&width<81)
+        if(width>=MINWIDTH&&width<=MAXWIDTH)
             width= l;
         else
             width=DEFAULTGRIDWIDTH;
-        if(height>12&&height<51)
+        if(height>=MINHEIGHT&&height<=MAXHEIGHT)
             height= h;
         else
             height= DEFAULTGRIDHEIGHT;

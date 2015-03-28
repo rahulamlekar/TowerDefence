@@ -38,7 +38,8 @@ public class MainMenuActivity extends JFrame implements ActionListener{
 				this.dispose();
 				new GameActivity(map);
 			}else if(e.getSource() == bCreateMap){
-		
+				this.dispose();
+				new MapEditorActivity();
 			}else if(e.getSource() == bQuit){
 				System.exit(0);
 			}
