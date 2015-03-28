@@ -16,7 +16,7 @@ public class Critter_X extends Critter {
 		//low regen
 		regen = 1*levelMultiplier;
 		//low speed
-		speed = (int) (5*levelMultiplier);
+		speed = (5*levelMultiplier);
 		//pure resistancfe
 		resistance = 1;
 		//set name

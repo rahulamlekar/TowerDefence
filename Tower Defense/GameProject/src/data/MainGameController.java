@@ -1,8 +1,10 @@
 package data;
-import helpers.ApplicationFrame;
+import helpers.GameActivity;
 import helpers.CritterGenerator;
-import helpers.Field;
+import helpers.GameControlPanel;
+import helpers.GamePlayPanel;
 import helpers.GameClock;
+import helpers.MainMenuActivity;
 
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -10,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import entities.*;
@@ -17,11 +20,12 @@ import entities.*;
 import java.util.ArrayList;
 
 
-public class GameController extends Field implements ActionListener, IObserver {
+public class MainGameController extends GamePlayPanel implements ActionListener, IObserver {
 		
 	//declare game specific variables
-	protected Field mField;
-	
+	protected GamePlayPanel gamePanel;
+	protected GameControlPanel controlPanel;
+	protected GameActivity activity;
 	
 	//declare frame specific variables
 	private Timer timer;
@@ -34,20 +38,26 @@ public class GameController extends Field implements ActionListener, IObserver {
 	ArrayList<Tower> towersOnMap;
 	private boolean gamePaused;
 	private JButton pauseButton;
+	private JButton bReturn;
 	private boolean gameOver;
+	JFrame mainFrame;
 	
 	Tower tf1, tf2, tf3;
 	ArrayList<Subject> subjects;
-	public GameController()
+	public MainGameController()
 	{
 		//create Field pointer defined in controller
-		mField = this;
-		pauseButton = this.getField().getPauseButton();
+		gamePanel = this;
+		controlPanel = new GameControlPanel();
+		pauseButton = this.getControlPanel().getPauseButton();
 		pauseButton.addActionListener(this);
+		bReturn = this.getControlPanel().getReturnButton();
+		bReturn.addActionListener(this);
+		
 		gamePaused = false;
 		gameOver = false;
 		//start the timer
-		timer = new Timer(ApplicationFrame.TIMEOUT,this);
+		timer = new Timer(GameActivity.TIMEOUT,this);
 		timer.start();
 		//initialize arraylists
 		subjects = new ArrayList<Subject>();
@@ -75,10 +85,13 @@ public class GameController extends Field implements ActionListener, IObserver {
 		startNewWave();
 		
 	}
-	
+	public void setMainFrame(JFrame mFrame){
+		mainFrame = mFrame;
+	}
 	private void startNewWave(){
 		//increment the wave number
 		waveNumber +=1;
+		this.updateInfoLabelText();
 		//reset the active critter index
 		activeCritterIndex = 0;
 		//record the amount of money they have as the start wave money (and same for lives)
@@ -136,6 +149,9 @@ public class GameController extends Field implements ActionListener, IObserver {
 					gamePaused =false;
 					pauseButton.setText("Pause");
 				}
+			}else if(arg0.getSource() == bReturn){
+				mainFrame.dispose();
+				new MainMenuActivity();
 			}else{
 				if(gamePaused == false){
 					if(activeCritterIndex == 0){
@@ -154,7 +170,7 @@ public class GameController extends Field implements ActionListener, IObserver {
 	}
 	public void Draw(){
 		//calls the paintComponent function
-		mField.repaint();
+		gamePanel.repaint();
 	}
 	//one of my subjects has changed. Go through them all and check stats.
 	public void observerUpdate(){
@@ -187,7 +203,7 @@ public class GameController extends Field implements ActionListener, IObserver {
 	}
 	private void endGame(){
 		gameOver = true;
-		this.getField().setInfoLabelText("GAME OVER. You reached wave: " + waveNumber + " with $" + money);
+		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave: " + waveNumber + " with $" + money);
 		GameClock.getInstance().pause();
 	}
 	private void resetPlayerStats() {
@@ -196,12 +212,15 @@ public class GameController extends Field implements ActionListener, IObserver {
 		
 	}
 
-	public Field getField(){
-		return mField;
+	public GameControlPanel getControlPanel(){
+		return controlPanel;
+	}
+	public GamePlayPanel getPlayPanel(){
+		return gamePanel;
 	}
 	public void updateInfoLabelText(){
 		if(gamePaused ==false){
-		this.getField().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
+			this.getControlPanel().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
 		}
 	}
 

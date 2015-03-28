@@ -17,7 +17,7 @@ public class Critter_Shuriken extends Critter{
 		//medium regen
 		regen = 2*levelMultiplier;
 		//low speed
-		speed = (int) (5*levelMultiplier);
+		speed = (5*levelMultiplier);
 		//med resistance
 		resistance = 0.3*levelMultiplier;
 		//set name

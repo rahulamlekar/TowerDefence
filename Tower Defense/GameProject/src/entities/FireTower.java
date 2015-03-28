@@ -15,7 +15,7 @@ public class FireTower extends Tower {
 		buyCost = 10;
 		sellPrice = 10;
 		upCost = 10;
-		slow = false;
+		slowFactor = 0.0;
 		damageOverTime = true;
 		areaOfAffect = false;
 		tColor = new Color(200,200,200);

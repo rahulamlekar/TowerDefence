@@ -17,18 +17,18 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	//tangible properties of critter
 	protected double currHitPoints;
 	protected double maxHitPoints;
-	protected int speed;
+	protected double speed;
 	protected int size;
 	protected double regen;
 	protected double resistance;
 	protected Color cColor;
-	
 	
 	//intangible properties
 	protected int reward;
 	protected int level;
 	protected double levelMultiplier;
 	protected String name;
+	protected double slowFactor;
 	
 	//state properties
 	protected Point _pixelPosition;
@@ -36,7 +36,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	protected boolean alive;
 	protected boolean reachedEnd;
 	protected ArrayList<Point> pixelPathToFollow;
-	protected int indexInPixelPath;
+	protected double indexInPixelPath;
 	 
 	//MAP (gets the only instance of the map)
 	protected TDMap map;
@@ -56,9 +56,15 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		size = 6; //this can be changed...
 		map = m; //shouldn't be here!
 		this._pixelPosition = new Point(-1,-1);
+		slowFactor = 0;
 	}
 	
 	//getters and setters
+	public void setSlowFactor(double slowFactor){
+		if(this.slowFactor < slowFactor){
+			this.slowFactor = slowFactor;
+		}
+	}
 	public Color getColor(){
 		return cColor;
 	}
@@ -92,10 +98,10 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	public void setRegen(double regen) {
 		this.regen = regen;
 	}
-	public int getSpeed() {
+	public double getRawSpeed() {
 		return speed;
 	}
-	public void setSpeed(int speed) {
+	public void setRawSpeed(int speed) {
 		this.speed = speed;
 	}
 	public int getLevel() {
@@ -145,11 +151,11 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			_pixelPosition = pixelPathToFollow.get(0);
 		}
 		//the next index is our current index + our speed*our clock
-		indexInPixelPath += this.speed*GameClock.getInstance().deltaTime(); //synced with time
+		indexInPixelPath += (1.0-slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
 		
 		//If we aren't going to pass the end, we move our critter.
 		if(indexInPixelPath < pixelPathToFollow.size()){
-			moveAndDrawCritter(pixelPathToFollow.get(indexInPixelPath),  g);
+			moveAndDrawCritter(pixelPathToFollow.get((int) indexInPixelPath),  g);
 		}else{
 			//we have reached the end
 			reachedEnd = true; 

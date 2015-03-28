@@ -15,7 +15,7 @@ public class BombTower extends Tower {
 		buyCost = 10;
 		sellPrice = 10;
 		upCost = 10;
-		slow = false;
+		slowFactor = 0.0;
 		damageOverTime = false;
 		areaOfAffect = true;
 		tColor = new Color(175,175,175);

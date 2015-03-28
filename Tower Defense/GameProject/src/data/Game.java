@@ -1,9 +1,12 @@
 package data;
 
-import helpers.ApplicationFrame;
+import helpers.GameActivity;
+import helpers.MainMenuActivity;
 
 public class Game {
 	public static void main(String[] args){
-		new ApplicationFrame();
+		//First display main menu
+		
+		new MainMenuActivity();
 	}
 }

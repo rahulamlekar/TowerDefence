@@ -13,12 +13,12 @@ public class Critter_Square extends Critter{
 		//low reward
 		reward = (int) (5*levelMultiplier);
 		//low hitpoints
-		currHitPoints = (50*levelMultiplier);
+		currHitPoints = (100*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//no regen
 		regen = 0;
 		//low speed
-		speed = (int) (5*levelMultiplier);
+		speed = (5*levelMultiplier);
 		resistance = 0;
 		//set name
 		name = "Square Critter";

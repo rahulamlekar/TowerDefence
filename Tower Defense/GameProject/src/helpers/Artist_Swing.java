@@ -64,7 +64,7 @@ public class Artist_Swing extends JFrame{
 		g.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2));
-		g2d.drawLine(tow.getPosX() +tow.getSize()/2, tow.getPosY() + tow.getSize()/2, crit.getPixelPosition().getX(), crit.getPixelPosition().getY());
+		g2d.drawLine(tow.getPosX() +tow.getSize()/2, tow.getPosY() + tow.getSize()/2, crit.getPixelPosition().getX() + crit.getSize()/2, crit.getPixelPosition().getY() + crit.getSize()/2);
 	}
 	
 

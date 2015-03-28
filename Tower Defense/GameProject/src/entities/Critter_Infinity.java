@@ -17,7 +17,7 @@ public class Critter_Infinity extends Critter{
 		//high regen
 		regen = (3*levelMultiplier);
 		//medium-high speed
-		speed = (int) (10*levelMultiplier);
+		speed = (10*levelMultiplier);
 		//high resistance
 		resistance = 0.5*levelMultiplier;
 		//set name

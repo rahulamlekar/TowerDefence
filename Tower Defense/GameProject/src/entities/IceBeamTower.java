@@ -9,13 +9,13 @@ public class IceBeamTower extends Tower {
 		super(n, p, size, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
-		damage = 0.5;
+		damage = 0.1;
 		rateOfFire = 10;
 		range = 100;
 		buyCost = 10;
 		sellPrice = 10;
 		upCost = 10;
-		slow = true;
+		slowFactor = 0.5;
 		damageOverTime = false;
 		areaOfAffect = false;
 		tColor = new Color(100,100,100);

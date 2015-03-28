@@ -19,7 +19,8 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	  int upCost;
 	  String name;
 	  int level;
-	  boolean slow;
+	  //boolean slow;
+	  double slowFactor;
 	  boolean damageOverTime;
 	  boolean areaOfAffect;
 	  Color tColor;
@@ -133,6 +134,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	public void shootTarget(Critter target, Graphics g){
 		for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
 		  target.damage(damage);
+		  target.setSlowFactor(this.slowFactor);
 		  Artist_Swing.drawShot(this, target, g);
 		}
 	} 
@@ -161,6 +163,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		
 		return upCost;
 	}
+	/*
 	//applies slow, damage over time, or area of affect depending on the tower
 	public void applyAffect(Critter a){
 		
@@ -179,7 +182,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 			System.out.println("Critter is dealt area of affect damage.");
 			
 		}
-	}
+	}*/
 	
 	public int getPosX(){
 		

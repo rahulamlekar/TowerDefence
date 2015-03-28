@@ -6,17 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import data.GameController;
+import data.MainGameController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * 
- * @author Shabbir
- * This class is the container class for the project
- */
-public class ApplicationFrame extends JFrame {
+
+public class GameActivity extends JFrame {
 
 	// constants
 	public static final int PIXELWIDTH=1280;
@@ -24,10 +20,11 @@ public class ApplicationFrame extends JFrame {
 	public static final String APP_NAME = "Gametime";
 	
 	public static final int TIMEOUT = 30;                          		
-	protected GameController controller = new GameController(); 
+	MainGameController gameController = new MainGameController();
 		
-	public  ApplicationFrame(){
+	public  GameActivity(){
 		init();
+		gameController.setMainFrame(this);
 	}
 	
 	/**
@@ -38,8 +35,8 @@ public class ApplicationFrame extends JFrame {
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		
-		add(controller.getField());
-		add(controller.getField().labelPanel);
+		add(gameController.getPlayPanel());
+		add(gameController.getControlPanel());
 		
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
 		setTitle(APP_NAME);

@@ -12,12 +12,12 @@ public class Critter_Circle extends Critter{
 		//average reward
 		reward = (int) (10*levelMultiplier);
 		//average hitpoints
-		currHitPoints = (50*levelMultiplier);
+		currHitPoints = (100*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//low regen
 		regen = (1*levelMultiplier);
 		//average speed
-		speed = (int) (8*levelMultiplier);
+		speed = (5*levelMultiplier);
 		//no resistance
 		resistance = 0;
 		//set name
