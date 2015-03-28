@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import data.MainGameController;
+import entities.TDMap;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +21,10 @@ public class GameActivity extends JFrame {
 	public static final String APP_NAME = "Gametime";
 	
 	public static final int TIMEOUT = 30;                          		
-	MainGameController gameController = new MainGameController();
+	MainGameController gameController;
 		
-	public  GameActivity(){
+	public  GameActivity(TDMap tdMap){
+		gameController = new MainGameController(tdMap);
 		init();
 		gameController.setMainFrame(this);
 	}

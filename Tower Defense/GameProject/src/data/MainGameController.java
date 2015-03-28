@@ -37,29 +37,54 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	ArrayList<Critter> crittersInWave;
 	ArrayList<Tower> towersOnMap;
 	private boolean gamePaused;
-	private JButton pauseButton;
-	private JButton bReturn;
+
 	private boolean gameOver;
 	JFrame mainFrame;
+	private JButton bPause;
+	private JButton bReturn;
+	private JButton bStartWave;
 	
 	Tower tf1, tf2, tf3;
 	ArrayList<Subject> subjects;
-	public MainGameController()
+	public MainGameController(TDMap map)
 	{
-		//create Field pointer defined in controller
-		gamePanel = this;
-		controlPanel = new GameControlPanel();
-		pauseButton = this.getControlPanel().getPauseButton();
-		pauseButton.addActionListener(this);
-		bReturn = this.getControlPanel().getReturnButton();
-		bReturn.addActionListener(this);
+		setPanelAndButtonProperties();
+		setInitialValues();	
+		this.tdMap = map;
+		//add the map back into the drawable entities
+		drawableEntities.add(tdMap);
 		
-		gamePaused = false;
-		gameOver = false;
 		//start the timer
 		timer = new Timer(GameActivity.TIMEOUT,this);
 		timer.start();
+		
 		//initialize arraylists
+		updateInfoLabelText();
+	
+		//create a couple towers and add them to the drawableEntitites.
+		tf1 = new IceBeamTower("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersInWave);
+		tf2 = new LaserTower("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersInWave);
+		tf3 = new LaserTower("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
+		towersOnMap.add(tf1);
+		towersOnMap.add(tf2);
+		towersOnMap.add(tf3);
+		
+	}
+	public void setPanelAndButtonProperties(){
+		//create Field pointer defined in controller
+		gamePanel = this;
+		controlPanel = new GameControlPanel();
+		bPause = this.getControlPanel().getPauseButton();
+		bPause.addActionListener(this);
+		bReturn = this.getControlPanel().getReturnButton();
+		bReturn.addActionListener(this);
+		bStartWave = this.getControlPanel().getStartWaveButton();
+		bStartWave.addActionListener(this);
+	}
+	public void setInitialValues(){
+		GameClock.getInstance().pause();
+		gamePaused = true;
+		gameOver = false;
 		subjects = new ArrayList<Subject>();
 		drawableEntities = new ArrayList<DrawableEntity>();
 		towersOnMap = new ArrayList<Tower>();
@@ -68,22 +93,6 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		waveStartLives = 10;
 		money = 200;
 		waveStartMoney = 200;
-
-		
-		updateInfoLabelText();
-		
-		//get the map
-		tdMap= new TDMap("res/DIRTMAP1.TDMap");
-		
-		//create a couple towers and add them to the drawableEntitites.
-		tf1 = new IceBeamTower("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersInWave);
-		tf2 = new LaserTower("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersInWave);
-		tf3 = new LaserTower("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
-		towersOnMap.add(tf1);
-		towersOnMap.add(tf2);
-		towersOnMap.add(tf3);
-		startNewWave();
-		
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -91,6 +100,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private void startNewWave(){
 		//increment the wave number
 		waveNumber +=1;
+		bStartWave.setText("Start Wave " + (waveNumber+1));
 		this.updateInfoLabelText();
 		//reset the active critter index
 		activeCritterIndex = 0;
@@ -101,10 +111,9 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		drawableEntities.clear();
 		//remove all current subjects
 		subjects.clear();
-		
-		//add the map back into the drawable entities
-		drawableEntities.add(tdMap);
 
+		drawableEntities.add(tdMap);
+		
 		//get the critters for this wave level
 		crittersInWave = CritterGenerator.getGeneratedCritterWave(waveNumber, tdMap);
 		for(int i = 0; i < crittersInWave.size(); i++){
@@ -130,6 +139,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			drawableEntities.get(i).updateAndDraw(g);
 		}
         Toolkit.getDefaultToolkit().sync();
+
 	}
 
 
@@ -138,21 +148,26 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	//The basic Game loop
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-	if(!gameOver){
-			if(arg0.getSource() == pauseButton){
+		
+			if(arg0.getSource() == bPause && !gameOver){
 				if(gamePaused == false){
 					GameClock.getInstance().pause();
 					gamePaused = true;
-					pauseButton.setText("Play");
+					bPause.setText("Play");
 				}else{
-					GameClock.getInstance().setDeltaTime(1);
+					GameClock.getInstance().unPause();
 					gamePaused =false;
-					pauseButton.setText("Pause");
+					bPause.setText("Pause");
 				}
 			}else if(arg0.getSource() == bReturn){
 				mainFrame.dispose();
 				new MainMenuActivity();
-			}else{
+			}else if(arg0.getSource() == bStartWave && !gameOver){
+				GameClock.getInstance().unPause();
+				gamePaused =false;
+				bStartWave.setEnabled(false);
+				startNewWave();
+			}else if(!gameOver){
 				if(gamePaused == false){
 					if(activeCritterIndex == 0){
 						crittersInWave.get(activeCritterIndex).setActive(true);
@@ -163,10 +178,11 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 							activeCritterIndex +=1;
 						}
 					}
-					Draw();
 				}
+				Draw();
 			}
-		}
+			
+		
 	}
 	public void Draw(){
 		//calls the paintComponent function
@@ -196,13 +212,16 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			}
 			//if no critters are left, start a new wave
 			if(anyCrittersLeft == false){
-				startNewWave();
+				bStartWave.setEnabled(true);
+
+				//startNewWave();
 			}
 			updateInfoLabelText();
 		}
 	}
 	private void endGame(){
 		gameOver = true;
+		gamePaused =true;
 		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave: " + waveNumber + " with $" + money);
 		GameClock.getInstance().pause();
 	}

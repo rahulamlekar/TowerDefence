@@ -60,6 +60,9 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	}
 	
 	//getters and setters
+	public double getIndexInPixelPath(){
+		return this.indexInPixelPath;
+	}
 	public void setSlowFactor(double slowFactor){
 		if(this.slowFactor < slowFactor){
 			this.slowFactor = slowFactor;

@@ -7,11 +7,13 @@ import javax.swing.JPanel;
 public class GameControlPanel extends JPanel  {
 
 	//public JPanel labelPanel = new JPanel();
+	JButton bStartWave = new JButton("Start Wave 1");
 	JLabel lblInfo = new JLabel("Lives = " + ", Money = " + ", Wavenumber = ");
 	JButton bPause = new JButton("Pause");
 	JButton bReturn = new JButton("Main Menu");
 	public GameControlPanel(){
         //add the info label to this panel
+		this.add(bStartWave);
         this.add(lblInfo);
         this.add(bPause);
         this.add(bReturn);
@@ -28,6 +30,8 @@ public class GameControlPanel extends JPanel  {
 	public JButton getReturnButton(){
 		return bReturn;
 	}
-	
+	public JButton getStartWaveButton(){
+		return bStartWave;
+	}
 
 }
