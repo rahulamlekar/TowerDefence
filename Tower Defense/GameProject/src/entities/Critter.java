@@ -119,6 +119,9 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	public void setActive(boolean act){
 		active = act;
 	}
+	public double getSpeed(){
+		return speed;
+	}
 	//END OF Getters and Setters
 	/*
 	 * @see entities.DrawableEntity#updateAndDraw()

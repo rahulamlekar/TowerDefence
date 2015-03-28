@@ -67,8 +67,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		tf3 = new LaserTower("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
 		towersOnMap.add(tf1);
 		towersOnMap.add(tf2);
-		towersOnMap.add(tf3);
-		
+		towersOnMap.add(tf3);		
 	}
 	public void setPanelAndButtonProperties(){
 		//create Field pointer defined in controller

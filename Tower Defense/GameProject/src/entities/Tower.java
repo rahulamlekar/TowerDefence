@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import strategy.*;
+
 public abstract class Tower extends Subject implements DrawableEntity{
 
 	  Point position;
@@ -24,6 +26,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	  boolean damageOverTime;
 	  boolean areaOfAffect;
 	  Color tColor;
+	  private IStrategy strategy;
 	  // inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
 	  //for the findCrittersInRange method to be called by an observer.
 	  //ArrayList<Critter> inRangeC;
@@ -39,6 +42,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		//inRangeC = new ArrayList<Critter>();
 		this.size = size;
 		this.crittersOnMap = crittersOnMap;
+		strategy = new Closest();
 	}
 	public Color getColor(){
 		return tColor;
@@ -54,7 +58,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		this.drawTower(g);
 		inRangeC = this.findCrittersInRange(crittersOnMap);
-		Critter targeted = this.selectTarget(inRangeC);
+		Critter targeted = selectTarget(this, inRangeC);
 		if(targeted != null){
 			this.shootTarget(targeted, g);
 		}
@@ -65,45 +69,39 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		Artist_Swing.drawTower(this,g);
     }
 	
-	public Critter selectTarget(ArrayList<Critter> inRange){
-		//Strategy.pickTarget(
-		Critter targetC = null;
-		if(inRange.size() > 0){
-			 targetC = inRange.get(0);
-		}
-		return targetC;
+	public Critter selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
+		Critter target = strategy.findTarget(tf1, crittersInR);
+		return target;
+	}
+	
+
+	public double distanceToCritter(Critter a){
+	    double deltaX = a.getPixelPosition().getX()-this.getPosX();
+	    double deltaY = a.getPixelPosition().getY()-this.getPosY();
+		//finds the distance between a creep and a tower.
+		double critterDistance = Math.sqrt((deltaX)*(deltaX) + (deltaY)*(deltaY));
 		
+		return critterDistance;
 	}
 	
 	//checking if a critter is in range of a tower
 	public boolean inRange(Critter a){
-		
-      int deltaX = a.getPixelPosition().getX()-this.getPosX();
-      int deltaY = a.getPixelPosition().getY()-this.getPosY();
+		boolean result = true;
 		//finds the distance between a creep and a tower.
-		int critterDistance = (int) Math.sqrt((deltaX)*(deltaX) + (deltaY)*(deltaY));
+		int critterDistance = (int) distanceToCritter(a);
+		
 		if(a.getSize()+this.getRange()<critterDistance){
-			
-			return false;
+			result = false;
 		}
 		
-		return true;
+		return result;
 	}
 	
 	//returns the critters that are in range of a tower
 	public ArrayList<Critter> findCrittersInRange(ArrayList<Critter> a){
 		
 		ArrayList<Critter> crittersInRange = new ArrayList<Critter>();
-		
-		//used to remove any critters that are no longer in the range
-		/*for(int i = 0; i<inRangeC.size();i++){
-					
-			if(inRange(inRangeC.get(i))==false){
-						
-				inRangeC.remove(i);
-			}
-		}*/
-		
+	
 		for(int i = 0; i<a.size();i++){
 			if(a.get(i).isActive()){
 				if(inRange(a.get(i))){
@@ -183,7 +181,9 @@ public abstract class Tower extends Subject implements DrawableEntity{
 			
 		}
 	}*/
-	
+	public void setStrategy(IStrategy strategy) {
+		this.strategy = strategy;
+	}
 	public int getPosX(){
 		
 		return position.getX();
