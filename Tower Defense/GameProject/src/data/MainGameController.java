@@ -168,6 +168,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			}
 		}
 	}
+	
 	public void Draw(){
 		//calls the paintComponent function
 		gamePanel.repaint();
