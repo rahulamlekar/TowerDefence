@@ -47,7 +47,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JButton bPause;
 	private JButton bReturn;
 	private JButton bStartWave;
-	private JToggleButton bBomb;
+	private JToggleButton bSpread;
 	private JToggleButton bFire;
 	private JToggleButton bIceBeam;
 	private JToggleButton bLaser;
@@ -82,8 +82,8 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		bReturn.addActionListener(this);
 		bStartWave = this.getControlPanel().getStartWaveButton();
 		bStartWave.addActionListener(this);
-		bBomb = this.getControlPanel().getBombButton();
-		bBomb.addActionListener(this);
+		bSpread = this.getControlPanel().getSpreadButton();
+		bSpread.addActionListener(this);
 		bFire = this.getControlPanel().getFireButton();
 		bFire.addActionListener(this);
 		bLaser = this.getControlPanel().getLaserButton();
@@ -104,8 +104,8 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		money = 2000;
 		waveStartMoney = money;
 		//default tower to build
-		selectedTower = "Bomb";
-		bBomb.doClick();
+		selectedTower = "Spread";
+		bSpread.doClick();
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -180,7 +180,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 				gamePaused =false;
 				bStartWave.setEnabled(false);
 				startNewWave();
-			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bBomb){
+			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bSpread){
 				selectedTower = ((JToggleButton) arg0.getSource()).getName();
 			}else if(!gameOver){
 				if(gamePaused == false){
@@ -284,10 +284,10 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			Tower towToBuild = null;
 			int moneyToSpend = 0;
 			//check which tower we want to place
-			if(selectedTower.equalsIgnoreCase("Bomb")){
-				if(this.money > Tower_Bomb.getBuyPrice()){
-					towToBuild =new Tower_Bomb("Bomb", adjustedTowerPoint, crittersInWave, tdMap);
-					moneyToSpend = Tower_Bomb.getBuyPrice();
+			if(selectedTower.equalsIgnoreCase("Spread")){
+				if(this.money > Tower_SpreadShot.getBuyPrice()){
+					towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
+					moneyToSpend = Tower_SpreadShot.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}

@@ -20,19 +20,19 @@ public class GameControlPanel extends JPanel  {
 	JButton bIceBeam = new JButton("I");
 	JButton bLaser = new JButton("L");*/
 	ButtonGroup towerGroup = new ButtonGroup();
-	JToggleButton bBomb = new JToggleButton("B");
+	JToggleButton bSpread = new JToggleButton("S");
 	JToggleButton bFire = new JToggleButton("F");
 	JToggleButton bIceBeam = new JToggleButton("I");
 	JToggleButton bLaser = new JToggleButton("L");
 	
 	public GameControlPanel(){
-		towerGroup.add(bBomb);
+		towerGroup.add(bSpread);
 		towerGroup.add(bFire);
 		towerGroup.add(bIceBeam);
 		towerGroup.add(bLaser);
 		
         //add the info label to this panel
-		this.add(bBomb);
+		this.add(bSpread);
 		this.add(bFire);
 		this.add(bIceBeam);
 		this.add(bLaser);
@@ -41,11 +41,11 @@ public class GameControlPanel extends JPanel  {
         this.add(bPause);
         this.add(bReturn);
         
-		bBomb.setPreferredSize(new Dimension(buttonSize, buttonSize));
+		bSpread.setPreferredSize(new Dimension(buttonSize, buttonSize));
 		bFire.setPreferredSize(new Dimension(buttonSize, buttonSize));
 		bIceBeam.setPreferredSize(new Dimension(buttonSize, buttonSize));
 		bLaser.setPreferredSize(new Dimension(buttonSize,buttonSize));
-		bBomb.setName("Bomb");
+		bSpread.setName("Spread");
 		bFire.setName("Fire");
 		bIceBeam.setName("IceBeam");
 		bLaser.setName("Laser");
@@ -65,8 +65,8 @@ public class GameControlPanel extends JPanel  {
 	public JButton getStartWaveButton(){
 		return bStartWave;
 	}
-	public JToggleButton getBombButton(){
-		return bBomb;
+	public JToggleButton getSpreadButton(){
+		return bSpread;
 	}
 	public JToggleButton getFireButton(){
 		return bFire;
