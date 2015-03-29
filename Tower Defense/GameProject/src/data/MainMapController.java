@@ -34,6 +34,7 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 	protected TDMap tdMap;
 	
 	//declare frame specific variables
+	private Timer timer;
 	private JButton bReturn;
 	private JButton bInitialize;
 	JFrame mainFrame;
@@ -49,6 +50,8 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 		bInitialize.addActionListener(this);
 		
 		this.tdMap= map;
+		timer = new Timer(MapEditorActivity.TIMEOUT,this);
+		timer.start();
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -72,8 +75,9 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 		{
 			this.tdMap= new TDMap(Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem()),
 					Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem()),"Generic");
-			Draw();
 		}
+		else
+			Draw();
 
 	}
 	
