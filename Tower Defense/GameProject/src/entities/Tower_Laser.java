@@ -3,9 +3,9 @@ package entities;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class LaserTower extends Tower{
+public class Tower_Laser extends Tower{
 
-	public LaserTower(String name, Point p, int size, ArrayList<Critter> crittersOnMap) {
+	public Tower_Laser(String name, Point p, int size, ArrayList<Critter> crittersOnMap) {
 		super(name,p, size, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders

@@ -63,9 +63,9 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		updateInfoLabelText();
 	
 		//create a couple towers and add them to the drawableEntitites.
-		tf1 = new IceBeamTower("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersInWave);
-		tf2 = new LaserTower("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersInWave);
-		tf3 = new LaserTower("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
+		tf1 = new Tower_IceBeam("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersInWave);
+		tf2 = new Tower_Laser("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersInWave);
+		tf3 = new Tower_Laser("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
 		towersOnMap.add(tf1);
 		towersOnMap.add(tf2);
 		towersOnMap.add(tf3);	
@@ -249,7 +249,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	
 	
 	public void addTower(Point point){
-		 Tower tf4 = new IceBeamTower("tower4",point,tdMap.xBlock,crittersInWave);
+		 Tower tf4 = new Tower_IceBeam("tower4",point,tdMap.xBlock,crittersInWave);
 		 towersOnMap.add(tf4);
 		 drawableEntities.add(tf4);
 	}

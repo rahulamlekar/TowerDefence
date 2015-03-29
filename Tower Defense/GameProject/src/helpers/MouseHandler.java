@@ -8,7 +8,7 @@ import javax.swing.*;
 
 import data.MainGameController;
 import entities.Critter;
-import entities.IceBeamTower;
+import entities.Tower_IceBeam;
 import entities.Tower;
 import entities.Point;
 public class MouseHandler implements MouseListener{
