@@ -5,6 +5,7 @@ import helpers.GameControlPanel;
 import helpers.GamePlayPanel;
 import helpers.GameClock;
 import helpers.MainMenuActivity;
+import helpers.MouseHandler;
 
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -67,7 +68,10 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		tf3 = new LaserTower("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
 		towersOnMap.add(tf1);
 		towersOnMap.add(tf2);
-		towersOnMap.add(tf3);		
+		towersOnMap.add(tf3);	
+		
+		MouseHandler handler = new MouseHandler(this);
+		gamePanel.addMouseListener(handler);
 	}
 	public void setPanelAndButtonProperties(){
 		//create Field pointer defined in controller
@@ -241,6 +245,13 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		if(gamePaused ==false){
 			this.getControlPanel().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
 		}
+	}
+	
+	
+	public void addTower(Point point){
+		 Tower tf4 = new IceBeamTower("tower4",point,tdMap.xBlock,crittersInWave);
+		 towersOnMap.add(tf4);
+		 drawableEntities.add(tf4);
 	}
 
 	

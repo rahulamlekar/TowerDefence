@@ -1,0 +1,12 @@
+package data;
+
+import helpers.MainMenuActivity;
+
+public class Game {
+	public static void main(String[] args){
+		//First display main menu
+		new MainMenuActivity();
+		int[] a = new int[1];
+		a[2] = 2;
+	}
+}
