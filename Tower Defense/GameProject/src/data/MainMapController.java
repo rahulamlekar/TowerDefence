@@ -6,6 +6,8 @@ import helpers.GamePlayPanel;
 import helpers.MapControlPanel;
 import helpers.MapEditorActivity;
 
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,24 +31,24 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 	protected GamePlayPanel mapPanel;
 	protected MapControlPanel controlPanel;
 	protected MapEditorActivity activity;
+	protected TDMap tdMap;
 	
 	//declare frame specific variables
-	private TDMap tdMap;
 	private JButton bReturn;
+	private JButton bInitialize;
 	JFrame mainFrame;
 	
-	public MainMapController()
+	public MainMapController(TDMap map)
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;
 		controlPanel = new MapControlPanel();
 		bReturn = this.getControlPanel().getReturnButton();
 		bReturn.addActionListener(this);
+		bInitialize = this.getControlPanel().getInitializeButton();
+		bInitialize.addActionListener(this);
 		
-		//get the map
-		tdMap= new TDMap();
-		
-		
+		this.tdMap= map;
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -66,10 +68,28 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 		if(e.getSource() == bReturn){
 			
 		}
-		Draw();
+		else if(e.getSource() == bInitialize)
+		{
+			this.tdMap= new TDMap(Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem()),
+					Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem()),"Generic");
+			Draw();
+		}
+
 	}
-	private void Draw() {
+	
+	public void Draw() {
 		mapPanel.repaint();
+	}
+	
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		this.tdMap.updateAndDraw(g);
+        Toolkit.getDefaultToolkit().sync();
+	}
+	
+	public TDMap getTDMap() {
+		return this.tdMap;
 	}
 	
 }

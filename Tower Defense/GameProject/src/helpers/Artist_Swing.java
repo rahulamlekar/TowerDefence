@@ -44,7 +44,7 @@ public class Artist_Swing extends JFrame{
 			for(int j=0; j<mapHeight; j++)
 			{
 				int tileType= tdMap.getType(i, j);
-				if(tileType==1){
+				if(tileType==TDMap.PATH){
 					drawQuad(g,new Color(102, 51, 0), i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 				}else{
 					drawQuad(g,Color.GREEN, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);

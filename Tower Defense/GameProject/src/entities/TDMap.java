@@ -24,19 +24,20 @@ public class TDMap implements DrawableEntity{
     // will be implemented with graphics as horizontal by vertical blocks, that
     // go from top-left to bottom right. ALSO, it is ROWxCOLUMN!!
     private int width, height;
-    // width will range from 13 to 50 and height will range from 20 to 80
+    // Width will range from 13 to 50 and Height will range from 20 to 80
     private String backdrop;
     private int start1, start2, end1, end2;
     private boolean isMapValid;
-    private static final int TOWER= 4;
-    private static final int PATH= 2;
+    public static final int TOWER= 4;
+    public static final int PATH= 2;
     private LinkedList<Integer> shortestPath;
     public int xBlock;
 	public int yBlock;
 	public static final int MINWIDTH = 20, MAXWIDTH = 80, MINHEIGHT = 13, MAXHEIGHT = 50;
 	private final int DEFAULTGRIDWIDTH = 40;
 	private final int DEFAULTGRIDHEIGHT = 24;
-    // Constructors
+    
+	// Constructors
     public TDMap()
     {
         width= DEFAULTGRIDWIDTH;
@@ -153,10 +154,14 @@ public class TDMap implements DrawableEntity{
     
     
     // By convention, I will denote PATH cells to be 2.
-    public void setAsPath(int i, int j)
+    public void toggleGrid(int i, int j)
     {
-        if((i<width)&&(j<height))
-            grid[i][j]= PATH;
+        if(((i!=start1) && (j!=start2)) || ((i!=end1) && (j!=end2)))
+    		if((i<width)&&(j<height))
+    			if(grid[i][j]==PATH)
+    				grid[i][j]= TOWER;
+    			else
+    				grid[i][j]= PATH;
     }
     
     // By convention, I will denote background/TOWER cells to be 4.
@@ -165,24 +170,24 @@ public class TDMap implements DrawableEntity{
         for(int i=0; i< width; i++)
             for(int j=0; j< height; j++)
                 grid[i][j]= TOWER;
-        end1= 0;
-        end2= 0;
-        start1= 0;
-        start2= 0;
+        end1= -1;
+        end2= -1;
+        start1= -1;
+        start2= -1;
     }
     
     public void setStart(int i, int j)
     {
         start1= i;
         start2= j;
-        setAsPath(i,j);
+        toggleGrid(i,j);
     }
     
     public void setEnd(int i, int j)
     {
         end1= i;
         end2= j;
-        setAsPath(i,j);
+        toggleGrid(i,j);
     }
     
     
@@ -197,59 +202,63 @@ public class TDMap implements DrawableEntity{
     // This method also initializes the boolean isMapValid to a T/F value.
     public boolean isMap()
     {
-        LinkedList<Integer> explored= new LinkedList<>();
-        LinkedList<Integer> frontier= new LinkedList<>();
-        int parent[]= new int [(width*height)];
-        frontier.addFirst(key(start1,start2));
-        int t;
-        while(!frontier.isEmpty())
-        {
-            t= frontier.removeFirst();
-            explored.add(t);
-            int i= arckeyi(t);
-            int j= arckeyj(t);
-            if((i-1)>-1)
-                if(grid[i-1][j]==PATH)
-                    if(!explored.contains(key(i-1,j)))
-                    {
-                        frontier.addLast(key(i-1,j));
-                        parent[key(i-1,j)]=t;
-                    }
-            if((i+1)<height)
-                if(grid[i+1][j]==PATH)
-                    if(!explored.contains(key(i+1,j)))
-                    {
-                        frontier.addLast(key(i+1,j));
-                        parent[key(i+1,j)]=t;
-                    }
-            if((j-1)>-1)
-                if(grid[i][j-1]==PATH)
-                    if(!explored.contains(key(i,j-1)))
-                    {
-                        frontier.addLast(key(i,j-1));
-                        parent[key(i,j-1)]=t;
-                    }
-            if((j+1)<height)
-                if(grid[i][j+1]==PATH)
-                    if(!explored.contains(key(i,j+1)))
-                    {
-                        frontier.add(key(i,j+1));
-                        parent[key(i,j+1)]=t;
-                    }
+        if(start1!=-1&&start2!=-1&&end1!=-1&&end2!=-1)
+    	{	
+        	LinkedList<Integer> explored= new LinkedList<>();
+        	LinkedList<Integer> frontier= new LinkedList<>();
+        	int parent[]= new int [(width*height)];
+        	frontier.addFirst(key(start1,start2));
+        	int t;
+        	while(!frontier.isEmpty())
+        	{
+            	t= frontier.removeFirst();
+            	explored.add(t);
+            	int i= arckeyi(t);
+            	int j= arckeyj(t);
+            	if((i-1)>-1)
+                	if(grid[i-1][j]==PATH)
+                    	if(!explored.contains(key(i-1,j)))
+                    	{
+                        	frontier.addLast(key(i-1,j));
+                        	parent[key(i-1,j)]=t;
+                    	}
+            	if((i+1)<height)
+                	if(grid[i+1][j]==PATH)
+                    	if(!explored.contains(key(i+1,j)))
+                    	{
+                        	frontier.addLast(key(i+1,j));
+                        	parent[key(i+1,j)]=t;
+                    	}
+            	if((j-1)>-1)
+                	if(grid[i][j-1]==PATH)
+                    	if(!explored.contains(key(i,j-1)))
+                    	{
+                        	frontier.addLast(key(i,j-1));
+                        	parent[key(i,j-1)]=t;
+                    	}
+            	if((j+1)<height)
+                	if(grid[i][j+1]==PATH)
+                    	if(!explored.contains(key(i,j+1)))
+                    	{
+                        	frontier.add(key(i,j+1));
+                        	parent[key(i,j+1)]=t;
+                    	}
+        	}
+        	t= key(end1,end2);
+        	isMapValid= explored.contains(t);
+        	if(isMapValid)
+        	{
+            	shortestPath= new LinkedList<>();
+            	while(t!=key(start1,start2))
+            	{
+                	shortestPath.addFirst(t);
+                	t= parent[t];
+            	}
+            	shortestPath.addFirst(t);
+        	}
+        	return isMapValid;
         }
-        t= key(end1,end2);
-        isMapValid= explored.contains(t);
-        if(isMapValid)
-        {
-            shortestPath= new LinkedList<>();
-            while(t!=key(start1,start2))
-            {
-                shortestPath.addFirst(t);
-                t= parent[t];
-            }
-            shortestPath.addFirst(t);
-        }
-        return isMapValid;
+        return false;
     }
     
     // These are miscellaneous methods that assign a unique key value to each
@@ -308,7 +317,17 @@ public class TDMap implements DrawableEntity{
     }
     public int getType(int x, int y)
     {
-    	int type= grid[x][y];
+    	int type;
+    	try
+    	{
+    		type= grid[x][y];
+    	}
+    	catch(ArrayIndexOutOfBoundsException e)
+    	{
+    		e.printStackTrace();
+    		System.out.println(e);
+    		type= TOWER;
+    	}
     	return type;
     }
     public String getBackdrop()

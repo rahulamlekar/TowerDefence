@@ -1,5 +1,8 @@
 package helpers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -7,7 +10,7 @@ import javax.swing.JPanel;
 
 import entities.TDMap;
 
-public class MapControlPanel extends JPanel {
+public class MapControlPanel extends JPanel{
 
 	//public JPanel labelPanel = new JPanel();
 	JLabel lblInfo1 = new JLabel("Width = ");
@@ -63,4 +66,16 @@ public class MapControlPanel extends JPanel {
 		}
 		heightList = new JComboBox(heights);
 	}
+	
+	public void setIndexes(JComboBox box, int x, int y)
+	{
+		String[] indexes = new String[y-x+1];
+		for(int i=x, j=0; i<=y; i++, j++)
+		{
+			indexes[j]= Integer.toString(i);
+		}
+		box = new JComboBox(indexes);
+	}
+	
+	
 }
