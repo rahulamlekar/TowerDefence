@@ -12,14 +12,13 @@ public class Tower_Laser extends Tower{
 		damage = 0.5;
 		rateOfFire = 5;
 		range = 300;
-		buyCost = 10;
 		sellPrice = 10;
 		upCost = 10;
 		slowFactor = 0;
 		damageOverTime = false;
 		areaOfAffect = false;
 		tColor = new Color(150,150,150);
-	
+		buyCost = 100;
 	}
 
 	

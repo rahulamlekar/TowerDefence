@@ -16,7 +16,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	  double damage;
 	  int rateOfFire;
 	  int range;
-	  int buyCost;
+	  static int buyCost;
 	  int sellPrice;
 	  int upCost;
 	  String name;
@@ -152,7 +152,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		return sellPrice;
 	}
 	
-	public int getBuyPrice(){
+	public static int getBuyPrice(){
 		
 		return buyCost;
 	}

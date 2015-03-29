@@ -12,13 +12,13 @@ public class Tower_IceBeam extends Tower {
 		damage = 0.1;
 		rateOfFire = 10;
 		range = 100;
-		buyCost = 10;
 		sellPrice = 10;
 		upCost = 10;
 		slowFactor = 0.5;
 		damageOverTime = false;
 		areaOfAffect = false;
 		tColor = new Color(100,100,100);
+		buyCost = 150;
 	}
 
 }

@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -20,6 +21,7 @@ import entities.*;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 
 public class MainGameController extends GamePlayPanel implements ActionListener, IObserver {
 		
@@ -44,6 +46,11 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JButton bPause;
 	private JButton bReturn;
 	private JButton bStartWave;
+	private JButton bBomb;
+	private JButton bFire;
+	private JButton bIceBeam;
+	private JButton bLaser;
+	private String selectedTower;
 	
 	Tower tf1, tf2, tf3;
 	ArrayList<Subject> subjects;
@@ -61,7 +68,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		
 		//initialize arraylists
 		updateInfoLabelText();
-	
+	/*
 		//create a couple towers and add them to the drawableEntitites.
 		tf1 = new Tower_IceBeam("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersInWave);
 		tf2 = new Tower_Laser("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersInWave);
@@ -69,7 +76,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		towersOnMap.add(tf1);
 		towersOnMap.add(tf2);
 		towersOnMap.add(tf3);	
-		
+		*/
 		MouseHandler handler = new MouseHandler(this);
 		gamePanel.addMouseListener(handler);
 	}
@@ -83,6 +90,16 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		bReturn.addActionListener(this);
 		bStartWave = this.getControlPanel().getStartWaveButton();
 		bStartWave.addActionListener(this);
+		bBomb = this.getControlPanel().getBombButton();
+		bBomb.addActionListener(this);
+		Icon bombTowerIcon = new ImageIcon("BombTowerIcon.png");
+		bBomb.setIcon(bombTowerIcon);
+		bFire = this.getControlPanel().getFireButton();
+		bFire.addActionListener(this);
+		bLaser = this.getControlPanel().getLaserButton();
+		bLaser.addActionListener(this);
+		bIceBeam = this.getControlPanel().getIceButton();
+		bIceBeam.addActionListener(this);
 	}
 	public void setInitialValues(){
 		GameClock.getInstance().pause();
@@ -93,9 +110,11 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		towersOnMap = new ArrayList<Tower>();
 		waveNumber = 0;
 		lives = 10;
-		waveStartLives = 10;
-		money = 200;
-		waveStartMoney = 200;
+		waveStartLives = lives;
+		money = 2000;
+		waveStartMoney = money;
+		selectedTower = "Bomb";
+		bBomb.getModel().setPressed(true);
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -170,6 +189,10 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 				gamePaused =false;
 				bStartWave.setEnabled(false);
 				startNewWave();
+			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bBomb){
+				clearTowerButtonSelection();
+				selectTowerButton((JButton) arg0.getSource());
+				selectedTower = ((JButton) arg0.getSource()).getName();
 			}else if(!gameOver){
 				if(gamePaused == false){
 					if(activeCritterIndex == 0){
@@ -223,6 +246,16 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			updateInfoLabelText();
 		}
 	}
+	private void clearTowerButtonSelection(){
+		bFire.getModel().setPressed(false);
+		bIceBeam.getModel().setPressed(false);
+		bLaser.getModel().setPressed(false);
+		bBomb.getModel().setPressed(false);
+	}
+	private void selectTowerButton(JButton selectionButton){
+		selectionButton.getModel().setPressed(true);
+	}
+	
 	private void endGame(){
 		gameOver = true;
 		gamePaused =true;
@@ -247,12 +280,51 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		}
 	}
 	
-	
-	public void addTower(Point point){
-		 Tower tf4 = new Tower_IceBeam("tower4",point,tdMap.xBlock,crittersInWave);
-		 towersOnMap.add(tf4);
-		 drawableEntities.add(tf4);
+	public void spendMoney(int amount){
+		money = money - amount;
+		updateInfoLabelText();
 	}
-
+	public void tryToBuildTower(Point point){
+		//check which tower we want to place
+		if(selectedTower.equalsIgnoreCase("Bomb")){
+			if(this.money > Tower_Bomb.getBuyPrice()){
+				spendMoney(Tower_Bomb.getBuyPrice());
+				buildTower(new Tower_Bomb("Bomb", point, tdMap.xBlock, crittersInWave));
+			}else{
+				alertUserInsufficientFundsForBuying();
+			}
+		}else if(selectedTower.equalsIgnoreCase("Fire")){
+			if(this.money > Tower_Fire.getBuyPrice()){
+				spendMoney(Tower_Fire.getBuyPrice());
+				buildTower(new Tower_Fire("Fire", point, tdMap.xBlock, crittersInWave));
+			}else{
+				alertUserInsufficientFundsForBuying();
+			}
+		}else if(selectedTower.equalsIgnoreCase("IceBeam")){
+			if(this.money > Tower_IceBeam.getBuyPrice()){
+				spendMoney(Tower_IceBeam.getBuyPrice());
+				buildTower(new Tower_IceBeam("IceBeam", point, tdMap.xBlock, crittersInWave));
+			}else{
+				alertUserInsufficientFundsForBuying();
+			}
+		}else if(selectedTower.equalsIgnoreCase("Laser")){
+			if(this.money > Tower_Laser.getBuyPrice()){
+				spendMoney(Tower_Laser.getBuyPrice());
+				buildTower(new Tower_Laser("Laser", point, tdMap.xBlock, crittersInWave));
+			}else{
+				alertUserInsufficientFundsForBuying();
+			}
+		}else{
+			System.out.println("Error: No appropriate tower type (coding error)");
+		}
+			
+	}
+	public void buildTower(Tower t){
+		towersOnMap.add(t);
+		drawableEntities.add(t);
+	}
+	public void alertUserInsufficientFundsForBuying(){
+		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTower + " tower.");
+	}
 	
 }

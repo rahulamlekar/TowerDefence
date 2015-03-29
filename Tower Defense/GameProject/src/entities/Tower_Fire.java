@@ -9,16 +9,16 @@ public class Tower_Fire extends Tower {
 		super(n, p, size, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
-		damage = 10;
+		damage = 0.1;
 		rateOfFire = 10;
-		range = 10;
-		buyCost = 10;
+		range = 100;
 		sellPrice = 10;
 		upCost = 10;
 		slowFactor = 0.0;
 		damageOverTime = true;
 		areaOfAffect = false;
 		tColor = new Color(200,200,200);
+		buyCost = 200;
 	}
 
 }
