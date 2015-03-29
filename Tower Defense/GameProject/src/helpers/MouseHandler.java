@@ -27,7 +27,7 @@ public class MouseHandler implements MouseListener{
 	public void mouseClicked(MouseEvent event){
 		
 		gameController.addTower(new Point(event.getX(),event.getY()));
-		System.out.println(event.getX()+ " " + event.getY());
+		//System.out.println(event.getX()+ " " + event.getY());
 	}
 	
 	public void mousePressed(MouseEvent event){}

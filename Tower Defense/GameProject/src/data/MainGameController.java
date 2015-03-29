@@ -176,7 +176,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 						crittersInWave.get(activeCritterIndex).setActive(true);
 						activeCritterIndex +=1;
 					}else if(activeCritterIndex < crittersInWave.size()){
-						if(crittersInWave.get(activeCritterIndex-1).getPixelPosition().getX() > 50){
+						if(crittersInWave.get(activeCritterIndex-1).getPixelPosition().getX() > 50 || crittersInWave.get(activeCritterIndex-1).isAlive()==false){
 							crittersInWave.get(activeCritterIndex).setActive(true);
 							activeCritterIndex +=1;
 						}
