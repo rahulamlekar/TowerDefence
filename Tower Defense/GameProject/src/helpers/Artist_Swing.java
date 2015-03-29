@@ -33,8 +33,8 @@ public class Artist_Swing extends JFrame{
 	public static void drawMap(TDMap tdMap, Graphics g)
 	{
 		
-		int mapWidth=tdMap.getWidth();
-		int mapHeight=tdMap.getHeight();
+		int mapWidth=tdMap.getGridWidth();
+		int mapHeight=tdMap.getGridHeight();
 		int scaledWidth=(int) PIXELWIDTH/mapWidth;
 		int scaledHeight=(int) PIXELHEIGHT/mapHeight;
 		String back= tdMap.getBackdrop();
@@ -44,7 +44,7 @@ public class Artist_Swing extends JFrame{
 			for(int j=0; j<mapHeight; j++)
 			{
 				int tileType= tdMap.getType(i, j);
-				if(tileType==1){
+				if(tileType==TDMap.PATH){
 					drawQuad(g,new Color(102, 51, 0), i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 				}else{
 					drawQuad(g,Color.GREEN, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
@@ -57,14 +57,14 @@ public class Artist_Swing extends JFrame{
 		drawQuad(g, crit.getColor(),crit.getPixelPosition().getX(), crit.getPixelPosition().getY(), crit.getSize(), crit.getSize());
 	}
 	public static void drawTower(Tower tow, Graphics g){
-		drawQuad(g,tow.getColor(), tow.getPosX(), tow.getPosY(), tow.getSize(), tow.getSize());
+		drawQuad(g,tow.getColor(), tow.getPosX(), tow.getPosY(), tow.getMapTowerIsOn().getTileWidth_pixel(), tow.getMapTowerIsOn().getTileHeight_pixel());
 	}
 	public static void drawShot(Tower tow, Critter crit, Graphics g){
 		//get tower color info,
-		g.setColor(Color.BLACK);
+		g.setColor(tow.getShotColor());
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2));
-		g2d.drawLine(tow.getPosX() +tow.getSize()/2, tow.getPosY() + tow.getSize()/2, crit.getPixelPosition().getX() + crit.getSize()/2, crit.getPixelPosition().getY() + crit.getSize()/2);
+		g2d.drawLine(tow.getPosX() +tow.getMapTowerIsOn().getTileWidth_pixel()/2, tow.getPosY() + tow.getMapTowerIsOn().getTileHeight_pixel()/2, crit.getPixelPosition().getX() + crit.getSize()/2, crit.getPixelPosition().getY() + crit.getSize()/2);
 	}
 	
 

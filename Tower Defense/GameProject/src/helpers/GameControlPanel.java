@@ -2,10 +2,12 @@ package helpers;
 
 import java.awt.Dimension;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.JToggleButton;
 public class GameControlPanel extends JPanel  {
 	private final int buttonSize = 20;
 	//public JPanel labelPanel = new JPanel();
@@ -13,13 +15,22 @@ public class GameControlPanel extends JPanel  {
 	JLabel lblInfo = new JLabel("Lives = " + ", Money = " + ", Wavenumber = ");
 	JButton bPause = new JButton("Pause");
 	JButton bReturn = new JButton("Main Menu");
-	JButton bBomb = new JButton("BombTowerIcon.png");
+	/*JButton bBomb = new JButton("B");
 	JButton bFire = new JButton("F");
 	JButton bIceBeam = new JButton("I");
-	JButton bLaser = new JButton("L");
+	JButton bLaser = new JButton("L");*/
+	ButtonGroup towerGroup = new ButtonGroup();
+	JToggleButton bBomb = new JToggleButton("B");
+	JToggleButton bFire = new JToggleButton("F");
+	JToggleButton bIceBeam = new JToggleButton("I");
+	JToggleButton bLaser = new JToggleButton("L");
 	
 	public GameControlPanel(){
-
+		towerGroup.add(bBomb);
+		towerGroup.add(bFire);
+		towerGroup.add(bIceBeam);
+		towerGroup.add(bLaser);
+		
         //add the info label to this panel
 		this.add(bBomb);
 		this.add(bFire);
@@ -54,16 +65,16 @@ public class GameControlPanel extends JPanel  {
 	public JButton getStartWaveButton(){
 		return bStartWave;
 	}
-	public JButton getBombButton(){
+	public JToggleButton getBombButton(){
 		return bBomb;
 	}
-	public JButton getFireButton(){
+	public JToggleButton getFireButton(){
 		return bFire;
 	}
-	public JButton getIceButton(){
+	public JToggleButton getIceButton(){
 		return bIceBeam;
 	}
-	public JButton getLaserButton(){
+	public JToggleButton getLaserButton(){
 		return bLaser;
 	}
 

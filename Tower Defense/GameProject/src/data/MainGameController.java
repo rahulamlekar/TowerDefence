@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JToggleButton;
 import javax.swing.Timer;
 
 import entities.*;
@@ -46,10 +47,10 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JButton bPause;
 	private JButton bReturn;
 	private JButton bStartWave;
-	private JButton bBomb;
-	private JButton bFire;
-	private JButton bIceBeam;
-	private JButton bLaser;
+	private JToggleButton bBomb;
+	private JToggleButton bFire;
+	private JToggleButton bIceBeam;
+	private JToggleButton bLaser;
 	private String selectedTower;
 	
 	Tower tf1, tf2, tf3;
@@ -68,15 +69,6 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		
 		//initialize arraylists
 		updateInfoLabelText();
-	/*
-		//create a couple towers and add them to the drawableEntitites.
-		tf1 = new Tower_IceBeam("tf1", tdMap.getPosOfBlock_pixel(5, 1), tdMap.xBlock, crittersInWave);
-		tf2 = new Tower_Laser("tf2", tdMap.getPosOfBlock_pixel(25, 1), tdMap.xBlock, crittersInWave);
-		tf3 = new Tower_Laser("tf3", tdMap.getPosOfBlock_pixel(15, 1), tdMap.xBlock, crittersInWave);
-		towersOnMap.add(tf1);
-		towersOnMap.add(tf2);
-		towersOnMap.add(tf3);	
-		*/
 		MouseHandler handler = new MouseHandler(this);
 		gamePanel.addMouseListener(handler);
 	}
@@ -92,8 +84,6 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		bStartWave.addActionListener(this);
 		bBomb = this.getControlPanel().getBombButton();
 		bBomb.addActionListener(this);
-		Icon bombTowerIcon = new ImageIcon("BombTowerIcon.png");
-		bBomb.setIcon(bombTowerIcon);
 		bFire = this.getControlPanel().getFireButton();
 		bFire.addActionListener(this);
 		bLaser = this.getControlPanel().getLaserButton();
@@ -113,8 +103,9 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		waveStartLives = lives;
 		money = 2000;
 		waveStartMoney = money;
+		//default tower to build
 		selectedTower = "Bomb";
-		bBomb.getModel().setPressed(true);
+		bBomb.doClick();
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -155,7 +146,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		//redraw the snake and the food
+		
 		//update and draw all drawableEntities.
 		for(int i = 0; i < drawableEntities.size(); i++){
 			drawableEntities.get(i).updateAndDraw(g);
@@ -190,9 +181,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 				bStartWave.setEnabled(false);
 				startNewWave();
 			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bBomb){
-				clearTowerButtonSelection();
-				selectTowerButton((JButton) arg0.getSource());
-				selectedTower = ((JButton) arg0.getSource()).getName();
+				selectedTower = ((JToggleButton) arg0.getSource()).getName();
 			}else if(!gameOver){
 				if(gamePaused == false){
 					if(activeCritterIndex == 0){
@@ -243,24 +232,17 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 
 				//startNewWave();
 			}
+			if(!gameOver){
 			updateInfoLabelText();
+			}
 		}
 	}
-	private void clearTowerButtonSelection(){
-		bFire.getModel().setPressed(false);
-		bIceBeam.getModel().setPressed(false);
-		bLaser.getModel().setPressed(false);
-		bBomb.getModel().setPressed(false);
-	}
-	private void selectTowerButton(JButton selectionButton){
-		selectionButton.getModel().setPressed(true);
-	}
-	
 	private void endGame(){
 		gameOver = true;
 		gamePaused =true;
-		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave: " + waveNumber + " with $" + money);
 		GameClock.getInstance().pause();
+		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + money + ".");
+		bPause.setEnabled(false);
 	}
 	private void resetPlayerStats() {
 		lives = waveStartLives;
@@ -275,53 +257,77 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		return gamePanel;
 	}
 	public void updateInfoLabelText(){
-		if(gamePaused ==false){
-			this.getControlPanel().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
-		}
+
+		this.getControlPanel().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
+		
 	}
 	
 	public void spendMoney(int amount){
 		money = money - amount;
 		updateInfoLabelText();
 	}
+	//This method is called from the click handler when we get a click at a point
 	public void tryToBuildTower(Point point){
-		//check which tower we want to place
-		if(selectedTower.equalsIgnoreCase("Bomb")){
-			if(this.money > Tower_Bomb.getBuyPrice()){
-				spendMoney(Tower_Bomb.getBuyPrice());
-				buildTower(new Tower_Bomb("Bomb", point, tdMap.xBlock, crittersInWave));
+		//first, get the point of the grid where we clicked.
+		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
+		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
+		
+		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
+		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
+		MapTile tileAtClick = tdMap.getTile(xGridPos, yGridPos);
+		int tileType = tileAtClick.getTileValue();
+		//make sure it is not a path position, 
+		if(tileType == TDMap.PATH){
+			//do nothing if it is a path position. (maybe we will add a feature here?)
+		}else if(tileAtClick.getTowerOnTile() == null){ //If there is no TOWER already at this position, build one
+			Point adjustedTowerPoint = tdMap.getPosOfBlock_pixel(xGridPos, yGridPos);
+			Tower towToBuild = null;
+			int moneyToSpend = 0;
+			//check which tower we want to place
+			if(selectedTower.equalsIgnoreCase("Bomb")){
+				if(this.money > Tower_Bomb.getBuyPrice()){
+					towToBuild =new Tower_Bomb("Bomb", adjustedTowerPoint, crittersInWave, tdMap);
+					moneyToSpend = Tower_Bomb.getBuyPrice();
+				}else{
+					alertUserInsufficientFundsForBuying();
+				}
+			}else if(selectedTower.equalsIgnoreCase("Fire")){
+				if(this.money > Tower_Fire.getBuyPrice()){
+					towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
+					moneyToSpend = Tower_Fire.getBuyPrice();
+				}else{
+					alertUserInsufficientFundsForBuying();
+				}
+			}else if(selectedTower.equalsIgnoreCase("IceBeam")){
+				if(this.money > Tower_IceBeam.getBuyPrice()){
+					towToBuild = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
+					moneyToSpend = Tower_IceBeam.getBuyPrice();
+				}else{
+					alertUserInsufficientFundsForBuying();
+				}
+			}else if(selectedTower.equalsIgnoreCase("Laser")){
+				if(this.money > Tower_Laser.getBuyPrice()){
+					towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
+					moneyToSpend = Tower_Laser.getBuyPrice();
+				}else{
+					alertUserInsufficientFundsForBuying();
+				}
 			}else{
-				alertUserInsufficientFundsForBuying();
+				System.out.println("Error: No appropriate tower type (coding error)");
 			}
-		}else if(selectedTower.equalsIgnoreCase("Fire")){
-			if(this.money > Tower_Fire.getBuyPrice()){
-				spendMoney(Tower_Fire.getBuyPrice());
-				buildTower(new Tower_Fire("Fire", point, tdMap.xBlock, crittersInWave));
-			}else{
-				alertUserInsufficientFundsForBuying();
-			}
-		}else if(selectedTower.equalsIgnoreCase("IceBeam")){
-			if(this.money > Tower_IceBeam.getBuyPrice()){
-				spendMoney(Tower_IceBeam.getBuyPrice());
-				buildTower(new Tower_IceBeam("IceBeam", point, tdMap.xBlock, crittersInWave));
-			}else{
-				alertUserInsufficientFundsForBuying();
-			}
-		}else if(selectedTower.equalsIgnoreCase("Laser")){
-			if(this.money > Tower_Laser.getBuyPrice()){
-				spendMoney(Tower_Laser.getBuyPrice());
-				buildTower(new Tower_Laser("Laser", point, tdMap.xBlock, crittersInWave));
-			}else{
-				alertUserInsufficientFundsForBuying();
+			if(towToBuild!= null){
+				spendMoney(moneyToSpend);
+				buildTower(towToBuild);
+				tileAtClick.setTowerOnTile(towToBuild);
 			}
 		}else{
-			System.out.println("Error: No appropriate tower type (coding error)");
-		}
 			
+		}
 	}
 	public void buildTower(Tower t){
 		towersOnMap.add(t);
 		drawableEntities.add(t);
+		this.updateInfoLabelText();
 	}
 	public void alertUserInsufficientFundsForBuying(){
 		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTower + " tower.");

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Tower_IceBeam extends Tower {
 
-	public Tower_IceBeam(String n, Point p, int size, ArrayList<Critter> crittersOnMap) {
-		super(n, p, size, crittersOnMap);
+	public Tower_IceBeam(String n, Point p, ArrayList<Critter> crittersOnMap, TDMap map) {
+		super(n, p, crittersOnMap, map);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
 		damage = 0.1;
@@ -18,6 +18,7 @@ public class Tower_IceBeam extends Tower {
 		damageOverTime = false;
 		areaOfAffect = false;
 		tColor = new Color(100,100,100);
+		shotColor = Color.WHITE;
 		buyCost = 150;
 	}
 

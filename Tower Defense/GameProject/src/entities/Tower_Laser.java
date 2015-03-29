@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Tower_Laser extends Tower{
 
-	public Tower_Laser(String name, Point p, int size, ArrayList<Critter> crittersOnMap) {
-		super(name,p, size, crittersOnMap);
+	public Tower_Laser(String name, Point p, ArrayList<Critter> crittersOnMap, TDMap map) {
+		super(name,p,crittersOnMap, map);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
 		damage = 0.5;
@@ -18,6 +18,7 @@ public class Tower_Laser extends Tower{
 		damageOverTime = false;
 		areaOfAffect = false;
 		tColor = new Color(150,150,150);
+		shotColor = Color.black;
 		buyCost = 100;
 	}
 

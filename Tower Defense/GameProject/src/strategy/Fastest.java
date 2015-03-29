@@ -7,8 +7,8 @@ import entities.Tower;
 
 public class Fastest implements IStrategy {
 	@Override
-	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
-		
+	public ArrayList<Critter> findTargets(Tower tower, ArrayList<Critter> g1) {
+		ArrayList<Critter> fastest_enemies = new ArrayList<Critter>();
 		Critter fastest_enemy= null;   
         double max_speed = 0;
         int count = g1.size(); 			 		 // The number of critters currently within range
@@ -21,8 +21,12 @@ public class Fastest implements IStrategy {
             fastest_enemy=enemy;
             }
         }
+        
+        if(fastest_enemy != null){
+        	fastest_enemies.add(fastest_enemy);
+        }
         //System.out.println(fastest_enemy);
-       return(fastest_enemy);				 	 // Tower attacks this critter
+       return(fastest_enemies);				 	 // Tower attacks this critter
 	
 	}
 }

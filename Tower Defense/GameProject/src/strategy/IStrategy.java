@@ -6,6 +6,6 @@ import entities.Critter;
 import entities.Tower;
 
 public interface IStrategy {
-	public Critter findTarget(Tower tower, ArrayList<Critter> g1);	
+	public ArrayList<Critter> findTargets(Tower tower, ArrayList<Critter> g1);	
 }
 	
