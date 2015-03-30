@@ -1,7 +1,7 @@
 package data;
 import helpers.GameActivity;
 import helpers.CritterGenerator;
-import helpers.GameControlPanel;
+import helpers.GameControlPanelGeneral;
 import helpers.GamePlayPanel;
 import helpers.GameClock;
 import helpers.MainMenuActivity;
@@ -12,9 +12,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.Timer;
 
@@ -22,13 +22,14 @@ import entities.*;
 
 import java.util.ArrayList;
 
-import javax.swing.Icon;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class MainGameController extends GamePlayPanel implements ActionListener, IObserver {
+public class MainGameController extends GamePlayPanel implements ActionListener, ChangeListener, IObserver {
 		
 	//declare game specific variables
 	protected GamePlayPanel gamePanel;
-	protected GameControlPanel controlPanel;
+	protected GameControlPanelGeneral controlPanel;
 	protected GameActivity activity;
 	
 	//declare frame specific variables
@@ -51,6 +52,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JToggleButton bFire;
 	private JToggleButton bIceBeam;
 	private JToggleButton bLaser;
+	private JSlider jsSpeed;
 	private String selectedTower;
 	
 	Tower tf1, tf2, tf3;
@@ -75,7 +77,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	public void setPanelAndButtonProperties(){
 		//create Field pointer defined in controller
 		gamePanel = this;
-		controlPanel = new GameControlPanel();
+		controlPanel = new GameControlPanelGeneral();
 		bPause = this.getControlPanel().getPauseButton();
 		bPause.addActionListener(this);
 		bReturn = this.getControlPanel().getReturnButton();
@@ -90,6 +92,8 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		bLaser.addActionListener(this);
 		bIceBeam = this.getControlPanel().getIceButton();
 		bIceBeam.addActionListener(this);
+		jsSpeed = this.getControlPanel().getSpeedSlider();
+		jsSpeed.addChangeListener(this);
 	}
 	public void setInitialValues(){
 		GameClock.getInstance().pause();
@@ -111,6 +115,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		mainFrame = mFrame;
 	}
 	private void startNewWave(){
+		this.setPlaybackSpeed();
 		//increment the wave number
 		waveNumber +=1;
 		bStartWave.setText("Start Wave " + (waveNumber+1));
@@ -140,6 +145,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			drawableEntities.add(t);
 			t.setCrittersOnMap(crittersInWave);
 		}
+		
 	}
 
 	
@@ -155,8 +161,21 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 
 	}
 
-
-
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
+	 *This method is called everytime the slider changes.
+	 */
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==jsSpeed){
+			setPlaybackSpeed();
+		}
+	}
+	public void setPlaybackSpeed(){
+		GameClock.getInstance().setDeltaTime(jsSpeed.getValue());
+	}
 	//This method is called every time the timer times out
 	//The basic Game loop
 	@Override
@@ -250,7 +269,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		
 	}
 
-	public GameControlPanel getControlPanel(){
+	public GameControlPanelGeneral getControlPanel(){
 		return controlPanel;
 	}
 	public GamePlayPanel getPlayPanel(){
@@ -322,6 +341,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 				tileAtClick.setTowerOnTile(towToBuild);
 			}
 		}else{ //if there is a tower on this block
+			//TODO: Display tower information. And see what user wants to do.
 			Tower currTower = tileAtClick.getTowerOnTile();
 			int priceToUpgrade = currTower.getUpPrice();
 			if(this.money >= priceToUpgrade){
@@ -341,5 +361,6 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	public void alertUserInsufficientFundsForBuying(){
 		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTower + " tower.");
 	}
+
 	
 }
