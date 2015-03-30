@@ -66,6 +66,8 @@ public class Artist_Swing extends JFrame{
 			}
 		}
 	}
+	
+	
 	public static void drawCritter(Critter crit, Graphics g){
 		//g.setColor(crit.getColor());
 		drawFilledQuad(g, crit.getColor(),crit.getPixelPosition().getX(), crit.getPixelPosition().getY(), crit.getSize(), crit.getSize());
