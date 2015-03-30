@@ -11,12 +11,12 @@ import entities.Critter;
 import entities.Tower_IceBeam;
 import entities.Tower;
 import entities.Point;
-public class MouseHandler implements MouseListener, MouseMotionListener{
+public class MouseAndKeyboardHandler implements KeyListener, MouseListener, MouseMotionListener{
 	
 	private MainGameController gameController;
 	private GamePlayPanel panel;
 		
-	public MouseHandler(MainGameController gameController){
+	public MouseAndKeyboardHandler(MainGameController gameController){
 		this.gameController = gameController;
 		panel = gameController.getPlayPanel();
 		
@@ -32,18 +32,38 @@ public class MouseHandler implements MouseListener, MouseMotionListener{
 	
 	public void mouseReleased(MouseEvent event){}
 	
-	public void mouseEntered(MouseEvent event){}
-	
+	public void mouseEntered(MouseEvent event){
+		
+	}
+		
 	public void mouseExited(MouseEvent event){}
 	
 	//edit
 	
 	public void mouseMoved(MouseEvent event){
-		
+		gameController.towerToPreview(new Point(event.getX(),event.getY()));
 		//Print statement used to check if motion listener is working
 		//System.out.println(event.getX()+" "+event.getY());
-		gameController.towerToPreview(new Point(event.getX(),event.getY()));
+		//gameController.towerToPreview(new Point(event.getX(),event.getY()));
 	}
 	
 	public void mouseDragged(MouseEvent event){}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		gameController.reactToKeypress(e);
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

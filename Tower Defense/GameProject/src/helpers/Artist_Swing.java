@@ -9,6 +9,7 @@ import entities.Critter;
 import entities.TDMap;
 import entities.Tower;
 
+
 public class Artist_Swing extends JFrame{
 	
 	public static final int PIXELWIDTH=1280;
@@ -80,9 +81,15 @@ public class Artist_Swing extends JFrame{
 		g2d.setStroke(new BasicStroke(1));
 		int towerWidth = tow.getMapTowerIsOn().getTileWidth_pixel();
 		int towerHeight = tow.getMapTowerIsOn().getTileHeight_pixel();
-		
+		Color outlineColor;
+		if(tow.isSelected()){
+			outlineColor = Color.blue;
+		}else{
+			outlineColor = Color.black;
+		}
+
 		drawFilledQuad(g, Color.gray, tow.getPosX(), tow.getPosY(), towerWidth, towerHeight);
-		drawEmptyQuad(g, Color.black, tow.getPosX(), tow.getPosY(), towerWidth, towerHeight);
+		drawEmptyQuad(g, outlineColor, tow.getPosX(), tow.getPosY(), towerWidth, towerHeight);
 		drawFilledCircle(g, tow.getColor(), tow.getPosX() + towerWidth/2, tow.getPosY() + towerHeight/2, towerWidth/4);
 		
 		//for upgrades, we draw a circle (in white) around the main circle of the tower for each upgrade level!

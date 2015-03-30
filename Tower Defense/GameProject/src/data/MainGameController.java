@@ -5,13 +5,14 @@ import helpers.GameControlPanelGeneral;
 import helpers.GamePlayPanel;
 import helpers.GameClock;
 import helpers.MainMenuActivity;
-import helpers.MouseHandler;
+import helpers.MouseAndKeyboardHandler;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -53,12 +54,17 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JToggleButton bFire;
 	private JToggleButton bIceBeam;
 	private JToggleButton bLaser;
+	private JToggleButton bNone;
+	private JButton bUpgrade;
+	private JButton bSell;
 	private JSlider jsSpeed;
-	private String selectedTower;
+	private String selectedTowerToBuild;
 	private Tower towerBeingPreviewed;
+	private Tower selectedTower;
 	
-	Tower tf1, tf2, tf3;
+	
 	ArrayList<Subject> subjects;
+	
 	public MainGameController(TDMap map)
 	{
 		setPanelAndButtonProperties();
@@ -73,9 +79,12 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		
 		//initialize arraylists
 		updateInfoLabelText();
-		MouseHandler handler = new MouseHandler(this);
+		MouseAndKeyboardHandler handler = new MouseAndKeyboardHandler(this);
 		gamePanel.addMouseListener(handler);
 		gamePanel.addMouseMotionListener(handler);
+		gamePanel.addKeyListener(handler);
+
+		
 	}
 	public void setPanelAndButtonProperties(){
 		//create Field pointer defined in controller
@@ -95,6 +104,14 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		bLaser.addActionListener(this);
 		bIceBeam = this.getControlPanel().getIceButton();
 		bIceBeam.addActionListener(this);
+		bNone = this.getControlPanel().getNoneButton();
+		bNone.addActionListener(this);
+		bUpgrade = this.getControlPanel().getUpgradeButton();
+		bUpgrade.addActionListener(this);
+		bUpgrade.setEnabled(false);
+		bSell = this.getControlPanel().getSellButton();
+		bSell.addActionListener(this);
+		bSell.setEnabled(false);
 		jsSpeed = this.getControlPanel().getSpeedSlider();
 		jsSpeed.addChangeListener(this);
 	}
@@ -111,11 +128,14 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		money = 2000;
 		waveStartMoney = money;
 		//default tower to build
-		selectedTower = "Spread";
-		bSpread.doClick();
+		selectedTowerToBuild = "None";
+		bNone.doClick();
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
+//		mainFrame.setFocusable(true);
+//		mainFrame.requestFocus();
+//		mainFrame.addKeyListener(this);
 	}
 	private void startNewWave(){
 		this.setPlaybackSpeed();
@@ -179,31 +199,68 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	public void setPlaybackSpeed(){
 		GameClock.getInstance().setDeltaTime(jsSpeed.getValue());
 	}
-	//This method is called every time the timer times out
+	//Below are all button click methods: They are called when the buttons are clicked
+	public void doPause(){
+		if(gamePaused == false){
+			GameClock.getInstance().pause();
+			gamePaused = true;
+			bPause.setText("Play");
+		}else{
+			GameClock.getInstance().unPause();
+			gamePaused =false;
+			bPause.setText("Pause");
+		}
+	}
+	public void doReturnToMainMenu(){
+		mainFrame.dispose();
+		new MainMenuActivity();
+	}
+	public void doStartWave(){
+		GameClock.getInstance().unPause();
+		gamePaused =false;
+		bStartWave.setEnabled(false);
+		startNewWave();
+	}
+	
+	public void doSelectTower(ActionEvent arg0){
+		if(drawableEntities.contains(towerBeingPreviewed)){
+			drawableEntities.remove(towerBeingPreviewed);
+		}
+		selectedTowerToBuild = ((JToggleButton) arg0.getSource()).getName();
+	}
+	public void doUpgrade(){
+		spendMoney(this.selectedTower.getUpPrice());
+		this.selectedTower.upgradeTower();
+		this.updateSelectedTowerInfoAndButtons();
+	}
+	public void doSell(){
+		//give the player the money by spending the negative amount.
+		this.spendMoney((-1)*selectedTower.getSellPrice());
+		//remove this tower from our two lists, and delete it
+		towersOnMap.remove(selectedTower);
+		drawableEntities.remove(selectedTower);
+		selectedTower = null;
+		this.updateSelectedTowerInfoAndButtons();
+	}
+	//end of button calls
+	
+	//This method is called every time the timer times out, or when a button is clicked!
 	//The basic Game loop
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
 			if(arg0.getSource() == bPause && !gameOver){
-				if(gamePaused == false){
-					GameClock.getInstance().pause();
-					gamePaused = true;
-					bPause.setText("Play");
-				}else{
-					GameClock.getInstance().unPause();
-					gamePaused =false;
-					bPause.setText("Pause");
-				}
+				doPause();
 			}else if(arg0.getSource() == bReturn){
-				mainFrame.dispose();
-				new MainMenuActivity();
+				doReturnToMainMenu();
 			}else if(arg0.getSource() == bStartWave && !gameOver){
-				GameClock.getInstance().unPause();
-				gamePaused =false;
-				bStartWave.setEnabled(false);
-				startNewWave();
-			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bSpread){
-				selectedTower = ((JToggleButton) arg0.getSource()).getName();
+				doStartWave();
+			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bSpread || arg0.getSource() ==bNone){
+				doSelectTower(arg0);
+			}else if(arg0.getSource() == bUpgrade){
+				doUpgrade();
+			}else if(arg0.getSource() == bSell){
+				doSell();
 			}else if(!gameOver){
 				if(gamePaused == false){
 					if(activeCritterIndex == 0){
@@ -279,9 +336,17 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		return gamePanel;
 	}
 	public void updateInfoLabelText(){
-
 		this.getControlPanel().setInfoLabelText("| Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber + " |");
+	}
+	public void updateTowerInfoText(){
 		
+		String text = "Selected Tower: ";
+		if(selectedTower != null){
+			text += selectedTower.toString();
+		}else{
+			text += "None";
+		}
+		this.getControlPanel().setTowerInfoLabelText(text);
 	}
 	
 	public void spendMoney(int amount){
@@ -307,34 +372,36 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			int moneyToSpend = 0;
 			
 			//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
-			if(selectedTower.equalsIgnoreCase("Spread")){
+			if(selectedTowerToBuild.equalsIgnoreCase("Spread")){
 				if(this.money >= Tower_SpreadShot.getBuyPrice()){
 					towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_SpreadShot.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
-			}else if(selectedTower.equalsIgnoreCase("Fire")){
+			}else if(selectedTowerToBuild.equalsIgnoreCase("Fire")){
 				if(this.money >= Tower_Fire.getBuyPrice()){
 					towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_Fire.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
-			}else if(selectedTower.equalsIgnoreCase("IceBeam")){
+			}else if(selectedTowerToBuild.equalsIgnoreCase("IceBeam")){
 				if(this.money >= Tower_IceBeam.getBuyPrice()){
 					towToBuild = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_IceBeam.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
-			}else if(selectedTower.equalsIgnoreCase("Laser")){
+			}else if(selectedTowerToBuild.equalsIgnoreCase("Laser")){
 				if(this.money >= Tower_Laser.getBuyPrice()){
 					towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_Laser.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
+			}else if(selectedTowerToBuild.equalsIgnoreCase("None")){
+				//no tower = don't do anything.
 			}else{
 				System.out.println("Error: No appropriate tower type (coding error)");
 			}
@@ -344,17 +411,15 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 				tileAtClick.setTowerOnTile(towToBuild);
 			}
 		}else{ //if there is a tower on this block
-			//TODO: Display tower information. And see what user wants to do.
-			Tower currTower = tileAtClick.getTowerOnTile();
-			int priceToUpgrade = currTower.getUpPrice();
-			if(this.money >= priceToUpgrade){
-				spendMoney(priceToUpgrade);
-				currTower.upgradeTower();
-			}else{
-				//TODO: Alert user insufficient funds
-			}
+			if(selectedTower != null){ selectedTower.setSelected(false);}
+			selectedTower = tileAtClick.getTowerOnTile();
+			selectedTower.setSelected(true);
+			updateSelectedTowerInfoAndButtons();
 		}
 	}
+	/*
+	 * builds a tower t and puts it in the drawable entities to be drawn.
+	 */
 	public void buildTower(Tower t){
 		towersOnMap.add(t);
 		drawableEntities.add(t);
@@ -362,87 +427,93 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		Draw();
 	}
 	
+	public void updateSelectedTowerInfoAndButtons(){
+		if(selectedTower != null){
+			//we only want to enable upgrades if they have enough money and if the tower isn't at max level
+			if(selectedTower.getLevel() < Tower.getMaxTowerLevel() && this.money >= selectedTower.getUpPrice()){
+				bUpgrade.setEnabled(true);
+			}else{
+				bUpgrade.setEnabled(false);
+			}
+			//we always want to enable the sell button.
+			bSell.setEnabled(true);
+		}else{
+			bSell.setEnabled(false); //if there is no tower, don't allow them to sell it.
+		}
+		updateTowerInfoText();
+	}
 	
 	
 	public void alertUserInsufficientFundsForBuying(){
-		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTower + " tower.");
+		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTowerToBuild + " tower.");
 	}
 	
 	public void towerToPreview(Point point){
-		
+	
 		//first, get the point of the grid where we clicked.
-				double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
-				double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
-				
-				int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
-				int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
-				//**TODO tile at movement
-				MapTile tileAtClick = tdMap.getTile(xGridPos, yGridPos);
-				int tileType = tileAtClick.getTileValue();
-				//make sure it is not a path position, 
-				if(tileType == TDMap.PATH){
-					//do nothing if it is a path position. (maybe we will add a feature here?)
-				}else if(tileAtClick.getTowerOnTile() == null){ //If there is no TOWER already at this position, build one
-					Point adjustedTowerPoint = tdMap.getPosOfBlock_pixel(xGridPos, yGridPos);
-					Tower towToBuild = null;
-					//int moneyToSpend = 0;
-					
-					//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
-					if(selectedTower.equalsIgnoreCase("Spread")){
-						if(this.money >= Tower_SpreadShot.getBuyPrice()){
-							towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
-							//moneyToSpend = Tower_SpreadShot.getBuyPrice();
-						}else{
-							alertUserInsufficientFundsForBuying();
-						}
-					}else if(selectedTower.equalsIgnoreCase("Fire")){
-						if(this.money >= Tower_Fire.getBuyPrice()){
-							towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
-							//moneyToSpend = Tower_Fire.getBuyPrice();
-						}else{
-							alertUserInsufficientFundsForBuying();
-						}
-					}else if(selectedTower.equalsIgnoreCase("IceBeam")){
-						if(this.money >= Tower_IceBeam.getBuyPrice()){
-							towToBuild = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
-							//moneyToSpend = Tower_IceBeam.getBuyPrice();
-						}else{
-							alertUserInsufficientFundsForBuying();
-						}
-					}else if(selectedTower.equalsIgnoreCase("Laser")){
-						if(this.money >= Tower_Laser.getBuyPrice()){
-							towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
-							//moneyToSpend = Tower_Laser.getBuyPrice();
-						}else{
-							alertUserInsufficientFundsForBuying();
-						}
-					}else{
-						System.out.println("Error: No appropriate tower type (coding error)");
-					}
-					if(towToBuild!= null){
-						if(drawableEntities.contains(towerBeingPreviewed)){
-							drawableEntities.remove(towerBeingPreviewed);
-						}
-						towerBeingPreviewed = towToBuild;
-						Color oldColor = towerBeingPreviewed.getColor();
-						//System.out.println("Color is " + oldColor.getRed() + ", " + oldColor.getBlue() + ", " + oldColor.getGreen());
-						Color newColor = new Color(Math.max(oldColor.getRed()-100,0),Math.max(oldColor.getGreen()-100,0),Math.max(oldColor.getBlue()-100,0));
-						
-						towerBeingPreviewed.setColor(newColor);  
-						towerBeingPreviewed.setENABLED(false);
-						drawableEntities.add(towerBeingPreviewed);
-						Draw();
-						//spendMoney(moneyToSpend);
-						//buildTower(towToBuild);
-						//tileAtClick.setTowerOnTile(towToBuild);
-					}
-				}else{ //if there is a tower on this block
-					//TODO: Display tower information. And see what user wants to do.
-					
-					
-				}
+		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
+		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
 		
+		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
+		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
+		//**TODO tile at movement
+		MapTile tileAtClick = tdMap.getTile(xGridPos, yGridPos);
+		int tileType = tileAtClick.getTileValue();
+		//make sure it is not a path position, 
+		if(tileType == TDMap.PATH){
+			//do nothing if it is a path position. (maybe we will add a feature here?)
+		}else if(tileAtClick.getTowerOnTile() == null){ //If there is no TOWER already at this position, build one
+			Point adjustedTowerPoint = tdMap.getPosOfBlock_pixel(xGridPos, yGridPos);
+			Tower towToPreview= null;
+			//int moneyToSpend = 0;
+			
+			//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
+			if(selectedTowerToBuild.equalsIgnoreCase("Spread")){
+				if(this.money >= Tower_SpreadShot.getBuyPrice()){
+					towToPreview =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
+				}
+			}else if(selectedTowerToBuild.equalsIgnoreCase("Fire")){
+				if(this.money >= Tower_Fire.getBuyPrice()){
+					towToPreview = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
+				}
+			}else if(selectedTowerToBuild.equalsIgnoreCase("IceBeam")){
+				if(this.money >= Tower_IceBeam.getBuyPrice()){
+					towToPreview = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
+				}
+			}else if(selectedTowerToBuild.equalsIgnoreCase("Laser")){
+				if(this.money >= Tower_Laser.getBuyPrice()){
+					towToPreview = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
+				}
+			}else if(selectedTowerToBuild.equalsIgnoreCase("None")){
+				//no tower = don't do anything.
+			}else{
+				System.out.println("Error: No appropriate tower type (coding error)");
+			}
+			if(towToPreview!= null){
+				if(drawableEntities.contains(towerBeingPreviewed)){
+					drawableEntities.remove(towerBeingPreviewed);
+				}
+				towerBeingPreviewed = towToPreview;
+				Color oldColor = towerBeingPreviewed.getColor();
+				//System.out.println("Color is " + oldColor.getRed() + ", " + oldColor.getBlue() + ", " + oldColor.getGreen());
+				Color newColor = new Color(Math.max(oldColor.getRed()-100,0),Math.max(oldColor.getGreen()-100,0),Math.max(oldColor.getBlue()-100,0));
+				
+				towerBeingPreviewed.setColor(newColor);  
+				towerBeingPreviewed.setEnabled(false);
+				drawableEntities.add(towerBeingPreviewed);
+				//Draw();
+			}
+		}else{ //if there is a tower on this block
+			//don't do anything if there is a tower on the block
+		}
 	}
+	public void reactToKeypress(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			this.bNone.doClick();
+		}
+	}
+
+
 
 	
 }

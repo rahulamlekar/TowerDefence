@@ -99,9 +99,13 @@ public class GameControlPanelGeneral extends JPanel  {
 	public JLabel getInfoLabel(){
 		return lblInfo;
 	}
+	public void setTowerInfoLabelText(String text){
+		lblTowerInfo.setText(text);
+	}
 	public void setInfoLabelText(String text){
 		lblInfo.setText(text);
 	}
+	
 	public JButton getPauseButton(){
 		return bPause;
 	}
@@ -122,6 +126,9 @@ public class GameControlPanelGeneral extends JPanel  {
 	}
 	public JToggleButton getLaserButton(){
 		return bLaser;
+	}
+	public JToggleButton getNoneButton(){
+		return bNone;
 	}
 	public JSlider getSpeedSlider(){
 		return jsSpeed;

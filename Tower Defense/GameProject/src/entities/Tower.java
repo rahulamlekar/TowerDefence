@@ -36,7 +36,8 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	//Critter targeted;
 	//checks if the tower is enabled
 	private boolean enabled;
-	  
+	private boolean selected;
+	
 	public Tower(String n, Point p, ArrayList<Critter> crittersOnMap, TDMap map){
 		position = p;
 		name = n;
@@ -46,17 +47,26 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		strategy = new Closest();
 		this.map = map;
 		enabled = true;
+		selected = false;
 	}
 	public Color getColor(){
 		return tColor;
 	}
-	
+	public boolean isSelected(){
+		return selected;
+	}
+	public void setSelected(boolean s){
+		selected = s;
+	}
 	public void setColor(Color newColor){
 		
 		tColor = newColor;
 	}
 	public Color getShotColor(){
 		return shotColor;
+	}
+	public static int getMaxTowerLevel(){
+		return MAXTOWERLEVEL;
 	}
 	public void setCrittersOnMap(ArrayList<Critter> crittersOnMap){
 		this.crittersOnMap = crittersOnMap;
@@ -209,14 +219,23 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		return name;
 	}
 	
-	public boolean getENABLED(){
+	public boolean getEnabled(){
 		
 		return enabled;
 	}
 	
-	public void setENABLED(boolean state){
+	public void setEnabled(boolean state){
 		
 		enabled = state;
+	}
+	public String toString(){
+		String result = "";
+		result += this.getName() + ", ";
+		result += "Level = " +this.getLevel() + "/" + MAXTOWERLEVEL + ", ";
+		result += "Upgrade cost = " + this.getUpPrice() +  ", ";
+		result += "Sell price = " + this.getSellPrice();
+		
+		return result;
 	}
 	
 
