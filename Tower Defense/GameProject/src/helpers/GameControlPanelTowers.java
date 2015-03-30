@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
-public class GameControlPanel extends JPanel  {
+public class GameControlPanelTowers extends JPanel  {
 	private final int buttonSize = 90;
 	//public JPanel labelPanel = new JPanel();
 	JButton bStartWave = new JButton("Start Wave 1");
@@ -26,7 +26,7 @@ public class GameControlPanel extends JPanel  {
 	JToggleButton bIceBeam = new JToggleButton("Ice beam");
 	JToggleButton bLaser = new JToggleButton("Laser beam");
 	
-	public GameControlPanel(){
+	public GameControlPanelTowers(){
 		//add our buttons to a group so only one can be selected at once.
 		towerGroup.add(bSpread);
 		towerGroup.add(bFire);

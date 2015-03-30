@@ -1,7 +1,7 @@
 package data;
 
 import helpers.GameActivity;
-import helpers.GameControlPanel;
+import helpers.GameControlPanelGeneral;
 import helpers.GamePlayPanel;
 import helpers.MapControlPanel;
 import helpers.MapEditorActivity;

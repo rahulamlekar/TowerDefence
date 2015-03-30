@@ -1,7 +1,7 @@
 package data;
 import helpers.GameActivity;
 import helpers.CritterGenerator;
-import helpers.GameControlPanel;
+import helpers.GameControlPanelGeneral;
 import helpers.GamePlayPanel;
 import helpers.GameClock;
 import helpers.MainMenuActivity;
@@ -29,7 +29,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		
 	//declare game specific variables
 	protected GamePlayPanel gamePanel;
-	protected GameControlPanel controlPanel;
+	protected GameControlPanelGeneral controlPanel;
 	protected GameActivity activity;
 	
 	//declare frame specific variables
@@ -77,7 +77,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	public void setPanelAndButtonProperties(){
 		//create Field pointer defined in controller
 		gamePanel = this;
-		controlPanel = new GameControlPanel();
+		controlPanel = new GameControlPanelGeneral();
 		bPause = this.getControlPanel().getPauseButton();
 		bPause.addActionListener(this);
 		bReturn = this.getControlPanel().getReturnButton();
@@ -269,7 +269,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		
 	}
 
-	public GameControlPanel getControlPanel(){
+	public GameControlPanelGeneral getControlPanel(){
 		return controlPanel;
 	}
 	public GamePlayPanel getPlayPanel(){
