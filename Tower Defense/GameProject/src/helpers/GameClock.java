@@ -20,7 +20,7 @@ public class GameClock {
 		return dTime;
 	}
 	
-	private void setDeltaTime(int dt){
+	public void setDeltaTime(int dt){
 		dTime = dt;
 	}
 	public void pause(){
