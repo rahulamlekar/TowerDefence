@@ -21,7 +21,15 @@ public class Artist_Swing extends JFrame{
 	public static Artist_Swing getInstance(){
 		return artist;
 	}
-	
+	public static void drawEmptyCircle(Graphics g, Color c, int x, int y, int radius){
+		g.setColor(c);
+		g.drawOval(x-radius, y-radius, radius*2, radius*2);
+	}
+	public static void drawFilledCircle(Graphics g, Color c, int x, int y, int radius){
+		g.setColor(c);
+		g.drawOval(x-radius, y-radius, radius*2, radius*2);
+		g.fillOval(x-radius, y-radius, radius*2, radius*2);
+	}
 	public static void drawFilledQuad(Graphics g, Color c, int x, int y, int height, int width)
 	{
 		g.setColor(c);
@@ -71,15 +79,14 @@ public class Artist_Swing extends JFrame{
 		int towerWidth = tow.getMapTowerIsOn().getTileWidth_pixel();
 		int towerHeight = tow.getMapTowerIsOn().getTileHeight_pixel();
 		
-		drawFilledQuad(g,tow.getColor(), tow.getPosX(), tow.getPosY(), towerWidth, towerHeight);
+		drawFilledQuad(g, Color.gray, tow.getPosX(), tow.getPosY(), towerWidth, towerHeight);
 		drawEmptyQuad(g, Color.black, tow.getPosX(), tow.getPosY(), towerWidth, towerHeight);
-		//draw the upgrade boxes
+		drawFilledCircle(g, tow.getColor(), tow.getPosX() + towerWidth/2, tow.getPosY() + towerHeight/2, towerWidth/4);
+		
+		//for upgrades, we draw a circle (in white) around the main circle of the tower for each upgrade level!
+		int spaceBetweenCircles = (int) (((double)towerWidth)/16); //16 since max tower level is 4. (so the circle doesn't go out of bounds)
 		for(int i = 1; i < tow.getLevel(); i++){
-			Color oldColor = tow.getColor();
-			int colorShift = 20;
-			int towerShift = 5;
-			Color upgradeColor = new Color(Math.min(oldColor.getRed() + colorShift, 255), Math.min(oldColor.getGreen() + colorShift, 255), Math.min(oldColor.getBlue() + colorShift, 255));
-			drawFilledQuad(g, upgradeColor, tow.getPosX() + i*towerShift, tow.getPosY() + i*towerShift, towerWidth - i*2*towerShift, towerHeight-i*2*towerShift);
+			drawEmptyCircle(g, Color.white, tow.getPosX() + towerWidth/2, tow.getPosY() + towerHeight/2, towerWidth/4 + i*spaceBetweenCircles);
 		}
 	}
 	public static void drawShot(Tower tow, Critter crit, Graphics g){

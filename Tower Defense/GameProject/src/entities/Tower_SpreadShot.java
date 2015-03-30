@@ -13,11 +13,11 @@ public class Tower_SpreadShot extends Tower {
 		rateOfFire = 1;
 		range = 200;
 		sellPrice = 10;
-		upCost = 10;
+		upCost = 200;
 		slowFactor = 0.0;
 		damageOverTime = false;
 		areaOfAffect = true;
-		tColor = new Color(175,175,175);
+		tColor = Color.YELLOW;
 		shotColor = Color.YELLOW;
 		buyCost = 250;
 	}

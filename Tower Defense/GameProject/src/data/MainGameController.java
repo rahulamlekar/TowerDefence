@@ -241,7 +241,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		gameOver = true;
 		gamePaused =true;
 		GameClock.getInstance().pause();
-		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + money + ".");
+		//this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + money + ".");
 		bPause.setEnabled(false);
 	}
 	private void resetPlayerStats() {
@@ -258,7 +258,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	}
 	public void updateInfoLabelText(){
 
-		this.getControlPanel().setInfoLabelText("Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber);
+		this.getControlPanel().setInfoLabelText("| Lives = " + lives + ", Money = " + money + ", Wavenumber = " + waveNumber + " |");
 		
 	}
 	
@@ -283,30 +283,31 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			Point adjustedTowerPoint = tdMap.getPosOfBlock_pixel(xGridPos, yGridPos);
 			Tower towToBuild = null;
 			int moneyToSpend = 0;
-			//check which tower we want to place
+			
+			//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
 			if(selectedTower.equalsIgnoreCase("Spread")){
-				if(this.money > Tower_SpreadShot.getBuyPrice()){
+				if(this.money >= Tower_SpreadShot.getBuyPrice()){
 					towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_SpreadShot.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTower.equalsIgnoreCase("Fire")){
-				if(this.money > Tower_Fire.getBuyPrice()){
+				if(this.money >= Tower_Fire.getBuyPrice()){
 					towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_Fire.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTower.equalsIgnoreCase("IceBeam")){
-				if(this.money > Tower_IceBeam.getBuyPrice()){
+				if(this.money >= Tower_IceBeam.getBuyPrice()){
 					towToBuild = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_IceBeam.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTower.equalsIgnoreCase("Laser")){
-				if(this.money > Tower_Laser.getBuyPrice()){
+				if(this.money >= Tower_Laser.getBuyPrice()){
 					towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_Laser.getBuyPrice();
 				}else{
@@ -322,7 +323,13 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			}
 		}else{ //if there is a tower on this block
 			Tower currTower = tileAtClick.getTowerOnTile();
-			currTower.upgradeTower();
+			int priceToUpgrade = currTower.getUpPrice();
+			if(this.money >= priceToUpgrade){
+				spendMoney(priceToUpgrade);
+				currTower.upgradeTower();
+			}else{
+				//TODO: Alert user insufficient funds
+			}
 		}
 	}
 	public void buildTower(Tower t){

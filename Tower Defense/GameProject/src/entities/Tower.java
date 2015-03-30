@@ -9,31 +9,31 @@ import java.util.ArrayList;
 import strategy.*;
 
 public abstract class Tower extends Subject implements DrawableEntity{
-
-	  Point position;
+	final static int MAXTOWERLEVEL = 4;
+	Point position;
 	  
-	  double damage;
-	  int rateOfFire;
-	  int range;
-	  static int buyCost;
-	  int sellPrice;
-	  int upCost;
-	  String name;
-	  int level;
-	  //boolean slow;
-	  double slowFactor;
-	  boolean damageOverTime;
-	  boolean areaOfAffect;
-	  Color tColor;
-	  Color shotColor;
-	  private IStrategy strategy;
-	  // inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
-	  //for the findCrittersInRange method to be called by an observer.
-	  //ArrayList<Critter> inRangeC;
-	  ArrayList<Critter> crittersOnMap;
-	  private TDMap map;
-	  //current CritterShell being targeted
-	  //Critter targeted;
+	double damage;
+	int rateOfFire;
+	int range;
+	static int buyCost;
+	int sellPrice;	
+	int upCost;
+	String name;
+	int level;
+	//boolean slow;
+	double slowFactor;
+	boolean damageOverTime;
+	boolean areaOfAffect;
+	Color tColor;
+	Color shotColor;
+	private IStrategy strategy;
+	// inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
+	//for the findCrittersInRange method to be called by an observer.
+	//ArrayList<Critter> inRangeC;
+	ArrayList<Critter> crittersOnMap;
+	private TDMap map;
+	//current CritterShell being targeted
+	//Critter targeted;
 	  
 	public Tower(String n, Point p, ArrayList<Critter> crittersOnMap, TDMap map){
 		position = p;
@@ -133,12 +133,14 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	} 
 	//upgrade the towers values and level
 	public void upgradeTower(){
-		level = level + 1;
-		upCost = upCost + 50;
-		damage = damage + 1; 
-		rateOfFire = rateOfFire + 1;
-		sellPrice = sellPrice + 50;
-		range = range + 1;
+		if(level < MAXTOWERLEVEL){
+			level = level + 1;
+			upCost = upCost + 50;
+			damage = damage + 1; 
+			rateOfFire = rateOfFire + 1;
+			sellPrice = sellPrice + 50;
+			range = range + 1;
+		}
 	}
 	
 	public int getSellPrice(){
