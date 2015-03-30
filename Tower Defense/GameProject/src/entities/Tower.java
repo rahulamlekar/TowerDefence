@@ -56,6 +56,9 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	public TDMap getMapTowerIsOn(){
 		return map;
 	}
+	public int getLevel(){
+		return level;
+	}
 	public void updateAndDraw(Graphics g){	
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		this.drawTower(g);
@@ -130,7 +133,6 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	} 
 	//upgrade the towers values and level
 	public void upgradeTower(){
-		
 		level = level + 1;
 		upCost = upCost + 50;
 		damage = damage + 1; 

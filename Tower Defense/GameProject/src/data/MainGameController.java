@@ -320,14 +320,16 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 				buildTower(towToBuild);
 				tileAtClick.setTowerOnTile(towToBuild);
 			}
-		}else{
-			
+		}else{ //if there is a tower on this block
+			Tower currTower = tileAtClick.getTowerOnTile();
+			currTower.upgradeTower();
 		}
 	}
 	public void buildTower(Tower t){
 		towersOnMap.add(t);
 		drawableEntities.add(t);
 		this.updateInfoLabelText();
+		Draw();
 	}
 	public void alertUserInsufficientFundsForBuying(){
 		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTower + " tower.");
