@@ -97,6 +97,7 @@ public class Artist_Swing extends JFrame{
 		g2d.drawLine(tow.getPosX() +tow.getMapTowerIsOn().getTileWidth_pixel()/2, tow.getPosY() + tow.getMapTowerIsOn().getTileHeight_pixel()/2, crit.getPixelPosition().getX() + crit.getSize()/2, crit.getPixelPosition().getY() + crit.getSize()/2);
 	}
 	
+	
 
 	
 }

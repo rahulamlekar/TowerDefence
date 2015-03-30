@@ -34,6 +34,8 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	private TDMap map;
 	//current CritterShell being targeted
 	//Critter targeted;
+	//checks if the tower is enabled
+	private boolean enabled;
 	  
 	public Tower(String n, Point p, ArrayList<Critter> crittersOnMap, TDMap map){
 		position = p;
@@ -43,9 +45,15 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		this.crittersOnMap = crittersOnMap;
 		strategy = new Closest();
 		this.map = map;
+		enabled = true;
 	}
 	public Color getColor(){
 		return tColor;
+	}
+	
+	public void setColor(Color newColor){
+		
+		tColor = newColor;
 	}
 	public Color getShotColor(){
 		return shotColor;
@@ -123,6 +131,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	//deals damage based on amount of damage of the tower
 	public void shootTarget(ArrayList<Critter> targets, Graphics g){
 		//System.out.print("size of targets = " + targets.size());
+		if(enabled)
 		for(int j =0; j < targets.size(); j++){
 			for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
 			  targets.get(j).damage(damage);
@@ -198,6 +207,16 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	public String getName(){
 		
 		return name;
+	}
+	
+	public boolean getENABLED(){
+		
+		return enabled;
+	}
+	
+	public void setENABLED(boolean state){
+		
+		enabled = state;
 	}
 	
 

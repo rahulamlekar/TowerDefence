@@ -7,6 +7,7 @@ import helpers.GameClock;
 import helpers.MainMenuActivity;
 import helpers.MouseHandler;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -54,6 +55,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JToggleButton bLaser;
 	private JSlider jsSpeed;
 	private String selectedTower;
+	private Tower towerBeingPreviewed;
 	
 	Tower tf1, tf2, tf3;
 	ArrayList<Subject> subjects;
@@ -73,6 +75,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		updateInfoLabelText();
 		MouseHandler handler = new MouseHandler(this);
 		gamePanel.addMouseListener(handler);
+		gamePanel.addMouseMotionListener(handler);
 	}
 	public void setPanelAndButtonProperties(){
 		//create Field pointer defined in controller
@@ -358,8 +361,87 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		this.updateInfoLabelText();
 		Draw();
 	}
+	
+	
+	
 	public void alertUserInsufficientFundsForBuying(){
 		System.out.println("The " + money + " dollars that you have is not enough for the " + selectedTower + " tower.");
+	}
+	
+	public void towerToPreview(Point point){
+		
+		//first, get the point of the grid where we clicked.
+				double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
+				double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
+				
+				int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
+				int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
+				//**TODO tile at movement
+				MapTile tileAtClick = tdMap.getTile(xGridPos, yGridPos);
+				int tileType = tileAtClick.getTileValue();
+				//make sure it is not a path position, 
+				if(tileType == TDMap.PATH){
+					//do nothing if it is a path position. (maybe we will add a feature here?)
+				}else if(tileAtClick.getTowerOnTile() == null){ //If there is no TOWER already at this position, build one
+					Point adjustedTowerPoint = tdMap.getPosOfBlock_pixel(xGridPos, yGridPos);
+					Tower towToBuild = null;
+					//int moneyToSpend = 0;
+					
+					//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
+					if(selectedTower.equalsIgnoreCase("Spread")){
+						if(this.money >= Tower_SpreadShot.getBuyPrice()){
+							towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
+							//moneyToSpend = Tower_SpreadShot.getBuyPrice();
+						}else{
+							alertUserInsufficientFundsForBuying();
+						}
+					}else if(selectedTower.equalsIgnoreCase("Fire")){
+						if(this.money >= Tower_Fire.getBuyPrice()){
+							towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
+							//moneyToSpend = Tower_Fire.getBuyPrice();
+						}else{
+							alertUserInsufficientFundsForBuying();
+						}
+					}else if(selectedTower.equalsIgnoreCase("IceBeam")){
+						if(this.money >= Tower_IceBeam.getBuyPrice()){
+							towToBuild = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
+							//moneyToSpend = Tower_IceBeam.getBuyPrice();
+						}else{
+							alertUserInsufficientFundsForBuying();
+						}
+					}else if(selectedTower.equalsIgnoreCase("Laser")){
+						if(this.money >= Tower_Laser.getBuyPrice()){
+							towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
+							//moneyToSpend = Tower_Laser.getBuyPrice();
+						}else{
+							alertUserInsufficientFundsForBuying();
+						}
+					}else{
+						System.out.println("Error: No appropriate tower type (coding error)");
+					}
+					if(towToBuild!= null){
+						if(drawableEntities.contains(towerBeingPreviewed)){
+							drawableEntities.remove(towerBeingPreviewed);
+						}
+						towerBeingPreviewed = towToBuild;
+						Color oldColor = towerBeingPreviewed.getColor();
+						//System.out.println("Color is " + oldColor.getRed() + ", " + oldColor.getBlue() + ", " + oldColor.getGreen());
+						Color newColor = new Color(Math.max(oldColor.getRed()-100,0),Math.max(oldColor.getGreen()-100,0),Math.max(oldColor.getBlue()-100,0));
+						
+						towerBeingPreviewed.setColor(newColor);  
+						towerBeingPreviewed.setENABLED(false);
+						drawableEntities.add(towerBeingPreviewed);
+						Draw();
+						//spendMoney(moneyToSpend);
+						//buildTower(towToBuild);
+						//tileAtClick.setTowerOnTile(towToBuild);
+					}
+				}else{ //if there is a tower on this block
+					//TODO: Display tower information. And see what user wants to do.
+					
+					
+				}
+		
 	}
 
 	

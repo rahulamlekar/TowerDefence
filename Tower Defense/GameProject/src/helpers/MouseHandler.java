@@ -11,7 +11,7 @@ import entities.Critter;
 import entities.Tower_IceBeam;
 import entities.Tower;
 import entities.Point;
-public class MouseHandler implements MouseListener{
+public class MouseHandler implements MouseListener, MouseMotionListener{
 	
 	private MainGameController gameController;
 	private GamePlayPanel panel;
@@ -22,8 +22,6 @@ public class MouseHandler implements MouseListener{
 		
 	}
 
-	
-	
 	public void mouseClicked(MouseEvent event){
 		
 		gameController.tryToBuildTower(new Point(event.getX(),event.getY()));
@@ -39,4 +37,13 @@ public class MouseHandler implements MouseListener{
 	public void mouseExited(MouseEvent event){}
 	
 	//edit
+	
+	public void mouseMoved(MouseEvent event){
+		
+		//Print statement used to check if motion listener is working
+		//System.out.println(event.getX()+" "+event.getY());
+		gameController.towerToPreview(new Point(event.getX(),event.getY()));
+	}
+	
+	public void mouseDragged(MouseEvent event){}
 }
