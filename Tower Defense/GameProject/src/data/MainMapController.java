@@ -19,8 +19,8 @@ import javax.swing.Timer;
 
 import entities.Critter;
 import entities.DrawableEntity;
-import entities.IceBeamTower;
-import entities.LaserTower;
+import entities.Tower_IceBeam;
+import entities.Tower_Laser;
 import entities.Subject;
 import entities.TDMap;
 import entities.Tower;

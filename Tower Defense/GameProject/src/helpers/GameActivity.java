@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
 public class GameActivity extends JFrame {
 
 	// constants
-	public static final int PIXELWIDTH=1280;
-	public static final int PIXELHEIGHT=800;
+	public static final int PIXELWIDTH=Artist_Swing.PIXELWIDTH;
+	public static final int PIXELHEIGHT=Artist_Swing.PIXELHEIGHT;
 	public static final String APP_NAME = "Gametime";
 	
 	public static final int TIMEOUT = 30;                          		

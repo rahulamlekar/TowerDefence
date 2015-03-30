@@ -9,58 +9,63 @@ import java.util.ArrayList;
 import strategy.*;
 
 public abstract class Tower extends Subject implements DrawableEntity{
-
-	  Point position;
-	  int size;
+	final static int MAXTOWERLEVEL = 4;
+	Point position;
 	  
-	  double damage;
-	  int rateOfFire;
-	  int range;
-	  int buyCost;
-	  int sellPrice;
-	  int upCost;
-	  String name;
-	  int level;
-	  //boolean slow;
-	  double slowFactor;
-	  boolean damageOverTime;
-	  boolean areaOfAffect;
-	  Color tColor;
-	  private IStrategy strategy;
-	  // inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
-	  //for the findCrittersInRange method to be called by an observer.
-	  //ArrayList<Critter> inRangeC;
-	  ArrayList<Critter> crittersOnMap;
+	double damage;
+	int rateOfFire;
+	int range;
+	static int buyCost;
+	int sellPrice;	
+	int upCost;
+	String name;
+	int level;
+	//boolean slow;
+	double slowFactor;
+	boolean damageOverTime;
+	boolean areaOfAffect;
+	Color tColor;
+	Color shotColor;
+	private IStrategy strategy;
+	// inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
+	//for the findCrittersInRange method to be called by an observer.
+	//ArrayList<Critter> inRangeC;
+	ArrayList<Critter> crittersOnMap;
+	private TDMap map;
+	//current CritterShell being targeted
+	//Critter targeted;
 	  
-	  //current CritterShell being targeted
-	  //Critter targeted;
-	  
-	public Tower(String n, Point p, int size, ArrayList<Critter> crittersOnMap){
+	public Tower(String n, Point p, ArrayList<Critter> crittersOnMap, TDMap map){
 		position = p;
 		name = n;
 		level = 1;
 		//inRangeC = new ArrayList<Critter>();
-		this.size = size;
 		this.crittersOnMap = crittersOnMap;
 		strategy = new Closest();
+		this.map = map;
 	}
 	public Color getColor(){
 		return tColor;
 	}
+	public Color getShotColor(){
+		return shotColor;
+	}
 	public void setCrittersOnMap(ArrayList<Critter> crittersOnMap){
 		this.crittersOnMap = crittersOnMap;
 	}
-	public int getSize(){
-		return size;
+	public TDMap getMapTowerIsOn(){
+		return map;
 	}
-	
+	public int getLevel(){
+		return level;
+	}
 	public void updateAndDraw(Graphics g){	
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		this.drawTower(g);
 		inRangeC = this.findCrittersInRange(crittersOnMap);
-		Critter targeted = selectTarget(this, inRangeC);
-		if(targeted != null){
-			this.shootTarget(targeted, g);
+		ArrayList<Critter> targetedCritters = selectTarget(this, inRangeC);
+		if(targetedCritters.isEmpty() ==false){
+			this.shootTarget(targetedCritters, g);
 		}
 	}
 	
@@ -69,9 +74,9 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		Artist_Swing.drawTower(this,g);
     }
 	
-	public Critter selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
-		Critter target = strategy.findTarget(tf1, crittersInR);
-		return target;
+	public ArrayList<Critter> selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
+		ArrayList<Critter> targets = strategy.findTargets(tf1, crittersInR);
+		return targets;
 	}
 	
 
@@ -101,50 +106,41 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	public ArrayList<Critter> findCrittersInRange(ArrayList<Critter> a){
 		
 		ArrayList<Critter> crittersInRange = new ArrayList<Critter>();
-	
-		for(int i = 0; i<a.size();i++){
-			if(a.get(i).isActive()){
-				if(inRange(a.get(i))){
-					
-					crittersInRange.add(a.get(i));
-					//the inRangeC is kept up to date as critters enter the tower's range
-					//inRangeC.add(a.get(i));
-					this.notifyObservers();
+		if(a != null){
+			for(int i = 0; i<a.size();i++){
+				if(a.get(i).isActive()){
+					if(inRange(a.get(i))){
+						crittersInRange.add(a.get(i));
+						this.notifyObservers();
+					}
 				}
 			}
 		}
-		
 		return crittersInRange;
 		
 	}
-	/*
-	public ArrayList<Critter> getInRangeC() {
-		return inRangeC;
-	}*/
-/*	
-	public void setTarget(Critter c){
-		
-		if(c.getHitPoints()>0)
-			targeted = c;
-	}*/
 	
 	//deals damage based on amount of damage of the tower
-	public void shootTarget(Critter target, Graphics g){
-		for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
-		  target.damage(damage);
-		  target.setSlowFactor(this.slowFactor);
-		  Artist_Swing.drawShot(this, target, g);
+	public void shootTarget(ArrayList<Critter> targets, Graphics g){
+		//System.out.print("size of targets = " + targets.size());
+		for(int j =0; j < targets.size(); j++){
+			for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
+			  targets.get(j).damage(damage);
+			  targets.get(j).setSlowFactor(this.slowFactor);
+			  Artist_Swing.drawShot(this, targets.get(j), g);
+			}
 		}
 	} 
 	//upgrade the towers values and level
 	public void upgradeTower(){
-		
-		level = level + 1;
-		upCost = upCost + 50;
-		damage = damage + 1; 
-		rateOfFire = rateOfFire + 1;
-		sellPrice = sellPrice + 50;
-		range = range + 1;
+		if(level < MAXTOWERLEVEL){
+			level = level + 1;
+			upCost = upCost + 50;
+			damage = damage + 1; 
+			rateOfFire = rateOfFire + 1;
+			sellPrice = sellPrice + 50;
+			range = range + 1;
+		}
 	}
 	
 	public int getSellPrice(){
@@ -152,7 +148,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		return sellPrice;
 	}
 	
-	public int getBuyPrice(){
+	public static int getBuyPrice(){
 		
 		return buyCost;
 	}
