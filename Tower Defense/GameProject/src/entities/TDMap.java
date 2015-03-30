@@ -21,13 +21,13 @@ import java.util.LinkedList;
 public class TDMap implements DrawableEntity{
 	//final variables
 	public static final int MINWIDTH = 20, MAXWIDTH = 80, MINHEIGHT = 13, MAXHEIGHT = 50;
+    // Width will range from 13 to 50 and Height will range from 20 to 80
 	private final int DEFAULTGRIDWIDTH = 40;
 	private final int DEFAULTGRIDHEIGHT = 24;
     public static final int TOWER= 4;
     public static final int PATH= 2;
     private final int PIXELWIDTH = Artist_Swing.PIXELWIDTH;
     private final int PIXELHEIGHT = Artist_Swing.PIXELHEIGHT;
-    
     private int grid[][];
     private MapTile gridTile[][];
     
@@ -35,7 +35,6 @@ public class TDMap implements DrawableEntity{
     // will be implemented with graphics as horizontal by vertical blocks, that
     // go from top-left to bottom right. ALSO, it is ROWxCOLUMN!!
     private int width, height;
-    // Width will range from 13 to 50 and Height will range from 20 to 80
     private String backdrop;
     private boolean isMapValid;
     private LinkedList<Integer> shortestPath;
@@ -43,15 +42,14 @@ public class TDMap implements DrawableEntity{
     public int tileWidth_Pixel;
 	public int tileHeight_Pixel;
 	private int start1, start2, end1, end2;
+	private ArrayList<IObserverTDMap> observers = new ArrayList<IObserverTDMap>();
 
     // Constructors
     public TDMap()
     {
         gridWidth= DEFAULTGRIDWIDTH;
         gridHeight= DEFAULTGRIDHEIGHT;
-        initializeGrid();
-       
-        
+        refresh();
         backdrop= "Generic";
         tileWidth_Pixel = PIXELWIDTH/gridWidth;
         tileHeight_Pixel = PIXELHEIGHT/gridHeight;
@@ -70,8 +68,7 @@ public class TDMap implements DrawableEntity{
             gridHeight= h;
         else
             gridHeight= DEFAULTGRIDHEIGHT;
-        
-        initializeGrid();
+        refresh();
         backdrop= back;
         tileWidth_Pixel = PIXELWIDTH/gridWidth;
         tileHeight_Pixel = PIXELHEIGHT/gridHeight;
@@ -84,7 +81,7 @@ public class TDMap implements DrawableEntity{
         {
         	gridWidth = DEFAULTGRIDWIDTH;
         	gridHeight = DEFAULTGRIDHEIGHT;
-        	initializeGrid();
+        	refresh();
             for(int i = 0; i < gridWidth; i++){
             	grid[i][3] = PATH;
             	gridTile[i][3].setTileValue(PATH);
@@ -95,16 +92,6 @@ public class TDMap implements DrawableEntity{
         }
 
     }
-    private void initializeGrid() {
-		// TODO Auto-generated method stub
-    	 grid= new int[gridWidth][gridHeight];
-         gridTile = new MapTile[gridWidth][gridHeight];
-         for(int i = 0; i < gridWidth; i++){
-        	 for(int j = 0; j < gridHeight; j++){
-        		 gridTile[i][j] = new MapTile();
-        	 }
-         }
-	}
     // This method initializes a new TDMap from a file.
     private boolean readMapFromFile(String add)
     {
@@ -162,7 +149,8 @@ public class TDMap implements DrawableEntity{
             dos.writeInt(gridHeight);
             for(int i=0; i< gridWidth; i++){
                 for(int j=0; j< gridHeight; j++){
-                    dos.writeInt(grid[i][j]); //TODO: OR dos.writeInt(gridTile[i][j].getTileValue())
+                    dos.writeInt(grid[i][j]);
+                    //dos.writeInt(gridTile[i][j].getTileValue());
                 }
             }
             dos.writeInt(start1);
@@ -201,33 +189,48 @@ public class TDMap implements DrawableEntity{
     // By convention, I will denote background/TOWER cells to be 4.
     public void refresh()
     {
-        for(int i=0; i< gridWidth; i++){
-            for(int j=0; j< gridHeight; j++){
+        grid = new int[gridWidth][gridHeight];
+        gridTile = new MapTile[gridWidth][gridHeight];
+    	for(int i=0; i< gridWidth; i++){
+            for(int j=0; j< gridHeight; j++)
             {
             	grid[i][j]= TOWER;
+            	gridTile[i][j]= new MapTile();
             	gridTile[i][j].setTileValue(TOWER);
             }
-        end1= -1;
-        end2= -1;
-        start1= -1;
-        start2= -1;
-                
-            }
         }
+        end1= -1;
+    	end2= -1;
+    	start1= -1;
+    	start2= -1;
+        tileWidth_Pixel = PIXELWIDTH/gridWidth;
+        tileHeight_Pixel = PIXELHEIGHT/gridHeight;
+    	TDMapReinitialized();
     }
+    
+	public void reinitialize(int gridWidth, int gridHeight, String backdrop) {
+			this.gridWidth= gridWidth;
+			this.gridHeight= gridHeight;
+			this.backdrop= backdrop;
+			refresh();
+	}
     
     public void setStart(int i, int j)
     {
         start1= i;
         start2= j;
-        toggleGrid(i,j);
+    	grid[i][j]= PATH;
+    	gridTile[i][j].setTileValue(PATH);
+    	TDMapUpdated();
     }
     
     public void setEnd(int i, int j)
     {
         end1= i;
         end2= j;
-        toggleGrid(i,j);
+    	grid[i][j]= PATH;
+    	gridTile[i][j].setTileValue(PATH);
+    	TDMapUpdated();
     }
     
     
@@ -253,29 +256,29 @@ public class TDMap implements DrawableEntity{
             explored.add(t);
             int i= arckeyi(t);
             int j= arckeyj(t);
-            if((i-1)>-1) //TODO: convert to gridTile.
-                if(grid[i-1][j]==PATH)
+            if((i-1)>-1)
+                if(gridTile[i-1][j].getTileValue()==PATH)
                     if(!explored.contains(key(i-1,j)))
                     {
                         frontier.addLast(key(i-1,j));
                         parent[key(i-1,j)]=t;
                     }
             if((i+1)<gridHeight)
-                if(grid[i+1][j]==PATH)
+                if(gridTile[i+1][j].getTileValue()==PATH)
                     if(!explored.contains(key(i+1,j)))
                     {
                         frontier.addLast(key(i+1,j));
                         parent[key(i+1,j)]=t;
                     }
             if((j-1)>-1)
-                if(grid[i][j-1]==PATH)
+                if(gridTile[i][j-1].getTileValue()==PATH)
                     if(!explored.contains(key(i,j-1)))
                     {
                         frontier.addLast(key(i,j-1));
                         parent[key(i,j-1)]=t;
                     }
             if((j+1)<gridHeight)
-                if(grid[i][j+1]==PATH)
+                if(gridTile[i][j+1].getTileValue()==PATH)
                     if(!explored.contains(key(i,j+1)))
                     {
                         frontier.add(key(i,j+1));
@@ -575,5 +578,34 @@ public class TDMap implements DrawableEntity{
 	public void updateAndDraw(Graphics g){
 		Artist_Swing.drawMap(this, g);
 	}
+	
+	
+	
+	// THESE METHODS PERTAIN TO THE OBSERVER PATTERN.
+    // ALL OBSERVERS ARE OF THE TYPE TDMap.
+    public void addObserver(IObserverTDMap toAddObserver)
+    {
+        observers.add(toAddObserver);
+    }
+    public void removeObserver(IObserverTDMap toAddObserver)
+    {
+        observers.remove(toAddObserver);
+    }
+    private void TDMapUpdated()
+    {
+        for(IObserverTDMap tempObserver: observers)
+        {
+            tempObserver.TDMapUpdated();
+        }
+    }
+    private void TDMapReinitialized()
+    {
+        for(IObserverTDMap tempObserver: observers)
+        {
+            tempObserver.TDMapReinitialized();
+        }
+    }
+
+
 }
 
