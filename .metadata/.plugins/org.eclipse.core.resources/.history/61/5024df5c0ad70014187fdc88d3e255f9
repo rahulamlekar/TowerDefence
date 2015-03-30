@@ -36,8 +36,6 @@ public class MouseHandler implements MouseListener{
 	
 	public void mouseEntered(MouseEvent event){}
 	
-		//gameController.tryToPreviewTower
-	
 	public void mouseExited(MouseEvent event){}
 	
 	//edit
