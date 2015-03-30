@@ -23,9 +23,12 @@ public class MouseAndKeyboardHandler implements KeyListener, MouseListener, Mous
 	}
 
 	public void mouseClicked(MouseEvent event){
-		
-		gameController.tryToBuildTower(new Point(event.getX(),event.getY()));
+		if(SwingUtilities.isRightMouseButton(event)){
+			gameController.clickNoneButton();
+		}else{
+			gameController.tryToBuildTower(new Point(event.getX(),event.getY()));
 		//System.out.println(event.getX()+ " " + event.getY());
+		}
 	}
 	
 	public void mousePressed(MouseEvent event){}
@@ -42,9 +45,7 @@ public class MouseAndKeyboardHandler implements KeyListener, MouseListener, Mous
 	
 	public void mouseMoved(MouseEvent event){
 		gameController.towerToPreview(new Point(event.getX(),event.getY()));
-		//Print statement used to check if motion listener is working
-		//System.out.println(event.getX()+" "+event.getY());
-		//gameController.towerToPreview(new Point(event.getX(),event.getY()));
+
 	}
 	
 	public void mouseDragged(MouseEvent event){}

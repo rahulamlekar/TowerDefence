@@ -85,10 +85,19 @@ public class TDMap implements DrawableEntity{
         {
         	gridWidth = DEFAULTGRIDWIDTH;
         	gridHeight = DEFAULTGRIDHEIGHT;
+        	int halfWay = gridWidth/2;
         	initializeGrid();
-            for(int i = 0; i < gridWidth; i++){
+            for(int i = 0; i < halfWay; i++){
             	grid[i][3] = PATH;
             	gridTile[i][3].setTileValue(PATH);
+            }
+            for(int i = 3; i < 7; i++){
+            	grid[halfWay][i] = PATH;
+            	gridTile[halfWay][i].setTileValue(PATH);
+            }
+            for(int i = halfWay; i < gridWidth; i++){
+            	grid[i][6] = PATH;
+            	gridTile[i][6].setTileValue(PATH);
             }
             backdrop= "Generic";
             tileWidth_Pixel = PIXELWIDTH/gridWidth;
@@ -367,9 +376,16 @@ public class TDMap implements DrawableEntity{
 	public ArrayList<Point> getPointsOfShortestPath(){
 		ArrayList<Point> pointsShortestPath = new ArrayList<Point>();
 		if(shortestPath == null){
-			for(int j = 0; j < this.gridWidth; j++){
-				pointsShortestPath.add(new Point(j,3));
-			}
+			int halfWay = this.gridWidth/2;
+            for(int i = 0; i < halfWay; i++){
+            	pointsShortestPath.add(new Point(i,3));
+            }
+            for(int i = 3; i < 7; i++){
+            	pointsShortestPath.add(new Point(halfWay,i));
+            }
+            for(int i = halfWay; i < gridWidth; i++){
+            	pointsShortestPath.add(new Point(i,6));
+            }
 		}else{
 			for(int i = 0; i < this.shortestPath.size(); i++){
 				pointsShortestPath.add(new Point(arckeyi(shortestPath.get(i)), arckeyj(shortestPath.get(i))));

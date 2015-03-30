@@ -512,6 +512,10 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			this.bNone.doClick();
 		}
 	}
+	public void clickNoneButton() {
+		// TODO Auto-generated method stub
+		this.bNone.doClick();
+	}
 
 
 
