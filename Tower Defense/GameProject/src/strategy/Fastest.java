@@ -30,4 +30,7 @@ public class Fastest implements IStrategy {
        return(fastest_enemies);				 	 // Tower attacks this critter
 	
 	}
+	public String toString(){
+		return "Fastest";
+	}
 }

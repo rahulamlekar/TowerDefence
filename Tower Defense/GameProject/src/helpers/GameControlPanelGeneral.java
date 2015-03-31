@@ -5,11 +5,14 @@ import java.awt.Font;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
+
+import entities.Tower;
 public class GameControlPanelGeneral extends JPanel  {
 	private final int buttonSize = 90;
 	public static final int CONTROLPANELHEIGHT = 150;
@@ -20,15 +23,15 @@ public class GameControlPanelGeneral extends JPanel  {
 	//this includes tower buttons, upgrading, selling, etc
 	JButton bSellTower = new JButton("Sell");
 	JButton bUpgradeTower = new JButton("Upgrade");
-	JLabel lblTowerInfo = new JLabel("Selected Tower: NONE");
-	JLabel lblBuildTowerPrompt = new JLabel("							 Build tower:  ");
+	JLabel lblTowerInfo = new JLabel("No tower selected");
+	JLabel lblBuildTowerPrompt = new JLabel("| Build tower:  ");
 	ButtonGroup towerGroup = new ButtonGroup();
 	JToggleButton bSpread = new JToggleButton("Spread beam");
 	JToggleButton bFire = new JToggleButton("Fire beam");
 	JToggleButton bIceBeam = new JToggleButton("Ice beam");
 	JToggleButton bLaser = new JToggleButton("Laser beam");
 	JToggleButton bNone = new JToggleButton("None");
-	
+	JComboBox<String> cbStrategy = new JComboBox<String>();
 	
 	//our general control panel will have general info (lives, money)
 	//this also includes main menu button, pausing, speeding up game, etc.
@@ -47,6 +50,8 @@ public class GameControlPanelGeneral extends JPanel  {
 		towerGroup.add(bIceBeam);
 		towerGroup.add(bLaser);
 		towerGroup.add(bNone);
+		bUpgradeTower.setPreferredSize(new Dimension(70,20));
+		bSellTower.setPreferredSize(new Dimension(50, 20));
 		bSpread.setPreferredSize(new Dimension(buttonSize, 20));
 		bFire.setPreferredSize(new Dimension(buttonSize, 20));
 		bIceBeam.setPreferredSize(new Dimension(buttonSize, 20));
@@ -64,6 +69,7 @@ public class GameControlPanelGeneral extends JPanel  {
 		jsSpeed.setPaintTicks(true);
 		jsSpeed.setPaintLabels(true);
 		towerControlPanel.add(lblTowerInfo);
+		towerControlPanel.add(cbStrategy);
 		towerControlPanel.add(bUpgradeTower);
 		towerControlPanel.add(bSellTower);
 		towerControlPanel.add(lblBuildTowerPrompt);
@@ -132,6 +138,9 @@ public class GameControlPanelGeneral extends JPanel  {
 	}
 	public JSlider getSpeedSlider(){
 		return jsSpeed;
+	}
+	public JComboBox<String> getCBStrategy(){
+		return cbStrategy;
 	}
 
 

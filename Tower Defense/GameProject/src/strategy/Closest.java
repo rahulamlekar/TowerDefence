@@ -27,5 +27,9 @@ public class Closest implements IStrategy {
         }
        return closest_enemies;				 	 // Tower attacks this critter
 	}
+	
+	public String toString(){
+		return "Closest";
+	}
 
 }

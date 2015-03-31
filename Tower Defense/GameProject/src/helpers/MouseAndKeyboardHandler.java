@@ -24,9 +24,9 @@ public class MouseAndKeyboardHandler implements KeyListener, MouseListener, Mous
 
 	public void mouseClicked(MouseEvent event){
 		if(SwingUtilities.isRightMouseButton(event)){
-			gameController.clickNoneButton();
+			gameController.reactToRightClick(new Point(event.getX(), event.getY()));
 		}else{
-			gameController.tryToBuildTower(new Point(event.getX(),event.getY()));
+			gameController.reactToLeftClick(new Point(event.getX(),event.getY()));
 		//System.out.println(event.getX()+ " " + event.getY());
 		}
 	}

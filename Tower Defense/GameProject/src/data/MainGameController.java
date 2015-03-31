@@ -12,9 +12,12 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
@@ -27,7 +30,9 @@ import java.util.ArrayList;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class MainGameController extends GamePlayPanel implements ActionListener, ChangeListener, IObserver {
+import strategy.*;
+
+public class MainGameController extends GamePlayPanel implements ActionListener, ChangeListener, ItemListener, IObserver {
 		
 	//declare game specific variables
 	protected GamePlayPanel gamePanel;
@@ -58,6 +63,8 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private JButton bUpgrade;
 	private JButton bSell;
 	private JSlider jsSpeed;
+
+	private JComboBox<String> cbStrategies;
 	private String selectedTowerToBuild;
 	private Tower towerBeingPreviewed;
 	private Tower selectedTower;
@@ -114,6 +121,15 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		bSell.setEnabled(false);
 		jsSpeed = this.getControlPanel().getSpeedSlider();
 		jsSpeed.addChangeListener(this);
+		cbStrategies = this.getControlPanel().getCBStrategy();
+		cbStrategies.addItem("Closest");
+		cbStrategies.addItem("Farthest");
+		cbStrategies.addItem("Fastest");
+		cbStrategies.addItem("Weakest");
+		cbStrategies.addItem("Strongest");
+		cbStrategies.setSelectedIndex(0);
+		cbStrategies.setEnabled(false);
+		cbStrategies.addItemListener(this);
 	}
 	public void setInitialValues(){
 		GameClock.getInstance().pause();
@@ -340,11 +356,11 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	}
 	public void updateTowerInfoText(){
 		
-		String text = "Selected Tower: ";
+		String text = "";
 		if(selectedTower != null){
 			text += selectedTower.toString();
 		}else{
-			text += "None";
+			text += "No tower selected";
 		}
 		this.getControlPanel().setTowerInfoLabelText(text);
 	}
@@ -354,7 +370,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		updateInfoLabelText();
 	}
 	//This method is called from the click handler when we get a click at a point
-	public void tryToBuildTower(Point point){
+	public void reactToLeftClick(Point point){
 		//first, get the point of the grid where we clicked.
 		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
 		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
@@ -374,28 +390,28 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
 			if(selectedTowerToBuild.equalsIgnoreCase("Spread")){
 				if(this.money >= Tower_SpreadShot.getBuyPrice()){
-					towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave, tdMap);
+					towToBuild =new Tower_SpreadShot("Spread Tower", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_SpreadShot.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("Fire")){
 				if(this.money >= Tower_Fire.getBuyPrice()){
-					towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave, tdMap);
+					towToBuild = new Tower_Fire("Fire Tower", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_Fire.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("IceBeam")){
 				if(this.money >= Tower_IceBeam.getBuyPrice()){
-					towToBuild = new Tower_IceBeam("IceBeam", adjustedTowerPoint, crittersInWave, tdMap);
+					towToBuild = new Tower_IceBeam("Ice Tower", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_IceBeam.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("Laser")){
 				if(this.money >= Tower_Laser.getBuyPrice()){
-					towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave, tdMap);
+					towToBuild = new Tower_Laser("Laser Tower", adjustedTowerPoint, crittersInWave, tdMap);
 					moneyToSpend = Tower_Laser.getBuyPrice();
 				}else{
 					alertUserInsufficientFundsForBuying();
@@ -437,8 +453,11 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			}
 			//we always want to enable the sell button.
 			bSell.setEnabled(true);
+			cbStrategies.setEnabled(true);
+			cbStrategies.setSelectedItem(selectedTower.getStrategy().toString());
 		}else{
 			bSell.setEnabled(false); //if there is no tower, don't allow them to sell it.
+			cbStrategies.setEnabled(false);
 		}
 		updateTowerInfoText();
 	}
@@ -512,9 +531,31 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 			this.bNone.doClick();
 		}
 	}
-	public void clickNoneButton() {
-		// TODO Auto-generated method stub
+	
+	public void reactToRightClick(Point point) {
 		this.bNone.doClick();
+		//this.strategyMenu.show(this, point.getX(), point.getY());
+		
+	}
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if(e.getSource() == this.cbStrategies){
+			String item = (String) e.getItem();
+			if(item.equalsIgnoreCase("Closest")){
+				//should we be creating a new strat? Or should we make the strats singleton?
+				selectedTower.setStrategy(new Closest()); 
+			}else if(item.equalsIgnoreCase("Farthest")){
+				selectedTower.setStrategy(new Farthest());
+			}else if(item.equalsIgnoreCase("Strongest")){
+				selectedTower.setStrategy(new Strongest());
+			}else if(item.equalsIgnoreCase("Weakest")){
+				selectedTower.setStrategy(new Weakest());
+			}else if(item.equalsIgnoreCase("Fastest")){
+				selectedTower.setStrategy(new Fastest());
+			}else{
+				System.out.println("Error with selection of strategies: Correct name not found");
+			}
+		}
 	}
 
 

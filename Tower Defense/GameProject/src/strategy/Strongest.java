@@ -30,5 +30,7 @@ public class Strongest implements IStrategy {
        return(strongest_enemies);				 	 // Tower attacks this critter
 		
 	}
-
+	public String toString(){
+		return "Strongest";
+	}
 }

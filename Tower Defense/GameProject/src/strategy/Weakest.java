@@ -32,5 +32,8 @@ public class Weakest implements IStrategy {
        return(weakest_enemies);				 	 // Tower attacks this critter
 		
 	}
+	public String toString(){
+		return "Weakest";
+	}
 
 }

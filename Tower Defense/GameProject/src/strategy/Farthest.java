@@ -30,5 +30,8 @@ public class Farthest implements IStrategy {
         //System.out.println(farthest_enemy);
        return(farthest_enemies);
 	}
+	public String toString(){
+		return "Farthest";
+	}
 
 }

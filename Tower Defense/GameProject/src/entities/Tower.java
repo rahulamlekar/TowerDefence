@@ -10,6 +10,8 @@ import strategy.*;
 
 public abstract class Tower extends Subject implements DrawableEntity{
 	final static int MAXTOWERLEVEL = 4;
+	final static String DEFAULTSTRATEGY = "Closest";
+	
 	Point position;
 	  
 	double damage;
@@ -55,8 +57,14 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	public boolean isSelected(){
 		return selected;
 	}
+	public IStrategy getStrategy(){
+		return this.strategy;
+	}
 	public void setSelected(boolean s){
 		selected = s;
+	}
+	public static String getDefaultStrategy(){
+		return DEFAULTSTRATEGY;
 	}
 	public void setColor(Color newColor){
 		
@@ -234,6 +242,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		result += "Level = " +this.getLevel() + "/" + MAXTOWERLEVEL + ", ";
 		result += "Upgrade cost = " + this.getUpPrice() +  ", ";
 		result += "Sell price = " + this.getSellPrice();
+		result += "Strategy:";
 		
 		return result;
 	}
