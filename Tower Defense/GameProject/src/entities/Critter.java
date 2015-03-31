@@ -29,6 +29,8 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	protected double levelMultiplier;
 	protected String name;
 	protected double slowFactor;
+	protected int slowTime;
+	protected int beenSlowedFor;
 	
 	//state properties
 	protected Point _pixelPosition;
@@ -47,7 +49,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		//set the level from input
 		this.level = level;
 		//set the default values for all critters
-		levelMultiplier = 1 + level/MAXWAVENUMBER;
+		levelMultiplier = 1 + 5*((double)level)/((double)MAXWAVENUMBER);
 		reachedEnd = false; //none have reached end to start
 		active = false; //none are active to start
 		alive = true;
@@ -57,6 +59,8 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		map = m; //shouldn't be here!
 		this._pixelPosition = new Point(-1,-1);
 		slowFactor = 0;
+		slowTime = 0;
+		beenSlowedFor = 0;
 	}
 	
 	//getters and setters
@@ -67,6 +71,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		if(this.slowFactor < slowFactor){
 			this.slowFactor = slowFactor;
 		}
+		beenSlowedFor = 0;
 	}
 	public Color getColor(){
 		return cColor;
@@ -156,6 +161,12 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			//place us on the map at the initial position.
 			_pixelPosition = pixelPathToFollow.get(0);
 		}
+
+		if(beenSlowedFor < this.slowTime){
+			beenSlowedFor +=1;
+		}else{
+			slowFactor = 0;
+		}
 		//the next index is our current index + our speed*our clock
 		indexInPixelPath += (1.0-slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
 		
@@ -223,7 +234,10 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			this.notifyObservers();
 		}
 	}
-
+	public void slowCritter(double sFactor, int sTime){
+		this.setSlowFactor(sFactor);
+		this.slowTime = sTime;
+	}
 	
 	
 	//ToString

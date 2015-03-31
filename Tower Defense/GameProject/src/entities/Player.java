@@ -2,7 +2,7 @@ package entities;
 
 public class Player {
 	private static final int STARTINGLIVES = 10;
-	private static final int STARTINGMONEY = 200;
+	private static final int STARTINGMONEY = 500;
 	
 	private int lives = STARTINGLIVES;
 	private int money = STARTINGMONEY;
@@ -38,5 +38,9 @@ public class Player {
 	}
 	public static int getStartingMoney(){
 		return STARTINGMONEY;
+	}
+	public void resetStats(){
+		lives = STARTINGLIVES;
+		money = STARTINGMONEY;
 	}
 }

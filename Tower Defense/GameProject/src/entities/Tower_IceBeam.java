@@ -12,7 +12,7 @@ public class Tower_IceBeam extends Tower {
 		damage = 0.1;
 		rateOfFire = 10;
 		range = 100;
-		sellPrice = 10;
+		sellPrice = 75;
 		upCost = 200;
 		slowFactor = 0.5;
 		damageOverTime = false;
@@ -20,6 +20,7 @@ public class Tower_IceBeam extends Tower {
 		tColor = Color.white;
 		shotColor = Color.WHITE;
 		buyCost = 150;
+		slowTime = 30;
 	}
 
 }

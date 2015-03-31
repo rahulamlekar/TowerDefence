@@ -12,7 +12,7 @@ public class Tower_Laser extends Tower{
 		damage = 0.5;
 		rateOfFire = 5;
 		range = 300;
-		sellPrice = 10;
+		sellPrice = 50;
 		upCost = 200;
 		slowFactor = 0;
 		damageOverTime = false;
@@ -20,6 +20,7 @@ public class Tower_Laser extends Tower{
 		tColor = Color.black;
 		shotColor = Color.black;
 		buyCost = 100;
+		slowTime = 0;
 	}
 
 	

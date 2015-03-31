@@ -497,6 +497,11 @@ public class TDMap implements DrawableEntity{
 		addPixelPoints(pixelPathToTravel, finalPixelCenterOfBlock, finalPixelPosition);
 		return pixelPathToTravel;
 	}
+	/*
+	 * a method that makes the method to find the critter path simpler.
+	 * This method "inverts" the "where" variable. If we are going to the "left", 
+	 * the invert("left") = "right", and etc.
+	 */
 	public String invertWhere(String where){
 		String result = "";
 		if(where == "left"){

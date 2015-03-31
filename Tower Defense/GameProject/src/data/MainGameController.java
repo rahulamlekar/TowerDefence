@@ -232,6 +232,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	public void doReturnToMainMenu(){
 		mainFrame.dispose();
 		new MainMenuActivity();
+		Player.getInstance().resetStats();
 	}
 	public void doStartWave(){
 		GameClock.getInstance().unPause();
@@ -259,6 +260,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		drawableEntities.remove(selectedTower);
 		selectedTower = null;
 		this.updateSelectedTowerInfoAndButtons();
+		this.Draw();
 	}
 	//end of button calls
 	
@@ -338,8 +340,15 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		gameOver = true;
 		gamePaused =true;
 		GameClock.getInstance().pause();
-		//this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + money + ".");
+		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + gamePlayer.getMoney() + ".");
+		disableAllGameButtons();
+	}
+	private void disableAllGameButtons(){
 		bPause.setEnabled(false);
+		bUpgrade.setEnabled(false);
+		bSell.setEnabled(false);
+		cbStrategies.setEnabled(false);
+		
 	}
 	private void resetPlayerStats() {
 		gamePlayer.setLives(waveStartLives);

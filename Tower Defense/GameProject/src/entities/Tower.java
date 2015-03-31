@@ -13,7 +13,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	final static String DEFAULTSTRATEGY = "Closest";
 	
 	Point position;
-	  
+	int slowTime;
 	double damage;
 	int rateOfFire;
 	int range;
@@ -65,6 +65,12 @@ public abstract class Tower extends Subject implements DrawableEntity{
 	}
 	public static String getDefaultStrategy(){
 		return DEFAULTSTRATEGY;
+	}
+	public void setSlowTime(int time){
+		this.slowTime = time;
+	}
+	public int getSlowTime(){
+		return this.slowTime;
 	}
 	public void setColor(Color newColor){
 		
@@ -153,7 +159,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		for(int j =0; j < targets.size(); j++){
 			for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
 			  targets.get(j).damage(damage);
-			  targets.get(j).setSlowFactor(this.slowFactor);
+			  targets.get(j).slowCritter(this.slowFactor, this.getSlowTime());
 			  Artist_Swing.drawShot(this, targets.get(j), g);
 			}
 		}
@@ -163,10 +169,14 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		if(level < MAXTOWERLEVEL){
 			level = level + 1;
 			upCost = upCost + 50;
-			damage = damage + 1; 
+			damage = damage + 0.2; 
 			rateOfFire = rateOfFire + 1;
 			sellPrice = sellPrice + 50;
 			range = range + 1;
+			if(this.slowTime != 0){
+				this.slowTime = (this.slowTime + 20);
+				this.slowFactor = this.slowFactor + 0.1;
+			}
 		}
 	}
 	
@@ -241,7 +251,7 @@ public abstract class Tower extends Subject implements DrawableEntity{
 		result += this.getName() + ", ";
 		result += "Level = " +this.getLevel() + "/" + MAXTOWERLEVEL + ", ";
 		result += "Upgrade cost = " + this.getUpPrice() +  ", ";
-		result += "Sell price = " + this.getSellPrice();
+		result += "Sell price = " + this.getSellPrice() + ", ";
 		result += "Strategy:";
 		
 		return result;

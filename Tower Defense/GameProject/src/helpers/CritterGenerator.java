@@ -21,7 +21,7 @@ public class CritterGenerator {
 	public static ArrayList<Critter> getGeneratedCritterWave(int waveLevel, TDMap exampleMap){
 		ArrayList<Critter> critterGroup = new ArrayList<Critter>();
 		//what to multiply the amount of critters by (so more critters come each wave)
-		double critterMultiplier = 1.0 + 1.0*waveLevel/MAXWAVE;
+		double critterMultiplier = 1.0 + 0.5*waveLevel/MAXWAVE;
 		int amountOfCritters = (int) (waveLevel + critterMultiplier*BASECRITTERS);
 		
 		//Here is the information for how we generate critters:

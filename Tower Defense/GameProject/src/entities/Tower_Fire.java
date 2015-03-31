@@ -12,7 +12,7 @@ public class Tower_Fire extends Tower {
 		damage = 0.1;
 		rateOfFire = 10;
 		range = 100;
-		sellPrice = 10;
+		sellPrice = 100;
 		upCost = 200;
 		slowFactor = 0.0;
 		damageOverTime = true;
@@ -20,6 +20,7 @@ public class Tower_Fire extends Tower {
 		tColor = Color.red;
 		shotColor = Color.red;
 		buyCost = 200;
+		slowTime = 25;
 	}
 
 }
