@@ -5,7 +5,7 @@ public class GameClock {
 	private int dTime;
 	
 	//we only want one Clock, so we use singleton method.
-	private static GameClock c = new GameClock();
+	private static GameClock clock = new GameClock();
 	
 	//constructor (private for singleton)
 	private GameClock(){
@@ -13,7 +13,7 @@ public class GameClock {
 	}
 	//returns the instance (OF WHICH THERE IS ONLY 1) of the clock
 	public static GameClock getInstance(){
-		return c;
+		return clock;
 	}
 	//getter and setter for deltaTime
 	public int deltaTime(){
