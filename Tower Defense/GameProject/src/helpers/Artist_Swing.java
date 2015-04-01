@@ -5,7 +5,10 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 import entities.Critter;
+import entities.Point;
 import entities.TDMap;
 import entities.Tower;
 
@@ -70,7 +73,20 @@ public class Artist_Swing extends JFrame{
 	
 	
 	public static void drawCritter(Critter crit, Graphics g){
-		//g.setColor(crit.getColor());
+		int indexOfCurrPos = 0;
+		
+		ArrayList<Point> pixelPathToFollow = crit.getListPixelPath();
+		//ArrayList<Point> newPixelPathToFollow = crit.getNewListPixelPath();
+		Point currPos = crit.getPixelPosition();
+		indexOfCurrPos = crit.getIndexOfPosition(currPos);
+		int lastIndex = Math.max(0, ((int) (indexOfCurrPos) - 1));
+		Point lastPoint = pixelPathToFollow.get(lastIndex);
+		
+		//System.out.println("Currindex = " + indexOfCurrPos + ", Lastindex = " + lastIndex);
+		//System.out.println(apparentPointOfCurrPos.toString() + ", " + lastPoint.toString());
+		//System.out.println();
+		//System.out.println("curr = " + currPos.toString() + ", last (" + lastIndex + ") =" + lastPoint.toString() + ", apcurr (" + indexOfCurrPos + ") ="+ apparentPointOfCurrPos.toString());
+		drawFilledQuad(g, new Color(102, 51, 0), lastPoint.getX(), lastPoint.getY(), crit.getSize(),crit.getSize());
 		drawFilledQuad(g, crit.getColor(),crit.getPixelPosition().getX(), crit.getPixelPosition().getY(), crit.getSize(), crit.getSize());
 	}
 	/*

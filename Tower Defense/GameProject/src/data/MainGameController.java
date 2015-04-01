@@ -72,7 +72,6 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private Tower towerBeingPreviewed;
 	private Tower selectedTower;
 	
-	
 	ArrayList<Subject> subjects;
 	
 	public MainGameController(TDMap map)
@@ -193,13 +192,14 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+
 		//update and draw all drawableEntities.
 		for(int i = 0; i < drawableEntities.size(); i++){
 			drawableEntities.get(i).updateAndDraw(g);
+
 		}
         Toolkit.getDefaultToolkit().sync();
-
+		
 	}
 
 	/*

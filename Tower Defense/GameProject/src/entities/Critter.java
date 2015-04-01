@@ -38,7 +38,9 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	protected boolean alive;
 	protected boolean reachedEnd;
 	protected ArrayList<Point> pixelPathToFollow;
+	//protected ArrayList<Point> newPixelPathToFollow;
 	protected double indexInPixelPath;
+	protected int intIndexInPixelPath;
 	 
 	//MAP (gets the only instance of the map)
 	protected TDMap map;
@@ -49,11 +51,15 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		//set the level from input
 		this.level = level;
 		//set the default values for all critters
-		levelMultiplier = 1 + 5*((double)level)/((double)MAXWAVENUMBER);
+		levelMultiplier = 1 + 5*((double)(level -1))/((double)MAXWAVENUMBER);
 		reachedEnd = false; //none have reached end to start
 		active = false; //none are active to start
 		alive = true;
 		pixelPathToFollow = m.getPath_ListOfPixels();
+		//newPixelPathToFollow = m.getPath_ListOfPixels();
+		for(Point p : pixelPathToFollow){
+			System.out.println(p.toString());
+		}
 		indexInPixelPath = 0; //all start at beginning of path
 		size = 6; //this can be changed...
 		map = m; //shouldn't be here!
@@ -67,6 +73,12 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	public double getIndexInPixelPath(){
 		return this.indexInPixelPath;
 	}
+	public ArrayList<Point> getListPixelPath(){
+		return this.pixelPathToFollow;
+	}
+	/*public ArrayList<Point> getNewListPixelPath(){
+		return this.newPixelPathToFollow;
+	}*/
 	public void setSlowFactor(double slowFactor){
 		if(this.slowFactor < slowFactor){
 			this.slowFactor = slowFactor;
@@ -169,10 +181,10 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		}
 		//the next index is our current index + our speed*our clock
 		indexInPixelPath += (1.0-slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
-		
+		int indexToMoveTo = (int) indexInPixelPath;
 		//If we aren't going to pass the end, we move our critter.
 		if(indexInPixelPath < pixelPathToFollow.size()){
-			moveAndDrawCritter(pixelPathToFollow.get((int) indexInPixelPath),  g);
+			moveAndDrawCritter(indexToMoveTo, g);
 		}else{
 			//we have reached the end
 			reachedEnd = true; 
@@ -182,41 +194,18 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			this.notifyObservers();
 		}
 	}
-
 	/*
 	 * Moves the critter to a given position and draws it as it moves.
 	 */
-	public void moveAndDrawCritter(Point toPosition, Graphics g){
-		//For debugging
-		//System.out.println("Requested to move critter from " + this._pixelPosition.toString() + " to " + toPosition.toString());
-		
-		Point p1 = this._pixelPosition;
-		Point p2 = toPosition;
-		if(p1.equals(p2)){
+	public void moveAndDrawCritter(int index, Graphics g){
+		while(intIndexInPixelPath<index){
+			intIndexInPixelPath +=1;
+			this._pixelPosition.setPoint(this.pixelPathToFollow.get(intIndexInPixelPath).getX(), this.pixelPathToFollow.get(intIndexInPixelPath).getY());
 			this.drawCritter(g);
-		}else{
-			int step = -1;
-			int moveInX = Math.abs(p2.getX() - p1.getX());
-			if(p2.getX() > p1.getX()){
-				step = 1;
-			}
-			for(int i = 0; i < moveInX; i++){
-				_pixelPosition.setX(_pixelPosition.getX() + step);
-				this.drawCritter(g);
-			}
-		
-			int moveInY = Math.abs(p2.getY() - p1.getY());
-			if(p2.getY() > p1.getY()){
-					step = 1;
-			}
-			for(int i = 0; i < moveInY; i++){
-				_pixelPosition.setY(_pixelPosition.getY() + step);
-				this.drawCritter(g);
-			}
 		}
-		//set the pixel position to the new position
-		this._pixelPosition = toPosition;
 	}
+	
+
 	
 	public void drawCritter(Graphics g) {
 		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
@@ -245,6 +234,19 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		String result = "";
 		result += "\nHP: " + currHitPoints + "/" + maxHitPoints + "\n";
 		result += "Regen = " + this.regen + "\n";
+		return result;
+	}
+
+	public int getIndexOfPosition(Point currPos) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		for(int i = 1; i < pixelPathToFollow.size(); i++){
+			Point p = pixelPathToFollow.get(i);
+			if(p.getX() == currPos.getX() && p.getY() == currPos.getY()){
+				result = i; 
+				break;
+			}
+		}
 		return result;
 	}
 	
