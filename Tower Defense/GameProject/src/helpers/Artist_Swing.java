@@ -30,13 +30,13 @@ public class Artist_Swing extends JFrame{
 		g.drawOval(x-radius, y-radius, radius*2, radius*2);
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
 	}
-	public static void drawFilledQuad(Graphics g, Color c, int x, int y, int height, int width)
+	public static void drawFilledQuad(Graphics g, Color c, int x, int y, int width, int height)
 	{
 		g.setColor(c);
 		g.drawRect(x,y, width, height);
     	g.fillRect(x,y, width, height);
 	}
-	public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int height, int width){
+	public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int width, int height){
 		g.setColor(c);
 		g.drawRect(x, y, width, height);
 	}
@@ -61,7 +61,7 @@ public class Artist_Swing extends JFrame{
 					drawEmptyQuad(g, Color.gray, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 				}else{
 					drawFilledQuad(g,Color.GREEN, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
-					//drawEmptyQuad(g, Color.GRAY, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+					drawEmptyQuad(g, Color.GRAY, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 				}
 			}
 		}

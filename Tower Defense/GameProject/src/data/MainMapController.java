@@ -1,6 +1,7 @@
 package data;
 
 import helpers.GamePlayPanel;
+import helpers.MainMenuActivity;
 import helpers.MapControlPanel;
 import helpers.MapEditorActivity;
 
@@ -20,6 +21,7 @@ import javax.swing.Timer;
 
 import entities.DrawableEntity;
 import entities.IObserverTDMap;
+import entities.MapTile;
 import entities.Point;
 import entities.TDMap;
 
@@ -43,16 +45,18 @@ public class MainMapController extends GamePlayPanel implements ActionListener, 
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;
-		controlPanel = new MapControlPanel();
+		controlPanel = new MapControlPanel(map);
 		bReturn = this.getControlPanel().getReturnButton();
 		bReturn.addActionListener(this);
 		bInitialize = this.getControlPanel().getInitializeButton();
 		bInitialize.addActionListener(this);
 		this.tdMap= map;
+		map.refresh();
 		map.addObserver(this);
-		drawableEntities.add(tdMap);
+		//drawableEntities.add(tdMap);
 		timer = new Timer(MapEditorActivity.TIMEOUT,this);
 		timer.start();
+		mapPanel.addMouseListener(this);
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -70,7 +74,8 @@ public class MainMapController extends GamePlayPanel implements ActionListener, 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == bReturn){
-			
+			mainFrame.dispose();
+			new MainMenuActivity();
 		}
 		else if(e.getSource() == bInitialize)
 		{
@@ -89,9 +94,7 @@ public class MainMapController extends GamePlayPanel implements ActionListener, 
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		for(DrawableEntity i: drawableEntities){
-			i.updateAndDraw(g);
-		}
+		tdMap.updateAndDraw(g);
         Toolkit.getDefaultToolkit().sync();
 
 	}
@@ -102,21 +105,25 @@ public class MainMapController extends GamePlayPanel implements ActionListener, 
 	@Override
 	public void TDMapUpdated() {
 		Draw();
-		
 	}
 	@Override
 	public void TDMapReinitialized() {
-		
-		tileWidth_Pixel= tdMap.getPixelWidth();
-		tileHeight_Pixel= tdMap.getPixelHeight();
+		tileWidth_Pixel= tdMap.getTileWidth_pixel();
+		tileHeight_Pixel= tdMap.getTileHeight_pixel();
 		TDMapUpdated();
+		updateLabelsAndComboBoxes();
+	}
+	public void updateLabelsAndComboBoxes(){
+		this.mapPanel.cbHeight.setSelectedItem(10);
 	}
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		int x= e.getX(), y= e.getY();
-		x/= tileWidth_Pixel;
-		y/= tileHeight_Pixel;
-		tdMap.toggleGrid(1, 1);
+	public void mouseClicked(MouseEvent e) {		
+		double xRatio = ((double)e.getX())/((double)tdMap.getPixelWidth());
+		double yRatio = ((double)e.getY())/((double)tdMap.getPixelHeight());
+		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
+		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
+		tdMap.toggleGrid(xGridPos, yGridPos);
+		
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
