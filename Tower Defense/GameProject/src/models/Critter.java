@@ -108,6 +108,9 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	public void setHitPoints(double hitPoints) {
 		this.currHitPoints = hitPoints;
 	}
+	public double getMaxHitPoints(){
+		return maxHitPoints;
+	}
 	public double getRegen() {
 		return regen;
 	}

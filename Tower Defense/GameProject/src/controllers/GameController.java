@@ -144,6 +144,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		gamePaused = true;
 		gameOver = false;
 		subjects = new ArrayList<Subject>();
+		helpers = new ArrayList<Helper>();
 		drawableEntities = new ArrayList<DrawableEntity>();
 		towersOnMap = new ArrayList<Tower>();
 		waveNumber = 0;

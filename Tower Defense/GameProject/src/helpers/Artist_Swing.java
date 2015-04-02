@@ -17,11 +17,12 @@ public class Artist_Swing extends Helper{
 	
 	public static final int PIXELWIDTH=1280;
 	public static final int PIXELHEIGHT=800;
-	private static Artist_Swing artist = new Artist_Swing();
+	
 	private int gridWidth;
 	private int gridHeight;
 	
 	//public GameController controller = new GameController();
+	private static Artist_Swing artist = new Artist_Swing();
 	
 	private Artist_Swing(){
 		gridWidth = TDMap.DEFAULTGRIDWIDTH;
@@ -47,13 +48,13 @@ public class Artist_Swing extends Helper{
 		g.drawOval(x-radius, y-radius, radius*2, radius*2);
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
 	}
-	public static void drawFilledQuad(Graphics g, Color c, int x, int y, int height, int width)
+	public static void drawFilledQuad(Graphics g, Color c, int x, int y, int width, int height)
 	{
 		g.setColor(c);
 		g.drawRect(x,y, width, height);
     	g.fillRect(x,y, width, height);
 	}
-	public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int height, int width){
+	public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int width, int height){
 		g.setColor(c);
 		g.drawRect(x, y, width, height);
 	}
@@ -75,7 +76,7 @@ public class Artist_Swing extends Helper{
 				int tileType= tdMap.getType(i, j);
 				if(tileType==TDMap.PATH){
 					drawFilledQuad(g,new Color(102, 51, 0), i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
-					drawEmptyQuad(g, Color.gray, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+					//drawEmptyQuad(g, Color.gray, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 				}else{
 					drawFilledQuad(g,Color.GREEN, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 					//drawEmptyQuad(g, Color.GRAY, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
@@ -84,23 +85,32 @@ public class Artist_Swing extends Helper{
 		}
 	}
 	
-	
+	//draws the critter, and its current health bar
 	public static void drawCritter(Critter crit, Graphics g){
 		int indexOfCurrPos = 0;
+		int size = crit.getSize();
+		int posX = crit.getPixelPosition().getX();
+		int posY = crit.getPixelPosition().getY();
 		
 		ArrayList<Point> pixelPathToFollow = crit.getListPixelPath();
-		//ArrayList<Point> newPixelPathToFollow = crit.getNewListPixelPath();
+
 		Point currPos = crit.getPixelPosition();
 		indexOfCurrPos = crit.getIndexOfPosition(currPos);
 		int lastIndex = Math.max(0, ((int) (indexOfCurrPos) - 1));
 		Point lastPoint = pixelPathToFollow.get(lastIndex);
 		
-		//System.out.println("Currindex = " + indexOfCurrPos + ", Lastindex = " + lastIndex);
-		//System.out.println(apparentPointOfCurrPos.toString() + ", " + lastPoint.toString());
-		//System.out.println();
-		//System.out.println("curr = " + currPos.toString() + ", last (" + lastIndex + ") =" + lastPoint.toString() + ", apcurr (" + indexOfCurrPos + ") ="+ apparentPointOfCurrPos.toString());
-		drawFilledQuad(g, new Color(102, 51, 0), lastPoint.getX(), lastPoint.getY(), crit.getSize(),crit.getSize());
-		drawFilledQuad(g, crit.getColor(),crit.getPixelPosition().getX(), crit.getPixelPosition().getY(), crit.getSize(), crit.getSize());
+		//drawFilledQuad(g, new Color(102, 51, 0), lastPoint.getX(), lastPoint.getY(), crit.getSize(),crit.getSize());
+		drawFilledQuad(g, new Color(102, 51, 0), posX - size*2, posY - size*2,  (int) (size*2.5),(int) (size*2.5));
+		drawFilledQuad(g, crit.getColor(),posX, posY, size, size);
+
+		drawFilledQuad(g, Color.GREEN,posX-size/2, posY - size,2*size, 2);
+		double currHP = crit.getHitPoints();
+		double maxHP = crit.getMaxHitPoints();
+		int redAmount = (int) (size*2*(1-currHP/maxHP));
+		if(redAmount != 0){
+			drawFilledQuad(g, Color.RED, posX-size/2, posY - size, redAmount, 2);
+		}
+		
 	}
 	/*
 	 * draws the tower, and indicates its current level by Squares inside of it.
@@ -129,6 +139,7 @@ public class Artist_Swing extends Helper{
 			drawEmptyCircle(g, Color.white, tow.getPosX() + tileWidth/2, tow.getPosY() + tileHeight/2, tileWidth/4 + i*spaceBetweenCircles);
 		}
 	}
+	//draws a shot from a tower to a critter.
 	public static void drawShot(Tower tow, Critter crit, Graphics g){
 		int tileWidth = PIXELWIDTH/Artist_Swing.getInstance().gridWidth;
 		int tileHeight = PIXELHEIGHT/Artist_Swing.getInstance().gridHeight;
