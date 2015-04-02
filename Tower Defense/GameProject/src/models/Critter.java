@@ -150,7 +150,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	/*
 	 * updates the health of the critter (called on every "tick" of the clock)
 	 */
-	public void updateHealth(){
+	private void updateHealth(){
 		//simply update the hitpoints. This should be called every update instance.
 		//if our regen will not push us over our limit, simply regen
 		if(this.currHitPoints + this.regen < this.maxHitPoints){
@@ -163,7 +163,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	/*
 	 * updates the position (and draws it), called on every tick of clock
 	 */
-	public void updatePositionAndDraw(Graphics g){
+	private void updatePositionAndDraw(Graphics g){
 		//if we haven't yet moved, 
 		if(indexInPixelPath == 0){
 			//place us on the map at the initial position.
@@ -187,13 +187,13 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			//this critter is no longer active
 			active = false;
 			//notify our observers.
-			this.notifyObservers();
+			this.notifyObs();
 		}
 	}
 	/*
 	 * Moves the critter to a given position and draws it as it moves.
 	 */
-	public void moveAndDrawCritter(int index, Graphics g){
+	private void moveAndDrawCritter(int index, Graphics g){
 		while(intIndexInPixelPath<index){
 			intIndexInPixelPath +=1;
 			this._pixelPosition.setPoint(this.pixelPathToFollow.get(intIndexInPixelPath).getX(), this.pixelPathToFollow.get(intIndexInPixelPath).getY());
@@ -203,7 +203,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	
 
 	
-	public void drawCritter(Graphics g) {
+	private void drawCritter(Graphics g) {
 		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
 		Artist_Swing.drawCritter(this,g);
     }
@@ -216,7 +216,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			this.currHitPoints = 0;
 			this.active = false;
 			this.alive = false;
-			this.notifyObservers();
+			this.notifyObs();
 		}
 	}
 	public void slowCritter(double sFactor, int sTime){

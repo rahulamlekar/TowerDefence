@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import views.GamePlayPanel;
+import views.MapPanel;
 import models.Critter;
 import models.Point;
 import models.Tower;
 import models.Tower_IceBeam;
-import controllers.MainGameController;
-public class MouseAndKeyboardHandler implements KeyListener, MouseListener, MouseMotionListener{
+import controllers.GameController;
+public class MouseAndKeyboardHandler extends Helper implements KeyListener, MouseListener, MouseMotionListener{
 	
-	private MainGameController gameController;
-	private GamePlayPanel panel;
+	private GameController gameController;
+	private MapPanel panel;
 		
-	public MouseAndKeyboardHandler(MainGameController gameController){
+	public MouseAndKeyboardHandler(GameController gameController){
 		this.gameController = gameController;
 		panel = gameController.getPlayPanel();
 		

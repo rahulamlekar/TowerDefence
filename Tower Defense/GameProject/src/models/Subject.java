@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public abstract class Subject {
 	ArrayList<IObserver> observers = new ArrayList<IObserver>();
-	public void addObserver(IObserver obsToAdd){
+	public void addObs(IObserver obsToAdd){
 		observers.add(obsToAdd);
 	}
-	public boolean removeObserver(IObserver obsToRemove){
+	public boolean removeObs(IObserver obsToRemove){
 		return observers.remove(obsToRemove);
 	}
-	protected void notifyObservers(){
+	protected void notifyObs(){
 		for(IObserver o : observers){
 			o.observerUpdate();
 		}

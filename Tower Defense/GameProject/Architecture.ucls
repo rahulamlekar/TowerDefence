@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="controllers.MainGameController" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/controllers/MainGameController.java" binary="false" corner="BOTTOM_RIGHT">    
+<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="controllers.GameController" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/controllers/GameController.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="54" width="164" x="412" y="263"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,444 +10,690 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="views.GameApplicationFrame" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/views/GameApplicationFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="345" y="-111"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="views.GameControlPanel" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/views/GameControlPanel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="665" y="-144"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="views.GamePlayPanel" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/views/GamePlayPanel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="760" y="-28"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="models.Critter" project="GameProjectAsh" 
+  <class id="2" language="java" name="models.Critter" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="170" y="746"/>    
+    <position height="-1" width="-1" x="611" y="794"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="models.Tower" project="GameProjectAsh" 
+  <class id="3" language="java" name="models.Tower" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Tower.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-74" y="336"/>    
+    <position height="-1" width="-1" x="289" y="795"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="models.TDMap" project="GameProjectAsh" 
+  <class id="4" language="java" name="models.TDMap" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/TDMap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="501" y="437"/>    
+    <position height="-1" width="-1" x="101" y="569"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="models.Critter_X" project="GameProjectAsh" 
+  <class id="5" language="java" name="models.Critter_X" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter_X.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-171" y="847"/>    
+    <position height="-1" width="-1" x="401" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="models.Critter_Square" project="GameProjectAsh" 
+  <class id="6" language="java" name="models.Critter_Square" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter_Square.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-54" y="847"/>    
+    <position height="-1" width="-1" x="518" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="models.Critter_Arrow" project="GameProjectAsh" 
+  <class id="7" language="java" name="models.Critter_Arrow" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter_Arrow.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="69" y="846"/>    
+    <position height="-1" width="-1" x="641" y="913"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="models.Critter_Circle" project="GameProjectAsh" 
+  <class id="8" language="java" name="models.Critter_Circle" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter_Circle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="187" y="847"/>    
+    <position height="-1" width="-1" x="759" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="models.Critter_Infinity" project="GameProjectAsh" 
+  <class id="9" language="java" name="models.Critter_Infinity" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter_Infinity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="314" y="699"/>    
+    <position height="-1" width="-1" x="883" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="models.Critter_Shuriken" project="GameProjectAsh" 
+  <class id="10" language="java" name="models.Critter_Shuriken" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Critter_Shuriken.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="449" y="697"/>    
+    <position height="-1" width="-1" x="1022" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <interface id="14" language="java" name="models.IObserver" project="GameProjectAsh" 
+  <interface id="11" language="java" name="models.IObserver" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/IObserver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="933" y="434"/>    
+    <position height="-1" width="-1" x="493" y="413"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="15" language="java" name="models.Subject" project="GameProjectAsh" 
+  <class id="12" language="java" name="models.Subject" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/Subject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="759" y="596"/>    
+    <position height="-1" width="-1" x="719" y="512"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="helpers.Artist_Swing" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/helpers/Artist_Swing.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="195" y="-46"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="helpers.CritterGenerator" project="GameProjectAsh" 
+  <class id="13" language="java" name="helpers.CritterGenerator" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/CritterGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="52" width="144" x="157" y="451"/>    
+    <position height="52" width="144" x="891" y="327"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="helpers.GameClock" project="GameProjectAsh" 
+  <class id="14" language="java" name="helpers.GameClock" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/GameClock.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-107" y="504"/>    
+    <position height="-1" width="-1" x="943" y="470"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="helpers.MouseAndKeyboardHandler" project="GameProjectAsh" 
+  <class id="15" language="java" name="helpers.MouseAndKeyboardHandler" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/MouseAndKeyboardHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1035" y="265"/>    
+    <position height="-1" width="-1" x="999" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <interface id="20" language="java" name="models.DrawableEntity" project="GameProjectAsh" 
+  <interface id="16" language="java" name="models.DrawableEntity" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/DrawableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="90" y="224"/>    
+    <position height="-1" width="-1" x="286" y="437"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="21" language="java" name="models.MapTile" project="GameProjectAsh" 
+  <class id="17" language="java" name="models.MapTile" project="GameProjectAsh" 
     file="/GameProjectAsh/src/models/MapTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="446" y="531"/>    
+    <position height="-1" width="-1" x="162" y="678"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <association id="22">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="23" name="gameController"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="15"/>  
+  <interface id="18" language="java" name="strategies.IStrategy" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/strategies/IStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="87" y="794"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="19" language="java" name="models.Tower_Fire" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Tower_Fire.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="74" y="1020"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="models.Tower_IceBeam" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Tower_IceBeam.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="210" y="1020"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="models.Tower_Laser" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Tower_Laser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="344" y="1020"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="models.Tower_SpreadShot" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Tower_SpreadShot.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="492" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="views.MenuApplicationFrame" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/MenuApplicationFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="264" y="-47"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="views.MapControlPanel" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/MapControlPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-81" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="views.GameApplicationFrame" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/GameApplicationFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="494" y="15"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="views.GameControlPanel" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/GameControlPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="598" y="149"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="views.MapPanel" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/MapPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="266" y="148"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="views.MapEditorApplicationFrame" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/MapEditorApplicationFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="22" y="14"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="controllers.MapEditorController" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/controllers/MapEditorController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="24" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="helpers.Artist_Swing" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/helpers/Artist_Swing.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="946" y="411"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="helpers.Helper" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/helpers/Helper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="751" y="292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="strategies.Closest" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/strategies/Closest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-66" y="655"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="strategies.Farthest" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/strategies/Farthest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-66" y="712"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="strategies.Fastest" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/strategies/Fastest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-67" y="771"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="strategies.Strongest" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/strategies/Strongest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-67" y="830"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="strategies.Weakest" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/strategies/Weakest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-67" y="888"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="models.Player" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Player.java" binary="false" corner="BOTTOM_LEFT">    
+    <position height="-1" width="-1" x="253" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="38">    
+    <bendpoint x="722" y="792"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
   </generalization>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="18"/>  
-  </dependency>  
-  <dependency id="27">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="18"/>  
-  </dependency>  
-  <association id="28">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="29" name="observers">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="32" name="crittersInWave">        
-        <position height="18" width="88" x="256" y="655"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="82" y="358"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="34">    
-    <bendpoint x="34" y="799"/>    
-    <bendpoint x="84" y="788"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <realization id="35">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="14"/>  
-  </realization>  
-  <association id="36">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="37" name="artist">        
-        <position height="0" width="0" x="238" y="-211"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="1">        
-        <position height="0" width="0" x="238" y="-211"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="39">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="40" name="gamePanel">        
-        <position height="18" width="74" x="676" y="39"/>      
+    <bendpoint x="582" y="510"/>    
+    <bendpoint x="493" y="509"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="40" name="observers">        
+        <position height="0" width="0" x="-440" y="-21"/>      
       </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
-        <position height="0" width="0" x="26" y="-133"/>      
+      <multiplicity id="41" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-440" y="-21"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="42">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
+    <bendpoint x="210" y="974"/>    
+    <bendpoint x="288" y="974"/>    
+    <bendpoint x="288" y="847"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="3"/>  
   </generalization>  
-  <realization id="43">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <association id="44">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="45" name="gameController">        
-        <position height="18" width="96" x="339" y="238"/>      
+  <association id="43">    
+    <bendpoint x="-79" y="86"/>    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="44" name="controlPanel"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <bendpoint x="203" y="326"/>    
+    <bendpoint x="182" y="326"/>    
+    <bendpoint x="182" y="305"/>    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="47" name="playerInstance">        
+        <position height="18" width="88" x="165" y="324"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <generalization id="49">    
+    <bendpoint x="517" y="874"/>    
+    <bendpoint x="610" y="874"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="50">    
+    <bendpoint x="493" y="354"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <generalization id="51">    
+    <bendpoint x="853" y="468"/>    
+    <bendpoint x="853" y="290"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <association id="52">    
+    <bendpoint x="397" y="84"/>    
+    <bendpoint x="265" y="85"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="53" name="mapPanel">        
+        <position height="18" width="64" x="172" y="86"/>      
+      </attribute>      
+      <multiplicity id="54" minimum="0" maximum="1">        
+        <position height="16" width="25" x="239" y="87"/>      
       </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="55">    
+    <bendpoint x="492" y="973"/>    
+    <bendpoint x="288" y="974"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <dependency id="56">    
+    <bendpoint x="493" y="-48"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="25"/>  
+  </dependency>  
+  <generalization id="57">    
+    <bendpoint x="639" y="874"/>    
+    <bendpoint x="610" y="874"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="58">    
+    <bendpoint x="101" y="530"/>    
+    <bendpoint x="285" y="530"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <association id="59">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="60" name="gamePlayer"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="62">    
+    <bendpoint x="343" y="974"/>    
+    <bendpoint x="288" y="974"/>    
+    <bendpoint x="288" y="856"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <realization id="63">    
+    <bendpoint x="4" y="829"/>    
+    <bendpoint x="4" y="792"/>    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <realization id="64">    
+    <bendpoint x="4" y="770"/>    
+    <bendpoint x="4" y="792"/>    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <association id="65">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="66" name="gameController"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="47">    
-    <bendpoint x="203" y="649"/>    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="68">    
+    <bendpoint x="881" y="874"/>    
+    <bendpoint x="610" y="874"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="2"/>  
   </generalization>  
-  <association id="48">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="49" name="subjects">        
-        <position height="18" width="56" x="617" y="505"/>      
-      </attribute>      
-      <multiplicity id="50" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="51">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="52" name="towersOnMap">        
-        <position height="18" width="87" x="-119" y="271"/>      
-      </attribute>      
-      <multiplicity id="53" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="-51" y="289"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="54">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <generalization id="55">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <realization id="56">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <association id="57">    
-    <bendpoint x="132" y="-8"/>    
-    <bendpoint x="121" y="-19"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="58" name="artist">        
-        <position height="0" width="0" x="238" y="-211"/>      
-      </attribute>      
-      <multiplicity id="59" minimum="0" maximum="1">        
-        <position height="16" width="25" x="94" y="-10"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="60">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <generalization id="61">    
-    <bendpoint x="-99" y="795"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="62">    
-    <bendpoint x="396" y="653"/>    
-    <bendpoint x="248" y="628"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="63">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="64" name="towerOnTile"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="67" name="drawableEntities">        
-        <position height="18" width="102" x="215" y="266"/>      
-      </attribute>      
-      <multiplicity id="68" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="69">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="70" name="clock"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+    <bendpoint x="625" y="388"/>    
+    <bendpoint x="718" y="389"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="70" name="subjects"/>      
+      <multiplicity id="71" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-40" y="-84"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency id="72">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="18"/>  
+    <bendpoint x="20" y="-47"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="28"/>  
   </dependency>  
   <association id="73">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="74" name="gridTile"/>      
-      <multiplicity id="75" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="74" name="mapController"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
+    <end type="TARGET" refId="29" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="76">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="17"/>  
-  </dependency>  
+  <realization id="76">    
+    <bendpoint x="285" y="574"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
   <association id="77">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="78" name="potentialCrittersInRange">        
-        <position height="18" width="144" x="257" y="711"/>      
+    <bendpoint x="129" y="84"/>    
+    <bendpoint x="265" y="85"/>    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="78" name="mapPanel">        
+        <position height="18" width="64" x="275" y="84"/>      
       </attribute>      
-      <multiplicity id="79" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="227" y="717"/>      
+      <multiplicity id="79" minimum="0" maximum="1">        
+        <position height="16" width="25" x="342" y="86"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="27" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="80">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="81" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <realization id="80">    
+    <bendpoint x="4" y="711"/>    
+    <bendpoint x="4" y="792"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <realization id="81">    
+    <bendpoint x="4" y="887"/>    
+    <bendpoint x="4" y="792"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <association id="82">    
+    <bendpoint x="979" y="437"/>    
+    <bendpoint x="995" y="437"/>    
+    <bendpoint x="1003" y="446"/>    
+    <bendpoint x="1025" y="446"/>    
+    <bendpoint x="1025" y="425"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="83" name="artist">        
+        <position height="18" width="37" x="1010" y="449"/>      
       </attribute>      
-      <multiplicity id="82" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="84" minimum="0" maximum="1">        
+        <position height="16" width="25" x="1028" y="444"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <generalization id="85">    
+    <bendpoint x="759" y="874"/>    
+    <bendpoint x="610" y="874"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="86">    
+    <bendpoint x="73" y="974"/>    
+    <bendpoint x="288" y="974"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <realization id="87">    
+    <bendpoint x="610" y="531"/>    
+    <bendpoint x="285" y="530"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <generalization id="88">    
+    <bendpoint x="853" y="410"/>    
+    <bendpoint x="853" y="290"/>    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <realization id="89">    
+    <bendpoint x="4" y="653"/>    
+    <bendpoint x="4" y="792"/>    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <association id="90">    
+    <bendpoint x="597" y="84"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="91" name="controlPanel"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="83">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="84" name="controlPanel">        
-        <position height="0" width="0" x="134" y="-223"/>      
+  <dependency id="93">    
+    <bendpoint x="1089" y="352"/>    
+    <bendpoint x="1092" y="826"/>    
+    <bendpoint x="730" y="826"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="94">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="95" name="towerOnTile">        
+        <position height="18" width="74" x="236" y="734"/>      
       </attribute>      
-      <multiplicity id="85" minimum="0" maximum="1">        
-        <position height="0" width="0" x="134" y="-223"/>      
+      <multiplicity id="96" minimum="0" maximum="1">        
+        <position height="16" width="25" x="220" y="750"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="86">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="87" name="panel"/>      
-      <multiplicity id="88" minimum="0" maximum="1"/>    
+  <generalization id="97">    
+    <bendpoint x="1021" y="874"/>    
+    <bendpoint x="610" y="874"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="98">    
+    <bendpoint x="285" y="381"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="99" name="drawableEntities"/>      
+      <multiplicity id="100" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="292" y="379"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="102" name="clock">        
+        <position height="18" width="36" x="978" y="505"/>      
+      </attribute>      
+      <multiplicity id="103" minimum="0" maximum="1">        
+        <position height="16" width="25" x="1007" y="499"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <association id="104">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="105" name="gridTile">        
+        <position height="18" width="49" x="88" y="629"/>      
+      </attribute>      
+      <multiplicity id="106" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="107">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="108" name="potentialCrittersInRange">        
+        <position height="18" width="144" x="408" y="773"/>      
+      </attribute>      
+      <multiplicity id="109" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="110">    
+    <bendpoint x="400" y="874"/>    
+    <bendpoint x="610" y="874"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="111">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="112" name="helpers"/>      
+      <multiplicity id="113" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="114">    
+    <bendpoint x="853" y="352"/>    
+    <bendpoint x="853" y="290"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="115">    
+    <bendpoint x="853" y="290"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <association id="116">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="117" name="strategy"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="false" package="false" protected="false" private="false" static="true"/>    
-    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+    <operations public="false" package="false" protected="false" private="false" static="true"/>  
   </classifier-display>  
   <association-display labels="true" multiplicity="true"/>
 </class-diagram>

@@ -1,6 +1,6 @@
 package helpers;
 import java.time.*;
-public class GameClock {
+public class GameClock extends Helper {
 	//dTime is the amount of time that occurs per tick. E.g. to pause game, dTime = 0
 	private int dTime;
 	

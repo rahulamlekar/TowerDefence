@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import models.TDMap;
-import controllers.MainGameController;
+import controllers.GameController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,12 +21,13 @@ public class GameApplicationFrame extends JFrame {
 	public static final int PIXELWIDTH=Artist_Swing.PIXELWIDTH;
 	public static final int PIXELHEIGHT=Artist_Swing.PIXELHEIGHT;
 	public static final String APP_NAME = "Gametime";
-	
+	private GameControlPanel controlPanel;
+	private MapPanel mapPanel;
 	public static final int TIMEOUT = 30;                          		
-	MainGameController gameController;
+	GameController gameController;
 		
 	public  GameApplicationFrame(TDMap tdMap){
-		gameController = new MainGameController(tdMap);
+		gameController = new GameController(tdMap);
 		init();
 		gameController.setMainFrame(this);
 	}
@@ -38,9 +39,10 @@ public class GameApplicationFrame extends JFrame {
 		
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
-		
-		add(gameController.getPlayPanel());
-		add(gameController.getControlPanel());
+		controlPanel = gameController.getControlPanel();
+		mapPanel = gameController.getPlayPanel();
+		add(mapPanel);
+		add(controlPanel);
 		
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
 		setTitle(APP_NAME);

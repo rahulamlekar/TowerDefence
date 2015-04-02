@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import models.TDMap;
 
-public class MainMenuActivity extends JFrame implements ActionListener{
+public class MenuApplicationFrame extends JFrame implements ActionListener{
 	public static final int PIXELWIDTH=300;
 	public static final int PIXELHEIGHT=300;
 	public static final String APP_NAME = "Main Menu";
@@ -20,15 +20,15 @@ public class MainMenuActivity extends JFrame implements ActionListener{
 	JButton bPlay = new JButton("Play a game");
 	JButton bCreateMap = new JButton("Create a map");
 	JButton bQuit = new JButton("Quit");
-	TDMap map;
+	TDMap mapToLoad;
 	//MainMenuActivity activity;
 	
-	public MainMenuActivity(){
+	public MenuApplicationFrame(){
 		init();
 		bPlay.addActionListener(this);
 		bCreateMap.addActionListener(this);
 		bQuit.addActionListener(this);
-		map = new TDMap("res/DIRTMAP1.TDMap"); //set default map
+		mapToLoad = new TDMap("res/DIRTMAP1.TDMap"); //set default map
 	}
 
 	@Override
@@ -36,10 +36,10 @@ public class MainMenuActivity extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 			if(e.getSource() == bPlay){
 				this.dispose();
-				new GameApplicationFrame(map);
+				new GameApplicationFrame(mapToLoad);
 			}else if(e.getSource() == bCreateMap){
 				this.dispose();
-				new MapEditorActivity();
+				new MapEditorApplicationFrame();
 			}else if(e.getSource() == bQuit){
 				System.exit(0);
 			}

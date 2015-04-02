@@ -51,6 +51,37 @@ public abstract class Tower implements DrawableEntity{
 		enabled = true;
 		selected = false;
 	}
+	
+	public int getSellPrice(){	
+		return sellPrice;
+	}
+	public static int getBuyPrice(){	
+		return buyCost;
+	}
+	public int getUpPrice(){
+		return upCost;
+	}
+	public void setStrategy(IStrategy strategy) {
+		this.strategy = strategy;
+	}
+	public int getPosX(){	
+		return position.getX();
+	}
+	public int getPosY(){	
+		return position.getY();
+	}
+	public int getRange(){	
+		return range;
+	}
+	public String getName(){	
+		return name;
+	}
+	public boolean getEnabled(){	
+		return enabled;
+	}
+	public void setEnabled(boolean state){
+		enabled = state;
+	}
 	public Color getColor(){
 		return tColor;
 	}
@@ -103,12 +134,10 @@ public abstract class Tower implements DrawableEntity{
 		Artist_Swing.drawTower(this,g);
     }
 	
-	public ArrayList<Critter> selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
+	private ArrayList<Critter> selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
 		ArrayList<Critter> targets = strategy.findTargets(tf1, crittersInR);
 		return targets;
 	}
-	
-
 	public double distanceToCritter(Critter a){
 	    double deltaX = a.getPixelPosition().getX()-this.getPosX();
 	    double deltaY = a.getPixelPosition().getY()-this.getPosY();
@@ -119,7 +148,7 @@ public abstract class Tower implements DrawableEntity{
 	}
 	
 	//checking if a critter is in range of a tower
-	public boolean inRange(Critter a){
+	private boolean inRange(Critter a){
 		boolean result = true;
 		//finds the distance between a creep and a tower.
 		int critterDistance = (int) distanceToCritter(a);
@@ -150,7 +179,7 @@ public abstract class Tower implements DrawableEntity{
 	}
 	
 	//deals damage based on amount of damage of the tower
-	public void shootTarget(ArrayList<Critter> targets, Graphics g){
+	private void shootTarget(ArrayList<Critter> targets, Graphics g){
 		//System.out.print("size of targets = " + targets.size());
 		if(enabled)
 		for(int j =0; j < targets.size(); j++){
@@ -176,21 +205,7 @@ public abstract class Tower implements DrawableEntity{
 			}
 		}
 	}
-	
-	public int getSellPrice(){
-		
-		return sellPrice;
-	}
-	
-	public static int getBuyPrice(){
-		
-		return buyCost;
-	}
-	
-	public int getUpPrice(){
-		
-		return upCost;
-	}
+
 	/*
 	//applies slow, damage over time, or area of affect depending on the tower
 	public void applyAffect(Critter a){
@@ -211,38 +226,7 @@ public abstract class Tower implements DrawableEntity{
 			
 		}
 	}*/
-	public void setStrategy(IStrategy strategy) {
-		this.strategy = strategy;
-	}
-	public int getPosX(){
-		
-		return position.getX();
-	}
-	
-	public int getPosY(){
-		
-		return position.getY();
-	}
-	
-	public int getRange(){
-		
-		return range;
-	}
-	
-	public String getName(){
-		
-		return name;
-	}
-	
-	public boolean getEnabled(){
-		
-		return enabled;
-	}
-	
-	public void setEnabled(boolean state){
-		
-		enabled = state;
-	}
+
 	public String toString(){
 		String result = "";
 		result += this.getName() + ", ";

@@ -2,6 +2,7 @@ package controllers;
 import helpers.Artist_Swing;
 import helpers.CritterGenerator;
 import helpers.GameClock;
+import helpers.Helper;
 import helpers.MouseAndKeyboardHandler;
 
 import java.awt.Color;
@@ -29,13 +30,13 @@ import models.*;
 import strategies.*;
 import views.GameApplicationFrame;
 import views.GameControlPanel;
-import views.GamePlayPanel;
-import views.MainMenuActivity;
+import views.MapPanel;
+import views.MenuApplicationFrame;
 
-public class MainGameController extends GamePlayPanel implements ActionListener, ChangeListener, ItemListener, IObserver {
+public class GameController extends MapPanel implements ActionListener, ChangeListener, ItemListener, IObserver {
 		
 	//declare game specific variables
-	protected GamePlayPanel gamePanel;
+	protected MapPanel gamePanel;
 	protected GameControlPanel controlPanel;
 	
 	//Below are all of our Swing elements
@@ -72,13 +73,15 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private Tower selectedTower;
 	private Artist_Swing artist;
 	ArrayList<Subject> subjects;
+	ArrayList<Helper> helpers;
+	private GameClock clock;
 	
-	public MainGameController(TDMap map)
+	public GameController(TDMap map)
 	{
 		setPanelAndButtonProperties();
 		setInitialValues();	
 		this.tdMap = map;
-		artist = Artist_Swing.getInstance();
+
 		artist.setGridHeight(map.getGridHeight());
 		artist.setGridWidth(map.getGridWidth());
 		//add the map back into the drawable entities
@@ -136,7 +139,8 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		cbStrategies.addItemListener(this);
 	}
 	private void setInitialValues(){
-		GameClock.getInstance().pause();
+		clock = GameClock.getInstance();
+		clock.pause();
 		gamePaused = true;
 		gameOver = false;
 		subjects = new ArrayList<Subject>();
@@ -148,6 +152,11 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		waveStartLives = gamePlayer.getLives();
 		//default tower to build
 		selectedTowerToBuild = "None";
+		artist = Artist_Swing.getInstance();
+		//add into a list of helpers (currently for UML diagram)
+		helpers.add(artist);
+		helpers.add(clock);
+		
 		bNone.doClick();
 	}
 	public void setMainFrame(JFrame mFrame){
@@ -176,7 +185,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		for(int i = 0; i < crittersInWave.size(); i++){
 			//add them to the drawableEntitiesList
 			drawableEntities.add(crittersInWave.get(i));
-			crittersInWave.get(i).addObserver(this); //makes this an observer of critter
+			crittersInWave.get(i).addObs(this); //makes this an observer of critter
 			subjects.add(crittersInWave.get(i));
 		}
 		//add all of the towers back into the drawable entities
@@ -214,27 +223,27 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 		}
 	}
 	public void setPlaybackSpeed(){
-		GameClock.getInstance().setDeltaTime(jsSpeed.getValue());
+		clock.setDeltaTime(jsSpeed.getValue());
 	}
 	//Below are all button click methods: They are called when the buttons are clicked
 	private void doPause(){
 		if(gamePaused == false){
-			GameClock.getInstance().pause();
+			clock.pause();
 			gamePaused = true;
 			bPause.setText("Play");
 		}else{
-			GameClock.getInstance().unPause();
+			clock.unPause();
 			gamePaused =false;
 			bPause.setText("Pause");
 		}
 	}
 	private void doReturnToMainMenu(){
 		mainFrame.dispose();
-		new MainMenuActivity();
+		new MenuApplicationFrame();
 		Player.getInstance().resetStats();
 	}
 	private void doStartWave(){
-		GameClock.getInstance().unPause();
+		clock.unPause();
 		gamePaused =false;
 		bStartWave.setEnabled(false);
 		startNewWave();
@@ -338,7 +347,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	private void endGame(){
 		gameOver = true;
 		gamePaused =true;
-		GameClock.getInstance().pause();
+		clock.pause();
 		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + gamePlayer.getMoney() + ".");
 		disableAllGameButtons();
 	}
@@ -358,7 +367,7 @@ public class MainGameController extends GamePlayPanel implements ActionListener,
 	public GameControlPanel getControlPanel(){
 		return controlPanel;
 	}
-	public GamePlayPanel getPlayPanel(){
+	public MapPanel getPlayPanel(){
 		return gamePanel;
 	}
 	private void updateInfoLabelText(){

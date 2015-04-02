@@ -11,9 +11,9 @@ import javax.swing.Timer;
 
 import views.GameApplicationFrame;
 import views.GameControlPanel;
-import views.GamePlayPanel;
+import views.MapPanel;
 import views.MapControlPanel;
-import views.MapEditorActivity;
+import views.MapEditorApplicationFrame;
 import models.Critter;
 import models.DrawableEntity;
 import models.Subject;
@@ -22,19 +22,17 @@ import models.Tower;
 import models.Tower_IceBeam;
 import models.Tower_Laser;
 
-public class MainMapController extends GamePlayPanel implements ActionListener {
+public class MapEditorController extends MapPanel implements ActionListener {
 
 	//declare game specific variables
-	protected GamePlayPanel mapPanel;
+	protected MapPanel mapPanel;
 	protected MapControlPanel controlPanel;
-	protected MapEditorActivity activity;
 	
 	//declare frame specific variables
-	private TDMap tdMap;
 	private JButton bReturn;
 	JFrame mainFrame;
 	
-	public MainMapController()
+	public MapEditorController()
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;
@@ -42,8 +40,7 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 		bReturn = this.getControlPanel().getReturnButton();
 		bReturn.addActionListener(this);
 		
-		//get the map
-		tdMap= new TDMap();
+
 		
 		
 	}
@@ -54,7 +51,7 @@ public class MainMapController extends GamePlayPanel implements ActionListener {
 	public MapControlPanel getControlPanel(){
 		return controlPanel;
 	}
-	public GamePlayPanel getPlayPanel(){
+	public MapPanel getPlayPanel(){
 		return mapPanel;
 	}
 	

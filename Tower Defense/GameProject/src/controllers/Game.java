@@ -1,10 +1,10 @@
 package controllers;
 
-import views.MainMenuActivity;
+import views.MenuApplicationFrame;
 
 public class Game {
 	public static void main(String[] args){
 		//First display main menu
-		new MainMenuActivity();
+		new MenuApplicationFrame();
 	}
 }

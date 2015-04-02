@@ -502,7 +502,7 @@ public class TDMap implements DrawableEntity{
 	 * This method "inverts" the "where" variable. If we are going to the "left", 
 	 * the invert("left") = "right", and etc.
 	 */
-	public String invertWhere(String where){
+	private String invertWhere(String where){
 		String result = "";
 		if(where == "left"){
 			result = "right";
@@ -517,7 +517,7 @@ public class TDMap implements DrawableEntity{
 		}
 		return result;
 	}
-	public Point getPixelPositionH1(String where, Point position, Point center){
+	private Point getPixelPositionH1(String where, Point position, Point center){
 		
 		Point result = null;
 		if(where == "left"){
@@ -532,7 +532,7 @@ public class TDMap implements DrawableEntity{
 		
 		return result;
 	}
-	public Point getPixelPositionH2(String where, Point position, Point center){
+	private Point getPixelPositionH2(String where, Point position, Point center){
 		
 		Point result = null;
 		if(where == "left"){
@@ -548,7 +548,7 @@ public class TDMap implements DrawableEntity{
 		return result;
 	}
 	
-	public void addPixelPoints(ArrayList<Point> listToAdd, Point p1, Point p2){
+	private void addPixelPoints(ArrayList<Point> listToAdd, Point p1, Point p2){
 		//System.out.println("Requested move from " + p1.toString() + " to " + p2.toString());
 		listToAdd.add(p1);
 		if(p1.getX() == p2.getX()){

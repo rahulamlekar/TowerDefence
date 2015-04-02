@@ -13,17 +13,17 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 
-public class Artist_Swing extends JFrame{
+public class Artist_Swing extends Helper{
 	
 	public static final int PIXELWIDTH=1280;
 	public static final int PIXELHEIGHT=800;
-	public static Artist_Swing artist = new Artist_Swing();
+	private static Artist_Swing artist = new Artist_Swing();
 	private int gridWidth;
 	private int gridHeight;
 	
 	//public GameController controller = new GameController();
 	
-	private void Artist_Swing(){
+	private Artist_Swing(){
 		gridWidth = TDMap.DEFAULTGRIDWIDTH;
 		gridHeight = TDMap.DEFAULTGRIDHEIGHT;
 	}

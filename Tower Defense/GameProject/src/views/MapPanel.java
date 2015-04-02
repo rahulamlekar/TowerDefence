@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 
-public class GamePlayPanel extends JPanel {
+public class MapPanel extends JPanel {
     
-	public GamePlayPanel(){
+	public MapPanel(){
 		
 		//set panel properties
 		setBackground(Color.BLACK);
