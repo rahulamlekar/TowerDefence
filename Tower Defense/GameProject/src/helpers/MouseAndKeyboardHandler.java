@@ -6,17 +6,18 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import data.MainGameController;
-import entities.Critter;
-import entities.Tower_IceBeam;
-import entities.Tower;
-import entities.Point;
-public class MouseAndKeyboardHandler implements KeyListener, MouseListener, MouseMotionListener{
+import views.MapPanel;
+import models.Critter;
+import models.Point;
+import models.Tower;
+import models.Tower_IceBeam;
+import controllers.GameController;
+public class MouseAndKeyboardHandler extends Helper implements KeyListener, MouseListener, MouseMotionListener{
 	
-	private MainGameController gameController;
-	private GamePlayPanel panel;
+	private GameController gameController;
+	private MapPanel panel;
 		
-	public MouseAndKeyboardHandler(MainGameController gameController){
+	public MouseAndKeyboardHandler(GameController gameController){
 		this.gameController = gameController;
 		panel = gameController.getPlayPanel();
 		
@@ -44,7 +45,7 @@ public class MouseAndKeyboardHandler implements KeyListener, MouseListener, Mous
 	//edit
 	
 	public void mouseMoved(MouseEvent event){
-		gameController.towerToPreview(new Point(event.getX(),event.getY()));
+		gameController.reactToMouseMove(new Point(event.getX(),event.getY()));
 
 	}
 	

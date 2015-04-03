@@ -1,18 +1,18 @@
 package helpers;
 import java.util.ArrayList;
 
-import entities.Critter;
-import entities.Critter_Arrow;
-import entities.Critter_Circle;
-import entities.Critter_Infinity;
-import entities.Critter_Shuriken;
-import entities.Critter_Square;
-import entities.Critter_X;
-import entities.TDMap;
+import models.Critter;
+import models.Critter_Arrow;
+import models.Critter_Circle;
+import models.Critter_Infinity;
+import models.Critter_Shuriken;
+import models.Critter_Square;
+import models.Critter_X;
+import models.TDMap;
 /*
  * generates a group of critters for a certain wave number.
  */
-public class CritterGenerator {
+public class CritterGenerator extends Helper {
 	//attributes
 	private final static int BASECRITTERS = 10; //this is the base amount of critters
 	private final static int MAXWAVE = 50; //THE maximum wave number
@@ -59,5 +59,8 @@ public class CritterGenerator {
 		
 		//return this group to whatever class called it (for simplicity)
 		return critterGroup;
+	}
+	public ArrayList<Critter> getGeneratedCritWave(int waveLevel, TDMap exampleMap){
+		return null;
 	}
 }
