@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.8" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
-  associations="true" dependencies="true" nesting-relationships="true">  
+<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="controllers.GameController" project="GameProjectAsh" 
     file="/GameProjectAsh/src/controllers/GameController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="54" width="164" x="359" y="357"/>    
+    <position height="54" width="164" x="359" y="360"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="helpers.GameClock" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/GameClock.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="300" y="598"/>    
+    <position height="-1" width="-1" x="300" y="613"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="helpers.MouseAndKeyboardHandler" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/MouseAndKeyboardHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1257" y="660"/>    
+    <position height="-1" width="-1" x="876" y="669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="views.GameApplicationFrame" project="GameProjectAsh" 
     file="/GameProjectAsh/src/views/GameApplicationFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="441" y="109"/>    
+    <position height="-1" width="-1" x="441" y="189"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="helpers.Artist_Swing" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/Artist_Swing.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="605" y="691"/>    
+    <position height="-1" width="-1" x="566" y="694"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="helpers.CritterGenerator" project="GameProjectAsh" 
     file="/GameProjectAsh/src/helpers/CritterGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="922" y="564"/>    
+    <position height="-1" width="-1" x="1190" y="570"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="false"/>      
@@ -65,216 +65,88 @@
     </display>  
   </class>  
   <association id="8">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="9" name="gameController"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="11">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="14">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="15" name="gameController"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="18" name="clock"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="23">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="artist"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="27">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="28" name="artist"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="30">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="31" name="artist"/>      
-      <multiplicity id="32" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="36">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="37" name="gameController">        
+      <attribute id="9" name="helpers">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="38" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="40" name="clock"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="43" name="clock">        
-        <position height="18" width="36" x="335" y="633"/>      
-      </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1">        
-        <position height="16" width="25" x="364" y="627"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="false"/>  
-  </association>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="46">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="47">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="48" name="gameController"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="50">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="51" name="gameController"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="53">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="54">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="55">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="56">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="57">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="58" name="clock"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="61" name="artist">        
-        <position height="18" width="37" x="669" y="729"/>      
-      </attribute>      
-      <multiplicity id="62" minimum="0" maximum="1">        
-        <position height="16" width="25" x="687" y="724"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="false"/>  
-  </association>  
-  <association id="63">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="64" name="helpers">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="65" minimum="0" maximum="2147483647">        
+      <multiplicity id="10" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="66">    
+  <generalization id="11">    
+    <bendpoint x="300" y="488"/>    
+    <bendpoint x="698" y="488"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="12">    
+    <bendpoint x="878" y="488"/>    
+    <bendpoint x="698" y="488"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="13">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="14" name="gameController">        
+        <position height="0" width="0" x="0" y="3"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="3"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="17">    
+    <bendpoint x="565" y="488"/>    
+    <bendpoint x="698" y="488"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="67">    
+  <association id="18">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="68" name="clock"/>      
-      <multiplicity id="69" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="70">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="71" name="artist"/>      
-      <multiplicity id="72" minimum="0" maximum="1"/>    
+      <attribute id="19" name="artist"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="21">    
+    <bendpoint x="1190" y="488"/>    
+    <bendpoint x="698" y="488"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="22">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="23" name="artist">        
+        <position height="18" width="34" x="716" y="882"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="16" width="25" x="648" y="727"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="26" name="clock">        
+        <position height="18" width="36" x="365" y="718"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="16" width="25" x="364" y="642"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

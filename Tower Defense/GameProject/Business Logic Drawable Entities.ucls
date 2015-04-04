@@ -181,74 +181,67 @@
       <operations public="true" package="true" protected="true" private="true" static="false"/>    
     </display>  
   </class>  
-  <association id="21">    
+  <class id="21" language="java" name="views.MapEditorApplicationFrame" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/views/MapEditorApplicationFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="52" width="215" x="-162" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="controllers.MapEditorController" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/controllers/MapEditorController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="52" width="162" x="-162" y="460"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="23">    
+    <bendpoint x="285" y="640"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="22" name="selectedTile"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+      <attribute id="24" name="selectedTile">        
+        <position height="18" width="74" x="8" y="679"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="24">    
-    <bendpoint x="854" y="1140"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <generalization id="25">    
-    <bendpoint x="64" y="1568"/>    
-    <bendpoint x="258" y="1568"/>    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="26">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="27" name="subjects">        
-        <position height="18" width="56" x="686" y="543"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="75" y="43"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="29">    
+  <realization id="26">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="11"/>  
   </realization>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <generalization id="31">    
+  <generalization id="27">    
     <bendpoint x="578" y="1568"/>    
     <bendpoint x="258" y="1568"/>    
     <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <realization id="32">    
-    <bendpoint x="-81" y="872"/>    
-    <bendpoint x="256" y="872"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <generalization id="33">    
-    <bendpoint x="854" y="1256"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="34">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="35" name="observers">        
-        <position height="0" width="0" x="-378" y="207"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-378" y="207"/>      
-      </multiplicity>    
+  <association id="28">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="29" name="mapController"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="32" name="tdMap"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="35" name="activity"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="37">    
@@ -257,107 +250,285 @@
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <realization id="38">    
-    <bendpoint x="703" y="870"/>    
-    <bendpoint x="256" y="872"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <generalization id="39">    
-    <bendpoint x="222" y="1568"/>    
-    <bendpoint x="258" y="1568"/>    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <generalization id="40">    
-    <bendpoint x="387" y="1568"/>    
-    <bendpoint x="258" y="1568"/>    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="41">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="42" name="gridTile">        
-        <position height="18" width="49" x="-161" y="690"/>      
-      </attribute>      
-      <multiplicity id="43" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-143" y="43"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <bendpoint x="128" y="859"/>    
+  <dependency id="38">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="39">    
+    <bendpoint x="138" y="850"/>    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="45" name="towerOnTile">        
+      <attribute id="40" name="towerOnTile">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1">        
+      <multiplicity id="41" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="47">    
+  <association id="42">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="48" name="playerInstance">        
+      <attribute id="43" name="playerInstance">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="49" minimum="0" maximum="1">        
+      <multiplicity id="44" minimum="0" maximum="1">        
         <position height="0" width="0" x="-187" y="140"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <generalization id="50">    
-    <bendpoint x="855" y="1481"/>    
+  <dependency id="45">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="47">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="48">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="49">    
+    <bendpoint x="854" y="1140"/>    
     <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <generalization id="51">    
-    <bendpoint x="853" y="923"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
+  <dependency id="50">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="51">    
+    <bendpoint x="-81" y="872"/>    
+    <bendpoint x="256" y="872"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
   <generalization id="52">    
+    <bendpoint x="854" y="1256"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="55">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="56" name="tdMap"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="58">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="59" name="tdMap"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="61">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="62">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="64">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="65">    
     <bendpoint x="834" y="812"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="12"/>  
   </generalization>  
-  <association id="53">    
+  <dependency id="66">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="67">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="54" name="gamePlayer">        
+      <attribute id="68" name="gamePlayer">        
         <position height="0" width="0" x="-187" y="140"/>      
       </attribute>      
-      <multiplicity id="55" minimum="0" maximum="1">        
+      <multiplicity id="69" minimum="0" maximum="1">        
         <position height="0" width="0" x="-187" y="140"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="56">    
+  <dependency id="70">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="71">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="72" name="tdMap"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="75" name="observers">        
+        <position height="0" width="0" x="-378" y="207"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-378" y="207"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="78">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="79">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="80">    
+    <bendpoint x="387" y="1568"/>    
+    <bendpoint x="258" y="1568"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="81">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="82" name="gridTile"/>      
+      <multiplicity id="83" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-143" y="43"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="84">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="85" name="tdMap"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="87">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="88">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="13"/>  
   </realization>  
-  <association id="57">    
+  <association id="89">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="58" name="potentialCrittersInRange">        
+      <attribute id="90" name="potentialCrittersInRange">        
         <position height="18" width="144" x="437" y="1194"/>      
       </attribute>      
-      <multiplicity id="59" minimum="0" maximum="2147483647">        
+      <multiplicity id="91" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="60">    
+  <dependency id="92">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="93">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="94">    
+    <bendpoint x="64" y="1568"/>    
+    <bendpoint x="258" y="1568"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="95">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="96" name="subjects">        
+        <position height="18" width="56" x="686" y="543"/>      
+      </attribute>      
+      <multiplicity id="97" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="75" y="43"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="98">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="100">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="101">    
+    <bendpoint x="703" y="870"/>    
+    <bendpoint x="256" y="872"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <generalization id="102">    
+    <bendpoint x="222" y="1568"/>    
+    <bendpoint x="258" y="1568"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <dependency id="103">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="104">    
+    <bendpoint x="855" y="1481"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="105">    
+    <bendpoint x="853" y="923"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="107">    
     <bendpoint x="853" y="1027"/>    
     <bendpoint x="854" y="1220"/>    
     <end type="SOURCE" refId="10"/>    

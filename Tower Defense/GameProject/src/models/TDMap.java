@@ -44,7 +44,8 @@ public class TDMap implements DrawableEntity{
     private LinkedList<Integer> shortestPath;
     public int tileWidth_Pixel;
 	public int tileHeight_Pixel;
-
+	private ArrayList<IObserverTDMap> observers = new ArrayList<IObserverTDMap>();
+	
     // Constructors
     public TDMap()
     {
@@ -190,7 +191,32 @@ public class TDMap implements DrawableEntity{
     }
 
     
+    // By convention, I will denote PATH cells to be 2.
+    public void toggleGrid(int i, int j)
+    {
+        if(((i!=start1) && (j!=start2)) || ((i!=end1) && (j!=end2)))
+    		if((i<gridWidth)&&(j<gridHeight))
+    			if(grid[i][j]==PATH)
+    			{
+    				grid[i][j]= TOWER;
+    				gridTile[i][j].setTileValue(TOWER);
+    			}
+    			else
+    			{
+    				grid[i][j]= PATH;
+    				gridTile[i][j].setTileValue(TOWER);
+    			}
+        TDMapUpdated();
+    }
+    // By convention, I will denote background/TOWER cells to be 4.
+
     
+	public void reinitialize(int gridWidth, int gridHeight, String backdrop) {
+			this.gridWidth= gridWidth;
+			this.gridHeight= gridHeight;
+			this.backdrop= backdrop;
+			refresh();
+	}
     // By convention, I will denote PATH cells to be 2.
     public void setAsPath(int i, int j)
     {
@@ -203,16 +229,23 @@ public class TDMap implements DrawableEntity{
     // By convention, I will denote background/TOWER cells to be 4.
     public void refresh()
     {
-        for(int i=0; i< gridWidth; i++){
-            for(int j=0; j< gridHeight; j++){
-                grid[i][j]= TOWER;
-                gridTile[i][j].setTileValue(TOWER);
+        grid = new int[gridWidth][gridHeight];
+        gridTile = new MapTile[gridWidth][gridHeight];
+    	for(int i=0; i< gridWidth; i++){
+            for(int j=0; j< gridHeight; j++)
+            {
+            	grid[i][j]= TOWER;
+            	gridTile[i][j]= new MapTile();
+            	gridTile[i][j].setTileValue(TOWER);
             }
         }
-        end1= 0;
-        end2= 0;
-        start1= 0;
-        start2= 0;
+        end1= -1;
+    	end2= -1;
+    	start1= -1;
+    	start2= -1;
+        tileWidth_Pixel = PIXELWIDTH/gridWidth;
+        tileHeight_Pixel = PIXELHEIGHT/gridHeight;
+    	TDMapReinitialized();
     }
     
     public void setStart(int i, int j)
@@ -575,5 +608,27 @@ public class TDMap implements DrawableEntity{
 	public void updateAndDraw(Graphics g){
 		Artist_Swing.drawMap(this, g);
 	}
+	 public void addObserver(IObserverTDMap toAddObserver)
+	    {
+	        observers.add(toAddObserver);
+	    }
+	    public void removeObserver(IObserverTDMap toAddObserver)
+	    {
+	        observers.remove(toAddObserver);
+	    }
+	    private void TDMapUpdated()
+	    {
+	        for(IObserverTDMap tempObserver: observers)
+	        {
+	            tempObserver.TDMapUpdated();
+	        }
+	    }
+	    private void TDMapReinitialized()
+	    {
+	        for(IObserverTDMap tempObserver: observers)
+	        {
+	            tempObserver.TDMapReinitialized();
+	        }
+	    }
 }
 

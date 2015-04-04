@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import controllers.MapEditorController;
+import models.TDMap;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +19,16 @@ public class MapEditorApplicationFrame extends JFrame{
 	public static final int PIXELWIDTH=1280;
 	public static final int PIXELHEIGHT=800;
 	public static final String APP_NAME = "Map Editor Time";
-	
-	public static final int TIMEOUT = 30;                          		
-	MapEditorController mapController = new MapEditorController();
+	public static final int TIMEOUT = 30;
 	private MapControlPanel controlPanel;
 	private MapPanel mapPanel;
 	
+	MapEditorController mapController;
+	private TDMap tdMap;
+	
 	public MapEditorApplicationFrame(){
+		tdMap= new TDMap();
+		mapController = new MapEditorController(tdMap);
 		init();
 		mapController.setMainFrame(this);
 	}
@@ -36,11 +40,11 @@ public class MapEditorApplicationFrame extends JFrame{
 		
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
-		controlPanel = mapController.getControlPanel();
 		mapPanel = mapController.getPlayPanel();
+		controlPanel = mapController.getControlPanel();
 		add(mapPanel);
 		add(controlPanel);
-		
+		this.tdMap= mapController.getTDMap();
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
 		setTitle(APP_NAME);
 		//pack();         												
