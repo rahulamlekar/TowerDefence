@@ -9,8 +9,7 @@ import models.Tower;
 public class Farthest implements IStrategy {
 
 	@Override
-	public ArrayList<Critter> findTargets(Tower tower, ArrayList<Critter> g1) {
-		ArrayList<Critter> farthest_enemies = new ArrayList<Critter>();
+	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		Critter farthest_enemy= null;   
         double max_dist = 0;
         
@@ -23,12 +22,7 @@ public class Farthest implements IStrategy {
             farthest_enemy=enemy;
             }
         }
-        
-        if(farthest_enemy != null){
-        	farthest_enemies.add(farthest_enemy);
-        }
-        //System.out.println(farthest_enemy);
-       return(farthest_enemies);
+       return(farthest_enemy);
 	}
 	public String toString(){
 		return "Farthest";

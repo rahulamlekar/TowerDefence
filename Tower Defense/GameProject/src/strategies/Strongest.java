@@ -8,8 +8,7 @@ import models.Tower;
 
 public class Strongest implements IStrategy {
 	@Override
-	public ArrayList<Critter> findTargets(Tower tower, ArrayList<Critter> g1) {
-		ArrayList<Critter> strongest_enemies = new ArrayList<Critter>();
+	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		Critter strongest_enemy= null;   
         double max_health = 0;
         int count = g1.size(); 			 		 // The number of critters currently within range
@@ -23,11 +22,7 @@ public class Strongest implements IStrategy {
             }
         }
         
-       //System.out.println(strongest_enemy);
-        if(strongest_enemy != null){
-        	strongest_enemies.add(strongest_enemy);        	
-        }
-       return(strongest_enemies);				 	 // Tower attacks this critter
+       return(strongest_enemy);				 	 // Tower attacks this critter
 		
 	}
 	public String toString(){

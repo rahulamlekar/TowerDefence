@@ -1,6 +1,7 @@
 package models;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Tower_IceBeam extends Tower {
@@ -21,6 +22,11 @@ public class Tower_IceBeam extends Tower {
 		shotColor = Color.WHITE;
 		buyCost = 150;
 		slowTime = 30;
+	}
+	
+	protected void shootTarget(Critter target, Graphics g){
+		super.shootTarget(target, g);
+		target.slowCritter(this.slowFactor, this.getSlowTime());
 	}
 
 }

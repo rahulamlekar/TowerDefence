@@ -71,6 +71,8 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	private String selectedTowerToBuild;
 	private Tower towerBeingPreviewed;
 	private Tower selectedTower;
+	private MapTile selectedTile;
+	
 	private Artist_Swing artist;
 	ArrayList<Subject> subjects;
 	ArrayList<Helper> helpers;
@@ -201,7 +203,6 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-
 		//update and draw all drawableEntities.
 		for(int i = 0; i < drawableEntities.size(); i++){
 			drawableEntities.get(i).updateAndDraw(g);
@@ -268,6 +269,9 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		towersOnMap.remove(selectedTower);
 		drawableEntities.remove(selectedTower);
 		selectedTower = null;
+		if(selectedTile != null){
+			selectedTile.setTowerOnTile(null);
+		}
 		this.updateSelectedTowerInfoAndButtons();
 		this.Draw();
 	}
@@ -278,11 +282,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-			if(arg0.getSource() == bPause && !gameOver){
+			if(arg0.getSource() == bPause){
 				doPause();
 			}else if(arg0.getSource() == bReturn){
 				doReturnToMainMenu();
-			}else if(arg0.getSource() == bStartWave && !gameOver){
+			}else if(arg0.getSource() == bStartWave ){
 				doStartWave();
 			}else if(arg0.getSource() == bFire || arg0.getSource() == bLaser || arg0.getSource() == bIceBeam || arg0.getSource() == bSpread || arg0.getSource() ==bNone){
 				doSelectTower(arg0);
@@ -353,6 +357,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		disableAllGameButtons();
 	}
 	private void disableAllGameButtons(){
+		bStartWave.setEnabled(false);
 		bPause.setEnabled(false);
 		bUpgrade.setEnabled(false);
 		bSell.setEnabled(false);
@@ -398,6 +403,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		MapTile tileAtClick = tdMap.getTile(xGridPos, yGridPos);
 		int tileType = tileAtClick.getTileValue();
+
 		//make sure it is not a path position, 
 		if(tileType == TDMap.PATH){
 			//do nothing if it is a path position. (maybe we will add a feature here?)
@@ -450,6 +456,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			selectedTower = tileAtClick.getTowerOnTile();
 			selectedTower.setSelected(true);
 			updateSelectedTowerInfoAndButtons();
+			selectedTile = tileAtClick;
 		}
 	}
 	/*

@@ -76,7 +76,7 @@ public class Artist_Swing extends Helper{
 				int tileType= tdMap.getType(i, j);
 				if(tileType==TDMap.PATH){
 					drawFilledQuad(g,new Color(102, 51, 0), i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
-					//drawEmptyQuad(g, Color.gray, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+					drawEmptyQuad(g, Color.gray, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 				}else{
 					drawFilledQuad(g,Color.GREEN, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 					//drawEmptyQuad(g, Color.GRAY, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
@@ -87,28 +87,29 @@ public class Artist_Swing extends Helper{
 	
 	//draws the critter, and its current health bar
 	public static void drawCritter(Critter crit, Graphics g){
-		int indexOfCurrPos = 0;
 		int size = crit.getSize();
 		int posX = crit.getPixelPosition().getX();
 		int posY = crit.getPixelPosition().getY();
+		int healthBarGap = 3;
+		int healthBarHeight = 2;
+		int bufferSize = 2;
 		
-		ArrayList<Point> pixelPathToFollow = crit.getListPixelPath();
-
-		Point currPos = crit.getPixelPosition();
-		indexOfCurrPos = crit.getIndexOfPosition(currPos);
-		int lastIndex = Math.max(0, ((int) (indexOfCurrPos) - 1));
-		Point lastPoint = pixelPathToFollow.get(lastIndex);
-		
-		//drawFilledQuad(g, new Color(102, 51, 0), lastPoint.getX(), lastPoint.getY(), crit.getSize(),crit.getSize());
-		drawFilledQuad(g, new Color(102, 51, 0), posX - size*2, posY - size*2,  (int) (size*2.5),(int) (size*2.5));
+		//drawing the space behind the critter.
+		drawFilledQuad(g, new Color(102, 51, 0), posX - bufferSize, posY - bufferSize - healthBarGap - healthBarHeight,  size + 2*bufferSize,size + healthBarGap + healthBarHeight + 2*bufferSize);
+		//Drawing the actual critter
 		drawFilledQuad(g, crit.getColor(),posX, posY, size, size);
-
-		drawFilledQuad(g, Color.GREEN,posX-size/2, posY - size,2*size, 2);
+		//if the critter is burning, we draw an Orange around it
+		if(crit.isBurning()){
+			drawEmptyQuad(g, Color.orange, posX, posY, size, size);
+		}
+		
+		//Healthbar:
+		drawFilledQuad(g, Color.GREEN,posX, posY - healthBarGap - bufferSize,size, healthBarHeight);
 		double currHP = crit.getHitPoints();
 		double maxHP = crit.getMaxHitPoints();
-		int redAmount = (int) (size*2*(1-currHP/maxHP));
+		int redAmount = (int) (size*(1-currHP/maxHP));
 		if(redAmount != 0){
-			drawFilledQuad(g, Color.RED, posX-size/2, posY - size, redAmount, 2);
+			drawFilledQuad(g, Color.RED,posX, posY - healthBarGap - bufferSize,redAmount, healthBarHeight);
 		}
 		
 	}

@@ -10,7 +10,7 @@ public class Tower_Laser extends Tower{
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
 		damage = 0.5;
-		rateOfFire = 5;
+		rateOfFire = 10;
 		range = 300;
 		sellPrice = 50;
 		upCost = 200;

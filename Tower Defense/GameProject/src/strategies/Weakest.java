@@ -9,8 +9,7 @@ import models.Tower;
 public class Weakest implements IStrategy {
 
 	@Override
-	public ArrayList<Critter> findTargets(Tower tower, ArrayList<Critter> g1) {
-		ArrayList<Critter> weakest_enemies = new ArrayList<Critter>();
+	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		
 		Critter weakest_enemy= null;   
         double min_health = 10000.0;
@@ -25,11 +24,9 @@ public class Weakest implements IStrategy {
             weakest_enemy=enemy;
             }
         }
-        if(weakest_enemy!= null){
-        	weakest_enemies.add(weakest_enemy);        	
-        }
+        
        // System.out.println(weakest_enemy);
-       return(weakest_enemies);				 	 // Tower attacks this critter
+       return(weakest_enemy);				 	 // Tower attacks this critter
 		
 	}
 	public String toString(){

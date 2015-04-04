@@ -123,9 +123,9 @@ public abstract class Tower implements DrawableEntity{
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		this.drawTower(g);
 		inRangeC = this.findCrittersInRange(potentialCrittersInRange);
-		ArrayList<Critter> targetedCritters = selectTarget(this, inRangeC);
-		if(targetedCritters.isEmpty() ==false){
-			this.shootTarget(targetedCritters, g);
+		Critter targetedCritter = this.selectTarget(this, inRangeC);
+		if(targetedCritter != null){
+			this.shootTarget(targetedCritter, g);
 		}
 	}
 	
@@ -134,9 +134,9 @@ public abstract class Tower implements DrawableEntity{
 		Artist_Swing.drawTower(this,g);
     }
 	
-	private ArrayList<Critter> selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
-		ArrayList<Critter> targets = strategy.findTargets(tf1, crittersInR);
-		return targets;
+	protected Critter selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
+		Critter target = strategy.findTarget(tf1, crittersInR);
+		return target;
 	}
 	public double distanceToCritter(Critter a){
 	    double deltaX = a.getPixelPosition().getX()-this.getPosX();
@@ -179,15 +179,13 @@ public abstract class Tower implements DrawableEntity{
 	}
 	
 	//deals damage based on amount of damage of the tower
-	private void shootTarget(ArrayList<Critter> targets, Graphics g){
-		//System.out.print("size of targets = " + targets.size());
-		if(enabled)
-		for(int j =0; j < targets.size(); j++){
+	protected void shootTarget(Critter target, Graphics g){
+		if(enabled){
 			for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
-			  targets.get(j).damage(damage);
-			  targets.get(j).slowCritter(this.slowFactor, this.getSlowTime());
-			  Artist_Swing.drawShot(this, targets.get(j), g);
+				target.damage(damage);
+				Artist_Swing.drawShot(this, target, g);
 			}
+		
 		}
 	} 
 	//upgrade the towers values and level

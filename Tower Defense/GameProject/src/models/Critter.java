@@ -31,6 +31,10 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	protected double slowFactor;
 	protected int slowTime;
 	protected int beenSlowedFor;
+	private double damageOverTimeVal;
+	private int dotTime;
+	private int beenDOTFor;
+	private boolean burning;
 	
 	//state properties
 	protected Point _pixelPosition;
@@ -41,6 +45,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	//protected ArrayList<Point> newPixelPathToFollow;
 	protected double indexInPixelPath;
 	protected int intIndexInPixelPath;
+
 	
 	 
 	//constructor
@@ -53,16 +58,16 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		active = false; //none are active to start
 		alive = true;
 		pixelPathToFollow = m.getPath_ListOfPixels();
-		//newPixelPathToFollow = m.getPath_ListOfPixels();
-		for(Point p : pixelPathToFollow){
-			System.out.println(p.toString());
-		}
 		indexInPixelPath = 0; //all start at beginning of path
 		size = 6; //this can be changed...
 		this._pixelPosition = new Point(-1,-1);
 		slowFactor = 0;
 		slowTime = 0;
 		beenSlowedFor = 0;
+		damageOverTimeVal = 0;
+		dotTime = 0;
+		beenDOTFor = 0;
+		burning =false;
 	}
 	
 	//getters and setters
@@ -81,9 +86,18 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		}
 		beenSlowedFor = 0;
 	}
+	private void setDOTAmount(double dot) {
+		if(this.damageOverTimeVal < dot){
+			this.damageOverTimeVal = dot;
+		}
+		beenDOTFor = 0;
+	}
+	
 	public Color getColor(){
 		return cColor;
 	}
+	
+
 	public Point getPixelPosition(){
 		return _pixelPosition;
 	}
@@ -92,6 +106,9 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	}
 	public boolean isAlive(){
 		return alive;
+	}
+	public boolean isBurning() {
+		return burning;
 	}
 	public int getSize(){
 		return size;
@@ -146,6 +163,21 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 */
 	public void updateAndDraw(Graphics g){
 		if(this.isActive()){
+			//do slowing
+			if(beenSlowedFor < this.slowTime){
+				beenSlowedFor +=1;
+			}else{
+				slowFactor = 0;
+			}
+			//do damages over time
+			if(beenDOTFor < this.dotTime){
+				beenDOTFor +=1;
+				burning = true;
+			}else{
+				damageOverTimeVal = 0;
+				burning = false;
+			}
+			
 			updateHealth();
 			updatePositionAndDraw(g);
 		}
@@ -155,10 +187,16 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 */
 	private void updateHealth(){
 		//simply update the hitpoints. This should be called every update instance.
-		//if our regen will not push us over our limit, simply regen
-		if(this.currHitPoints + this.regen < this.maxHitPoints){
-			this.currHitPoints = this.currHitPoints + this.regen;	
-		}else{ //otherwise just set us to the max regen value.
+		if(this.currHitPoints + this.regen - damageOverTimeVal <=0){
+			this.currHitPoints = 0;
+			this.active = false;
+			this.alive = false;
+			this.notifyObs();
+			//if our regen will not push us over our limit, simply regen
+		}else if(this.currHitPoints + this.regen - damageOverTimeVal < this.maxHitPoints){
+			this.currHitPoints = this.currHitPoints + this.regen - damageOverTimeVal;	
+		}else{
+			//otherwise just set us to the max regen value.
 			this.currHitPoints = this.maxHitPoints;
 		}
 		
@@ -172,12 +210,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			//place us on the map at the initial position.
 			_pixelPosition = pixelPathToFollow.get(0);
 		}
-
-		if(beenSlowedFor < this.slowTime){
-			beenSlowedFor +=1;
-		}else{
-			slowFactor = 0;
-		}
+		
 		//the next index is our current index + our speed*our clock
 		indexInPixelPath += (1.0-slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
 		int indexToMoveTo = (int) indexInPixelPath;
@@ -197,14 +230,16 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 * Moves the critter to a given position and draws it as it moves.
 	 */
 	private void moveAndDrawCritter(int index, Graphics g){
-		while(intIndexInPixelPath<index){
-			intIndexInPixelPath +=1;
-			this._pixelPosition.setPoint(this.pixelPathToFollow.get(intIndexInPixelPath).getX(), this.pixelPathToFollow.get(intIndexInPixelPath).getY());
+		if(intIndexInPixelPath == index){
 			this.drawCritter(g);
+		}else{
+			while(intIndexInPixelPath<index){
+				intIndexInPixelPath +=1;
+				this._pixelPosition.setPoint(this.pixelPathToFollow.get(intIndexInPixelPath).getX(), this.pixelPathToFollow.get(intIndexInPixelPath).getY());
+				this.drawCritter(g);
+			}
 		}
 	}
-	
-
 	
 	private void drawCritter(Graphics g) {
 		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
@@ -226,8 +261,16 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		this.setSlowFactor(sFactor);
 		this.slowTime = sTime;
 	}
+
+	public void damageOverTimeCritter(double dot, int damageOverTimeLength) {
+		this.setDOTAmount(dot);
+		this.dotTime = damageOverTimeLength;
+		
+	}
 	
+
 	
+
 	//ToString
 	public String toString(){
 		String result = "";
@@ -236,17 +279,8 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		return result;
 	}
 
-	public int getIndexOfPosition(Point currPos) {
-		// TODO Auto-generated method stub
-		int result = 0;
-		for(int i = 1; i < pixelPathToFollow.size(); i++){
-			Point p = pixelPathToFollow.get(i);
-			if(p.getX() == currPos.getX() && p.getY() == currPos.getY()){
-				result = i; 
-				break;
-			}
-		}
-		return result;
-	}
+
+
+
 	
 }

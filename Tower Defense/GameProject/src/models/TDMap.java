@@ -383,7 +383,7 @@ public class TDMap implements DrawableEntity{
             for(int i = 3; i < 7; i++){
             	pointsShortestPath.add(new Point(halfWay,i));
             }
-            for(int i = halfWay; i < gridWidth; i++){
+            for(int i = halfWay + 1; i < gridWidth; i++){
             	pointsShortestPath.add(new Point(i,6));
             }
 		}else{
@@ -448,8 +448,8 @@ public class TDMap implements DrawableEntity{
 				System.out.println("Error, point moves too much...");
 			}
 			//our default end position is the position of our next block.
-			Point endPixelPosition = this.getPosOfBlock_pixel(nextPos.getX(), nextPos.getY());
 			Point endBlockTopLeft = this.getPosOfBlock_pixel(nextPos.getX(), nextPos.getY());
+			Point endPixelPosition;
 			
 			//now we can get the center of our current block
 			Point pixelCenterOfBlock = new Point((int)(startBlockTopLeftPixel.getX() + this.tileWidth_Pixel/2), (int)(startBlockTopLeftPixel.getY() + this.tileHeight_Pixel/2));
@@ -459,7 +459,7 @@ public class TDMap implements DrawableEntity{
 			
 			//the end pixel position is now adjusted to be either top middle, right middle, left middle, or bottom middle (depending on towhere)
 			endPixelPosition = getPixelPositionH2(toWhere, endBlockTopLeft, pixelCenterOfBlock );
-			
+
 			addPixelPoints(pixelPathToTravel, startPixelPosition, pixelCenterOfBlock);
 			addPixelPoints(pixelPathToTravel, pixelCenterOfBlock, endPixelPosition);
 			//We can now move the critter from the start position to the center position
@@ -490,7 +490,6 @@ public class TDMap implements DrawableEntity{
 		Point finalPixelPosition = this.getPosOfBlock_pixel(lastPos.getX(), lastPos.getY());
 		Point finalPixelCenterOfBlock = new Point((int)(finalPixelPosition.getX() + this.tileWidth_Pixel/2), (int)(finalPixelPosition.getY() + this.tileHeight_Pixel/2));
 		finalPixelPosition = getPixelPositionH1(toWhere, finalPixelPosition, finalPixelCenterOfBlock);
-		
 		startPixelPosition = getPixelPositionH1(fromWhere, startBlockTopLeftPixel, finalPixelCenterOfBlock);
 		
 		addPixelPoints(pixelPathToTravel, startPixelPosition, finalPixelCenterOfBlock);
@@ -504,13 +503,13 @@ public class TDMap implements DrawableEntity{
 	 */
 	private String invertWhere(String where){
 		String result = "";
-		if(where == "left"){
+		if(where.equals("left")){
 			result = "right";
-		}else if(where == "right"){
+		}else if(where.equals("right")){
 			result = "left";
-		}else if(where == "top"){
+		}else if(where.equals("top")){
 			result = "bot";
-		}else if(where == "bot"){
+		}else if(where.equals("bot")){
 			result = "top";
 		}else{
 			System.out.println("issue with where");
@@ -520,13 +519,13 @@ public class TDMap implements DrawableEntity{
 	private Point getPixelPositionH1(String where, Point position, Point center){
 		
 		Point result = null;
-		if(where == "left"){
+		if(where.equals("left")){
 			result = new Point(position.getX(),center.getY());
-		}else if(where == "top"){
+		}else if(where.equals("top")){
 			result = new Point(center.getX() , position.getY());
-		}else if(where == "bot"){
+		}else if(where.equals("bot")){
 			result = new Point(center.getX(),position.getY() + this.tileHeight_Pixel);
-		}else if(where == "right"){
+		}else if(where.equals("right")){
 			result = new Point(position.getX() + this.tileWidth_Pixel, center.getY());
 		}
 		
@@ -535,13 +534,13 @@ public class TDMap implements DrawableEntity{
 	private Point getPixelPositionH2(String where, Point position, Point center){
 		
 		Point result = null;
-		if(where == "left"){
+		if(where.equals("left")){
 			result = new Point(position.getX() + this.tileWidth_Pixel,center.getY());
-		}else if(where == "top"){
+		}else if(where.equals("top")){
 			result = new Point(center.getX() , position.getY()+ this.tileHeight_Pixel);
-		}else if(where == "bot"){
+		}else if(where.equals("bot")){
 			result = new Point(center.getX(),position.getY());
-		}else if(where == "right"){
+		}else if(where.equals("right")){
 			result = new Point(position.getX(), center.getY());
 		}
 		
