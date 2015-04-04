@@ -6,7 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+<<<<<<< HEAD:Tower Defense/GameProject/src/views/MapEditorApplicationFrame.java
 import controllers.MapEditorController;
+=======
+import data.MainMapController;
+import entities.TDMap;
+>>>>>>> origin/yash0328:Tower Defense/GameProject/src/helpers/MapEditorActivity.java
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +23,23 @@ public class MapEditorApplicationFrame extends JFrame{
 	public static final int PIXELWIDTH=1280;
 	public static final int PIXELHEIGHT=800;
 	public static final String APP_NAME = "Map Editor Time";
+	public static final int TIMEOUT = 30;
 	
+<<<<<<< HEAD:Tower Defense/GameProject/src/views/MapEditorApplicationFrame.java
 	public static final int TIMEOUT = 30;                          		
 	MapEditorController mapController = new MapEditorController();
 	private MapControlPanel controlPanel;
 	private MapPanel mapPanel;
 	
 	public MapEditorApplicationFrame(){
+=======
+	MainMapController mapController;
+	private TDMap tdMap;
+	
+	public MapEditorActivity(){
+		tdMap= new TDMap();
+		mapController = new MainMapController(tdMap);
+>>>>>>> origin/yash0328:Tower Defense/GameProject/src/helpers/MapEditorActivity.java
 		init();
 		mapController.setMainFrame(this);
 	}
@@ -36,11 +51,18 @@ public class MapEditorApplicationFrame extends JFrame{
 		
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+<<<<<<< HEAD:Tower Defense/GameProject/src/views/MapEditorApplicationFrame.java
 		controlPanel = mapController.getControlPanel();
 		mapPanel = mapController.getPlayPanel();
 		add(mapPanel);
 		add(controlPanel);
 		
+=======
+		
+		add(mapController.getPlayPanel());
+		add(mapController.getControlPanel());
+		this.tdMap= mapController.getTDMap();
+>>>>>>> origin/yash0328:Tower Defense/GameProject/src/helpers/MapEditorActivity.java
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
 		setTitle(APP_NAME);
 		//pack();         												
