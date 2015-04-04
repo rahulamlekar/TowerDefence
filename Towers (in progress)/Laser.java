@@ -35,7 +35,7 @@ public class Laser extends Tower{
 	case 3: level=4;
 			upgradePrice=500;
 			Range=250;
-			RateofFire=2.7;
+			RateofFire=2.8;
 			Damage=70;
 			break;
 	default: break;
