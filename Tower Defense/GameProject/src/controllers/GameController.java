@@ -139,6 +139,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		cbStrategies.setSelectedIndex(0);
 		cbStrategies.setEnabled(false);
 		cbStrategies.addItemListener(this);
+		
 	}
 	private void setInitialValues(){
 		clock = GameClock.getInstance();
@@ -391,6 +392,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	
 	private void spendMoney(int amount){
 		gamePlayer.addToMoney((-1)*amount);
+		this.waveStartMoney -=amount;
 		updateInfoLabelText();
 	}
 	//This method is called from the click handler when we get a click at a point
