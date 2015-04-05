@@ -1,5 +1,7 @@
 package views;
 
+import helpers.Artist_Swing;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -103,7 +105,9 @@ public class MapControlPanel extends JPanel{
 		String[] widths = new String[TDMap.MAXWIDTH-TDMap.MINWIDTH+1];
 		for(int i=TDMap.MINWIDTH, j=0; i<=TDMap.MAXWIDTH; i++, j++)
 		{
-			widths[j]= Integer.toString(i);
+			//if(Artist_Swing.PIXELWIDTH % i == 0){
+				widths[j]= Integer.toString(i);
+			//}
 		}
 		widthList = new JComboBox(widths);
 	}
@@ -117,7 +121,9 @@ public class MapControlPanel extends JPanel{
 		String[] heights = new String[TDMap.MAXHEIGHT-TDMap.MINHEIGHT+1];
 		for(int i=TDMap.MINHEIGHT, j=0; i<=TDMap.MAXHEIGHT; i++, j++)
 		{
-			heights[j]= Integer.toString(i);
+			//if(Artist_Swing.GAMEPIXELHEIGHT % i ==0){
+				heights[j]= Integer.toString(i);
+			//}
 		}
 		heightList = new JComboBox(heights);
 	}
@@ -127,6 +133,7 @@ public class MapControlPanel extends JPanel{
 		String[] indexes = new String[y-x+1];
 		for(int i=x, j=0; i<=y; i++, j++)
 		{
+			
 			indexes[j]= Integer.toString(i);
 		}
 		JComboBox box = new JComboBox(indexes);
@@ -136,17 +143,21 @@ public class MapControlPanel extends JPanel{
 	public void updateStartAndEnd(int widthOfMap, int heightOfMap)
 	{
 		startWidthIndexes.removeAllItems();
-		for(int i=0; i<widthOfMap; i++)
+		for(int i=0; i<widthOfMap; i++){
 			startWidthIndexes.addItem(Integer.toString(i));
+		}
 		startHeightIndexes.removeAllItems();
-		for(int i=0; i<heightOfMap; i++)
+		for(int i=0; i<heightOfMap; i++){
 			startHeightIndexes.addItem(Integer.toString(i));
+		}
 		endWidthIndexes.removeAllItems();
-		for(int i=0; i<widthOfMap; i++)
+		for(int i=0; i<widthOfMap; i++){
 			endWidthIndexes.addItem(Integer.toString(i));
+		}
 		endHeightIndexes.removeAllItems();
-		for(int i=0; i<heightOfMap; i++)
+		for(int i=0; i<heightOfMap; i++){	
 			endHeightIndexes.addItem(Integer.toString(i));
+		}
 		this.repaint();
 	}
 	

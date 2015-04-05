@@ -119,145 +119,145 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="23">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="24" name="gameController"/>      
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="24" name="activity"/>      
       <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="27" name="gameController"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="26">    
+  <association id="29">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="27" name="artist">        
+      <attribute id="30" name="artist">        
         <position height="18" width="34" x="716" y="422"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
+      <multiplicity id="31" minimum="0" maximum="1">        
         <position height="16" width="25" x="648" y="267"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <dependency id="29">    
+  <dependency id="32">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <generalization id="30">    
+  <generalization id="33">    
     <bendpoint x="878" y="28"/>    
     <bendpoint x="698" y="28"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <dependency id="31">    
+  <dependency id="34">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="32">    
+  <dependency id="35">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="33">    
+  <association id="36">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="34" name="artist"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
+      <attribute id="37" name="artist"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="36">    
+  <dependency id="39">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <association id="37">    
+  <association id="40">    
     <bendpoint x="988" y="-76"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="38" name="helpers">        
+      <attribute id="41" name="helpers">        
         <position height="0" width="0" x="0" y="-460"/>      
       </attribute>      
-      <multiplicity id="39" minimum="0" maximum="2147483647">        
+      <multiplicity id="42" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="-460"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="40">    
+  <generalization id="43">    
     <bendpoint x="565" y="28"/>    
     <bendpoint x="698" y="28"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="41">    
+  <association id="44">    
     <bendpoint x="442" y="-994"/>    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="42" name="mapController"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
+      <attribute id="45" name="mapController"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="44">    
+  <dependency id="47">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="45">    
+  <association id="48">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="46" name="clock">        
+      <attribute id="49" name="clock">        
         <position height="18" width="36" x="365" y="258"/>      
       </attribute>      
-      <multiplicity id="47" minimum="0" maximum="1">        
+      <multiplicity id="50" minimum="0" maximum="1">        
         <position height="16" width="25" x="364" y="182"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <association id="48">    
+  <association id="51">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="49" name="gameController"/>      
-      <multiplicity id="50" minimum="0" maximum="1"/>    
+      <attribute id="52" name="gameController"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="51">    
+  <dependency id="54">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="52">    
+  <dependency id="55">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="53">    
+  <dependency id="56">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="57">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="54" name="clock"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
+      <attribute id="58" name="clock"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="56">    
+  <dependency id="60">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <generalization id="57">    
+  <generalization id="61">    
     <bendpoint x="1190" y="28"/>    
     <bendpoint x="698" y="28"/>    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="58">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="59" name="artist"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="61">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
   <association id="62">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="63" name="artist"/>      
@@ -267,40 +267,60 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="65">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="66" name="activity"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="68">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="69">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="70" name="artist"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
     <bendpoint x="993" y="-976"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="66" name="gameController"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
+      <attribute id="73" name="gameController"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="68">    
+  <generalization id="75">    
     <bendpoint x="300" y="28"/>    
     <bendpoint x="698" y="28"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <dependency id="69">    
+  <dependency id="76">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="70">    
+  <dependency id="77">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="71">    
+  <association id="78">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="72" name="gameController"/>      
-      <multiplicity id="73" minimum="0" maximum="1"/>    
+      <attribute id="79" name="gameController"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="74">    
+  <association id="81">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="75" name="clock"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
+      <attribute id="82" name="clock"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
