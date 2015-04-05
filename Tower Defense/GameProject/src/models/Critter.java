@@ -270,9 +270,6 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		
 	}
 	
-
-	
-
 	//ToString
 	public String toString(){
 		String result = "";
