@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.DisplayMode"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.util.ResourceLoader"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.opengl.TextureLoader"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.opengl.Texture"/>
+<fullyQualifiedTypeName name="entities.TDMap"/>
+</qualifiedTypeNameHistroy>
