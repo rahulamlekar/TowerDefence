@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import models.TDMap;
 
@@ -20,9 +21,13 @@ public class MapControlPanel extends JPanel{
 	JLabel lblInfo5 = new JLabel(") End = (");
 	JLabel lblInfo6 = new JLabel(",");
 	JLabel lblInfo7 = new JLabel(")");
+	JLabel lblInfo8 = new JLabel(".TDMap");
+	JTextField textField;
 	JComboBox widthList, heightList, startWidthIndexes, startHeightIndexes, endWidthIndexes, endHeightIndexes;
 	JButton bInitialize = new JButton("Re-Initialize the Map");
+	JButton bSetStartAndEnd = new JButton("Set Start & End");
 	JButton bReturn = new JButton("Main Menu");
+	JButton bSave = new JButton("Save Map");
 	TDMap tdMap;
 	
 	public MapControlPanel(TDMap map){
@@ -34,10 +39,10 @@ public class MapControlPanel extends JPanel{
         this.add(lblInfo2);
         this.setHeightIndexes();
         this.add(heightList);
-        startWidthIndexes= this.setIndexes(startWidthIndexes, 0, tdMap.getGridWidth()-1);
-        startHeightIndexes= this.setIndexes(startHeightIndexes, 0, tdMap.getGridHeight()-1);
-        endWidthIndexes= this.setIndexes(endWidthIndexes, 0, tdMap.getGridWidth()-1);
-        endHeightIndexes= this.setIndexes(endHeightIndexes, 0, tdMap.getGridHeight()-1);
+        startWidthIndexes= this.setIndexes(0, tdMap.getGridWidth()-1);
+        startHeightIndexes= this.setIndexes(0, tdMap.getGridHeight()-1);
+        endWidthIndexes= this.setIndexes(0, tdMap.getGridWidth()-1);
+        endHeightIndexes= this.setIndexes(0, tdMap.getGridHeight()-1);
         this.add(lblInfo3);
         this.add(startWidthIndexes);
         this.add(lblInfo4);
@@ -48,6 +53,12 @@ public class MapControlPanel extends JPanel{
         this.add(endHeightIndexes);
         this.add(lblInfo7);
         this.add(bInitialize);
+        this.add(bSetStartAndEnd);
+        textField= new JTextField(10);
+        textField.setEditable(true);
+        this.add(textField);
+        this.add(lblInfo8);
+        this.add(bSave);
         this.add(bReturn);
 	}
 	public JButton getInitializeButton(){
@@ -55,6 +66,33 @@ public class MapControlPanel extends JPanel{
 	}
 	public JButton getReturnButton(){
 		return bReturn;
+	}
+	public JButton getSetStartAndEndButton() {
+		return bSetStartAndEnd;
+	}
+	public JButton getSaveButton()
+	{
+		return bSave;
+	}
+	public JTextField getTextField()
+	{
+		return textField;
+	}
+	public JComboBox getStartWidths()
+	{
+		return startWidthIndexes;
+	}
+	public JComboBox getStartHeights()
+	{
+		return startHeightIndexes;
+	}
+	public JComboBox getEndWidths()
+	{
+		return endWidthIndexes;
+	}
+	public JComboBox getEndHeights()
+	{
+		return endHeightIndexes;
 	}
 	public JComboBox getWidthIndexes()
 	{
@@ -84,20 +122,32 @@ public class MapControlPanel extends JPanel{
 		heightList = new JComboBox(heights);
 	}
 	
-	public JComboBox setIndexes(JComboBox box, int x, int y)
+	private JComboBox setIndexes(int x, int y)
 	{
 		String[] indexes = new String[y-x+1];
 		for(int i=x, j=0; i<=y; i++, j++)
 		{
 			indexes[j]= Integer.toString(i);
 		}
-		box = new JComboBox(indexes);
+		JComboBox box = new JComboBox(indexes);
 		return box;
 	}
 	
-	public void update(int start1To, int start2To, int end1To, int end2To)
+	public void updateStartAndEnd(int widthOfMap, int heightOfMap)
 	{
-		
+		startWidthIndexes.removeAllItems();
+		for(int i=0; i<widthOfMap; i++)
+			startWidthIndexes.addItem(Integer.toString(i));
+		startHeightIndexes.removeAllItems();
+		for(int i=0; i<heightOfMap; i++)
+			startHeightIndexes.addItem(Integer.toString(i));
+		endWidthIndexes.removeAllItems();
+		for(int i=0; i<widthOfMap; i++)
+			endWidthIndexes.addItem(Integer.toString(i));
+		endHeightIndexes.removeAllItems();
+		for(int i=0; i<heightOfMap; i++)
+			endHeightIndexes.addItem(Integer.toString(i));
+		this.repaint();
 	}
 	
 }

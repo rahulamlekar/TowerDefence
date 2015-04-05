@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -35,6 +36,8 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	private Timer timer;
 	private JButton bReturn;
 	private JButton bInitialize;
+	private JButton bSetStartAndEnd;
+	private JButton bSave;
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
 	
@@ -48,6 +51,10 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bReturn.addActionListener(this);
 		bInitialize = this.getControlPanel().getInitializeButton();
 		bInitialize.addActionListener(this);
+		bSetStartAndEnd = this.getControlPanel().getSetStartAndEndButton();
+		bSetStartAndEnd.addActionListener(this);
+		bSave = this.getControlPanel().getSaveButton();
+		bSave.addActionListener(this);
 		this.tdMap= map;
 		map.refresh();
 		map.addObserver(this);
@@ -77,8 +84,22 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		}
 		else if(e.getSource() == bInitialize)
 		{
-			tdMap.reinitialize(Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem()),
-					Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem()),"Generic");
+			int widthOfMap= Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem());
+			int heightOfMap= Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem());
+			tdMap.reinitialize(widthOfMap, heightOfMap,"Generic");
+			updateStartAndEnd(widthOfMap, heightOfMap);
+			controlPanel.repaint();
+		}
+		else if(e.getSource() == bSetStartAndEnd)
+		{
+			tdMap.setStart(Integer.parseInt((String) this.getControlPanel().getStartWidths().getSelectedItem()),
+					Integer.parseInt((String) this.getControlPanel().getStartHeights().getSelectedItem()));
+			tdMap.setEnd(Integer.parseInt((String) this.getControlPanel().getEndWidths().getSelectedItem()),
+					Integer.parseInt((String) this.getControlPanel().getEndHeights().getSelectedItem()));
+		}
+		else if(e.getSource() == bSave)
+		{
+			tdMap.writeMaptoFile(this.getControlPanel().getTextField().getText()+".TDMap");
 		}
 		else
 			Draw();
@@ -108,10 +129,9 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		tileWidth_Pixel= tdMap.getTileWidth_pixel();
 		tileHeight_Pixel= tdMap.getTileHeight_pixel();
 		TDMapUpdated();
-		updateLabelsAndComboBoxes();
 	}
-	public void updateLabelsAndComboBoxes(){
-		//this.controlPanel.cbHeight.setSelectedItem(10);
+	public void updateStartAndEnd(int widthOfMap, int heightOfMap){
+		controlPanel.updateStartAndEnd(widthOfMap, heightOfMap);
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {		
