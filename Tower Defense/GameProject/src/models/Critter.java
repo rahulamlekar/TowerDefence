@@ -165,13 +165,13 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		if(this.isActive()){
 			//do slowing
 			if(beenSlowedFor < this.slowTime){
-				beenSlowedFor +=1;
+				beenSlowedFor +=1*GameClock.getInstance().deltaTime();
 			}else{
 				slowFactor = 0;
 			}
 			//do damages over time
 			if(beenDOTFor < this.dotTime){
-				beenDOTFor +=1;
+				beenDOTFor +=1*GameClock.getInstance().deltaTime();
 				burning = true;
 			}else{
 				damageOverTimeVal = 0;
@@ -186,15 +186,17 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 * updates the health of the critter (called on every "tick" of the clock)
 	 */
 	private void updateHealth(){
+		int timePassed = GameClock.getInstance().deltaTime();
+		double dotPerTime = damageOverTimeVal*timePassed;
 		//simply update the hitpoints. This should be called every update instance.
-		if(this.currHitPoints + this.regen - damageOverTimeVal <=0){
+		if(this.currHitPoints + this.regen*timePassed - dotPerTime <=0){
 			this.currHitPoints = 0;
 			this.active = false;
 			this.alive = false;
 			this.notifyObs();
 			//if our regen will not push us over our limit, simply regen
-		}else if(this.currHitPoints + this.regen - damageOverTimeVal < this.maxHitPoints){
-			this.currHitPoints = this.currHitPoints + this.regen - damageOverTimeVal;	
+		}else if(this.currHitPoints + this.regen*timePassed - dotPerTime < this.maxHitPoints){
+			this.currHitPoints = this.currHitPoints + this.regen*timePassed - dotPerTime;	
 		}else{
 			//otherwise just set us to the max regen value.
 			this.currHitPoints = this.maxHitPoints;
