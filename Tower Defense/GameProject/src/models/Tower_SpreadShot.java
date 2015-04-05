@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Tower_SpreadShot extends Tower {
 	private int amountOfTargets = 3;
+	static int buyCost;
 	public Tower_SpreadShot(String n, Point p, ArrayList<Critter> crittersOnMap) {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
@@ -44,6 +45,9 @@ public class Tower_SpreadShot extends Tower {
 				}
 			}
 		}
+	}
+	public static int getBuyPrice(){	
+		return buyCost;
 	}
 
 }

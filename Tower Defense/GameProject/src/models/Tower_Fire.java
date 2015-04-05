@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Tower_Fire extends Tower {
 	double DOT;
 	int damageOverTimeLength = 100;
-	
+	static int buyCost;
 	public Tower_Fire(String n, Point p, ArrayList<Critter> crittersOnMap) {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
@@ -30,6 +30,9 @@ public class Tower_Fire extends Tower {
 	protected void shootTarget(Critter target, Graphics g){
 		super.shootTarget(target, g);
 		target.damageOverTimeCritter(this.DOT, this.damageOverTimeLength);
+	}
+	public static int getBuyPrice(){	
+		return buyCost;
 	}
 
 }

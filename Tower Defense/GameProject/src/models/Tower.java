@@ -17,7 +17,7 @@ public abstract class Tower implements DrawableEntity{
 	double damage;
 	int rateOfFire;
 	int range;
-	static int buyCost;
+
 	int sellPrice;	
 	int upCost;
 	String name;
@@ -55,9 +55,7 @@ public abstract class Tower implements DrawableEntity{
 	public int getSellPrice(){	
 		return sellPrice;
 	}
-	public static int getBuyPrice(){	
-		return buyCost;
-	}
+
 	public int getUpPrice(){
 		return upCost;
 	}
