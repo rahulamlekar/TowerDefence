@@ -152,762 +152,1198 @@
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <association id="18">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="19" name="bCreateMap"/>      
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="19" name="bSetStartAndEnd"/>      
       <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="21">    
+  <association id="21">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="22" name="bCreateMap"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="24">    
     <bendpoint x="1213" y="27"/>    
     <bendpoint x="489" y="27"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <association id="22">    
+  <association id="25">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="23" name="controlPanel"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+      <attribute id="26" name="controlPanel"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="25">    
+  <association id="28">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="26" name="bSell"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
+      <attribute id="29" name="bSell"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="28">    
+  <association id="31">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="32" name="lblInfo3"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="29" name="mainPanel"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
+      <attribute id="35" name="mainPanel"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
+  <association id="37">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="32" name="bSell"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
+      <attribute id="38" name="bSell"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="35" name="bSpread"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="37">    
-    <bendpoint x="1213" y="-8"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <dependency id="38">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <generalization id="39">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
   <association id="40">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="41" name="bIceBeam"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="41" name="lblInfo7"/>      
       <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="43">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="44" name="bStartWave"/>      
+      <attribute id="44" name="bSpread"/>      
       <multiplicity id="45" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="46">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="47" name="mainPanel"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="50" name="bSpread"/>      
-      <multiplicity id="51" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="52">    
+  <dependency id="46">    
+    <bendpoint x="1213" y="-8"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <association id="47">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="48" name="lblInfo6"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="50">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="51">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="52" name="widthList"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="56">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="57" name="bIceBeam"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="60" name="activity"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="63" name="bStartWave"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="66" name="mainPanel"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="69" name="lblInfo8"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="72" name="bSpread"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="53" name="controlPanel">        
+      <attribute id="75" name="controlPanel">        
         <position height="18" width="77" x="1041" y="558"/>      
       </attribute>      
-      <multiplicity id="54" minimum="0" maximum="1">        
+      <multiplicity id="76" minimum="0" maximum="1">        
         <position height="16" width="25" x="1094" y="507"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <association id="55">    
+  <association id="77">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="56" name="bIceBeam"/>      
-      <multiplicity id="57" minimum="0" maximum="1"/>    
+      <attribute id="78" name="bIceBeam"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="58">    
+  <dependency id="80">    
     <bendpoint x="1214" y="28"/>    
     <bendpoint x="491" y="26"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <association id="59">    
+  <association id="81">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="60" name="bStartWave"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
+      <attribute id="82" name="bStartWave"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="62">    
+  <association id="84">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="85" name="lblInfo6"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="87">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="63" name="cbStrategies"/>      
-      <multiplicity id="64" minimum="0" maximum="1"/>    
+      <attribute id="88" name="cbStrategies"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="65">    
+  <dependency id="90">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <association id="66">    
+  <generalization id="91">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="92">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="93" name="mainFrame"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="67" name="bLaser"/>      
-      <multiplicity id="68" minimum="0" maximum="1"/>    
+      <attribute id="96" name="bLaser"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="69">    
+  <association id="98">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="99" name="activity"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="102" name="bSave"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="104">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="70" name="bNone"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+      <attribute id="105" name="bNone"/>      
+      <multiplicity id="106" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="72">    
+  <association id="107">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="73" name="bSpread"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
+      <attribute id="108" name="bSpread"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
+  <association id="110">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="111" name="bInitialize"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="114" name="bReturn"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="117" name="lblInfo8"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="120" name="controlPanel"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="76" name="bFire"/>      
-      <multiplicity id="77" minimum="0" maximum="1"/>    
+      <attribute id="123" name="bFire"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="78">    
+  <generalization id="125">    
     <bendpoint x="1036" y="619"/>    
     <bendpoint x="1033" y="-107"/>    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <association id="79">    
+  <association id="126">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="127" name="bReturn"/>      
+      <multiplicity id="128" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="129">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="80" name="bIceBeam"/>      
-      <multiplicity id="81" minimum="0" maximum="1"/>    
+      <attribute id="130" name="bIceBeam"/>      
+      <multiplicity id="131" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="82">    
+  <dependency id="132">    
     <bendpoint x="166" y="-37"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <dependency id="83">    
+  <dependency id="133">    
     <bendpoint x="1214" y="28"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <association id="84">    
+  <association id="134">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="85" name="mainFrame"/>      
-      <multiplicity id="86" minimum="0" maximum="1"/>    
+      <attribute id="135" name="mainFrame"/>      
+      <multiplicity id="136" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="87">    
+  <association id="137">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="88" name="bPause"/>      
-      <multiplicity id="89" minimum="0" maximum="1"/>    
+      <attribute id="138" name="bPause"/>      
+      <multiplicity id="139" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="90">    
+  <association id="140">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="91" name="bQuit"/>      
-      <multiplicity id="92" minimum="0" maximum="1"/>    
+      <attribute id="141" name="bQuit"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="93">    
+  <association id="143">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="144" name="heightList"/>      
+      <multiplicity id="145" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="94" name="jsSpeed"/>      
-      <multiplicity id="95" minimum="0" maximum="1"/>    
+      <attribute id="147" name="jsSpeed"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="96">    
+  <association id="149">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="97" name="bSpread"/>      
-      <multiplicity id="98" minimum="0" maximum="1"/>    
+      <attribute id="150" name="bSpread"/>      
+      <multiplicity id="151" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="99">    
+  <association id="152">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="153" name="lblInfo1"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="155">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="100" name="mapPanel">        
+      <attribute id="156" name="mapPanel">        
         <position height="18" width="64" x="729" y="563"/>      
       </attribute>      
-      <multiplicity id="101" minimum="0" maximum="1">        
+      <multiplicity id="157" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <association id="102">    
+  <association id="158">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="103" name="bStartWave"/>      
-      <multiplicity id="104" minimum="0" maximum="1"/>    
+      <attribute id="159" name="bStartWave"/>      
+      <multiplicity id="160" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="105">    
+  <association id="161">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="106" name="bLaser"/>      
-      <multiplicity id="107" minimum="0" maximum="1"/>    
+      <attribute id="162" name="bLaser"/>      
+      <multiplicity id="163" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="108">    
+  <association id="164">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="165" name="lblInfo2"/>      
+      <multiplicity id="166" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="167">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <association id="109">    
+  <association id="168">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="110" name="bReturn"/>      
-      <multiplicity id="111" minimum="0" maximum="1"/>    
+      <attribute id="169" name="bReturn"/>      
+      <multiplicity id="170" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="112">    
+  <association id="171">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="113" name="cbStrategies"/>      
-      <multiplicity id="114" minimum="0" maximum="1"/>    
+      <attribute id="172" name="cbStrategies"/>      
+      <multiplicity id="173" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="115">    
+  <association id="174">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="175" name="startHeightIndexes"/>      
+      <multiplicity id="176" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="177">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="116" name="bPause"/>      
-      <multiplicity id="117" minimum="0" maximum="1"/>    
+      <attribute id="178" name="bPause"/>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="118">    
+  <association id="180">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="119" name="jsSpeed"/>      
-      <multiplicity id="120" minimum="0" maximum="1"/>    
+      <attribute id="181" name="jsSpeed"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="121">    
+  <generalization id="183">    
     <bendpoint x="1356" y="644"/>    
     <bendpoint x="1353" y="-106"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <association id="122">    
+  <association id="184">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="185" name="bSetStartAndEnd"/>      
+      <multiplicity id="186" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="187">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="123" name="cbStrategies"/>      
-      <multiplicity id="124" minimum="0" maximum="1"/>    
+      <attribute id="188" name="cbStrategies"/>      
+      <multiplicity id="189" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="125">    
+  <dependency id="190">    
     <bendpoint x="1214" y="60"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="13"/>  
   </dependency>  
-  <association id="126">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="127" name="mainFrame"/>      
-      <multiplicity id="128" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="129">    
-    <bendpoint x="902" y="224"/>    
-    <bendpoint x="660" y="224"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="130">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="131" name="bUpgrade"/>      
-      <multiplicity id="132" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="133">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="134" name="bCreateMap"/>      
-      <multiplicity id="135" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="136">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="137" name="mainFrame"/>      
-      <multiplicity id="138" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="139">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="140" name="bPause"/>      
-      <multiplicity id="141" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="142">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="143" name="mapController"/>      
-      <multiplicity id="144" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="false"/>  
-  </association>  
-  <generalization id="145">    
-    <bendpoint x="416" y="225"/>    
-    <bendpoint x="660" y="224"/>    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <dependency id="146">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="147">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="148" name="bQuit"/>      
-      <multiplicity id="149" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="150">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="151" name="bUpgrade"/>      
-      <multiplicity id="152" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="153">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="154">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="155" name="bReturn"/>      
-      <multiplicity id="156" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="157">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="158" name="controlPanel">        
-        <position height="18" width="77" x="274" y="501"/>      
-      </attribute>      
-      <multiplicity id="159" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="-20"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="false"/>  
-  </association>  
-  <association id="160">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="161" name="gamePanel"/>      
-      <multiplicity id="162" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="163">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="164" name="jsSpeed"/>      
-      <multiplicity id="165" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="166">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <generalization id="167">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="168">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="169" name="cbStrategies"/>      
-      <multiplicity id="170" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="171">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="172" name="bSell"/>      
-      <multiplicity id="173" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="174">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="175" name="bFire"/>      
-      <multiplicity id="176" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="177">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="178" name="bFire"/>      
-      <multiplicity id="179" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="180">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="181" name="bReturn"/>      
-      <multiplicity id="182" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="183">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="184" name="bStartWave"/>      
-      <multiplicity id="185" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="186">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="187" name="bUpgrade"/>      
-      <multiplicity id="188" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="189">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="190">    
-    <bendpoint x="43" y="597"/>    
-    <bendpoint x="47" y="-110"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
   <association id="191">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="192" name="bNone"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="192" name="bReturn"/>      
       <multiplicity id="193" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="194">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="195" name="bReturn"/>      
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="195" name="bSave"/>      
       <multiplicity id="196" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="197">    
-    <bendpoint x="166" y="25"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <association id="198">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="199" name="bLoadMap"/>      
-      <multiplicity id="200" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="201">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="202" name="bUpgrade"/>      
-      <multiplicity id="203" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="204">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="205" name="gamePanel"/>      
-      <multiplicity id="206" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="207">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="208" name="bNone"/>      
-      <multiplicity id="209" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="210">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="211" name="mainFrame"/>      
-      <multiplicity id="212" minimum="0" maximum="1"/>    
+  <association id="197">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="198" name="mainFrame"/>      
+      <multiplicity id="199" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="213">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
+  <association id="200">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="201" name="mainFrame"/>      
+      <multiplicity id="202" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="203">    
+    <bendpoint x="902" y="224"/>    
+    <bendpoint x="660" y="224"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="204">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="205" name="bUpgrade"/>      
+      <multiplicity id="206" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="207">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="208" name="lblInfo5"/>      
+      <multiplicity id="209" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="210">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="211">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="212" name="bCreateMap"/>      
+      <multiplicity id="213" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="214">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="215" name="jsSpeed"/>      
+      <attribute id="215" name="mainFrame"/>      
       <multiplicity id="216" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="217">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="218" name="bPlay"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="218" name="bPause"/>      
       <multiplicity id="219" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="220">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="221" name="bSell"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="221" name="endWidthIndexes"/>      
       <multiplicity id="222" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="223">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="224" name="mapController"/>      
+      <multiplicity id="225" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <generalization id="226">    
+    <bendpoint x="416" y="225"/>    
+    <bendpoint x="660" y="224"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <dependency id="227">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="228">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="229" name="bQuit"/>      
+      <multiplicity id="230" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="223">    
+  <association id="231">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="232" name="lblInfo3"/>      
+      <multiplicity id="233" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="234">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="235" name="endWidthIndexes"/>      
+      <multiplicity id="236" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="237">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="224" name="gamePanel"/>      
-      <multiplicity id="225" minimum="0" maximum="1"/>    
+      <attribute id="238" name="bUpgrade"/>      
+      <multiplicity id="239" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="240">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="241" name="startHeightIndexes"/>      
+      <multiplicity id="242" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="243">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="244" name="heightList"/>      
+      <multiplicity id="245" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="246">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="247">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="248" name="lblInfo7"/>      
+      <multiplicity id="249" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="250">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="251" name="bReturn"/>      
+      <multiplicity id="252" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="253">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="254" name="controlPanel">        
+        <position height="18" width="77" x="274" y="501"/>      
+      </attribute>      
+      <multiplicity id="255" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="-20"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <association id="256">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="257" name="gamePanel"/>      
+      <multiplicity id="258" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="226">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="227" name="bPlay"/>      
-      <multiplicity id="228" minimum="0" maximum="1"/>    
+  <association id="259">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="260" name="startWidthIndexes"/>      
+      <multiplicity id="261" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="262">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="263" name="endHeightIndexes"/>      
+      <multiplicity id="264" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="265">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="266" name="bInitialize"/>      
+      <multiplicity id="267" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="229">    
+  <association id="268">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="230" name="bNone"/>      
-      <multiplicity id="231" minimum="0" maximum="1"/>    
+      <attribute id="269" name="jsSpeed"/>      
+      <multiplicity id="270" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="271">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="272" name="widthList"/>      
+      <multiplicity id="273" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="274">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="275">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="276">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="277" name="cbStrategies"/>      
+      <multiplicity id="278" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="279">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="280" name="bSell"/>      
+      <multiplicity id="281" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="282">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="283" name="bFire"/>      
+      <multiplicity id="284" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="232">    
+  <association id="285">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="286" name="bFire"/>      
+      <multiplicity id="287" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="288">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="289" name="bReturn"/>      
+      <multiplicity id="290" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="291">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="292" name="lblInfo4"/>      
+      <multiplicity id="293" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="294">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="295" name="bStartWave"/>      
+      <multiplicity id="296" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="297">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="298" name="bUpgrade"/>      
+      <multiplicity id="299" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="300">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="301" name="bSetStartAndEnd"/>      
+      <multiplicity id="302" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="303">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="304">    
+    <bendpoint x="43" y="597"/>    
+    <bendpoint x="47" y="-110"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <dependency id="305">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="306">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="307" name="mapPanel"/>      
+      <multiplicity id="308" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="309">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="310" name="bNone"/>      
+      <multiplicity id="311" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="312">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="313" name="bReturn"/>      
+      <multiplicity id="314" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="315">    
+    <bendpoint x="166" y="25"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="316">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="317" name="lblInfo2"/>      
+      <multiplicity id="318" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="319">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="320" name="bLoadMap"/>      
+      <multiplicity id="321" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="322">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="323" name="bUpgrade"/>      
+      <multiplicity id="324" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="325">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="326" name="gamePanel"/>      
+      <multiplicity id="327" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="328">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="329" name="bNone"/>      
+      <multiplicity id="330" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="331">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="332" name="mainFrame"/>      
+      <multiplicity id="333" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="334">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="335" name="bInitialize"/>      
+      <multiplicity id="336" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="337">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="338">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="339" name="jsSpeed"/>      
+      <multiplicity id="340" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="341">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="342" name="bPlay"/>      
+      <multiplicity id="343" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="344">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="345" name="endHeightIndexes"/>      
+      <multiplicity id="346" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="347">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="348" name="bSell"/>      
+      <multiplicity id="349" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="350">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="351" name="gamePanel"/>      
+      <multiplicity id="352" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="353">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="354" name="bPlay"/>      
+      <multiplicity id="355" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="356">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="357" name="mapPanel"/>      
+      <multiplicity id="358" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="359">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="360" name="bNone"/>      
+      <multiplicity id="361" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="362">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="363" name="lblInfo5"/>      
+      <multiplicity id="364" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="365">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="233" name="gameController"/>      
-      <multiplicity id="234" minimum="0" maximum="1"/>    
+      <attribute id="366" name="gameController"/>      
+      <multiplicity id="367" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <association id="235">    
+  <association id="368">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="236" name="controlPanel"/>      
-      <multiplicity id="237" minimum="0" maximum="1"/>    
+      <attribute id="369" name="controlPanel"/>      
+      <multiplicity id="370" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="238">    
+  <dependency id="371">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="372">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="239" name="mapPanel">        
+      <attribute id="373" name="mapPanel">        
         <position height="18" width="64" x="558" y="568"/>      
       </attribute>      
-      <multiplicity id="240" minimum="0" maximum="1">        
+      <multiplicity id="374" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="false"/>  
   </association>  
-  <association id="241">    
+  <association id="375">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="242" name="bFire"/>      
-      <multiplicity id="243" minimum="0" maximum="1"/>    
+      <attribute id="376" name="bFire"/>      
+      <multiplicity id="377" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="244">    
+  <association id="378">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="379" name="lblInfo4"/>      
+      <multiplicity id="380" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="381">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="245" name="bPause"/>      
-      <multiplicity id="246" minimum="0" maximum="1"/>    
+      <attribute id="382" name="bPause"/>      
+      <multiplicity id="383" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="247">    
+  <association id="384">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="385" name="bSave"/>      
+      <multiplicity id="386" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="387">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="248" name="bLaser"/>      
-      <multiplicity id="249" minimum="0" maximum="1"/>    
+      <attribute id="388" name="bLaser"/>      
+      <multiplicity id="389" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="250">    
+  <association id="390">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="251" name="controlPanel"/>      
-      <multiplicity id="252" minimum="0" maximum="1"/>    
+      <attribute id="391" name="controlPanel"/>      
+      <multiplicity id="392" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="253">    
+  <association id="393">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="394" name="bInitialize"/>      
+      <multiplicity id="395" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="396">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="254" name="bIceBeam"/>      
-      <multiplicity id="255" minimum="0" maximum="1"/>    
+      <attribute id="397" name="bIceBeam"/>      
+      <multiplicity id="398" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="256">    
+  <association id="399">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="257" name="bLaser"/>      
-      <multiplicity id="258" minimum="0" maximum="1"/>    
+      <attribute id="400" name="bLaser"/>      
+      <multiplicity id="401" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="259">    
+  <association id="402">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="403" name="lblInfo1"/>      
+      <multiplicity id="404" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="405">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="260" name="gamePanel"/>      
-      <multiplicity id="261" minimum="0" maximum="1"/>    
+      <attribute id="406" name="gamePanel"/>      
+      <multiplicity id="407" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="262">    
+  <dependency id="408">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <association id="263">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="264" name="bLoadMap"/>      
-      <multiplicity id="265" minimum="0" maximum="1"/>    
+  <association id="409">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="410" name="bSetStartAndEnd"/>      
+      <multiplicity id="411" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="266">    
+  <association id="412">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="413" name="bLoadMap"/>      
+      <multiplicity id="414" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="415">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="416" name="startWidthIndexes"/>      
+      <multiplicity id="417" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="418">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <dependency id="267">    
+  <dependency id="419">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="268">    
+  <dependency id="420">    
     <bendpoint x="317" y="141"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <association id="269">    
+  <association id="421">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="270" name="controlPanel"/>      
-      <multiplicity id="271" minimum="0" maximum="1"/>    
+      <attribute id="422" name="controlPanel"/>      
+      <multiplicity id="423" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="272">    
+  <generalization id="424">    
     <bendpoint x="660" y="224"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <dependency id="273">    
+  <association id="425">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="426" name="bReturn"/>      
+      <multiplicity id="427" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="428">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
+  <association id="429">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="430" name="bSave"/>      
+      <multiplicity id="431" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="432">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="433" name="controlPanel"/>      
+      <multiplicity id="434" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="false"/>    

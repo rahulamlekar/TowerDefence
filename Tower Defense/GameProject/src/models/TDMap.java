@@ -26,7 +26,7 @@ public class TDMap implements DrawableEntity{
     public static final int TOWER= 4;
     public static final int PATH= 2;
     private final int PIXELWIDTH = Artist_Swing.PIXELWIDTH;
-    private final int PIXELHEIGHT = Artist_Swing.PIXELHEIGHT;
+    private final int PIXELHEIGHT = Artist_Swing.GAMEPIXELHEIGHT;
     
     private int grid[][];
     private MapTile gridTile[][];
@@ -133,8 +133,7 @@ public class TDMap implements DrawableEntity{
                 backdrop= dis.readUTF();
                 gridWidth= dis.readInt();
                 gridHeight= dis.readInt();
-                grid= new int[gridWidth][gridHeight];
-                gridTile = new MapTile[gridWidth][gridHeight];
+                initializeGrid();
                 for(int i=0; i< gridWidth; i++){
                     for(int j=0; j< gridHeight; j++){
                     	int nextReadInt = dis.readInt();
@@ -427,7 +426,7 @@ public class TDMap implements DrawableEntity{
 		return pointsShortestPath;
 	}
 	public Point getPosOfBlock_pixel(int x, int y){
-		Point result = new Point((int) (x*tileWidth_Pixel),(int) (y*tileHeight_Pixel));
+		Point result = new Point((int) Math.ceil((x*tileWidth_Pixel)),(int) Math.ceil(y*tileHeight_Pixel));
 		return result;
 	}
 	

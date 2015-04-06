@@ -17,7 +17,7 @@ public class Artist_Swing extends Helper{
 	
 	public static final int PIXELWIDTH=1280;
 	public static final int PIXELHEIGHT=800;
-	
+	public static final int GAMEPIXELHEIGHT = 700;
 	private int gridWidth;
 	private int gridHeight;
 	
@@ -38,6 +38,7 @@ public class Artist_Swing extends Helper{
 	public static Artist_Swing getInstance(){
 		return artist;
 	}
+
 	
 	public static void drawEmptyCircle(Graphics g, Color c, int x, int y, int radius){
 		g.setColor(c);
@@ -65,7 +66,7 @@ public class Artist_Swing extends Helper{
 		int mapWidth=tdMap.getGridWidth();
 		int mapHeight=tdMap.getGridHeight();
 		int scaledWidth=(int) PIXELWIDTH/mapWidth;
-		int scaledHeight=(int) PIXELHEIGHT/mapHeight;
+		int scaledHeight=(int) (GAMEPIXELHEIGHT)/mapHeight;
 		String back= tdMap.getBackdrop();
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(1));
@@ -119,10 +120,10 @@ public class Artist_Swing extends Helper{
 	public static void drawTower(Tower tow, Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(1));
-		//int towerWidth = tow.getMapTowerIsOn().getTileWidth_pixel();
+
 		int tileWidth = PIXELWIDTH/Artist_Swing.getInstance().gridWidth;
-		int tileHeight = PIXELHEIGHT/Artist_Swing.getInstance().gridHeight;
-		//int towerHeight = tow.getMapTowerIsOn().getTileHeight_pixel();
+		int tileHeight = (GAMEPIXELHEIGHT)/Artist_Swing.getInstance().gridHeight;
+		
 		Color outlineColor;
 		if(tow.isSelected()){
 			outlineColor = Color.blue;
@@ -143,7 +144,7 @@ public class Artist_Swing extends Helper{
 	//draws a shot from a tower to a critter.
 	public static void drawShot(Tower tow, Critter crit, Graphics g){
 		int tileWidth = PIXELWIDTH/Artist_Swing.getInstance().gridWidth;
-		int tileHeight = PIXELHEIGHT/Artist_Swing.getInstance().gridHeight;
+		int tileHeight = (GAMEPIXELHEIGHT)/Artist_Swing.getInstance().gridHeight;
 		//get tower color info,
 		g.setColor(tow.getShotColor());
 		Graphics2D g2d = (Graphics2D) g;

@@ -1,6 +1,8 @@
 package views;
 
 
+import helpers.Artist_Swing;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -42,6 +44,7 @@ public class MapEditorApplicationFrame extends JFrame{
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		mapPanel = mapController.getPlayPanel();
 		controlPanel = mapController.getControlPanel();
+		//mapPanel.setSize(Artist_Swing.PIXELWIDTH, Artist_Swing.PANELHEIGHT);
 		add(mapPanel);
 		add(controlPanel);
 		this.tdMap= mapController.getTDMap();

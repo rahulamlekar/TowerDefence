@@ -41,6 +41,7 @@ public class GameApplicationFrame extends JFrame {
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		controlPanel = gameController.getControlPanel();
 		mapPanel = gameController.getPlayPanel();
+		//mapPanel.setSize(Artist_Swing.PIXELWIDTH, Artist_Swing.PANELHEIGHT);
 		add(mapPanel);
 		add(controlPanel);
 		
