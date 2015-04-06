@@ -14,22 +14,45 @@ import models.TDMap;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ *  This initializes the various parts of the Map Editor, in terms of the frame.
+ * 
+ */
 public class MapEditorApplicationFrame extends JFrame{
 
 	// constants
-	public static final int PIXELWIDTH=1280;
-	public static final int PIXELHEIGHT=800;
-	public static final String APP_NAME = "Map Editor Time";
-	public static final int TIMEOUT = 30;
+
+    /**
+     *  The width of the window of the Map Editor.
+     */
+    	public static final int PIXELWIDTH=1280;
+
+    /**
+     *  The height of the window of the Map Editor.
+     */
+    public static final int PIXELHEIGHT=800;
+
+    /**
+     *
+     */
+    public static final String APP_NAME = "Map Editor Time";
+
+    /**
+     *
+     */
+    public static final int TIMEOUT = 30;
 	private MapControlPanel controlPanel;
 	private MapPanel mapPanel;
 	
 	MapEditorController mapController;
 	private TDMap tdMap;
 	
-	public MapEditorApplicationFrame(){
-		tdMap= new TDMap();
+    /**
+     *
+     * @param tdMap
+     */
+    public MapEditorApplicationFrame(TDMap tdMap){
+		this.tdMap= tdMap;
 		mapController = new MapEditorController(tdMap);
 		init();
 		mapController.setMainFrame(this);

@@ -19,13 +19,36 @@ import views.MapPanel;
 import models.IObserverTDMap;
 import models.TDMap;
 
+/**
+ *  The main controller for the Map Editor. This class will orchestrate all the
+ *  subtleties that are involved with creating a Game Map. The Map Controller
+ *  will allow the user to resize the map, set start and end paths, validate the
+ *  map and also save the map to a desired ".TDMap" file.
+ */
 public class MapEditorController extends MapPanel implements ActionListener, MouseListener, IObserverTDMap {
 
 	//declare game specific variables
-	protected MapPanel mapPanel;
-	protected MapControlPanel controlPanel;
-	protected MapEditorApplicationFrame activity;
-	protected TDMap tdMap;
+
+    /**
+     *  The Map Panel. It deals with tiles, that can either be Path or Tower
+     *  tiles.
+     */
+    	protected MapPanel mapPanel;
+
+    /**
+     *  The Map Control Panel that is displayed at the bottom of the screen.
+     */
+    protected MapControlPanel controlPanel;
+
+    /**
+     *
+     */
+    protected MapEditorApplicationFrame activity;
+
+    /**
+     *
+     */
+    protected TDMap tdMap;
 	
 	//declare frame specific variables
 	private Timer timer;
@@ -36,9 +59,17 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
 	
+    /**
+     *
+     */ 
 	JFileChooser fc = new JFileChooser();
 	
-	public MapEditorController(TDMap map)
+    /**
+     *
+     * @param map   Takes a TDMap object to change it's configuration, and 
+     *              (re)initialize it to a different map.
+     */
+    public MapEditorController(TDMap map)
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;
@@ -52,22 +83,35 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bSave = this.getControlPanel().getSaveButton();
 		bSave.addActionListener(this);
 		this.tdMap= map;
-		map.refresh();
 		map.addObserver(this);
 		//drawableEntities.add(tdMap);
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
-		bInitialize.doClick();
+		//bInitialize.doClick();
 	}
-	public void setMainFrame(JFrame mFrame){
+
+    /**
+     *
+     * @param mFrame
+     */
+    public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
 	}
 	
-	public MapControlPanel getControlPanel(){
+    /**
+     *
+     * @return
+     */
+    public MapControlPanel getControlPanel(){
 		return controlPanel;
 	}
-	public MapPanel getPlayPanel(){
+
+    /**
+     *
+     * @return
+     */
+    public MapPanel getPlayPanel(){
 		return mapPanel;
 	}
 	
@@ -108,7 +152,10 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 
 	}
 	
-	public void Draw() {
+    /**
+     *
+     */
+    public void Draw() {
 		mapPanel.repaint();
 	}
 	
@@ -120,19 +167,33 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 
 	}
 	
-	public TDMap getTDMap() {
+    /**
+     *
+     * @return
+     */
+    public TDMap getTDMap() {
 		return this.tdMap;
 	}
-	public void TDMapUpdated() {
+
+    @Override
+    public void TDMapUpdated() {
 		Draw();
 	}
 
-	public void TDMapReinitialized() {
+    @Override
+    public void TDMapReinitialized() {
 		tileWidth_Pixel= tdMap.getTileWidth_pixel();
 		tileHeight_Pixel= tdMap.getTileHeight_pixel();
 		TDMapUpdated();
 	}
-	public void updateStartAndEnd(int widthOfMap, int heightOfMap){
+
+    /**
+     *  This will update the indexes of the Start(,) and End(,) ComboBoxes to
+     *  match with the new initialized size of the map.
+     * @param widthOfMap    The new width of the map
+     * @param heightOfMap   The new height of the map
+     */
+    public void updateStartAndEnd(int widthOfMap, int heightOfMap){
 		controlPanel.updateStartAndEnd(widthOfMap, heightOfMap);
 	}
 	@Override

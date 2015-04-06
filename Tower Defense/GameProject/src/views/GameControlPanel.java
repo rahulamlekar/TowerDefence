@@ -16,9 +16,19 @@ import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 
 import models.Tower;
+
+/**
+ *
+ * 
+ * 
+ */
 public class GameControlPanel extends JPanel  {
 	private final int buttonSize = 90;
-	public static final int CONTROLPANELHEIGHT = 150;
+
+    /**
+     *
+     */
+    public static final int CONTROLPANELHEIGHT = 150;
 	//we have our two control panels.
 	JPanel towerControlPanel = new JPanel();
 	JPanel generalControlPanel = new JPanel();
@@ -44,9 +54,10 @@ public class GameControlPanel extends JPanel  {
 	JButton bReturn = new JButton("Main Menu");
 	JSlider jsSpeed = new JSlider(JSlider.HORIZONTAL, 1, 5, 1);
 	
-	
-	
-	public GameControlPanel(){
+    /**
+     *
+     */
+    public GameControlPanel(){
 		//add our buttons to a group so only one can be selected at once.
 		towerGroup.add(bSpread);
 		towerGroup.add(bFire);
@@ -95,54 +106,132 @@ public class GameControlPanel extends JPanel  {
 		this.setSize(Artist_Swing.PIXELWIDTH, CONTROLPANELHEIGHT);
 		this.validate();
 	}
-	public JButton getSellButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JButton getSellButton(){
 		return this.bSellTower;
 	}
 	
-	public JButton getUpgradeButton(){
+    /**
+     *
+     * @return
+     */
+    public JButton getUpgradeButton(){
 		return this.bUpgradeTower;
 	}
-	public static int getControlPanelHeight(){
+
+    /**
+     *
+     * @return
+     */
+    public static int getControlPanelHeight(){
 		return CONTROLPANELHEIGHT;
 	}
-	public JLabel getInfoLabel(){
+
+    /**
+     *
+     * @return
+     */
+    public JLabel getInfoLabel(){
 		return lblInfo;
 	}
-	public void setTowerInfoLabelText(String text){
+
+    /**
+     *
+     * @param text
+     */
+    public void setTowerInfoLabelText(String text){
 		lblTowerInfo.setText(text);
 	}
-	public void setInfoLabelText(String text){
+
+    /**
+     *
+     * @param text
+     */
+    public void setInfoLabelText(String text){
 		lblInfo.setText(text);
 	}
 	
-	public JButton getPauseButton(){
+    /**
+     *
+     * @return
+     */
+    public JButton getPauseButton(){
 		return bPause;
 	}
-	public JButton getReturnButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JButton getReturnButton(){
 		return bReturn;
 	}
-	public JButton getStartWaveButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JButton getStartWaveButton(){
 		return bStartWave;
 	}
-	public JToggleButton getSpreadButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JToggleButton getSpreadButton(){
 		return bSpread;
 	}
-	public JToggleButton getFireButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JToggleButton getFireButton(){
 		return bFire;
 	}
-	public JToggleButton getIceButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JToggleButton getIceButton(){
 		return bIceBeam;
 	}
-	public JToggleButton getLaserButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JToggleButton getLaserButton(){
 		return bLaser;
 	}
-	public JToggleButton getNoneButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JToggleButton getNoneButton(){
 		return bNone;
 	}
-	public JSlider getSpeedSlider(){
+
+    /**
+     *
+     * @return
+     */
+    public JSlider getSpeedSlider(){
 		return jsSpeed;
 	}
-	public JComboBox<String> getCBStrategy(){
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox<String> getCBStrategy(){
 		return cbStrategy;
 	}
 

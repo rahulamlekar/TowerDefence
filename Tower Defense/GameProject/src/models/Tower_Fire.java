@@ -4,11 +4,23 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ *
+ * 
+ * 
+ */
 public class Tower_Fire extends Tower {
 	double DOT;
 	int damageOverTimeLength = 20;
 	static int buyCost;
-	public Tower_Fire(String n, Point p, ArrayList<Critter> crittersOnMap) {
+
+    /**
+     *
+     * @param n
+     * @param p
+     * @param crittersOnMap
+     */
+    public Tower_Fire(String n, Point p, ArrayList<Critter> crittersOnMap) {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
@@ -27,11 +39,21 @@ public class Tower_Fire extends Tower {
 		DOT = 5;
 	}
 	
-	protected void shootTarget(Critter target, Graphics g){
+    /**
+     *
+     * @param target
+     * @param g
+     */
+    protected void shootTarget(Critter target, Graphics g){
 		super.shootTarget(target, g);
 		target.damageOverTimeCritter(this.DOT, this.damageOverTimeLength);
 	}
-	public static int getBuyPrice(){	
+	
+    /**
+     *
+     * @return
+     */
+    public static int getBuyPrice(){	
 		return buyCost;
 	}
 

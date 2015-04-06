@@ -14,11 +14,35 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import models.TDMap;
 
+/**
+ *  This class refers to the Main Menu of the Tower Defense game.
+ *  This JFrame will be the place where the player gets to decide if he wants to
+ *  load an existing map to play on, choose one of the pre-existing maps, or
+ *  to create a new game map according to his preference.
+ * 
+ */
 public class MenuApplicationFrame extends JFrame implements ActionListener{
-	public static final int PIXELWIDTH=500;
-	public static final int PIXELHEIGHT=200;
-	public static final String APP_NAME = "Main Menu";
-	public static final int TIMEOUT = 30 ;
+
+    /**
+     *  The width of the window of the main menu.
+     */
+    public static final int PIXELWIDTH=300;
+
+    /**
+     *  The height of the window of the main menu.
+     */
+    public static final int PIXELHEIGHT=300;
+
+    /**
+     *
+     */
+    public static final String APP_NAME = "Main Menu";
+
+    /**
+     *
+     */
+    public static final int TIMEOUT = 30 ;
+
 	final JFileChooser fc = new JFileChooser();
 	JPanel mainPanel = new JPanel();
 	JButton bPlay = new JButton("Play a game");
@@ -30,7 +54,10 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 	JLabel lblMapToLoad = new JLabel("MAP: Default");
 
 	
-	public MenuApplicationFrame(){
+    /**
+     *  Default Constructor to initialize the Main Menu to the stereotypical menu.
+     */
+    public MenuApplicationFrame(){
 		init();
 		bPlay.addActionListener(this);
 		bCreateMap.addActionListener(this);
@@ -50,7 +77,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 				new GameApplicationFrame(mapToLoad);
 			}else if(e.getSource() == bCreateMap){
 				this.dispose();
-				new MapEditorApplicationFrame();
+				new MapEditorApplicationFrame(mapToLoad);
 			}else if(e.getSource() == bQuit){
 				System.exit(0);
 			}else if(e.getSource() == bLoadMap){
@@ -65,7 +92,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		        }
 			}else if(e.getSource() == bDefault){
 				this.setMapName("Default");
-				mapToLoad = new TDMap("res/DIRTMAP1.TDMap");
+				mapToLoad = new TDMap("res/Try1.TDMap");
 				bDefault.setEnabled(false);
 			}
 	}
@@ -99,7 +126,12 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		bDefault.setEnabled(false);
 		
 	}
-	public void setMapName(String name){
+
+    /**
+     *
+     * @param name
+     */
+    public void setMapName(String name){
 		this.lblMapToLoad.setText("Map: " + name);
 		this.repaint();
 	}

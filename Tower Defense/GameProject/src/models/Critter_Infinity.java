@@ -6,8 +6,20 @@ import java.awt.Color;
 /*
  * infinity critter is BOSS critter. Hard to kill, but high rewards
  */
+
+/**
+ *
+ * 
+ */
+
 public class Critter_Infinity extends Critter{
-	public Critter_Infinity(int level, TDMap m) {
+
+    /**
+     *
+     * @param level
+     * @param m
+     */
+    public Critter_Infinity(int level, TDMap m) {
 		super(level, m);
 		//high reward
 		reward = (int) (30*levelMultiplier);
