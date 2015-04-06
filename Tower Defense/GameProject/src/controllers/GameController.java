@@ -400,8 +400,10 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	//This method is called from the click handler when we get a click at a point
 	public void reactToLeftClick(Point point){
 		//first, get the point of the grid where we clicked.
-		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
-		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
+		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
+		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		double xRatio = ((double)point.getX())/(XPixels);
+		double yRatio = ((double)point.getY())/(YPixels);
 		
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
@@ -499,11 +501,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	}
 	
 	public void reactToMouseMove(Point point){
-	
 		//first, get the point of the grid where we clicked.
-		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
-		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
-		
+		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
+		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		double xRatio = ((double)point.getX())/(XPixels);
+		double yRatio = ((double)point.getY())/(YPixels);
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		//**TODO tile at movement

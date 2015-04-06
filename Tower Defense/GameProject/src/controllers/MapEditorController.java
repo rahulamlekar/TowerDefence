@@ -2,7 +2,6 @@ package controllers;
 
 import views.*;
 
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,20 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import views.MapPanel;
-import models.DrawableEntity;
 import models.IObserverTDMap;
-import models.MapTile;
-import models.Point;
 import models.TDMap;
 
 public class MapEditorController extends MapPanel implements ActionListener, MouseListener, IObserverTDMap {
@@ -146,10 +139,16 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {		
-		double xRatio = ((double)e.getX())/((double)tdMap.getPixelWidth());
-		double yRatio = ((double)e.getY())/((double)tdMap.getPixelHeight());
+		
+		//first, get the point of the grid where we clicked.
+		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
+		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		double xRatio = ((double)e.getX())/(XPixels);
+		double yRatio = ((double)e.getY())/(YPixels);
+		
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
+		
 		tdMap.toggleGrid(xGridPos, yGridPos);
 	}
 	@Override

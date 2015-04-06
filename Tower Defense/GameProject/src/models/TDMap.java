@@ -264,7 +264,7 @@ public class TDMap implements DrawableEntity{
         end2= j;
         setAsPath(i,j);
     }
-    
+
     
     // This method will return true if the Map is connected, and false
     // otherwise.
