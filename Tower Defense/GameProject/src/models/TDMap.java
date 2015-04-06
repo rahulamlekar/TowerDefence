@@ -381,89 +381,76 @@ public class TDMap implements DrawableEntity{
         setAsPath(i,j);
     }
 
-<<<<<<< HEAD
-    
-    // This method will return true if the Map is connected, and false
-    // otherwise.
-    // The way it is implemented is by applying a BREADTH-FIRST search algorithm
-    // from the starting cell and then checking if the ending cell has been
-    // explored or not. If the ending cell has been explored, then the PATH is
-    // valid. This BFS also explores the shortest path from the End Cell to the
-    // Start Cell to get rid of Loops, and the Critters optimize their attack.
-    // This will be stored in shortestPath, as a LinkedList.
-    // This method also initializes the boolean isMapValid to a T/F value.
-    public boolean verifyMap()
-=======
-    /**
-     *
-     * This method will return true if the Map is connected, and false
-     * otherwise.
-     * The way it is implemented is by applying a BREADTH-FIRST search algorithm
-     * from the starting cell and then checking if the ending cell has been
-     * explored or not. If the ending cell has been explored, then the PATH is
-     * valid. This BFS also explores the shortest path from the End Cell to the
-     * Start Cell to get rid of Loops, and the Critters optimize their attack.
-     * This will be stored in shortestPath, as a LinkedList.
-     * This method also initializes the boolean isMapValid to a T/F value.
-     * @return
-     */
-        public boolean isMap()
->>>>>>> origin/yash0406break
-    {
-        LinkedList<Integer> explored= new LinkedList<>();
-        LinkedList<Integer> frontier= new LinkedList<>();
-        int parent[]= new int [(gridWidth*gridHeight)];
-        frontier.addFirst(key(start1,start2));
-        int t;
-        while(!frontier.isEmpty())
-        {
-            t= frontier.removeFirst();
-            explored.add(t);
-            int i= arckeyi(t);
-            int j= arckeyj(t);
-            //System.out.println("(" + i + ", " + j + ")");
-            if((i-1)>=0) 
-                if(gridTile[i-1][j].getTileValue()==PATH)
-                    if(!explored.contains(key(i-1,j)))
-                    {
-                        frontier.addLast(key(i-1,j));
-                        parent[key(i-1,j)]=t;
-                    }
-            if((i+1)<gridWidth)
-                if(gridTile[i+1][j].getTileValue()==PATH)
-                    if(!explored.contains(key(i+1,j)))
-                    {
-                        frontier.addLast(key(i+1,j));
-                        parent[key(i+1,j)]=t;
-                    }
-            if((j-1)>=0)
-                if(gridTile[i][j-1].getTileValue()==PATH)
-                    if(!explored.contains(key(i,j-1)))
-                    {
-                        frontier.addLast(key(i,j-1));
-                        parent[key(i,j-1)]=t;
-                    }
-            if((j+1)<gridHeight)
-                if(gridTile[i][j+1].getTileValue()==PATH)
-                    if(!explored.contains(key(i,j+1)))
-                    {
-                        frontier.add(key(i,j+1));
-                        parent[key(i,j+1)]=t;
-                    }
-        }
-        t= key(end1,end2);
-        isMapValid= explored.contains(t);
-        if(isMapValid){
-	        shortestPath= new LinkedList<>();
-	        while(t!=key(start1,start2))
-	        {
-	            shortestPath.addFirst(t);
-	            t= parent[t];
-	        }
-	        shortestPath.addFirst(t);
-        }
-        return isMapValid;
-    }
+
+/**
+ *
+ * This method will return true if the Map is connected, and false
+ * otherwise.
+ * The way it is implemented is by applying a BREADTH-FIRST search algorithm
+ * from the starting cell and then checking if the ending cell has been
+ * explored or not. If the ending cell has been explored, then the PATH is
+ * valid. This BFS also explores the shortest path from the End Cell to the
+ * Start Cell to get rid of Loops, and the Critters optimize their attack.
+ * This will be stored in shortestPath, as a LinkedList.
+ * This method also initializes the boolean isMapValid to a T/F value.
+ * @return
+ */
+    public boolean verifyMap(){
+		LinkedList<Integer> explored= new LinkedList<>();
+		LinkedList<Integer> frontier= new LinkedList<>();
+		int parent[]= new int [(gridWidth*gridHeight)];
+		frontier.addFirst(key(start1,start2));
+		int t;
+		while(!frontier.isEmpty())
+		{
+		    t= frontier.removeFirst();
+		    explored.add(t);
+		    int i= arckeyi(t);
+		    int j= arckeyj(t);
+		    //System.out.println("(" + i + ", " + j + ")");
+		    if((i-1)>=0) 
+		        if(gridTile[i-1][j].getTileValue()==PATH)
+		            if(!explored.contains(key(i-1,j)))
+		            {
+		                frontier.addLast(key(i-1,j));
+		                parent[key(i-1,j)]=t;
+		            }
+		    if((i+1)<gridWidth)
+		        if(gridTile[i+1][j].getTileValue()==PATH)
+		            if(!explored.contains(key(i+1,j)))
+		            {
+		                frontier.addLast(key(i+1,j));
+		                parent[key(i+1,j)]=t;
+		            }
+		    if((j-1)>=0)
+		        if(gridTile[i][j-1].getTileValue()==PATH)
+		            if(!explored.contains(key(i,j-1)))
+		            {
+		                frontier.addLast(key(i,j-1));
+		                parent[key(i,j-1)]=t;
+		            }
+		    if((j+1)<gridHeight)
+		        if(gridTile[i][j+1].getTileValue()==PATH)
+		            if(!explored.contains(key(i,j+1)))
+		            {
+		                frontier.add(key(i,j+1));
+		                parent[key(i,j+1)]=t;
+		            }
+		}
+		t= key(end1,end2);
+		isMapValid= explored.contains(t);
+		if(isMapValid){
+		    shortestPath= new LinkedList<>();
+		    while(t!=key(start1,start2))
+		    {
+		        shortestPath.addFirst(t);
+		        t= parent[t];
+		    }
+		    shortestPath.addFirst(t);
+		}
+		return isMapValid;
+	}
+
     
     // These are miscellaneous methods that assign a unique key value to each
     // individual cell in the grid and allow conversions between them.
