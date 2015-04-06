@@ -6,8 +6,20 @@ import java.awt.Color;
 /*
  * shuriken critter is Strong but slow
  */
+
+/**
+ *
+ * @author Yash Gupta
+ */
+
 public class Critter_Shuriken extends Critter{
-	public Critter_Shuriken(int level, TDMap m) {
+
+    /**
+     *
+     * @param level
+     * @param m
+     */
+    public Critter_Shuriken(int level, TDMap m) {
 		super(level, m);
 		//average reward
 		reward = (int) (15*levelMultiplier);

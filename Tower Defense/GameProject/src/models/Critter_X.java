@@ -5,8 +5,20 @@ import java.awt.Color;
 /*
  * Critter X is completely resitant to effects from towers. Average apart from that.
  */
+
+/**
+ *
+ * @author Yash Gupta
+ */
+
 public class Critter_X extends Critter {
-	public Critter_X(int level, TDMap m) {
+
+    /**
+     *
+     * @param level
+     * @param m
+     */
+    public Critter_X(int level, TDMap m) {
 		super(level, m);
 		//high reward
 		reward = (int) (20*levelMultiplier);

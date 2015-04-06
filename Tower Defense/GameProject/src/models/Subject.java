@@ -2,15 +2,34 @@ package models;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public abstract class Subject {
 	ArrayList<IObserver> observers = new ArrayList<IObserver>();
-	public void addObs(IObserver obsToAdd){
+
+    /**
+     *
+     * @param obsToAdd
+     */
+    public void addObs(IObserver obsToAdd){
 		observers.add(obsToAdd);
 	}
-	public boolean removeObs(IObserver obsToRemove){
+
+    /**
+     *
+     * @param obsToRemove
+     * @return
+     */
+    public boolean removeObs(IObserver obsToRemove){
 		return observers.remove(obsToRemove);
 	}
-	protected void notifyObs(){
+
+    /**
+     *
+     */
+    protected void notifyObs(){
 		for(IObserver o : observers){
 			o.observerUpdate();
 		}

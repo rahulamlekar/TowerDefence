@@ -6,9 +6,19 @@ import java.util.ArrayList;
 import models.Critter;
 import models.Tower;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class Closest implements IStrategy {
 
-	@Override
+    /**
+     *
+     * @param tower
+     * @param g1
+     * @return
+     */
+    @Override
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		Critter closest_enemy = null;
         double min_dist = 10000.0;

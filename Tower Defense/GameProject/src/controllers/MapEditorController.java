@@ -24,13 +24,33 @@ import models.MapTile;
 import models.Point;
 import models.TDMap;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class MapEditorController extends MapPanel implements ActionListener, MouseListener, IObserverTDMap {
 
 	//declare game specific variables
-	protected MapPanel mapPanel;
-	protected MapControlPanel controlPanel;
-	protected MapEditorApplicationFrame activity;
-	protected TDMap tdMap;
+
+    /**
+     *
+     */
+    	protected MapPanel mapPanel;
+
+    /**
+     *
+     */
+    protected MapControlPanel controlPanel;
+
+    /**
+     *
+     */
+    protected MapEditorApplicationFrame activity;
+
+    /**
+     *
+     */
+    protected TDMap tdMap;
 	
 	//declare frame specific variables
 	private Timer timer;
@@ -41,8 +61,11 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
 	
-	
-	public MapEditorController(TDMap map)
+    /**
+     *
+     * @param map
+     */
+    public MapEditorController(TDMap map)
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;
@@ -63,14 +86,28 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		timer.start();
 		mapPanel.addMouseListener(this);
 	}
-	public void setMainFrame(JFrame mFrame){
+
+    /**
+     *
+     * @param mFrame
+     */
+    public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
 	}
 	
-	public MapControlPanel getControlPanel(){
+    /**
+     *
+     * @return
+     */
+    public MapControlPanel getControlPanel(){
 		return controlPanel;
 	}
-	public MapPanel getPlayPanel(){
+
+    /**
+     *
+     * @return
+     */
+    public MapPanel getPlayPanel(){
 		return mapPanel;
 	}
 	
@@ -106,7 +143,10 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 
 	}
 	
-	public void Draw() {
+    /**
+     *
+     */
+    public void Draw() {
 		mapPanel.repaint();
 	}
 	
@@ -118,19 +158,36 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 
 	}
 	
-	public TDMap getTDMap() {
+    /**
+     *
+     * @return
+     */
+    public TDMap getTDMap() {
 		return this.tdMap;
 	}
-	public void TDMapUpdated() {
+
+    /**
+     *
+     */
+    public void TDMapUpdated() {
 		Draw();
 	}
 
-	public void TDMapReinitialized() {
+    /**
+     *
+     */
+    public void TDMapReinitialized() {
 		tileWidth_Pixel= tdMap.getTileWidth_pixel();
 		tileHeight_Pixel= tdMap.getTileHeight_pixel();
 		TDMapUpdated();
 	}
-	public void updateStartAndEnd(int widthOfMap, int heightOfMap){
+
+    /**
+     *
+     * @param widthOfMap
+     * @param heightOfMap
+     */
+    public void updateStartAndEnd(int widthOfMap, int heightOfMap){
 		controlPanel.updateStartAndEnd(widthOfMap, heightOfMap);
 	}
 	@Override

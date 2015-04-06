@@ -10,9 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class MapPanel extends JPanel {
     
-	public MapPanel(){
+    /**
+     *
+     */
+    public MapPanel(){
 		
 		//set panel properties
 		setBackground(Color.BLACK);

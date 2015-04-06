@@ -12,13 +12,26 @@ import models.TDMap;
 /*
  * generates a group of critters for a certain wave number.
  */
+
+/**
+ *
+ * @author Yash Gupta
+ */
+
 public class CritterGenerator extends Helper {
 	//attributes
 	private final static int BASECRITTERS = 10; //this is the base amount of critters
 	private final static int MAXWAVE = 50; //THE maximum wave number
 	//constructor
 	//This is where we create the current WAVE.
-	public static ArrayList<Critter> getGeneratedCritterWave(int waveLevel, TDMap exampleMap){
+
+    /**
+     *
+     * @param waveLevel
+     * @param exampleMap
+     * @return
+     */
+    	public static ArrayList<Critter> getGeneratedCritterWave(int waveLevel, TDMap exampleMap){
 		ArrayList<Critter> critterGroup = new ArrayList<Critter>();
 		//what to multiply the amount of critters by (so more critters come each wave)
 		double critterMultiplier = 1.0 + 0.5*waveLevel/MAXWAVE;
@@ -60,7 +73,14 @@ public class CritterGenerator extends Helper {
 		//return this group to whatever class called it (for simplicity)
 		return critterGroup;
 	}
-	public ArrayList<Critter> getGeneratedCritWave(int waveLevel, TDMap exampleMap){
+
+    /**
+     *
+     * @param waveLevel
+     * @param exampleMap
+     * @return
+     */
+    public ArrayList<Critter> getGeneratedCritWave(int waveLevel, TDMap exampleMap){
 		return null;
 	}
 }

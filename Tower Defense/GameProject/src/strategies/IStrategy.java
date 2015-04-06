@@ -6,7 +6,18 @@ import java.util.ArrayList;
 import models.Critter;
 import models.Tower;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public interface IStrategy {
-	public Critter findTarget(Tower tower, ArrayList<Critter> g1);	
+	
+    /**
+     *
+     * @param tower
+     * @param g1
+     * @return
+     */
+    public Critter findTarget(Tower tower, ArrayList<Critter> g1);	
 }
 	

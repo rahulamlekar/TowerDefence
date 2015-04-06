@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 import strategies.*;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public abstract class Tower implements DrawableEntity{
 	final static int MAXTOWERLEVEL = 4;
 	final static String DEFAULTSTRATEGY = "Closest";
@@ -40,7 +44,13 @@ public abstract class Tower implements DrawableEntity{
 	private boolean enabled;
 	private boolean selected;
 	
-	public Tower(String n, Point p, ArrayList<Critter> crittersOnMap){
+    /**
+     *
+     * @param n
+     * @param p
+     * @param crittersOnMap
+     */
+    public Tower(String n, Point p, ArrayList<Critter> crittersOnMap){
 		position = p;
 		name = n;
 		level = 1;
@@ -52,72 +62,180 @@ public abstract class Tower implements DrawableEntity{
 		selected = false;
 	}
 	
-	public int getSellPrice(){	
+    /**
+     *
+     * @return
+     */
+    public int getSellPrice(){	
 		return sellPrice;
 	}
 
-	public int getUpPrice(){
+    /**
+     *
+     * @return
+     */
+    public int getUpPrice(){
 		return upCost;
 	}
-	public void setStrategy(IStrategy strategy) {
+
+    /**
+     *
+     * @param strategy
+     */
+    public void setStrategy(IStrategy strategy) {
 		this.strategy = strategy;
 	}
-	public int getPosX(){	
+	
+    /**
+     *
+     * @return
+     */
+    public int getPosX(){	
 		return position.getX();
 	}
-	public int getPosY(){	
+	
+    /**
+     *
+     * @return
+     */
+    public int getPosY(){	
 		return position.getY();
 	}
-	public int getRange(){	
+	
+    /**
+     *
+     * @return
+     */
+    public int getRange(){	
 		return range;
 	}
-	public String getName(){	
+	
+    /**
+     *
+     * @return
+     */
+    public String getName(){	
 		return name;
 	}
-	public boolean getEnabled(){	
+	
+    /**
+     *
+     * @return
+     */
+    public boolean getEnabled(){	
 		return enabled;
 	}
-	public void setEnabled(boolean state){
+
+    /**
+     *
+     * @param state
+     */
+    public void setEnabled(boolean state){
 		enabled = state;
 	}
-	public Color getColor(){
+
+    /**
+     *
+     * @return
+     */
+    public Color getColor(){
 		return tColor;
 	}
-	public boolean isSelected(){
+
+    /**
+     *
+     * @return
+     */
+    public boolean isSelected(){
 		return selected;
 	}
-	public IStrategy getStrategy(){
+
+    /**
+     *
+     * @return
+     */
+    public IStrategy getStrategy(){
 		return this.strategy;
 	}
-	public void setSelected(boolean s){
+
+    /**
+     *
+     * @param s
+     */
+    public void setSelected(boolean s){
 		selected = s;
 	}
-	public static String getDefaultStrategy(){
+
+    /**
+     *
+     * @return
+     */
+    public static String getDefaultStrategy(){
 		return DEFAULTSTRATEGY;
 	}
-	public void setSlowTime(int time){
+
+    /**
+     *
+     * @param time
+     */
+    public void setSlowTime(int time){
 		this.slowTime = time;
 	}
-	public int getSlowTime(){
+
+    /**
+     *
+     * @return
+     */
+    public int getSlowTime(){
 		return this.slowTime;
 	}
-	public void setColor(Color newColor){
+
+    /**
+     *
+     * @param newColor
+     */
+    public void setColor(Color newColor){
 		
 		tColor = newColor;
 	}
-	public Color getShotColor(){
+
+    /**
+     *
+     * @return
+     */
+    public Color getShotColor(){
 		return shotColor;
 	}
-	public static int getMaxTowerLevel(){
+
+    /**
+     *
+     * @return
+     */
+    public static int getMaxTowerLevel(){
 		return MAXTOWERLEVEL;
 	}
-	public void setCrittersOnMap(ArrayList<Critter> crittersOnMap){
+
+    /**
+     *
+     * @param crittersOnMap
+     */
+    public void setCrittersOnMap(ArrayList<Critter> crittersOnMap){
 		this.potentialCrittersInRange = crittersOnMap;
 	}
-	public int getLevel(){
+
+    /**
+     *
+     * @return
+     */
+    public int getLevel(){
 		return level;
 	}
-	public void updateAndDraw(Graphics g){	
+	
+    /**
+     *
+     * @param g
+     */
+    public void updateAndDraw(Graphics g){	
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		this.drawTower(g);
 		inRangeC = this.findCrittersInRange(potentialCrittersInRange);
@@ -127,16 +245,32 @@ public abstract class Tower implements DrawableEntity{
 		}
 	}
 	
-	public void drawTower(Graphics g) {
+    /**
+     *
+     * @param g
+     */
+    public void drawTower(Graphics g) {
 		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
 		Artist_Swing.drawTower(this,g);
     }
 	
-	protected Critter selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
+    /**
+     *
+     * @param tf1
+     * @param crittersInR
+     * @return
+     */
+    protected Critter selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
 		Critter target = strategy.findTarget(tf1, crittersInR);
 		return target;
 	}
-	public double distanceToCritter(Critter a){
+
+    /**
+     *
+     * @param a
+     * @return
+     */
+    public double distanceToCritter(Critter a){
 	    double deltaX = a.getPixelPosition().getX()-this.getPosX();
 	    double deltaY = a.getPixelPosition().getY()-this.getPosY();
 		//finds the distance between a creep and a tower.
@@ -159,7 +293,13 @@ public abstract class Tower implements DrawableEntity{
 	}
 	
 	//returns the critters that are in range of a tower
-	public ArrayList<Critter> findCrittersInRange(ArrayList<Critter> a){
+
+    /**
+     *
+     * @param a
+     * @return
+     */
+    	public ArrayList<Critter> findCrittersInRange(ArrayList<Critter> a){
 		
 		ArrayList<Critter> crittersInRange = new ArrayList<Critter>();
 		if(a != null){
@@ -177,7 +317,13 @@ public abstract class Tower implements DrawableEntity{
 	}
 	
 	//deals damage based on amount of damage of the tower
-	protected void shootTarget(Critter target, Graphics g){
+
+    /**
+     *
+     * @param target
+     * @param g
+     */
+    	protected void shootTarget(Critter target, Graphics g){
 		if(enabled){
 			for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
 				target.damage(damage);
@@ -187,7 +333,11 @@ public abstract class Tower implements DrawableEntity{
 		}
 	} 
 	//upgrade the towers values and level
-	public void upgradeTower(){
+
+    /**
+     *
+     */
+    	public void upgradeTower(){
 		if(level < MAXTOWERLEVEL){
 			level = level + 1;
 			upCost = upCost + 50;

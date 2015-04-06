@@ -2,8 +2,17 @@ package controllers;
 
 import views.MenuApplicationFrame;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class Game {
-	public static void main(String[] args){
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args){
 		//First display main menu
 		new MenuApplicationFrame();
 	}

@@ -6,8 +6,20 @@ import java.awt.Color;
 /*
  * Arrow critter is fast but weak compared to other critters
  */
+
+/**
+ *
+ * @author Yash Gupta
+ */
+
 public class Critter_Arrow extends Critter{
-	public Critter_Arrow(int level, TDMap m) {
+
+    /**
+     *
+     * @param level
+     * @param m
+     */
+    public Critter_Arrow(int level, TDMap m) {
 		super(level, m);
 		//average reward
 		reward = (int) (10*levelMultiplier);

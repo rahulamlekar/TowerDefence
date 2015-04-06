@@ -1,23 +1,50 @@
 package models;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class MapTile {
 	private int tileValue;
 	private Tower towerOnTile;
 	
-	public MapTile(){
+    /**
+     *
+     */
+    public MapTile(){
 		tileValue = 0;
 		
 	}
-	public int getTileValue(){
+
+    /**
+     *
+     * @return
+     */
+    public int getTileValue(){
 		return tileValue;
 	}
-	public void setTileValue(int tv){
+
+    /**
+     *
+     * @param tv
+     */
+    public void setTileValue(int tv){
 		tileValue = tv;
 	}
-	public Tower getTowerOnTile(){
+
+    /**
+     *
+     * @return
+     */
+    public Tower getTowerOnTile(){
 		return towerOnTile;
 	}
-	public void setTowerOnTile(Tower tow){
+
+    /**
+     *
+     * @param tow
+     */
+    public void setTowerOnTile(Tower tow){
 		towerOnTile = tow;
 	}
 }

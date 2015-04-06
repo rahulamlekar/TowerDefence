@@ -33,11 +33,28 @@ import views.GameControlPanel;
 import views.MapPanel;
 import views.MenuApplicationFrame;
 
+/**
+ *  This is the main Game Controller, as the name suggests.
+ *  This class belongs to the Game Logic layer and handles
+ *  all the complex interfacing between the map, the 
+ *  numerous towers placed on the map and critters that
+ *  traverse the shortest path.
+ *
+ * @author Yash Gupta
+ */
 public class GameController extends MapPanel implements ActionListener, ChangeListener, ItemListener, IObserver {
 		
 	//declare game specific variables
-	protected MapPanel gamePanel;
-	protected GameControlPanel controlPanel;
+
+    /**
+     *  The Map Panel. It deals with the Tiles, Towers and the Critter Path.
+     */
+    	protected MapPanel gamePanel;
+
+    /**
+     *  The Game Control Panel that is displayed at the bottom of the screen.
+     */
+    protected GameControlPanel controlPanel;
 	
 	//Below are all of our Swing elements
 	JFrame mainFrame;
@@ -78,7 +95,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	ArrayList<Helper> helpers;
 	private GameClock clock;
 	
-	public GameController(TDMap map)
+    /**
+     * @param map   This takes a TDMap object as the map on 
+     *              which to play the game.
+     */
+    public GameController(TDMap map)
 	{
 		setPanelAndButtonProperties();
 		setInitialValues();	
@@ -163,7 +184,12 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		
 		bNone.doClick();
 	}
-	public void setMainFrame(JFrame mFrame){
+
+    /**
+     *
+     * @param mFrame
+     */
+    public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
 	}
 	private void startNewWave(){
@@ -225,7 +251,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			setPlaybackSpeed();
 		}
 	}
-	public void setPlaybackSpeed(){
+
+    /**
+     *  This relates to how fast or slow the wave apparently appears to the player.
+     */
+    public void setPlaybackSpeed(){
 		clock.setDeltaTime(jsSpeed.getValue());
 	}
 	//Below are all button click methods: They are called when the buttons are clicked
@@ -318,7 +348,12 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		gamePanel.repaint();
 	}
 	//one of my subjects has changed. Go through them all and check stats.
-	public void observerUpdate(){
+
+    /**
+     *  This will update the whole screen whenever one of the subjects of the Game Controller is changed,
+     *  e.g. if a critter dies or a tower is upgraded.
+     */
+    	public void observerUpdate(){
 		if(gamePaused ==false){
 			resetPlayerStats();
 			boolean anyCrittersLeft = false;
@@ -371,10 +406,19 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		
 	}
 
-	public GameControlPanel getControlPanel(){
+    /**
+     *
+     * @return
+     */
+    public GameControlPanel getControlPanel(){
 		return controlPanel;
 	}
-	public MapPanel getPlayPanel(){
+
+    /**
+     *
+     * @return
+     */
+    public MapPanel getPlayPanel(){
 		return gamePanel;
 	}
 	private void updateInfoLabelText(){
@@ -396,7 +440,12 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		updateInfoLabelText();
 	}
 	//This method is called from the click handler when we get a click at a point
-	public void reactToLeftClick(Point point){
+
+    /**
+     *
+     * @param point
+     */
+    	public void reactToLeftClick(Point point){
 		//first, get the point of the grid where we clicked.
 		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
 		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
@@ -496,7 +545,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		System.out.println("The " + gamePlayer.getMoney() + " dollars that you have is not enough for the " + selectedTowerToBuild + " tower.");
 	}
 	
-	public void reactToMouseMove(Point point){
+    /**
+     *
+     * @param point
+     */
+    public void reactToMouseMove(Point point){
 	
 		//first, get the point of the grid where we clicked.
 		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
@@ -555,13 +608,22 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			//don't do anything if there is a tower on the block
 		}
 	}
-	public void reactToKeypress(KeyEvent e) {
+
+    /**
+     *
+     * @param e
+     */
+    public void reactToKeypress(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 			this.bNone.doClick();
 		}
 	}
 	
-	public void reactToRightClick(Point point) {
+    /**
+     *
+     * @param point
+     */
+    public void reactToRightClick(Point point) {
 		this.bNone.doClick();
 	}
 	

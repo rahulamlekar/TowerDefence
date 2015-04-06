@@ -5,9 +5,20 @@ import java.awt.Color;
 /*
  * Circle critter is average, run of the mill critter
  */
+
+/**
+ *
+ * @author Yash Gupta
+ */
+
 public class Critter_Circle extends Critter{
 	
-	public Critter_Circle(int level, TDMap m) {
+    /**
+     *
+     * @param level
+     * @param m
+     */
+    public Critter_Circle(int level, TDMap m) {
 		super(level, m);
 		//average reward
 		reward = (int) (10*levelMultiplier);

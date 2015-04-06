@@ -14,19 +14,42 @@ import controllers.GameController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ *
+ * @author Yash Gupta
+ */
 public class GameApplicationFrame extends JFrame {
 
 	// constants
-	public static final int PIXELWIDTH=Artist_Swing.PIXELWIDTH;
-	public static final int PIXELHEIGHT=Artist_Swing.PIXELHEIGHT;
-	public static final String APP_NAME = "Gametime";
+
+    /**
+     *
+     */
+    	public static final int PIXELWIDTH=Artist_Swing.PIXELWIDTH;
+
+    /**
+     *
+     */
+    public static final int PIXELHEIGHT=Artist_Swing.PIXELHEIGHT;
+
+    /**
+     *
+     */
+    public static final String APP_NAME = "Gametime";
 	private GameControlPanel controlPanel;
 	private MapPanel mapPanel;
-	public static final int TIMEOUT = 30;                          		
+                          		
+    /**
+     *
+     */
+    public static final int TIMEOUT = 30;                          		
 	GameController gameController;
 		
-	public  GameApplicationFrame(TDMap tdMap){
+    /**
+     *
+     * @param tdMap
+     */
+    public  GameApplicationFrame(TDMap tdMap){
 		gameController = new GameController(tdMap);
 		init();
 		gameController.setMainFrame(this);

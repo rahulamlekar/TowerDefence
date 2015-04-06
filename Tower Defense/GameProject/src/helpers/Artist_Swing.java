@@ -12,12 +12,26 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-
+/**
+ *
+ * @author Yash Gupta
+ */
 public class Artist_Swing extends Helper{
 	
-	public static final int PIXELWIDTH=1280;
-	public static final int PIXELHEIGHT=800;
-	public static final int GAMEPIXELHEIGHT = 700;
+    /**
+     *
+     */
+    public static final int PIXELWIDTH=1280;
+
+    /**
+     *
+     */
+    public static final int PIXELHEIGHT=800;
+
+    /**
+     *
+     */
+    public static final int GAMEPIXELHEIGHT = 700;
 	private int gridWidth;
 	private int gridHeight;
 	
@@ -29,38 +43,93 @@ public class Artist_Swing extends Helper{
 		gridHeight = TDMap.DEFAULTGRIDHEIGHT;
 	}
 	
-	public void setGridWidth(int width){
+    /**
+     *
+     * @param width
+     */
+    public void setGridWidth(int width){
 		this.gridWidth = width;
 	}
-	public void setGridHeight(int height){
+
+    /**
+     *
+     * @param height
+     */
+    public void setGridHeight(int height){
 		this.gridHeight = height;
 	}
-	public static Artist_Swing getInstance(){
+
+    /**
+     *
+     * @return
+     */
+    public static Artist_Swing getInstance(){
 		return artist;
 	}
 
-	
-	public static void drawEmptyCircle(Graphics g, Color c, int x, int y, int radius){
+    /**
+     *
+     * @param g
+     * @param c
+     * @param x
+     * @param y
+     * @param radius
+     */
+    public static void drawEmptyCircle(Graphics g, Color c, int x, int y, int radius){
 		g.setColor(c);
 		g.drawOval(x-radius, y-radius, radius*2, radius*2);
 	}
-	public static void drawFilledCircle(Graphics g, Color c, int x, int y, int radius){
+
+    /**
+     *
+     * @param g
+     * @param c
+     * @param x
+     * @param y
+     * @param radius
+     */
+    public static void drawFilledCircle(Graphics g, Color c, int x, int y, int radius){
 		g.setColor(c);
 		g.drawOval(x-radius, y-radius, radius*2, radius*2);
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
 	}
-	public static void drawFilledQuad(Graphics g, Color c, int x, int y, int width, int height)
+
+    /**
+     *
+     * @param g
+     * @param c
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
+    public static void drawFilledQuad(Graphics g, Color c, int x, int y, int width, int height)
 	{
 		g.setColor(c);
 		g.drawRect(x,y, width, height);
     	g.fillRect(x,y, width, height);
 	}
-	public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int width, int height){
+
+    /**
+     *
+     * @param g
+     * @param c
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
+    public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int width, int height){
 		g.setColor(c);
 		g.drawRect(x, y, width, height);
 	}
 	
-	public static void drawMap(TDMap tdMap, Graphics g)
+    /**
+     *
+     * @param tdMap
+     * @param g
+     */
+    public static void drawMap(TDMap tdMap, Graphics g)
 	{
 		
 		int mapWidth=tdMap.getGridWidth();
@@ -87,7 +156,13 @@ public class Artist_Swing extends Helper{
 	}
 	
 	//draws the critter, and its current health bar
-	public static void drawCritter(Critter crit, Graphics g){
+
+    /**
+     *
+     * @param crit
+     * @param g
+     */
+    	public static void drawCritter(Critter crit, Graphics g){
 		int size = crit.getSize();
 		int posX = crit.getPixelPosition().getX();
 		int posY = crit.getPixelPosition().getY();
@@ -117,6 +192,13 @@ public class Artist_Swing extends Helper{
 	/*
 	 * draws the tower, and indicates its current level by Squares inside of it.
 	 */
+
+    /**
+     *
+     * @param tow
+     * @param g
+     */
+    
 	public static void drawTower(Tower tow, Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(1));
@@ -142,7 +224,14 @@ public class Artist_Swing extends Helper{
 		}
 	}
 	//draws a shot from a tower to a critter.
-	public static void drawShot(Tower tow, Critter crit, Graphics g){
+
+    /**
+     *
+     * @param tow
+     * @param crit
+     * @param g
+     */
+    	public static void drawShot(Tower tow, Critter crit, Graphics g){
 		int tileWidth = PIXELWIDTH/Artist_Swing.getInstance().gridWidth;
 		int tileHeight = (GAMEPIXELHEIGHT)/Artist_Swing.getInstance().gridHeight;
 		//get tower color info,

@@ -6,8 +6,19 @@ import java.util.ArrayList;
 import models.Critter;
 import models.Tower;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class Strongest implements IStrategy {
-	@Override
+
+    /**
+     *
+     * @param tower
+     * @param g1
+     * @return
+     */
+    @Override
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		Critter strongest_enemy= null;   
         double max_health = 0;

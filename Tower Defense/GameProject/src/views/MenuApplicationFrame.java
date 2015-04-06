@@ -13,11 +13,31 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import models.TDMap;
 
+/**
+ *
+ * @author Yash Gupta
+ */
 public class MenuApplicationFrame extends JFrame implements ActionListener{
-	public static final int PIXELWIDTH=300;
-	public static final int PIXELHEIGHT=300;
-	public static final String APP_NAME = "Main Menu";
-	public static final int TIMEOUT = 30 ;
+
+    /**
+     *
+     */
+    public static final int PIXELWIDTH=300;
+
+    /**
+     *
+     */
+    public static final int PIXELHEIGHT=300;
+
+    /**
+     *
+     */
+    public static final String APP_NAME = "Main Menu";
+
+    /**
+     *
+     */
+    public static final int TIMEOUT = 30 ;
 	final JFileChooser fc = new JFileChooser();
 	JPanel mainPanel = new JPanel();
 	JButton bPlay = new JButton("Play a game");
@@ -27,7 +47,10 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 	TDMap mapToLoad;
 	//MainMenuActivity activity;
 	
-	public MenuApplicationFrame(){
+    /**
+     *
+     */
+    public MenuApplicationFrame(){
 		init();
 		bPlay.addActionListener(this);
 		bCreateMap.addActionListener(this);
