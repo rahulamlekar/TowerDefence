@@ -182,7 +182,10 @@ public class TDMap implements DrawableEntity{
             	gridTile[i][6].setTileValue(PATH);
             }
             backdrop= "Generic";
-
+            start1 = 0;
+            start2 = 3;
+            end1 = gridWidth-1;
+            end2 = 6;
         }
 
     }
@@ -367,6 +370,12 @@ public class TDMap implements DrawableEntity{
         start1= i;
         start2= j;
         setAsPath(i,j);
+    }
+    public Point getStart(){
+    	return new Point(start1, start2);
+    }
+    public Point getEnd(){
+    	return new Point(end1, end2);
     }
     
     /**

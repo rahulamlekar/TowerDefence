@@ -89,6 +89,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		timer.start();
 		mapPanel.addMouseListener(this);
 		//bInitialize.doClick();
+		
+		this.getControlPanel().getWidthIndexes().setSelectedIndex(tdMap.getGridWidth() - TDMap.MINWIDTH);
+		this.getControlPanel().getHeightIndexes().setSelectedIndex(tdMap.getGridHeight() - TDMap.MINHEIGHT);
+		this.getControlPanel().getStartWidths().setSelectedIndex(tdMap.getStart().getX());
+		this.getControlPanel().getStartHeights().setSelectedIndex(tdMap.getStart().getY());
+		this.getControlPanel().getEndWidths().setSelectedIndex(tdMap.getEnd().getX());
+		this.getControlPanel().getEndHeights().setSelectedIndex(tdMap.getEnd().getY());
 	}
 
     /**
