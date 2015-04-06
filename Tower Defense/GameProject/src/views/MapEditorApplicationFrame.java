@@ -50,8 +50,8 @@ public class MapEditorApplicationFrame extends JFrame{
     /**
      *
      */
-    public MapEditorApplicationFrame(){
-		tdMap= new TDMap();
+    public MapEditorApplicationFrame(TDMap tdMap){
+		this.tdMap= tdMap;
 		mapController = new MapEditorController(tdMap);
 		init();
 		mapController.setMainFrame(this);

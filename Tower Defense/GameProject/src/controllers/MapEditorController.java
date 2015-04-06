@@ -85,13 +85,12 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bSave = this.getControlPanel().getSaveButton();
 		bSave.addActionListener(this);
 		this.tdMap= map;
-		map.refresh();
 		map.addObserver(this);
 		//drawableEntities.add(tdMap);
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
-		bInitialize.doClick();
+		//bInitialize.doClick();
 	}
 
     /**

@@ -77,7 +77,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 				new GameApplicationFrame(mapToLoad);
 			}else if(e.getSource() == bCreateMap){
 				this.dispose();
-				new MapEditorApplicationFrame();
+				new MapEditorApplicationFrame(mapToLoad);
 			}else if(e.getSource() == bQuit){
 				System.exit(0);
 			}else if(e.getSource() == bLoadMap){
@@ -92,7 +92,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		        }
 			}else if(e.getSource() == bDefault){
 				this.setMapName("Default");
-				mapToLoad = new TDMap("res/DIRTMAP1.TDMap");
+				mapToLoad = new TDMap("res/Try1.TDMap");
 				bDefault.setEnabled(false);
 			}
 	}
