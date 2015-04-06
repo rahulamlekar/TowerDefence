@@ -9,7 +9,7 @@ import models.Tower;
 /**
  *
  * 
- * @author Yash Gupta
+ * 
  */
 public class Fastest implements IStrategy {
 

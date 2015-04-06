@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 /**
  *
  * 
- * @author Yash Gupta
+ * 
  */
 public class GameApplicationFrame extends JFrame {
 

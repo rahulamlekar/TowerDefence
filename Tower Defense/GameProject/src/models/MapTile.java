@@ -3,7 +3,7 @@ package models;
 /**
  *
  * 
- * @author Yash Gupta
+ * 
  */
 public class MapTile {
 	private int tileValue;

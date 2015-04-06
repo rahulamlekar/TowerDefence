@@ -9,7 +9,7 @@ import models.Tower;
 /**
  *
  * 
- * @author Yash Gupta
+ * 
  */
 public class Weakest implements IStrategy {
 

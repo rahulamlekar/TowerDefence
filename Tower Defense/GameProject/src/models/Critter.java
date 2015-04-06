@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 
 public abstract class Critter extends Subject implements DrawableEntity {
