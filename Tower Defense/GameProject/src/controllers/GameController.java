@@ -301,7 +301,9 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 						crittersInWave.get(activeCritterIndex).setActive(true);
 						activeCritterIndex +=1;
 					}else if(activeCritterIndex < crittersInWave.size()){
-						if(crittersInWave.get(activeCritterIndex-1).getPixelPosition().getX() > 50 || crittersInWave.get(activeCritterIndex-1).isAlive()==false){
+						Critter curr = crittersInWave.get(activeCritterIndex -1);
+						Point currPos = curr.getPixelPosition();
+						if(Math.abs(currPos.getX() - curr.getListPixelPath().get(1).getX()) > 50 || Math.abs(currPos.getY() - curr.getListPixelPath().get(1).getY()) > 50 || curr.isAlive()==false || curr.hasReachedEnd()){
 							crittersInWave.get(activeCritterIndex).setActive(true);
 							activeCritterIndex +=1;
 						}
