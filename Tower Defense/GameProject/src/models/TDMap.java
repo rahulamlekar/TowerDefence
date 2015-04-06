@@ -28,7 +28,7 @@ public class TDMap implements DrawableEntity{
     private final int PIXELWIDTH = Artist_Swing.PIXELWIDTH;
     private final int PIXELHEIGHT = Artist_Swing.GAMEPIXELHEIGHT;
     
-    private int grid[][];
+    //private int grid[][];
     private MapTile gridTile[][];
     
     // The grid will be ALWAYS initialized and used as a width by height, that
@@ -55,8 +55,8 @@ public class TDMap implements DrawableEntity{
        
         
         backdrop= "Generic";
-        tileWidth_Pixel = PIXELWIDTH/gridWidth;
-        tileHeight_Pixel = PIXELHEIGHT/gridHeight;
+        tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
+        tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
         //this.isMap();
     }
     
@@ -75,40 +75,44 @@ public class TDMap implements DrawableEntity{
         
         initializeGrid();
         backdrop= back;
-        tileWidth_Pixel = PIXELWIDTH/gridWidth;
-        tileHeight_Pixel = PIXELHEIGHT/gridHeight;
+        tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
+        tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
         //this.isMap();
     }
     
     public TDMap(String add)
     {
-        if(!readMapFromFile(add))
-        {
-        	gridWidth = DEFAULTGRIDWIDTH;
-        	gridHeight = DEFAULTGRIDHEIGHT;
+    	gridWidth = DEFAULTGRIDWIDTH;
+    	gridHeight = DEFAULTGRIDHEIGHT;
+    	boolean goodMap = readMapFromFile(add);
+    	tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
+        tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
+         
+    	if(!goodMap){
+            tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
+            tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
         	int halfWay = gridWidth/2;
         	initializeGrid();
             for(int i = 0; i < halfWay; i++){
-            	grid[i][3] = PATH;
+            	//grid[i][3] = PATH;
             	gridTile[i][3].setTileValue(PATH);
             }
             for(int i = 3; i < 7; i++){
-            	grid[halfWay][i] = PATH;
+            	//grid[halfWay][i] = PATH;
             	gridTile[halfWay][i].setTileValue(PATH);
             }
             for(int i = halfWay; i < gridWidth; i++){
-            	grid[i][6] = PATH;
+            	//grid[i][6] = PATH;
             	gridTile[i][6].setTileValue(PATH);
             }
             backdrop= "Generic";
-            tileWidth_Pixel = PIXELWIDTH/gridWidth;
-            tileHeight_Pixel = PIXELHEIGHT/gridHeight;
+
         }
 
     }
     private void initializeGrid() {
 		// TODO Auto-generated method stub
-    	 grid= new int[gridWidth][gridHeight];
+    	 //grid= new int[gridWidth][gridHeight];
          gridTile = new MapTile[gridWidth][gridHeight];
          for(int i = 0; i < gridWidth; i++){
         	 for(int j = 0; j < gridHeight; j++){
@@ -137,7 +141,7 @@ public class TDMap implements DrawableEntity{
                 for(int i=0; i< gridWidth; i++){
                     for(int j=0; j< gridHeight; j++){
                     	int nextReadInt = dis.readInt();
-                        grid[i][j]= nextReadInt;
+                        //grid[i][j]= nextReadInt;
                         gridTile[i][j].setTileValue(nextReadInt);
                     }
                 }
@@ -172,7 +176,7 @@ public class TDMap implements DrawableEntity{
             dos.writeInt(gridHeight);
             for(int i=0; i< gridWidth; i++){
                 for(int j=0; j< gridHeight; j++){
-                    dos.writeInt(grid[i][j]); //TODO: OR dos.writeInt(gridTile[i][j].getTileValue())
+                    dos.writeInt(gridTile[i][j].getTileValue()); 
                 }
             }
             dos.writeInt(start1);
@@ -195,15 +199,15 @@ public class TDMap implements DrawableEntity{
     {
         if(((i!=start1) && (j!=start2)) || ((i!=end1) && (j!=end2)))
     		if((i<gridWidth)&&(j<gridHeight))
-    			if(grid[i][j]==PATH)
+    			if(gridTile[i][j].getTileValue()==PATH)
     			{
-    				grid[i][j]= TOWER;
+    				//grid[i][j]= TOWER;
     				gridTile[i][j].setTileValue(TOWER);
     			}
     			else
     			{
-    				grid[i][j]= PATH;
-    				gridTile[i][j].setTileValue(TOWER);
+    				//grid[i][j]= PATH;
+    				gridTile[i][j].setTileValue(PATH);
     			}
         TDMapUpdated();
     }
@@ -220,7 +224,7 @@ public class TDMap implements DrawableEntity{
     public void setAsPath(int i, int j)
     {
         if((i<gridWidth)&&(j<gridHeight)){
-            grid[i][j]= PATH;
+            //grid[i][j]= PATH;
             gridTile[i][j].setTileValue(PATH);
         }
     }
@@ -228,12 +232,12 @@ public class TDMap implements DrawableEntity{
     // By convention, I will denote background/TOWER cells to be 4.
     public void refresh()
     {
-        grid = new int[gridWidth][gridHeight];
+        //grid = new int[gridWidth][gridHeight];
         gridTile = new MapTile[gridWidth][gridHeight];
     	for(int i=0; i< gridWidth; i++){
             for(int j=0; j< gridHeight; j++)
             {
-            	grid[i][j]= TOWER;
+            	//grid[i][j]= TOWER;
             	gridTile[i][j]= new MapTile();
             	gridTile[i][j].setTileValue(TOWER);
             }
@@ -284,29 +288,30 @@ public class TDMap implements DrawableEntity{
             explored.add(t);
             int i= arckeyi(t);
             int j= arckeyj(t);
-            if((i-1)>-1) //TODO: convert to gridTile.
-                if(grid[i-1][j]==PATH)
+            System.out.println("(" + i + ", " + j + ")");
+            if((i-1)>=0) 
+                if(gridTile[i-1][j].getTileValue()==PATH)
                     if(!explored.contains(key(i-1,j)))
                     {
                         frontier.addLast(key(i-1,j));
                         parent[key(i-1,j)]=t;
                     }
-            if((i+1)<gridHeight)
-                if(grid[i+1][j]==PATH)
+            if((i+1)<gridWidth)
+                if(gridTile[i+1][j].getTileValue()==PATH)
                     if(!explored.contains(key(i+1,j)))
                     {
                         frontier.addLast(key(i+1,j));
                         parent[key(i+1,j)]=t;
                     }
-            if((j-1)>-1)
-                if(grid[i][j-1]==PATH)
+            if((j-1)>=0)
+                if(gridTile[i][j-1].getTileValue()==PATH)
                     if(!explored.contains(key(i,j-1)))
                     {
                         frontier.addLast(key(i,j-1));
                         parent[key(i,j-1)]=t;
                     }
             if((j+1)<gridHeight)
-                if(grid[i][j+1]==PATH)
+                if(gridTile[i][j+1].getTileValue()==PATH)
                     if(!explored.contains(key(i,j+1)))
                     {
                         frontier.add(key(i,j+1));
@@ -315,15 +320,14 @@ public class TDMap implements DrawableEntity{
         }
         t= key(end1,end2);
         isMapValid= explored.contains(t);
-        if(isMapValid)
-        {
-            shortestPath= new LinkedList<>();
-            while(t!=key(start1,start2))
-            {
-                shortestPath.addFirst(t);
-                t= parent[t];
-            }
-            shortestPath.addFirst(t);
+        if(isMapValid){
+	        shortestPath= new LinkedList<>();
+	        while(t!=key(start1,start2))
+	        {
+	            shortestPath.addFirst(t);
+	            t= parent[t];
+	        }
+	        shortestPath.addFirst(t);
         }
         return isMapValid;
     }
@@ -343,34 +347,7 @@ public class TDMap implements DrawableEntity{
         return ((k-1)/gridWidth);
     }
     
-    // This method provides an easy way to print out the grid to display the
-    // map. It also prints out the shortest path the critters will take to move
-    // from the Start cell to the End Cell.
-    public void print()
-    {
-        System.out.println("Grid Size is "+gridWidth+" in horizontal width by "+gridHeight+" in vertical height:");
-        for(int j=-2; j<gridWidth; j++)
-            System.out.print("-");
-        for(int i=0; i<gridHeight; i++)
-        {
-            System.out.print("\n|");
-            for(int j=0; j<gridWidth; j++)
-                if(grid[j][i]==TOWER)
-                    System.out.print(" ");
-                else if(grid[j][i]==PATH)
-                    System.out.print("O");
-            System.out.print("|");
-        }
-        System.out.println();
-        for(int j=-2; j<gridWidth; j++)
-            System.out.print("-");
-        if(isMapValid)
-            System.out.print("\nShortest path from Start to End is: ");
-        for(Integer shortestPath1 : shortestPath) {
-            System.out.print("(" + arckeyi(shortestPath1) + "," + arckeyj(shortestPath1) + ")\t");
-        }
-        System.out.println();
-    }
+   
     
     public int getTileWidth_pixel(){
     	return this.tileWidth_Pixel;
@@ -394,7 +371,7 @@ public class TDMap implements DrawableEntity{
     }
     public int getType(int x, int y)
     {
-    	int type= grid[x][y];
+    	int type= gridTile[x][y].getTileValue();
     	return type;
     }
     public MapTile getTile(int x, int y){
@@ -628,6 +605,34 @@ public class TDMap implements DrawableEntity{
 	        {
 	            tempObserver.TDMapReinitialized();
 	        }
+	    }
+	    // This method provides an easy way to print out the grid to display the
+	    // map. It also prints out the shortest path the critters will take to move
+	    // from the Start cell to the End Cell.
+	    public void print()
+	    {
+	        System.out.println("Grid Size is "+gridWidth+" in horizontal width by "+gridHeight+" in vertical height:");
+	        for(int j=-2; j<gridWidth; j++)
+	            System.out.print("-");
+	        for(int i=0; i<gridHeight; i++)
+	        {
+	            System.out.print("\n|");
+	            for(int j=0; j<gridWidth; j++)
+	                if(gridTile[j][i].getTileValue()==TOWER)
+	                    System.out.print(" ");
+	                else if(gridTile[j][i].getTileValue()==PATH)
+	                    System.out.print("O");
+	            System.out.print("|");
+	        }
+	        System.out.println();
+	        for(int j=-2; j<gridWidth; j++)
+	            System.out.print("-");
+	        if(isMapValid)
+	            System.out.print("\nShortest path from Start to End is: ");
+	        for(Integer shortestPath1 : shortestPath) {
+	            System.out.print("(" + arckeyi(shortestPath1) + "," + arckeyj(shortestPath1) + ")\t");
+	        }
+	        System.out.println();
 	    }
 }
 

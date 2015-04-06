@@ -9,10 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -40,7 +42,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	private JButton bSave;
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
-	
+	JFileChooser fc = new JFileChooser();
 	
 	public MapEditorController(TDMap map)
 	{
@@ -62,6 +64,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
+		bInitialize.doClick();
 	}
 	public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
@@ -99,7 +102,15 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		}
 		else if(e.getSource() == bSave)
 		{
-			tdMap.writeMaptoFile(this.getControlPanel().getTextField().getText()+".TDMap");
+			int returnVal = fc.showDialog(this, "Save");
+			if(returnVal ==JFileChooser.APPROVE_OPTION){
+				File file = fc.getSelectedFile();
+				if(file.isDirectory()){
+					System.out.println("It is a directory");
+				}
+				
+				tdMap.writeMaptoFile(file.getPath() +".TDMap");
+			}
 		}
 		else
 			Draw();
@@ -140,7 +151,6 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		tdMap.toggleGrid(xGridPos, yGridPos);
-		
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
