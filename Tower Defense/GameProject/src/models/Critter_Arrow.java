@@ -6,12 +6,6 @@ import java.awt.Color;
 /*
  * Arrow critter is fast but weak compared to other critters
  */
-
-/**
- *
- * 
- */
-
 public class Critter_Arrow extends Critter{
 
     /**

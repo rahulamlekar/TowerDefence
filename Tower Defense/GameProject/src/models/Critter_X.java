@@ -5,13 +5,6 @@ import java.awt.Color;
 /*
  * Critter X is completely resitant to effects from towers. Average apart from that.
  */
-
-/**
- *
- * 
- * 
- */
-
 public class Critter_X extends Critter {
 
     /**

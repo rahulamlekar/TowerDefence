@@ -5,12 +5,6 @@ import java.awt.Color;
 /*
  * Circle critter is average, run of the mill critter
  */
-
-/**
- *
- * 
- */
-
 public class Critter_Circle extends Critter{
 	
     /**

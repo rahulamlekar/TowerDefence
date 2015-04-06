@@ -6,12 +6,6 @@ import java.awt.Color;
 /*
  * infinity critter is BOSS critter. Hard to kill, but high rewards
  */
-
-/**
- *
- * 
- */
-
 public class Critter_Infinity extends Critter{
 
     /**

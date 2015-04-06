@@ -6,12 +6,6 @@ import java.awt.Color;
 /*
  * shuriken critter is Strong but slow
  */
-
-/**
- *
- * 
- */
-
 public class Critter_Shrunken extends Critter{
 
     /**
