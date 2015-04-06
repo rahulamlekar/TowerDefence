@@ -10,14 +10,14 @@ public class Critter_Arrow extends Critter{
 	public Critter_Arrow(int level, TDMap m) {
 		super(level, m);
 		//average reward
-		reward = (int) (7*levelMultiplier);
+		reward = (int) (10*levelMultiplier);
 		//low hitpoints
-		currHitPoints = (140*levelMultiplier);
+		currHitPoints = (30*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//does not regenerate health
 		regen = 0;
 		//fast
-		speed = (10*levelMultiplier);
+		speed = (5*levelMultiplier);
 		//does not resist effects
 		resistance = 0;
 		//set name

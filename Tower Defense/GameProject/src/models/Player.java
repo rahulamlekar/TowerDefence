@@ -2,7 +2,7 @@ package models;
 
 public class Player {
 	private static final int STARTINGLIVES = 10;
-	private static final int STARTINGMONEY = 400;
+	private static final int STARTINGMONEY = 500;
 	
 	private int lives = STARTINGLIVES;
 	private int money = STARTINGMONEY;

@@ -11,9 +11,9 @@ public class Critter_Square extends Critter{
 	public Critter_Square(int level, TDMap m) {
 		super(level, m);
 		//low reward
-		reward = (int) (12*levelMultiplier);
+		reward = (int) (5*levelMultiplier);
 		//low hitpoints
-		currHitPoints = (180*levelMultiplier);
+		currHitPoints = (100*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//no regen
 		regen = 0;
