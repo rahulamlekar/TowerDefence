@@ -10,146 +10,46 @@ import java.util.ArrayList;
  * Critter abstract class from which all critters extend. Has certain attributes and methods including 
  * taking a step, getting damaged, etc.
  */
-
-/**
- *
- * 
- */
-
 public abstract class Critter extends Subject implements DrawableEntity {
 	//Constants
-
-    /**
-     *
-     */
-    	public static final int MAXWAVENUMBER = 50;
+	public static final int MAXWAVENUMBER = 50;
 	//attributes of the critter
 	//tangible properties of critter
-
-    /**
-     *
-     */
-    	protected double currHitPoints;
-
-    /**
-     *
-     */
-    protected double maxHitPoints;
-
-    /**
-     *
-     */
-    protected double speed;
-
-    /**
-     *
-     */
-    protected int size;
-
-    /**
-     *
-     */
-    protected double regen;
-
-    /**
-     *
-     */
-    protected double resistance;
-
-    /**
-     *
-     */
-    protected Color cColor;
+	protected double currHitPoints;
+	protected double maxHitPoints;
+	protected double speed;
+	protected int size;
+	protected double regen;
+	protected double resistance;
+	protected Color cColor;
 	
 	//intangible properties
-
-    /**
-     *
-     */
-    	protected int reward;
-
-    /**
-     *
-     */
-    protected int level;
-
-    /**
-     *
-     */
-    protected double levelMultiplier;
-
-    /**
-     *
-     */
-    protected String name;
-
-    /**
-     *
-     */
-    protected double slowFactor;
-
-    /**
-     *
-     */
-    protected int slowTime;
-
-    /**
-     *
-     */
-    protected int beenSlowedFor;
+	protected int reward;
+	protected int level;
+	protected double levelMultiplier;
+	protected String name;
+	protected double slowFactor;
+	protected int slowTime;
+	protected int beenSlowedFor;
 	private double damageOverTimeVal;
 	private int dotTime;
 	private int beenDOTFor;
 	private boolean burning;
 	
 	//state properties
-
-    /**
-     *
-     */
-    	protected Point _pixelPosition;
-
-    /**
-     *
-     */
-    protected boolean active;
-
-    /**
-     *
-     */
-    protected boolean alive;
-
-    /**
-     *
-     */
-    protected boolean reachedEnd;
-
-    /**
-     *
-     */
-    protected ArrayList<Point> pixelPathToFollow;
+	protected Point _pixelPosition;
+	protected boolean active;
+	protected boolean alive;
+	protected boolean reachedEnd;
+	protected ArrayList<Point> pixelPathToFollow;
 	//protected ArrayList<Point> newPixelPathToFollow;
-
-    /**
-     *
-     */
-    	protected double indexInPixelPath;
-
-    /**
-     *
-     */
-    protected int intIndexInPixelPath;
+	protected double indexInPixelPath;
+	protected int intIndexInPixelPath;
 
 	
 	 
 	//constructor
-
-    /**
-     *
-     * @param level
-     * @param m
-     */
-    	public Critter(int level, TDMap m){
+	public Critter(int level, TDMap m){
 		//set the level from input
 		this.level = level;
 		//set the default values for all critters
@@ -171,31 +71,15 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	}
 	
 	//getters and setters
-
-    /**
-     *
-     * @return
-     */
-    	public double getIndexInPixelPath(){
+	public double getIndexInPixelPath(){
 		return this.indexInPixelPath;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public ArrayList<Point> getListPixelPath(){
+	public ArrayList<Point> getListPixelPath(){
 		return this.pixelPathToFollow;
 	}
 	/*public ArrayList<Point> getNewListPixelPath(){
 		return this.newPixelPathToFollow;
 	}*/
-
-    /**
-     *
-     * @param slowFactor
-     */
-    
 	public void setSlowFactor(double slowFactor){
 		if(this.slowFactor < slowFactor){
 			this.slowFactor = slowFactor;
@@ -209,163 +93,66 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		beenDOTFor = 0;
 	}
 	
-    /**
-     *
-     * @return
-     */
-    public Color getColor(){
+	public Color getColor(){
 		return cColor;
 	}
 	
-    /**
-     *
-     * @return
-     */
-    public Point getPixelPosition(){
+
+	public Point getPixelPosition(){
 		return _pixelPosition;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public boolean hasReachedEnd(){
+	public boolean hasReachedEnd(){
 		return reachedEnd;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public boolean isAlive(){
+	public boolean isAlive(){
 		return alive;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public boolean isBurning() {
+	public boolean isBurning() {
 		return burning;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public int getSize(){
+	public int getSize(){
 		return size;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public int getLoot(){
+	public int getLoot(){
 		return reward;
 	}
-
-    /**
-     *
-     * @param size
-     */
-    public void setHitboxRadius(int size){
+	public void setHitboxRadius(int size){
 		this.size = size;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public double getHitPoints() {
+	public double getHitPoints() {
 		return currHitPoints;
 	}
-
-    /**
-     *
-     * @param hitPoints
-     */
-    public void setHitPoints(double hitPoints) {
+	public void setHitPoints(double hitPoints) {
 		this.currHitPoints = hitPoints;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public double getMaxHitPoints(){
+	public double getMaxHitPoints(){
 		return maxHitPoints;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public double getRegen() {
+	public double getRegen() {
 		return regen;
 	}
-
-    /**
-     *
-     * @param regen
-     */
-    public void setRegen(double regen) {
+	public void setRegen(double regen) {
 		this.regen = regen;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public double getRawSpeed() {
+	public double getRawSpeed() {
 		return speed;
 	}
-
-    /**
-     *
-     * @param speed
-     */
-    public void setRawSpeed(int speed) {
+	public void setRawSpeed(int speed) {
 		this.speed = speed;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public int getLevel() {
+	public int getLevel() {
 		return level;
 	}
-
-    /**
-     *
-     * @param level
-     */
-    public void setLevel(int level) {
+	public void setLevel(int level) {
 		this.level = level;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public boolean isActive(){
+	public boolean isActive(){
 		return active;
 	}
-
-    /**
-     *
-     * @param act
-     */
-    public void setActive(boolean act){
+	public void setActive(boolean act){
 		active = act;
 	}
-
-    /**
-     *
-     * @return
-     */
-    public double getSpeed(){
+	public double getSpeed(){
 		return speed;
 	}
 	//END OF Getters and Setters
@@ -374,12 +161,6 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 * This must have all properties of the critter that change with time
 	 * These properties are its position and its health.
 	 */
-
-    /**
-     *
-     * @param g
-     */
-    
 	public void updateAndDraw(Graphics g){
 		if(this.isActive()){
 			//do slowing
@@ -468,12 +249,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
     }
 	
 	//Damages the critter for a certain amount (Will likely be removed in final version)
-
-    /**
-     *
-     * @param dam
-     */
-    	public void damage(double dam){
+	public void damage(double dam){
 		if(this.currHitPoints - dam > 0){
 			this.currHitPoints -= dam;
 		}else{
@@ -483,23 +259,12 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			this.notifyObs();
 		}
 	}
-
-    /**
-     *
-     * @param sFactor
-     * @param sTime
-     */
-    public void slowCritter(double sFactor, int sTime){
+	public void slowCritter(double sFactor, int sTime){
 		this.setSlowFactor(sFactor);
 		this.slowTime = sTime;
 	}
 
-    /**
-     *
-     * @param dot
-     * @param damageOverTimeLength
-     */
-    public void damageOverTimeCritter(double dot, int damageOverTimeLength) {
+	public void damageOverTimeCritter(double dot, int damageOverTimeLength) {
 		this.setDOTAmount(dot);
 		this.dotTime = damageOverTimeLength;
 		

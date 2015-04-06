@@ -6,21 +6,9 @@ import java.awt.Color;
 /*
  * Square Critters are weak but travel in groups
  */
-
-/**
- *
- * 
- * 
- */
-
 public class Critter_Square extends Critter{
 
-    /**
-     *
-     * @param level
-     * @param m
-     */
-    public Critter_Square(int level, TDMap m) {
+	public Critter_Square(int level, TDMap m) {
 		super(level, m);
 		//low reward
 		reward = (int) (5*levelMultiplier);

@@ -4,22 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-/**
- *
- * 
- * 
- */
 public class Tower_SpreadShot extends Tower {
 	private int amountOfTargets = 3;
 	static int buyCost;
-
-    /**
-     *
-     * @param n
-     * @param p
-     * @param crittersOnMap
-     */
-    public Tower_SpreadShot(String n, Point p, ArrayList<Critter> crittersOnMap) {
+	public Tower_SpreadShot(String n, Point p, ArrayList<Critter> crittersOnMap) {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
@@ -38,12 +26,7 @@ public class Tower_SpreadShot extends Tower {
 	}
 	
 	//overrides the updateAndDraw method in the tower class to shoot more than one critter.
-	
-    /**
-     *
-     * @param g
-     */
-    	public void updateAndDraw(Graphics g){	
+	public void updateAndDraw(Graphics g){	
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		ArrayList<Critter> targets = new ArrayList<Critter>();
 		
@@ -63,12 +46,7 @@ public class Tower_SpreadShot extends Tower {
 			}
 		}
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public static int getBuyPrice(){	
+	public static int getBuyPrice(){	
 		return buyCost;
 	}
 
