@@ -442,7 +442,8 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	//This method is called from the click handler when we get a click at a point
 
     /**
-     *
+     *  This method selects an existing tower to upgrade it, or puts a new tower
+     *  on the selected tile, of the desired type.
      * @param point
      */
     	public void reactToLeftClick(Point point){
@@ -546,7 +547,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	}
 	
     /**
-     *
+     *  This will show the tower to the placed, as the mouse hovers over the map.
      * @param point
      */
     public void reactToMouseMove(Point point){

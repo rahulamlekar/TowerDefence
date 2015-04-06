@@ -25,7 +25,10 @@ import models.Point;
 import models.TDMap;
 
 /**
- *
+ *  The main controller for the Map Editor. This class will orchestrate all the
+ *  subtleties that are involved with creating a Game Map. The Map Controller
+ *  will allow the user to resize the map, set start and end paths, validate the
+ *  map and also save the map to a desired ".TDMap" file.
  * @author Yash Gupta
  */
 public class MapEditorController extends MapPanel implements ActionListener, MouseListener, IObserverTDMap {
@@ -33,12 +36,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	//declare game specific variables
 
     /**
-     *
+     *  The Map Panel. It deals with tiles, that can either be Path or Tower
+     *  tiles.
      */
     	protected MapPanel mapPanel;
 
     /**
-     *
+     *  The Map Control Panel that is displayed at the bottom of the screen.
      */
     protected MapControlPanel controlPanel;
 
@@ -63,7 +67,8 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	
     /**
      *
-     * @param map
+     * @param map   Takes a TDMap object to change it's configuration, and 
+     *              (re)initialize it to a different map.
      */
     public MapEditorController(TDMap map)
 	{
@@ -166,16 +171,12 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		return this.tdMap;
 	}
 
-    /**
-     *
-     */
+    @Override
     public void TDMapUpdated() {
 		Draw();
 	}
 
-    /**
-     *
-     */
+    @Override
     public void TDMapReinitialized() {
 		tileWidth_Pixel= tdMap.getTileWidth_pixel();
 		tileHeight_Pixel= tdMap.getTileHeight_pixel();
@@ -183,9 +184,10 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	}
 
     /**
-     *
-     * @param widthOfMap
-     * @param heightOfMap
+     *  This will update the indexes of the Start(,) and End(,) ComboBoxes to
+     *  match with the new initialized size of the map.
+     * @param widthOfMap    The new width of the map
+     * @param heightOfMap   The new height of the map
      */
     public void updateStartAndEnd(int widthOfMap, int heightOfMap){
 		controlPanel.updateStartAndEnd(widthOfMap, heightOfMap);

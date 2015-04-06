@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ *  This initializes the various parts of the Map Editor, in terms of the frame.
  * @author Yash Gupta
  */
 public class MapEditorApplicationFrame extends JFrame{
@@ -23,12 +23,12 @@ public class MapEditorApplicationFrame extends JFrame{
 	// constants
 
     /**
-     *
+     *  The width of the window of the Map Editor.
      */
     	public static final int PIXELWIDTH=1280;
 
     /**
-     *
+     *  The height of the window of the Map Editor.
      */
     public static final int PIXELHEIGHT=800;
 

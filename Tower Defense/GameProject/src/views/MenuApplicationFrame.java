@@ -14,18 +14,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import models.TDMap;
 
 /**
- *
+ *  This class refers to the Main Menu of the Tower Defense game.
+ *  This JFrame will be the place where the player gets to decide if he wants to
+ *  load an existing map to play on, choose one of the pre-existing maps, or
+ *  to create a new game map according to his preference.
  * @author Yash Gupta
  */
 public class MenuApplicationFrame extends JFrame implements ActionListener{
 
     /**
-     *
+     *  The width of the window of the main menu.
      */
     public static final int PIXELWIDTH=300;
 
     /**
-     *
+     *  The height of the window of the main menu.
      */
     public static final int PIXELHEIGHT=300;
 
@@ -48,7 +51,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 	//MainMenuActivity activity;
 	
     /**
-     *
+     *  Default Constructor to initialize the Main Menu to the stereotypical menu.
      */
     public MenuApplicationFrame(){
 		init();
