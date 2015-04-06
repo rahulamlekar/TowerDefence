@@ -126,7 +126,12 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		bDefault.setEnabled(false);
 		
 	}
-	public void setMapName(String name){
+
+    /**
+     *
+     * @param name
+     */
+    public void setMapName(String name){
 		this.lblMapToLoad.setText("Map: " + name);
 		this.repaint();
 	}

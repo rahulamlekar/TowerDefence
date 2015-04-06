@@ -108,7 +108,12 @@ public class MapControlPanel extends JPanel{
 	//{
 	//	return textField;
 	//}
-	public JComboBox getStartWidths()
+
+    /**
+     *
+     * @return
+     */
+    	public JComboBox getStartWidths()
 	{
 		return startWidthIndexes;
 	}

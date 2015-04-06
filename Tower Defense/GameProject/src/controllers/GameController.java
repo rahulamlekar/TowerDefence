@@ -550,7 +550,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		System.out.println("The " + gamePlayer.getMoney() + " dollars that you have is not enough for the " + selectedTowerToBuild + " tower.");
 	}
 	
-	public void reactToMouseMove(Point point){
+    /**
+     *
+     * @param point
+     */
+    public void reactToMouseMove(Point point){
 		//first, get the point of the grid where we clicked.
 		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
 		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;

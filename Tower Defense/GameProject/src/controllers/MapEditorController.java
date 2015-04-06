@@ -67,7 +67,11 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
      */
 	JFileChooser fc = new JFileChooser();
 	
-	public MapEditorController(TDMap map)
+    /**
+     *
+     * @param map
+     */
+    public MapEditorController(TDMap map)
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;

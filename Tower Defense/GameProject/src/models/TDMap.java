@@ -25,12 +25,24 @@ public class TDMap implements DrawableEntity{
     /**
      *
      */
+
+    /**
+     *
+     */
     MAXWIDTH = 80, 
 
     /**
      *
      */
+
+    /**
+     *
+     */
     MINHEIGHT = 13, 
+
+    /**
+     *
+     */
 
     /**
      *
@@ -798,7 +810,11 @@ public class TDMap implements DrawableEntity{
 	    // This method provides an easy way to print out the grid to display the
 	    // map. It also prints out the shortest path the critters will take to move
 	    // from the Start cell to the End Cell.
-	    public void print()
+
+    /**
+     *
+     */
+    	    public void print()
 	    {
 	        System.out.println("Grid Size is "+gridWidth+" in horizontal width by "+gridHeight+" in vertical height:");
 	        for(int j=-2; j<gridWidth; j++)
