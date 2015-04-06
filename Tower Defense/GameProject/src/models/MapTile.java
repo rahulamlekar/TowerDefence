@@ -2,7 +2,7 @@ package models;
 
 /**
  *
- * 
+ * This class refers to the Tiles that are associated to the TDMap class.
  * 
  */
 public class MapTile {
