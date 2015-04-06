@@ -143,9 +143,6 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 			int returnVal = fc.showDialog(this, "Save");
 			if(returnVal ==JFileChooser.APPROVE_OPTION){
 				File file = fc.getSelectedFile();
-				if(file.isDirectory()){
-					System.out.println("It is a directory");
-				}
 				
 				tdMap.writeMaptoFile(file.getPath() +".TDMap");
 			}
