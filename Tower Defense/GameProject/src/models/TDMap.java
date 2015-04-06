@@ -26,36 +26,12 @@ public class TDMap implements DrawableEntity{
     /**
      *
      */
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
     MAXWIDTH = 80, 
 
     /**
      *
      */
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
     MINHEIGHT = 13, 
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
 
     /**
      *
