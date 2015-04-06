@@ -24,7 +24,6 @@ import models.TDMap;
  *  subtleties that are involved with creating a Game Map. The Map Controller
  *  will allow the user to resize the map, set start and end paths, validate the
  *  map and also save the map to a desired ".TDMap" file.
- * @author Yash Gupta
  */
 public class MapEditorController extends MapPanel implements ActionListener, MouseListener, IObserverTDMap {
 

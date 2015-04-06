@@ -13,23 +13,22 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 /**
- *
- * @author Yash Gupta
+ *  This class relates to all the UI aspects of the game play.
  */
 public class Artist_Swing extends Helper{
 	
     /**
-     *
+     *  The default pixel width for the screen.
      */
     public static final int PIXELWIDTH=1280;
 
     /**
-     *
+     *  The default pixel height for the screen.
      */
     public static final int PIXELHEIGHT=800;
 
     /**
-     *
+     *  The default height for the map shown on the screen.
      */
     public static final int GAMEPIXELHEIGHT = 700;
 	private int gridWidth;
@@ -125,7 +124,7 @@ public class Artist_Swing extends Helper{
 	}
 	
     /**
-     *
+     *  Draws the map in the background. All the other objects are drawn over it.
      * @param tdMap
      * @param g
      */
@@ -155,10 +154,9 @@ public class Artist_Swing extends Helper{
 		}
 	}
 	
-	//draws the critter, and its current health bar
 
     /**
-     *
+     *  Draws the critter and it's current health bar above it.
      * @param crit
      * @param g
      */
@@ -189,12 +187,9 @@ public class Artist_Swing extends Helper{
 		}
 		
 	}
-	/*
-	 * draws the tower, and indicates its current level by Squares inside of it.
-	 */
 
     /**
-     *
+     *  Draws a Tower, and indicates its current level by Squares inside of it.
      * @param tow
      * @param g
      */
@@ -223,10 +218,10 @@ public class Artist_Swing extends Helper{
 			drawEmptyCircle(g, Color.white, tow.getPosX() + tileWidth/2, tow.getPosY() + tileHeight/2, tileWidth/4 + i*spaceBetweenCircles);
 		}
 	}
-	//draws a shot from a tower to a critter.
+	
 
     /**
-     *
+     *  Draws a shot from a tower to a critter.
      * @param tow
      * @param crit
      * @param g

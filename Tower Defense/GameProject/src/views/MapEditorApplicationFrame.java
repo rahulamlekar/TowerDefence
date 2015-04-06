@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 
 /**
  *  This initializes the various parts of the Map Editor, in terms of the frame.
- * @author Yash Gupta
+ * 
  */
 public class MapEditorApplicationFrame extends JFrame{
 

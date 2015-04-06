@@ -4,7 +4,6 @@ import views.MenuApplicationFrame;
 
 /**
  *  THE PRIMARY CLASS FROM WHERE THE GAME STARTS
- * @author Yash Gupta
  */
 public class Game {
 

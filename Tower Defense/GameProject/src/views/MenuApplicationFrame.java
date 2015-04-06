@@ -19,7 +19,7 @@ import models.TDMap;
  *  This JFrame will be the place where the player gets to decide if he wants to
  *  load an existing map to play on, choose one of the pre-existing maps, or
  *  to create a new game map according to his preference.
- * @author Yash Gupta
+ * 
  */
 public class MenuApplicationFrame extends JFrame implements ActionListener{
 

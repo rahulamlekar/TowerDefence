@@ -10,7 +10,7 @@ import strategies.*;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public abstract class Tower implements DrawableEntity{
 	final static int MAXTOWERLEVEL = 4;

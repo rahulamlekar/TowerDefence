@@ -9,17 +9,16 @@ import java.awt.Color;
 
 /**
  *
- * @author Yash Gupta
  */
 
-public class Critter_Shuriken extends Critter{
+public class Critter_Shrunken extends Critter{
 
     /**
      *
      * @param level
      * @param m
      */
-    public Critter_Shuriken(int level, TDMap m) {
+    public Critter_Shrunken(int level, TDMap m) {
 		super(level, m);
 		//average reward
 		reward = (int) (15*levelMultiplier);

@@ -8,7 +8,6 @@ import java.awt.Color;
 
 /**
  *
- * @author Yash Gupta
  */
 
 public class Critter_Circle extends Critter{

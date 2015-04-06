@@ -16,7 +16,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class TDMap implements DrawableEntity{
 	//final variables

@@ -2,7 +2,7 @@ package models;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class Player {
 	private static final int STARTINGLIVES = 10;

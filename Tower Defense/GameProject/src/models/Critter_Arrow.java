@@ -9,7 +9,6 @@ import java.awt.Color;
 
 /**
  *
- * @author Yash Gupta
  */
 
 public class Critter_Arrow extends Critter{

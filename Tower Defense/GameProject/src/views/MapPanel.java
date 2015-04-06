@@ -13,7 +13,7 @@ import javax.swing.JPopupMenu;
 /**
  *  This class sets the background frame for both the GameApplicationFrame and
  *  the MapEditorApplicationFrame.
- * @author Yash Gupta
+ * 
  */
 public class MapPanel extends JPanel {
     

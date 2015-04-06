@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class Tower_IceBeam extends Tower {
 	static int buyCost;

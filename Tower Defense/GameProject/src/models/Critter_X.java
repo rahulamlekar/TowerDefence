@@ -8,7 +8,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 
 public class Critter_X extends Critter {

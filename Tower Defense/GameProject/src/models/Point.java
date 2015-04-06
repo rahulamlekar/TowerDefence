@@ -6,7 +6,7 @@ package models;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 
 public class Point {

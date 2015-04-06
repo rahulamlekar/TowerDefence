@@ -5,17 +5,13 @@ import models.Critter;
 import models.Critter_Arrow;
 import models.Critter_Circle;
 import models.Critter_Infinity;
-import models.Critter_Shuriken;
+import models.Critter_Shrunken;
 import models.Critter_Square;
 import models.Critter_X;
 import models.TDMap;
-/*
- * generates a group of critters for a certain wave number.
- */
 
 /**
- *
- * @author Yash Gupta
+ *  This class generates a group of critters for a certain wave number.
  */
 
 public class CritterGenerator extends Helper {
@@ -51,7 +47,7 @@ public class CritterGenerator extends Helper {
 			}
 			//Two times the grouped critters as normal
 			for(int i = 0; i < 2*amountOfCritters; i ++){
-				critterGroup.add(new Critter_Shuriken(waveLevel, exampleMap));
+				critterGroup.add(new Critter_Shrunken(waveLevel, exampleMap));
 			}
 		//If it is an EVEN wave level (not multiple of 5), we generate Resistive (X) and fast (Arrow) critters	
 		}else if(waveLevel % 2 == 0){

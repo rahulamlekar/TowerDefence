@@ -8,7 +8,7 @@ import models.Tower;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class Strongest implements IStrategy {
 

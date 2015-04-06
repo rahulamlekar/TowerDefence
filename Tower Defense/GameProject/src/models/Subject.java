@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public abstract class Subject {
 	ArrayList<IObserver> observers = new ArrayList<IObserver>();

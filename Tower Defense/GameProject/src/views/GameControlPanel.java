@@ -19,7 +19,7 @@ import models.Tower;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class GameControlPanel extends JPanel  {
 	private final int buttonSize = 90;

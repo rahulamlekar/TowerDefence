@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class Tower_Laser extends Tower{
 	static int buyCost;

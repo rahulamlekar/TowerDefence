@@ -15,7 +15,7 @@ import models.TDMap;
 
 /**
  *
- * @author Yash Gupta
+ * 
  */
 public class MapControlPanel extends JPanel{
 

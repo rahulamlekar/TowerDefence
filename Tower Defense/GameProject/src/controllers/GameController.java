@@ -40,7 +40,6 @@ import views.MenuApplicationFrame;
  *  numerous towers placed on the map and critters that
  *  traverse the shortest path.
  *
- * @author Yash Gupta
  */
 public class GameController extends MapPanel implements ActionListener, ChangeListener, ItemListener, IObserver {
 		

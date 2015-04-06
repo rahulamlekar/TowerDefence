@@ -15,7 +15,6 @@ import controllers.GameController;
 
 /**
  *
- * @author Yash Gupta
  */
 public class MouseAndKeyboardHandler extends Helper implements KeyListener, MouseListener, MouseMotionListener{
 	
