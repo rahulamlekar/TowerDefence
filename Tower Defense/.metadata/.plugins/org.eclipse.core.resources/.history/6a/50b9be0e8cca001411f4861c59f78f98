@@ -1,0 +1,41 @@
+package data;
+
+import static org.lwjgl.opengl.GL11.*;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
+public class Boot {
+	
+	public Boot()
+	{
+		Display.setTitle("Tower Defense - Group 6");
+		try {
+			Display.setDisplayMode(new DisplayMode(600,400));
+			Display.create();
+		} catch (LWJGLException e) {
+			e.printStackTrace();
+		}
+		
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, 600, 400, 0, 1, -1);
+		glMatrixMode(GL_MODELVIEW);
+		
+		while(!Display.isCloseRequested())
+		{
+			
+			
+			
+			
+			Display.update();
+			Display.sync(60);
+		}
+	}
+	
+	public static void main(String args[])
+	{
+		new Boot();
+	}
+}
