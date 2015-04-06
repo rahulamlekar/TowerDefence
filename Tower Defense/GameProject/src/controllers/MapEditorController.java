@@ -2,26 +2,21 @@ package controllers;
 
 import views.*;
 
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.io.File;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import views.MapPanel;
-import models.DrawableEntity;
 import models.IObserverTDMap;
-import models.MapTile;
-import models.Point;
 import models.TDMap;
 
 /**
@@ -65,12 +60,18 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
 	
+<<<<<<< HEAD
     /**
      *
      * @param map   Takes a TDMap object to change it's configuration, and 
      *              (re)initialize it to a different map.
      */
     public MapEditorController(TDMap map)
+=======
+	JFileChooser fc = new JFileChooser();
+	
+	public MapEditorController(TDMap map)
+>>>>>>> origin/asher
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;
@@ -90,6 +91,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
+		bInitialize.doClick();
 	}
 
     /**
@@ -141,7 +143,15 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		}
 		else if(e.getSource() == bSave)
 		{
-			tdMap.writeMaptoFile(this.getControlPanel().getTextField().getText()+".TDMap");
+			int returnVal = fc.showDialog(this, "Save");
+			if(returnVal ==JFileChooser.APPROVE_OPTION){
+				File file = fc.getSelectedFile();
+				if(file.isDirectory()){
+					System.out.println("It is a directory");
+				}
+				
+				tdMap.writeMaptoFile(file.getPath() +".TDMap");
+			}
 		}
 		else
 			Draw();
@@ -194,12 +204,17 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {		
-		double xRatio = ((double)e.getX())/((double)tdMap.getPixelWidth());
-		double yRatio = ((double)e.getY())/((double)tdMap.getPixelHeight());
+		
+		//first, get the point of the grid where we clicked.
+		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
+		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		double xRatio = ((double)e.getX())/(XPixels);
+		double yRatio = ((double)e.getY())/(YPixels);
+		
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
-		tdMap.toggleGrid(xGridPos, yGridPos);
 		
+		tdMap.toggleGrid(xGridPos, yGridPos);
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {

@@ -27,8 +27,8 @@ public class MapControlPanel extends JPanel{
 	JLabel lblInfo5 = new JLabel(") End = (");
 	JLabel lblInfo6 = new JLabel(",");
 	JLabel lblInfo7 = new JLabel(")");
-	JLabel lblInfo8 = new JLabel(".TDMap");
-	JTextField textField;
+	//JLabel lblInfo8 = new JLabel(".TDMap");
+	//JTextField textField;
 	JComboBox widthList, heightList, startWidthIndexes, startHeightIndexes, endWidthIndexes, endHeightIndexes;
 	JButton bInitialize = new JButton("Re-Initialize the Map");
 	JButton bSetStartAndEnd = new JButton("Set Start & End");
@@ -64,10 +64,10 @@ public class MapControlPanel extends JPanel{
         this.add(lblInfo7);
         this.add(bInitialize);
         this.add(bSetStartAndEnd);
-        textField= new JTextField(10);
-        textField.setEditable(true);
-        this.add(textField);
-        this.add(lblInfo8);
+        //textField= new JTextField(10);
+        //textField.setEditable(true);
+        //this.add(textField);
+        //this.add(lblInfo8);
         this.add(bSave);
         this.add(bReturn);
 	}
@@ -104,6 +104,7 @@ public class MapControlPanel extends JPanel{
 	{
 		return bSave;
 	}
+<<<<<<< HEAD
 
     /**
      *
@@ -119,6 +120,13 @@ public class MapControlPanel extends JPanel{
      * @return
      */
     public JComboBox getStartWidths()
+=======
+	//public JTextField getTextField()
+	//{
+	//	return textField;
+	//}
+	public JComboBox getStartWidths()
+>>>>>>> origin/asher
 	{
 		return startWidthIndexes;
 	}

@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -21,6 +22,7 @@ import models.TDMap;
  * @author Yash Gupta
  */
 public class MenuApplicationFrame extends JFrame implements ActionListener{
+<<<<<<< HEAD
 
     /**
      *  The width of the window of the main menu.
@@ -41,14 +43,22 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
      *
      */
     public static final int TIMEOUT = 30 ;
+=======
+	public static final int PIXELWIDTH=500;
+	public static final int PIXELHEIGHT=200;
+	public static final String APP_NAME = "Main Menu";
+	public static final int TIMEOUT = 30 ;
+>>>>>>> origin/asher
 	final JFileChooser fc = new JFileChooser();
 	JPanel mainPanel = new JPanel();
 	JButton bPlay = new JButton("Play a game");
 	JButton bCreateMap = new JButton("Create a map");
 	JButton bQuit = new JButton("Quit");
 	JButton bLoadMap = new JButton("Load a map");
+	JButton bDefault = new JButton("Default");
 	TDMap mapToLoad;
-	//MainMenuActivity activity;
+	JLabel lblMapToLoad = new JLabel("MAP: Default");
+
 	
     /**
      *  Default Constructor to initialize the Main Menu to the stereotypical menu.
@@ -59,6 +69,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		bCreateMap.addActionListener(this);
 		bQuit.addActionListener(this);
 		bLoadMap.addActionListener(this);
+		bDefault.addActionListener(this);
 		mapToLoad = new TDMap("res/DIRTMAP1.TDMap"); //set default map
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Map Files", "TDMap");
 		fc.setFileFilter(filter);
@@ -80,9 +91,15 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		        if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            String filePath = fc.getSelectedFile().getPath();
 		            mapToLoad = new TDMap(filePath);
+		            this.setMapName(filePath);
+		            bDefault.setEnabled(true);
 		        } else {
 		        	
 		        }
+			}else if(e.getSource() == bDefault){
+				this.setMapName("Default");
+				mapToLoad = new TDMap("res/DIRTMAP1.TDMap");
+				bDefault.setEnabled(false);
 			}
 	}
 		
@@ -98,7 +115,8 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
         mainPanel.add(bCreateMap);
         mainPanel.add(bLoadMap);
         mainPanel.add(bQuit);
-        
+        mainPanel.add(lblMapToLoad);
+        mainPanel.add(bDefault);
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.add(mainPanel);
@@ -111,7 +129,12 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);					
 		setLocationRelativeTo(null);
 		setVisible(true);
+		bDefault.setEnabled(false);
 		
+	}
+	public void setMapName(String name){
+		this.lblMapToLoad.setText("Map: " + name);
+		this.repaint();
 	}
 
 }

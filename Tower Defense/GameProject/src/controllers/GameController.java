@@ -331,7 +331,9 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 						crittersInWave.get(activeCritterIndex).setActive(true);
 						activeCritterIndex +=1;
 					}else if(activeCritterIndex < crittersInWave.size()){
-						if(crittersInWave.get(activeCritterIndex-1).getPixelPosition().getX() > 50 || crittersInWave.get(activeCritterIndex-1).isAlive()==false){
+						Critter curr = crittersInWave.get(activeCritterIndex -1);
+						Point currPos = curr.getPixelPosition();
+						if(Math.abs(currPos.getX() - curr.getListPixelPath().get(1).getX()) > 50 || Math.abs(currPos.getY() - curr.getListPixelPath().get(1).getY()) > 50 || curr.isAlive()==false || curr.hasReachedEnd()){
 							crittersInWave.get(activeCritterIndex).setActive(true);
 							activeCritterIndex +=1;
 						}
@@ -448,8 +450,10 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
      */
     	public void reactToLeftClick(Point point){
 		//first, get the point of the grid where we clicked.
-		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
-		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
+		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
+		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		double xRatio = ((double)point.getX())/(XPixels);
+		double yRatio = ((double)point.getY())/(YPixels);
 		
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
@@ -546,16 +550,21 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		System.out.println("The " + gamePlayer.getMoney() + " dollars that you have is not enough for the " + selectedTowerToBuild + " tower.");
 	}
 	
+<<<<<<< HEAD
     /**
      *  This will show the tower to the placed, as the mouse hovers over the map.
      * @param point
      */
     public void reactToMouseMove(Point point){
 	
+=======
+	public void reactToMouseMove(Point point){
+>>>>>>> origin/asher
 		//first, get the point of the grid where we clicked.
-		double xRatio = ((double)point.getX())/((double)tdMap.getPixelWidth());
-		double yRatio = ((double)point.getY())/((double)tdMap.getPixelHeight());
-		
+		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
+		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		double xRatio = ((double)point.getX())/(XPixels);
+		double yRatio = ((double)point.getY())/(YPixels);
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		//**TODO tile at movement
