@@ -123,6 +123,7 @@ public class TDMap implements DrawableEntity{
     // This method initializes a new TDMap from a file.
     private boolean readMapFromFile(String add)
     {
+    	boolean result;
         File f= new File(add);
         if(!f.exists())
             return false;
@@ -151,13 +152,15 @@ public class TDMap implements DrawableEntity{
                 end2= dis.readInt();
                 dis.close();
                 fis.close();
-                System.out.println("Map is valid?: " + isMap());
+                result = verifyMap();
+                
             }
             catch(IOException e)
             {
+            	System.out.println("Error with reading map");
                 return false;
             }
-            return true;
+            return result;
         }
     }
     
@@ -275,7 +278,7 @@ public class TDMap implements DrawableEntity{
     // Start Cell to get rid of Loops, and the Critters optimize their attack.
     // This will be stored in shortestPath, as a LinkedList.
     // This method also initializes the boolean isMapValid to a T/F value.
-    public boolean isMap()
+    public boolean verifyMap()
     {
         LinkedList<Integer> explored= new LinkedList<>();
         LinkedList<Integer> frontier= new LinkedList<>();
@@ -288,7 +291,7 @@ public class TDMap implements DrawableEntity{
             explored.add(t);
             int i= arckeyi(t);
             int j= arckeyj(t);
-            System.out.println("(" + i + ", " + j + ")");
+            //System.out.println("(" + i + ", " + j + ")");
             if((i-1)>=0) 
                 if(gridTile[i-1][j].getTileValue()==PATH)
                     if(!explored.contains(key(i-1,j)))
