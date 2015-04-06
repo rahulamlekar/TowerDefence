@@ -3,9 +3,21 @@ package models;
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ *
+ * 
+ * 
+ */
 public class Tower_Laser extends Tower{
 	static int buyCost;
-	public Tower_Laser(String name, Point p, ArrayList<Critter> crittersOnMap) {
+
+    /**
+     *
+     * @param name
+     * @param p
+     * @param crittersOnMap
+     */
+    public Tower_Laser(String name, Point p, ArrayList<Critter> crittersOnMap) {
 		super(name,p,crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
@@ -22,7 +34,12 @@ public class Tower_Laser extends Tower{
 		buyCost = 100;
 		slowTime = 0;
 	}
-	public static int getBuyPrice(){	
+	
+    /**
+     *
+     * @return
+     */
+    public static int getBuyPrice(){	
 		return buyCost;
 	}
 
