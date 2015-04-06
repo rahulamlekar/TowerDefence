@@ -104,29 +104,11 @@ public class MapControlPanel extends JPanel{
 	{
 		return bSave;
 	}
-<<<<<<< HEAD
-
-    /**
-     *
-     * @return
-     */
-    public JTextField getTextField()
-	{
-		return textField;
-	}
-
-    /**
-     *
-     * @return
-     */
-    public JComboBox getStartWidths()
-=======
 	//public JTextField getTextField()
 	//{
 	//	return textField;
 	//}
 	public JComboBox getStartWidths()
->>>>>>> origin/asher
 	{
 		return startWidthIndexes;
 	}

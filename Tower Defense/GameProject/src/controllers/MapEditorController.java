@@ -60,18 +60,14 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
 	
-<<<<<<< HEAD
     /**
      *
      * @param map   Takes a TDMap object to change it's configuration, and 
      *              (re)initialize it to a different map.
      */
-    public MapEditorController(TDMap map)
-=======
 	JFileChooser fc = new JFileChooser();
 	
 	public MapEditorController(TDMap map)
->>>>>>> origin/asher
 	{
 		//create Field pointer defined in controller
 		mapPanel = this;

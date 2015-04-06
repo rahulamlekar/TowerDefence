@@ -22,7 +22,6 @@ import models.TDMap;
  * @author Yash Gupta
  */
 public class MenuApplicationFrame extends JFrame implements ActionListener{
-<<<<<<< HEAD
 
     /**
      *  The width of the window of the main menu.
@@ -43,12 +42,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
      *
      */
     public static final int TIMEOUT = 30 ;
-=======
-	public static final int PIXELWIDTH=500;
-	public static final int PIXELHEIGHT=200;
-	public static final String APP_NAME = "Main Menu";
-	public static final int TIMEOUT = 30 ;
->>>>>>> origin/asher
+
 	final JFileChooser fc = new JFileChooser();
 	JPanel mainPanel = new JPanel();
 	JButton bPlay = new JButton("Play a game");

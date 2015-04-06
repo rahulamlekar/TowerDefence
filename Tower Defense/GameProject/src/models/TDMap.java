@@ -459,42 +459,6 @@ public class TDMap implements DrawableEntity{
         return ((k-1)/gridWidth);
     }
     
-<<<<<<< HEAD
-    // This method provides an easy way to print out the grid to display the
-    // map. It also prints out the shortest path the critters will take to move
-    // from the Start cell to the End Cell.
-
-    /**
-     *
-     */
-        public void print()
-    {
-        System.out.println("Grid Size is "+gridWidth+" in horizontal width by "+gridHeight+" in vertical height:");
-        for(int j=-2; j<gridWidth; j++)
-            System.out.print("-");
-        for(int i=0; i<gridHeight; i++)
-        {
-            System.out.print("\n|");
-            for(int j=0; j<gridWidth; j++)
-                if(grid[j][i]==TOWER)
-                    System.out.print(" ");
-                else if(grid[j][i]==PATH)
-                    System.out.print("O");
-            System.out.print("|");
-        }
-        System.out.println();
-        for(int j=-2; j<gridWidth; j++)
-            System.out.print("-");
-        if(isMapValid)
-            System.out.print("\nShortest path from Start to End is: ");
-        for(Integer shortestPath1 : shortestPath) {
-            System.out.print("(" + arckeyi(shortestPath1) + "," + arckeyj(shortestPath1) + ")\t");
-        }
-        System.out.println();
-    }
-=======
-   
->>>>>>> origin/asher
     
     /**
      *
