@@ -381,35 +381,21 @@ public class TDMap implements DrawableEntity{
         setAsPath(i,j);
     }
 
-<<<<<<< HEAD
-    
-    // This method will return true if the Map is connected, and false
-    // otherwise.
-    // The way it is implemented is by applying a BREADTH-FIRST search algorithm
-    // from the starting cell and then checking if the ending cell has been
-    // explored or not. If the ending cell has been explored, then the PATH is
-    // valid. This BFS also explores the shortest path from the End Cell to the
-    // Start Cell to get rid of Loops, and the Critters optimize their attack.
-    // This will be stored in shortestPath, as a LinkedList.
-    // This method also initializes the boolean isMapValid to a T/F value.
-    public boolean verifyMap()
-=======
-    /**
-     *
-     * This method will return true if the Map is connected, and false
-     * otherwise.
-     * The way it is implemented is by applying a BREADTH-FIRST search algorithm
-     * from the starting cell and then checking if the ending cell has been
-     * explored or not. If the ending cell has been explored, then the PATH is
-     * valid. This BFS also explores the shortest path from the End Cell to the
-     * Start Cell to get rid of Loops, and the Critters optimize their attack.
-     * This will be stored in shortestPath, as a LinkedList.
-     * This method also initializes the boolean isMapValid to a T/F value.
-     * @return
-     */
-        public boolean isMap()
->>>>>>> origin/yash0406break
-    {
+
+/**
+*
+* This method will return true if the Map is connected, and false
+* otherwise.
+* The way it is implemented is by applying a BREADTH-FIRST search algorithm
+* from the starting cell and then checking if the ending cell has been
+* explored or not. If the ending cell has been explored, then the PATH is
+* valid. This BFS also explores the shortest path from the End Cell to the
+* Start Cell to get rid of Loops, and the Critters optimize their attack.
+* This will be stored in shortestPath, as a LinkedList.
+* This method also initializes the boolean isMapValid to a T/F value.
+* @return
+*/
+    public boolean verifyMap(){
         LinkedList<Integer> explored= new LinkedList<>();
         LinkedList<Integer> frontier= new LinkedList<>();
         int parent[]= new int [(gridWidth*gridHeight)];
