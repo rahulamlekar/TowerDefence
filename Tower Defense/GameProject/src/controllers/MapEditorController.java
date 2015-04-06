@@ -35,6 +35,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	private JButton bSave;
 	JFrame mainFrame;
 	private int tileWidth_Pixel, tileHeight_Pixel;
+	
 	JFileChooser fc = new JFileChooser();
 	
 	public MapEditorController(TDMap map)
