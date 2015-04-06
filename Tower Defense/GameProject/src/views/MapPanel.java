@@ -10,9 +10,17 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 
+/**
+ *  This class sets the background frame for both the GameApplicationFrame and
+ *  the MapEditorApplicationFrame.
+ * 
+ */
 public class MapPanel extends JPanel {
     
-	public MapPanel(){
+    /**
+     *
+     */
+    public MapPanel(){
 		
 		//set panel properties
 		setBackground(Color.BLACK);

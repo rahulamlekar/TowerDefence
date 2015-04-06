@@ -5,24 +5,33 @@ import models.Critter;
 import models.Critter_Arrow;
 import models.Critter_Circle;
 import models.Critter_Infinity;
-import models.Critter_Shuriken;
+import models.Critter_Shrunken;
 import models.Critter_Square;
 import models.Critter_X;
 import models.TDMap;
-/*
- * generates a group of critters for a certain wave number.
+
+/**
+ *  This class generates a group of critters for a certain wave number.
  */
+
 public class CritterGenerator extends Helper {
 	//attributes
 	private final static int BASECRITTERS = 10; //this is the base amount of critters
 	private final static int MAXWAVE = 50; //THE maximum wave number
 	//constructor
 	//This is where we create the current WAVE.
-	public static ArrayList<Critter> getGeneratedCritterWave(int waveLevel, TDMap exampleMap){
+
+    /**
+     *
+     * @param waveLevel
+     * @param exampleMap
+     * @return
+     */
+    	public static ArrayList<Critter> getGeneratedCritterWave(int waveLevel, TDMap exampleMap){
 		ArrayList<Critter> critterGroup = new ArrayList<Critter>();
 		//what to multiply the amount of critters by (so more critters come each wave)
 		double critterMultiplier = 1.0 + 0.5*waveLevel/MAXWAVE;
-		int amountOfCritters = (int) (waveLevel + critterMultiplier*BASECRITTERS);
+		int amountOfCritters = (int) (5*waveLevel + critterMultiplier*BASECRITTERS);
 		
 		//Here is the information for how we generate critters:
 		//IF it is a multiple of 5, we do a boss round, with boss (infinity) and grouped (shuriken) critters.
@@ -31,28 +40,39 @@ public class CritterGenerator extends Helper {
 		//of each type we want to create (0.5 for infinity means we want to create half as many infinity).
 		
 		//for a level that is a multiple of 5:
+		//BOSS level
 		if(waveLevel % 5 ==0){
-			//We want to create half the amount of boss critters as regular critters, and 2 times the grouped.
 			for(int i = 0; i < 0.5*amountOfCritters; i ++){
 				critterGroup.add(new Critter_Infinity(waveLevel, exampleMap));
+				critterGroup.add(new Critter_Shrunken(waveLevel, exampleMap));
 			}
-			//Two times the grouped critters as normal
-			for(int i = 0; i < 2*amountOfCritters; i ++){
-				critterGroup.add(new Critter_Shuriken(waveLevel, exampleMap));
-			}
-		//If it is an EVEN wave level (not multiple of 5), we generate Resistive (X) and fast (Arrow) critters	
-		}else if(waveLevel % 2 == 0){
-			//We want to create the normal amount of resisitive and fast critters. (and the same amoount of each)
+		}
+		 // We generate fast (Arrow) critters	
+		 else if(waveLevel % 5 == 4){
+			 for(int i = 0; i < amountOfCritters; i ++){
+			critterGroup.add(new Critter_Arrow(waveLevel, exampleMap));
+			 }
+			 
+		// We generate Resistive (X) critters	
+		}else if(waveLevel % 5 == 3){
+			//We want to create the normal amount of resisitive and fast critters. (and the same amount of each)
 			for(int i = 0; i < (amountOfCritters); i ++){
 				critterGroup.add(new Critter_X(waveLevel, exampleMap));
-				critterGroup.add(new Critter_Arrow(waveLevel, exampleMap));
+				
 			}
-		//If it is an ODD wave level (not multiple of 5), we generate average (circle) and strong (square) critters	
-		}else if(waveLevel % 2 == 1){
+			
+			// We generate strong (square) critters
+		}else if(waveLevel % 5 == 2){
+			for(int i = 0; i < amountOfCritters; i ++){
+			critterGroup.add(new Critter_Square(waveLevel, exampleMap));
+			}
+			
+		// We generate average (circle) critters	
+		}else if(waveLevel % 5 == 1){
 			//We want to create the normal amount of Circle critters
 			for(int i = 0; i < amountOfCritters; i ++){
 				critterGroup.add(new Critter_Circle(waveLevel, exampleMap));
-				critterGroup.add(new Critter_Square(waveLevel, exampleMap));
+				
 			}
 		}
 		//At this point, all of the critters will have been created and put into the list.
@@ -60,7 +80,14 @@ public class CritterGenerator extends Helper {
 		//return this group to whatever class called it (for simplicity)
 		return critterGroup;
 	}
-	public ArrayList<Critter> getGeneratedCritWave(int waveLevel, TDMap exampleMap){
+
+    /**
+     *
+     * @param waveLevel
+     * @param exampleMap
+     * @return
+     */
+    public ArrayList<Critter> getGeneratedCritWave(int waveLevel, TDMap exampleMap){
 		return null;
 	}
 }

@@ -1,5 +1,10 @@
 package helpers;
 import java.time.*;
+
+/**
+ *
+ * 
+ */
 public class GameClock extends Helper {
 	//dTime is the amount of time that occurs per tick. E.g. to pause game, dTime = 0
 	private int dTime;
@@ -12,21 +17,43 @@ public class GameClock extends Helper {
 		dTime = 1; //default tick is 1 second
 	}
 	//returns the instance (OF WHICH THERE IS ONLY 1) of the clock
-	public static GameClock getInstance(){
+
+    /**
+     *
+     * @return
+     */
+    	public static GameClock getInstance(){
 		return clock;
 	}
 	//getter and setter for deltaTime
-	public int deltaTime(){
+
+    /**
+     *
+     * @return
+     */
+    	public int deltaTime(){
 		return dTime;
 	}
 	
-	public void setDeltaTime(int dt){
+    /**
+     *
+     * @param dt
+     */
+    public void setDeltaTime(int dt){
 		dTime = dt;
 	}
-	public void pause(){
+
+    /**
+     *
+     */
+    public void pause(){
 		setDeltaTime(0);
 	}
-	public void unPause(){
+
+    /**
+     *
+     */
+    public void unPause(){
 		setDeltaTime(1);
 	}
 	

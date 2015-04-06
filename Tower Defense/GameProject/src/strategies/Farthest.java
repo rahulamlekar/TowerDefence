@@ -6,9 +6,20 @@ import java.util.ArrayList;
 import models.Critter;
 import models.Tower;
 
+/**
+ *
+ * 
+ * 
+ */
 public class Farthest implements IStrategy {
 
-	@Override
+    /**
+     *
+     * @param tower
+     * @param g1
+     * @return
+     */
+    @Override
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		Critter farthest_enemy= null;   
         double max_dist = 0;

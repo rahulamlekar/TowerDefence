@@ -13,6 +13,11 @@ import javax.swing.JTextField;
 
 import models.TDMap;
 
+/**
+ *
+ * 
+ * 
+ */
 public class MapControlPanel extends JPanel{
 
 	//public JPanel labelPanel = new JPanel();
@@ -32,7 +37,11 @@ public class MapControlPanel extends JPanel{
 	JButton bSave = new JButton("Save Map");
 	TDMap tdMap;
 	
-	public MapControlPanel(TDMap map){
+    /**
+     *
+     * @param map
+     */
+    public MapControlPanel(TDMap map){
         //add the info label to this panel
 		this.tdMap= map;
         this.add(lblInfo1);
@@ -63,16 +72,36 @@ public class MapControlPanel extends JPanel{
         this.add(bSave);
         this.add(bReturn);
 	}
-	public JButton getInitializeButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JButton getInitializeButton(){
 		return bInitialize;
 	}
-	public JButton getReturnButton(){
+
+    /**
+     *
+     * @return
+     */
+    public JButton getReturnButton(){
 		return bReturn;
 	}
-	public JButton getSetStartAndEndButton() {
+
+    /**
+     *
+     * @return
+     */
+    public JButton getSetStartAndEndButton() {
 		return bSetStartAndEnd;
 	}
-	public JButton getSaveButton()
+
+    /**
+     *
+     * @return
+     */
+    public JButton getSaveButton()
 	{
 		return bSave;
 	}
@@ -80,27 +109,56 @@ public class MapControlPanel extends JPanel{
 	//{
 	//	return textField;
 	//}
-	public JComboBox getStartWidths()
+
+    /**
+     *
+     * @return
+     */
+    	public JComboBox getStartWidths()
 	{
 		return startWidthIndexes;
 	}
-	public JComboBox getStartHeights()
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getStartHeights()
 	{
 		return startHeightIndexes;
 	}
-	public JComboBox getEndWidths()
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getEndWidths()
 	{
 		return endWidthIndexes;
 	}
-	public JComboBox getEndHeights()
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getEndHeights()
 	{
 		return endHeightIndexes;
 	}
-	public JComboBox getWidthIndexes()
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getWidthIndexes()
 	{
 		return widthList;
 	}
-	public void setWidthIndexes()
+
+    /**
+     *
+     */
+    public void setWidthIndexes()
 	{
 		String[] widths = new String[TDMap.MAXWIDTH-TDMap.MINWIDTH+1];
 		for(int i=TDMap.MINWIDTH, j=0; i<=TDMap.MAXWIDTH; i++, j++)
@@ -111,11 +169,20 @@ public class MapControlPanel extends JPanel{
 		}
 		widthList = new JComboBox(widths);
 	}
-	public JComboBox getHeightIndexes()
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getHeightIndexes()
 	{
 		return heightList;
 	}
-	public void setHeightIndexes()
+
+    /**
+     *
+     */
+    public void setHeightIndexes()
 	{
 
 		String[] heights = new String[TDMap.MAXHEIGHT-TDMap.MINHEIGHT+1];
@@ -140,7 +207,12 @@ public class MapControlPanel extends JPanel{
 		return box;
 	}
 	
-	public void updateStartAndEnd(int widthOfMap, int heightOfMap)
+    /**
+     *
+     * @param widthOfMap
+     * @param heightOfMap
+     */
+    public void updateStartAndEnd(int widthOfMap, int heightOfMap)
 	{
 		startWidthIndexes.removeAllItems();
 		for(int i=0; i<widthOfMap; i++){

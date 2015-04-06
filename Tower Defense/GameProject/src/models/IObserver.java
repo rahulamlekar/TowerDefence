@@ -1,5 +1,14 @@
 package models;
 
+/**
+ *
+ * 
+ * 
+ */
 public interface IObserver {
-	public void observerUpdate();
+
+    /**
+     *
+     */
+    public void observerUpdate();
 }

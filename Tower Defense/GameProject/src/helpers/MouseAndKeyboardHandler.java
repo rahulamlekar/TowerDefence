@@ -12,12 +12,21 @@ import models.Point;
 import models.Tower;
 import models.Tower_IceBeam;
 import controllers.GameController;
+
+/**
+ *
+ * 
+ */
 public class MouseAndKeyboardHandler extends Helper implements KeyListener, MouseListener, MouseMotionListener{
 	
 	private GameController gameController;
 	private MapPanel panel;
 		
-	public MouseAndKeyboardHandler(GameController gameController){
+    /**
+     *
+     * @param gameController
+     */
+    public MouseAndKeyboardHandler(GameController gameController){
 		this.gameController = gameController;
 		panel = gameController.getPlayPanel();
 		
