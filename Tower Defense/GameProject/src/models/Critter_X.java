@@ -9,9 +9,9 @@ public class Critter_X extends Critter {
 	public Critter_X(int level, TDMap m) {
 		super(level, m);
 		//high reward
-		reward = (int) (20*levelMultiplier);
+		reward = (int) (12*levelMultiplier);
 		//med hitpoints
-		currHitPoints = (100*levelMultiplier);
+		currHitPoints = (175*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//low regen
 		regen = 1*levelMultiplier;

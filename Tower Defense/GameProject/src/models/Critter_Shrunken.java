@@ -22,14 +22,14 @@ public class Critter_Shrunken extends Critter{
     public Critter_Shrunken(int level, TDMap m) {
 		super(level, m);
 		//average reward
-		reward = (int) (15*levelMultiplier);
+		reward = (int) (10*levelMultiplier);
 		//high hitpoints
-		currHitPoints = (200*levelMultiplier);
+		currHitPoints = (300*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//medium regen
 		regen = 2*levelMultiplier;
 		//low speed
-		speed = (5*levelMultiplier);
+		speed = (3*levelMultiplier);
 		//med resistance
 		resistance = 0.3*levelMultiplier;
 		//set name
