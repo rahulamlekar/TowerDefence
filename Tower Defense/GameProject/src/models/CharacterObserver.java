@@ -2,6 +2,7 @@ package models;
 
 /**
  *
+ * @author Yash Gupta
  */
 public class CharacterObserver implements IObserver {
 	

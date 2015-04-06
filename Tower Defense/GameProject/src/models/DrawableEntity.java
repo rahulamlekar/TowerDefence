@@ -10,6 +10,7 @@ import java.awt.Graphics;
 /**
  *
  * 
+ * @author Yash Gupta
  */
 
 public interface DrawableEntity {

@@ -49,6 +49,7 @@ public class MapEditorApplicationFrame extends JFrame{
 	
     /**
      *
+     * @param tdMap
      */
     public MapEditorApplicationFrame(TDMap tdMap){
 		this.tdMap= tdMap;

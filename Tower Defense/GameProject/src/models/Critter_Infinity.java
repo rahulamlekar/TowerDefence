@@ -9,6 +9,7 @@ import java.awt.Color;
 
 /**
  *
+ * @author Yash Gupta
  */
 
 public class Critter_Infinity extends Critter{

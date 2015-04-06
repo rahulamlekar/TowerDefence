@@ -61,14 +61,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	
     /**
      *
-     * @param map   Takes a TDMap object to change it's configuration, and 
-     *              (re)initialize it to a different map.
-     */
+     */ 
 	JFileChooser fc = new JFileChooser();
 	
     /**
      *
-     * @param map
+     * @param map   Takes a TDMap object to change it's configuration, and 
+     *              (re)initialize it to a different map.
      */
     public MapEditorController(TDMap map)
 	{

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  *
  * 
+ * @author Yash Gupta
  */
 public class Tower_SpreadShot extends Tower {
 	private int amountOfTargets = 3;
