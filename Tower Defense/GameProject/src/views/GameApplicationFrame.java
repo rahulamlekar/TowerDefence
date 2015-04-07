@@ -36,7 +36,7 @@ public class GameApplicationFrame extends JFrame {
     /**
      *
      */
-    public static final String APP_NAME = "Gametime";
+    public static final String APP_NAME = "Group 6 Tower Defense";
 	private GameControlPanel controlPanel;
 	private MapPanel mapPanel;
                           		
@@ -63,15 +63,15 @@ public class GameApplicationFrame extends JFrame {
 		
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+		//get the control and map panels
 		controlPanel = gameController.getControlPanel();
 		mapPanel = gameController.getPlayPanel();
-		//mapPanel.setSize(Artist_Swing.PIXELWIDTH, Artist_Swing.PANELHEIGHT);
+		//add them to the frame
 		add(mapPanel);
 		add(controlPanel);
 		
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
-		setTitle(APP_NAME);
-		//pack();         												
+		setTitle(APP_NAME);       												
 		
 		//set the x button as the default close operation
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);					

@@ -21,9 +21,9 @@ public class Weakest implements IStrategy {
      */
     @Override
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
-		
+		//finds the weakest enemy
 		Critter weakest_enemy= null;   
-        double min_health = 10000.0;
+        double min_health = 10000.0; //arbitrary number
         int count = g1.size(); 			 		 // The number of critters currently within range
         for (int i = 0; i < count; i++) {
             Critter enemy = g1.get(i); 			

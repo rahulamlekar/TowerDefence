@@ -35,7 +35,7 @@ public class MapEditorApplicationFrame extends JFrame{
     /**
      *
      */
-    public static final String APP_NAME = "Map Editor Time";
+    public static final String APP_NAME = "Map Editor";
 
     /**
      *
@@ -52,9 +52,12 @@ public class MapEditorApplicationFrame extends JFrame{
      * @param tdMap
      */
     public MapEditorApplicationFrame(TDMap tdMap){
+    	//get the TDMap passed in and create a controller based on it
 		this.tdMap= tdMap;
 		mapController = new MapEditorController(tdMap);
+		//initialize the application frame
 		init();
+		//and make this the main JFRAMe for the map controller
 		mapController.setMainFrame(this);
 	}
 	
@@ -65,15 +68,17 @@ public class MapEditorApplicationFrame extends JFrame{
 		
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+		//get the control and map panels
 		mapPanel = mapController.getPlayPanel();
 		controlPanel = mapController.getControlPanel();
-		//mapPanel.setSize(Artist_Swing.PIXELWIDTH, Artist_Swing.PANELHEIGHT);
+		//add these to the JFrame
 		add(mapPanel);
 		add(controlPanel);
+		//get the map
 		this.tdMap= mapController.getTDMap();
+		//set the size and title
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
-		setTitle(APP_NAME);
-		//pack();         												
+		setTitle(APP_NAME);   												
 		
 		//set the x button as the default close operation
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);					

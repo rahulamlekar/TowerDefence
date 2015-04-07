@@ -97,51 +97,13 @@ public class MapControlPanel extends JPanel{
     public JButton getSelectEndButton(){
     	return bSelectEnd;
     }
-	//public JTextField getTextField()
-	//{
-	//	return textField;
-	//}
 
-    /**
-     *
-     * @return
-     */
-    //	public JComboBox getStartWidths()
-	//{
-	//	return startWidthIndexes;
-	//}
     public void setStartPointLabel(Point p){
     	lblStartLabel.setText("Start (" + p.getX() + ", " + p.getY() + ")");
     }
     public void setEndPointLabel(Point p){
     	lblEndLabel.setText("End (" + p.getX() + ", " + p.getY() + ")");
     }
-    /**
-     *
-     * @return
-     */
-   /* public JComboBox getStartHeights()
-	{
-		return startHeightIndexes;
-	}*/
-
-    /**
-     *
-     * @return
-     */
-   /* public JComboBox getEndWidths()
-	{
-		return endWidthIndexes;
-	}*/
-
-    /**
-     *
-     * @return
-     */
-   /* public JComboBox getEndHeights()
-	{
-		return endHeightIndexes;
-	}*/
 
     /**
      *
@@ -153,16 +115,14 @@ public class MapControlPanel extends JPanel{
 	}
 
     /**
-     *
+     *sets all of the indices for the widths and puts them into an existing JCOmbobox
      */
     public void setWidthIndexes()
 	{
 		String[] widths = new String[TDMap.MAXWIDTH-TDMap.MINWIDTH+1];
 		for(int i=TDMap.MINWIDTH, j=0; i<=TDMap.MAXWIDTH; i++, j++)
 		{
-			//if(Artist_Swing.PIXELWIDTH % i == 0){
-				widths[j]= Integer.toString(i);
-			//}
+			widths[j]= Integer.toString(i);
 		}
 		widthList = new JComboBox(widths);
 	}
@@ -177,7 +137,7 @@ public class MapControlPanel extends JPanel{
 	}
 
     /**
-     *
+     *sets all of the indices for the heights and puts them into an existing JCombobox
      */
     public void setHeightIndexes()
 	{
@@ -185,50 +145,10 @@ public class MapControlPanel extends JPanel{
 		String[] heights = new String[TDMap.MAXHEIGHT-TDMap.MINHEIGHT+1];
 		for(int i=TDMap.MINHEIGHT, j=0; i<=TDMap.MAXHEIGHT; i++, j++)
 		{
-			//if(Artist_Swing.GAMEPIXELHEIGHT % i ==0){
-				heights[j]= Integer.toString(i);
-			//}
+			heights[j]= Integer.toString(i);
 		}
 		heightList = new JComboBox(heights);
 	}
 	
-	private JComboBox setIndexes(int x, int y)
-	{
-		String[] indexes = new String[y-x+1];
-		for(int i=x, j=0; i<=y; i++, j++)
-		{
-			
-			indexes[j]= Integer.toString(i);
-		}
-		JComboBox box = new JComboBox(indexes);
-		return box;
-	}
-	
-    /**
-     *
-     * @param widthOfMap
-     * @param heightOfMap
-     */
-	/*
-    public void updateStartAndEnd(int widthOfMap, int heightOfMap)
-	{
-		startWidthIndexes.removeAllItems();
-		for(int i=0; i<widthOfMap; i++){
-			startWidthIndexes.addItem(Integer.toString(i));
-		}
-		startHeightIndexes.removeAllItems();
-		for(int i=0; i<heightOfMap; i++){
-			startHeightIndexes.addItem(Integer.toString(i));
-		}
-		endWidthIndexes.removeAllItems();
-		for(int i=0; i<widthOfMap; i++){
-			endWidthIndexes.addItem(Integer.toString(i));
-		}
-		endHeightIndexes.removeAllItems();
-		for(int i=0; i<heightOfMap; i++){	
-			endHeightIndexes.addItem(Integer.toString(i));
-		}
-		this.repaint();
-	}*/
 	
 }
