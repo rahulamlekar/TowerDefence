@@ -20,12 +20,11 @@ public class Tower_Laser extends Tower{
     public Tower_Laser(String name, Point p, ArrayList<Critter> crittersOnMap) {
 		super(name,p,crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
-		//all values are place holders
 		damage = 0.5;
 		rateOfFire = 10;
 		range = 250;
 		sellPrice = 80;
-		upCost = 200;
+		upCost = 600;
 		tColor = Color.black;
 		shotColor = Color.black;
 		buyCost = 200;

@@ -22,12 +22,11 @@ public class Tower_SpreadShot extends Tower {
     public Tower_SpreadShot(String n, Point p, ArrayList<Critter> crittersOnMap) {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
-		//all values are place holders
 		damage = 0.8;
 		rateOfFire = 10;
 		range = 200;
 		sellPrice = 400;
-		upCost = 200;
+		upCost = 2000;
 		tColor = Color.YELLOW;
 		shotColor = Color.YELLOW;
 		buyCost = 900;

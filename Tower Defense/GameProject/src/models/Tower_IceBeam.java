@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * 
  */
 public class Tower_IceBeam extends Tower {
+	//properties for the ice beam tower
 	static int buyCost = 150;
 	double slowFactor;
 	int slowTime;
@@ -22,12 +23,11 @@ public class Tower_IceBeam extends Tower {
     public Tower_IceBeam(String n, Point p, ArrayList<Critter> crittersOnMap) {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
-		//all values are place holders
 		damage = 0.25;
 		rateOfFire = 10;
 		range = 100;
 		sellPrice = 75;
-		upCost = 200;
+		upCost = 350;
 		slowFactor = 0.5;
 		tColor = Color.WHITE;
 		shotColor = Color.WHITE;
