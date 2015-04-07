@@ -70,11 +70,11 @@ public class GameControlPanel extends JPanel  {
 		towerGroup.add(bLaser);
 		towerGroup.add(bNone);
 		bUpgradeTower.setPreferredSize(new Dimension(buttonSize+20,20));
-		bSellTower.setPreferredSize(new Dimension(buttonSize-10, 20));
-		bSpread.setPreferredSize(new Dimension(buttonSize, 20));
-		bFire.setPreferredSize(new Dimension(buttonSize-20, 20));
-		bIceBeam.setPreferredSize(new Dimension(buttonSize-20, 20));
-		bLaser.setPreferredSize(new Dimension(buttonSize-10,20));
+		bSellTower.setPreferredSize(new Dimension(buttonSize, 20));
+		bSpread.setPreferredSize(new Dimension(buttonSize+10, 20));
+		bFire.setPreferredSize(new Dimension(buttonSize, 20));
+		bIceBeam.setPreferredSize(new Dimension(buttonSize-10, 20));
+		bLaser.setPreferredSize(new Dimension(buttonSize+10,20));
 		bNone.setPreferredSize(new Dimension(buttonSize-40, 20));
 		bSpread.setName("Spread");
 		bFire.setName("Fire");

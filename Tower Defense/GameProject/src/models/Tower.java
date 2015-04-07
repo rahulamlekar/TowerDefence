@@ -330,8 +330,7 @@ public abstract class Tower implements DrawableEntity{
 	public String toString(){
 		String result = "";
 		result += this.getName() + ", ";
-		result += "Level " + this.getLevel() + "/" + MAXTOWERLEVEL + ", ";
-		result += "Strategy:";
+		result += "Level " + this.getLevel() + "/" + MAXTOWERLEVEL;
 		
 		return result;
 	}
