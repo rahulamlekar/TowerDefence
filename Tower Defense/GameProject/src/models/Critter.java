@@ -22,7 +22,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
     /**
      *
      */
-    	public static final int MAXWAVENUMBER = 50;
+    	public static final int MAXCRITTERLEVEL = 50;
     	public static final int MAXSPEED = 15;
     	public static final String CRITTERMESSAGE = "Below is a description of each of the colored critters.\n\n" + "Yellow:\t\t\tBoss Critter. Very hard to kill\n\n" + "White:\t\t\tFast but weak\n\n" + "Red:\t\t\tSlightly below average\n\n" + "Pink:\t\t\tStrong but slow\n\n" + "Orange:\t\t\tCompletely resistant to fire and slow\n\n" + "Cyan:\t\t\tAverage Critter\n\n";  
 	//attributes of the critter
@@ -177,14 +177,14 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		burning =false;
 	}
     protected double calculateLevelMultiplier(){
-    	double i = 1 + 1*((double)(level-1))/((double)MAXWAVENUMBER);
+    	double i = 1 + 1*((double)(level-1))/((double)MAXCRITTERLEVEL);
     	
     	if(level > 20){
-    		i = 1 + (level+1)*((double)(level-1))/((double)MAXWAVENUMBER);
+    		i = 1 + (level+1)*((double)(level-1))/((double)MAXCRITTERLEVEL);
     	}else if(level > 10){
-    		i =1 + 2*(level+1)*((double)(level -1))/((double)MAXWAVENUMBER);
+    		i =1 + 2*(level+1)*((double)(level -1))/((double)MAXCRITTERLEVEL);
     	}else if(level > 5){
-    		i =1 + (level+1)*((double)(level -1))/((double)MAXWAVENUMBER);
+    		i =1 + (level+1)*((double)(level -1))/((double)MAXCRITTERLEVEL);
     	}
     	return i;
     }

@@ -108,7 +108,7 @@ public class TDMap implements DrawableEntity{
      *
      */
     public int tileHeight_Pixel;
-	private ArrayList<IObserverTDMap> observers = new ArrayList<IObserverTDMap>();
+	
 	
     // Constructors
 
@@ -306,7 +306,7 @@ public class TDMap implements DrawableEntity{
     				gridTile[i][j].setTileValue(PATH);
     			}
         }
-        TDMapUpdated();
+
     }
     // By convention, I will denote background/TOWER cells to be 4.
 
@@ -360,7 +360,6 @@ public class TDMap implements DrawableEntity{
     	start2= -1;
         tileWidth_Pixel = PIXELWIDTH/gridWidth;
         tileHeight_Pixel = PIXELHEIGHT/gridHeight;
-    	TDMapReinitialized();
     }
     
     /**
@@ -802,37 +801,6 @@ public class TDMap implements DrawableEntity{
 		Artist_Swing.drawMap(this, g);
 	}
 
-    /**
-     *
-     * @param toAddObserver
-     */
-    public void addObserver(IObserverTDMap toAddObserver)
-	    {
-	        observers.add(toAddObserver);
-	    }
-
-    /**
-     *
-     * @param toAddObserver
-     */
-    public void removeObserver(IObserverTDMap toAddObserver)
-	    {
-	        observers.remove(toAddObserver);
-	    }
-	    private void TDMapUpdated()
-	    {
-	        for(IObserverTDMap tempObserver: observers)
-	        {
-	            tempObserver.TDMapUpdated();
-	        }
-	    }
-	    private void TDMapReinitialized()
-	    {
-	        for(IObserverTDMap tempObserver: observers)
-	        {
-	            tempObserver.TDMapReinitialized();
-	        }
-	    }
 	    // This method provides an easy way to print out the grid to display the
 	    // map. It also prints out the shortest path the critters will take to move
 	    // from the Start cell to the End Cell.

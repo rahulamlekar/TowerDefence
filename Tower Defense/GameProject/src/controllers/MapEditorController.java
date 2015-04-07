@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import views.MapPanel;
-import models.IObserverTDMap;
 import models.Point;
 import models.TDMap;
 
@@ -28,7 +27,7 @@ import models.TDMap;
  *  will allow the user to resize the map, set start and end paths, validate the
  *  map and also save the map to a desired ".TDMap" file.
  */
-public class MapEditorController extends MapPanel implements ActionListener, MouseListener, IObserverTDMap {
+public class MapEditorController extends MapPanel implements ActionListener, MouseListener {
 
 	//declare game specific variables
 
@@ -62,7 +61,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	JFrame mainFrame;
 	private boolean selectingStart;
 	private boolean selectingEnd;
-	private int tileWidth_Pixel, tileHeight_Pixel;
+	//private int tileWidth_Pixel, tileHeight_Pixel;
 	
     /**
      *
@@ -90,7 +89,6 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bSelectEnd = this.getControlPanel().getSelectEndButton();
 		bSelectEnd.addActionListener(this);
 		this.tdMap= map;
-		map.addObserver(this);
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
@@ -137,6 +135,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 			int widthOfMap= Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem());
 			int heightOfMap= Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem());
 			tdMap.reinitialize(widthOfMap, heightOfMap,"Generic");
+			this.TDMapReinitialized();
 			this.controlPanel.setStartPointLabel(new Point(0,0));
 			this.controlPanel.setEndPointLabel(new Point(0,0));
 			controlPanel.repaint();
@@ -186,15 +185,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		return this.tdMap;
 	}
 
-    @Override
+  //  @Override
     public void TDMapUpdated() {
 		Draw();
 	}
 
-    @Override
+  //  @Override
     public void TDMapReinitialized() {
-		tileWidth_Pixel= tdMap.getTileWidth_pixel();
-		tileHeight_Pixel= tdMap.getTileHeight_pixel();
 		TDMapUpdated();
 	}
 
@@ -241,6 +238,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 			}
 		}else{
 			tdMap.toggleGrid(xGridPos, yGridPos);	
+	        TDMapUpdated();
 		}
 		
 	}
