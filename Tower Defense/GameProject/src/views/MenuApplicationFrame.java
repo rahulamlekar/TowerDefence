@@ -26,7 +26,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
     /**
      *  The width of the window of the main menu.
      */
-    public static final int PIXELWIDTH=500;
+    public static final int PIXELWIDTH=460;
 
     /**
      *  The height of the window of the main menu.
