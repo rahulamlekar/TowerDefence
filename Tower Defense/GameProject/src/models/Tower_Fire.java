@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Tower_Fire extends Tower {
 	//properties for the fire tower
 	double DOT;
-	int damageOverTimeLength = 20;
+	int damageOverTimeLength = 30;
 	static int buyCost = 200;
 	double slowFactor;
 	int slowTime;
@@ -35,7 +35,7 @@ public class Tower_Fire extends Tower {
 		shotColor = Color.red;
 		buyCost = 200;
 		slowTime = 25;
-		DOT = 1;
+		DOT = 2;
 	}
 	
 	/*

@@ -79,7 +79,7 @@ public class MapEditorApplicationFrame extends JFrame{
 		//set the size and title
 		setSize(PIXELWIDTH,PIXELHEIGHT);	
 		setTitle(APP_NAME);   												
-		
+		this.setResizable(false);
 		//set the x button as the default close operation
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);					
 		setLocationRelativeTo(null);
