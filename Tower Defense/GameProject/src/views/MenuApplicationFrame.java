@@ -71,7 +71,6 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 			if(e.getSource() == bPlay){
 				this.dispose();
 				new GameApplicationFrame(mapToLoad);
@@ -104,13 +103,13 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 		mainPanel.setDoubleBuffered(true);
 		mainPanel.setVisible(true);
 		mainPanel.setFocusable(true);
-        mainPanel.requestFocus();
-        mainPanel.add(bPlay);
-        mainPanel.add(bCreateMap);
-        mainPanel.add(bLoadMap);
-        mainPanel.add(bQuit);
-        mainPanel.add(lblMapToLoad);
-        mainPanel.add(bDefault);
+		mainPanel.requestFocus();
+		mainPanel.add(bPlay);
+		mainPanel.add(bCreateMap);
+		mainPanel.add(bLoadMap);
+		mainPanel.add(bQuit);
+		mainPanel.add(lblMapToLoad);
+		mainPanel.add(bDefault);
 		//set the Frame properties
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.add(mainPanel);
@@ -128,7 +127,7 @@ public class MenuApplicationFrame extends JFrame implements ActionListener{
 	}
 
     /**
-     *
+     *	This displays which map is loaded for use on the menu.
      * @param name
      */
     public void setMapName(String name){
