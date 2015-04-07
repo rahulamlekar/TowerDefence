@@ -21,7 +21,7 @@ public class Fastest implements IStrategy {
      */
     @Override
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
-		
+		//finds target that is fastest
 		Critter fastest_enemy= null;   
         double max_speed = 0;
         int count = g1.size(); 			 		 // The number of critters currently within range
@@ -35,7 +35,6 @@ public class Fastest implements IStrategy {
             }
         }
         
-        //System.out.println(fastest_enemy);
        return(fastest_enemy);				 	 // Tower attacks this critter
 	
 	}

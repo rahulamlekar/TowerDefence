@@ -315,7 +315,8 @@ public abstract class Tower implements DrawableEntity{
     /**
      *
      */
-    	public void upgradeTower(){
+    public void upgradeTower(){
+    	//upgrades the tower based on properties
 		if(level < MAXTOWERLEVEL){
 			level = level + 1;
 			upCost = upCost*3;

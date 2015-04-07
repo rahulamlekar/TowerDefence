@@ -23,7 +23,7 @@ public class Farthest implements IStrategy {
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
 		Critter farthest_enemy= null;   
         double max_dist = 0;
-        
+        //finds the Critter that is farthest along the path
         for (int i = 0; i < g1.size(); i++) {
             Critter enemy = g1.get(i); 			
             double dist = (g1.get(i).getIndexInPixelPath()); // The distance of this enemy along the path
