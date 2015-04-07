@@ -14,33 +14,23 @@ import strategies.*;
  * 
  */
 public abstract class Tower implements DrawableEntity{
+	//final variables
 	final static int MAXTOWERLEVEL = 4;
 	final static String DEFAULTSTRATEGY = "Closest";
 	
+	//Tower properties
 	Point position;
-	//int slowTime;
 	double damage;
 	int rateOfFire;
 	int range;
-
 	int sellPrice;	
 	int upCost;
 	String name;
 	int level;
-	//boolean slow;
-	//double slowFactor;
-	//boolean damageOverTime;
 	Color tColor;
 	Color shotColor;
-	private IStrategy strategy;
-	// inRangeC helps keep track of all the critters in the range of the tower and makes it easier 
-	//for the findCrittersInRange method to be called by an observer.
-	//ArrayList<Critter> inRangeC;
+	private IStrategy strategy; 
 	ArrayList<Critter> potentialCrittersInRange;
-	//private TDMap map;
-	//current CritterShell being targeted
-	//Critter targeted;
-	//checks if the tower is enabled
 	private boolean enabled;
 	private boolean selected;
 	
@@ -54,10 +44,8 @@ public abstract class Tower implements DrawableEntity{
 		position = p;
 		name = n;
 		level = 1;
-		//inRangeC = new ArrayList<Critter>();
 		this.potentialCrittersInRange = crittersOnMap;
 		strategy = new Closest();
-		//this.map = map;
 		enabled = true;
 		selected = false;
 	}
@@ -176,22 +164,6 @@ public abstract class Tower implements DrawableEntity{
 
     /**
      *
-     * @param time
-     */
-    /*public void setSlowTime(int time){
-		this.slowTime = time;
-	}*/
-
-    /**
-     *
-     * @return
-     */
-    /*public int getSlowTime(){
-		return this.slowTime;
-	}*/
-
-    /**
-     *
      * @param newColor
      */
     public void setColor(Color newColor){
@@ -232,19 +204,24 @@ public abstract class Tower implements DrawableEntity{
 	}
 	
     /**
-     *
+     * Updates and draws the Tower (and the shot to critter if any)
      * @param g
      */
     public void updateAndDraw(Graphics g){	
+    	//get in range critters
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
-		this.drawTower(g);
+		//get in range
 		inRangeC = this.findCrittersInRange(potentialCrittersInRange);
+		//select target
 		Critter targetedCritter = this.selectTarget(this, inRangeC);
 		if(targetedCritter != null){
 			if(enabled){
+				//shoot target
 				this.shootTarget(targetedCritter, g);
 			}
 		}
+		//draw the tower
+		this.drawTower(g);
 	}
 	
     /**
@@ -252,7 +229,7 @@ public abstract class Tower implements DrawableEntity{
      * @param g
      */
     public void drawTower(Graphics g) {
-		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
+		//Draws the tower with the Artist
 		Artist_Swing.drawTower(this,g);
     }
 	
@@ -263,6 +240,7 @@ public abstract class Tower implements DrawableEntity{
      * @return
      */
     protected Critter selectTarget(Tower tf1, ArrayList<Critter> crittersInR){
+    	//selects the tower based on strategy
 		Critter target = strategy.findTarget(tf1, crittersInR);
 		return target;
 	}
@@ -273,6 +251,7 @@ public abstract class Tower implements DrawableEntity{
      * @return
      */
     public double distanceToCritter(Critter a){
+    	//get delta x and deltay
 	    double deltaX = a.getPixelPosition().getX()-this.getPosX();
 	    double deltaY = a.getPixelPosition().getY()-this.getPosY();
 		//finds the distance between a creep and a tower.
@@ -302,14 +281,14 @@ public abstract class Tower implements DrawableEntity{
      * @return
      */
     	public ArrayList<Critter> findCrittersInRange(ArrayList<Critter> a){
-		
+		//initialize arrayList
 		ArrayList<Critter> crittersInRange = new ArrayList<Critter>();
 		if(a != null){
+			//go through and get any that are in range
 			for(int i = 0; i<a.size();i++){
 				if(a.get(i).isActive()){
 					if(inRange(a.get(i))){
 						crittersInRange.add(a.get(i));
-						//this.notifyObservers();
 					}
 				}
 			}
@@ -325,7 +304,7 @@ public abstract class Tower implements DrawableEntity{
      * @param target
      * @param g
      */
-    	protected void shootTarget(Critter target, Graphics g){
+    protected void shootTarget(Critter target, Graphics g){
 		for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
 			target.damage(damage);
 			Artist_Swing.drawShot(this, target, g);

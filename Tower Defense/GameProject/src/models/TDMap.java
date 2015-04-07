@@ -26,36 +26,12 @@ public class TDMap implements DrawableEntity{
     /**
      *
      */
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
     MAXWIDTH = 80, 
 
     /**
      *
      */
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
     MINHEIGHT = 5, 
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
 
     /**
      *
@@ -115,42 +91,21 @@ public class TDMap implements DrawableEntity{
     /**
      *
      */
-        public TDMap()
+    public TDMap()
     {
+    	//set the grid width and height as default
         gridWidth= DEFAULTGRIDWIDTH;
         gridHeight= DEFAULTGRIDHEIGHT;
         initializeGrid();
        
-        
+        //generic backdrop
         backdrop= "Generic";
+        //set the tile width and height of the tiles
         tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
         tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
-        //this.isMap();
     }
     
-    /**
-     *
-     * @param l
-     * @param h
-     * @param back
-     */
-    public TDMap(int l, int h, String back)
-    {
-        if(gridWidth>=MINWIDTH&&gridWidth<=MAXWIDTH)
-            gridWidth= l;
-        else
-            gridWidth=DEFAULTGRIDWIDTH;
-        if(gridHeight>=MINHEIGHT&&gridHeight<=MAXHEIGHT)
-            gridHeight= h;
-        else
-            gridHeight= DEFAULTGRIDHEIGHT;
-        
-        initializeGrid();
-        backdrop= back;
-        tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
-        tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
-        //this.isMap();
-    }
+   
     
     /**
      *
@@ -158,29 +113,36 @@ public class TDMap implements DrawableEntity{
      */
     public TDMap(String add)
     {
+    	//set the grid width and height
     	gridWidth = DEFAULTGRIDWIDTH;
     	gridHeight = DEFAULTGRIDHEIGHT;
+    	//read the map from the file and see if it is good
     	boolean goodMap = readMapFromFile(add);
+    	//set the tile width and height (after reading)
     	tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
         tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
-         
+         //if the map is bad, we want to set a default path.
     	if(!goodMap){
+    		//still try to recalculate the tilewidth and height
             tileWidth_Pixel = (int) (((double)PIXELWIDTH)/((double)gridWidth));
             tileHeight_Pixel = (int) (((double)PIXELHEIGHT)/((double)gridHeight));
-        	int halfWay = gridWidth/2;
+        	//halfway is halfway through the grid's width
+            int halfWay = gridWidth/2;
+            //initialize the grid
         	initializeGrid();
+        	//go to halfway and add a path 3 blocks down.
             for(int i = 0; i < halfWay; i++){
-            	//grid[i][3] = PATH;
             	gridTile[i][3].setTileValue(PATH);
             }
+            //go from 3 to 6 downwards
             for(int i = 3; i < 7; i++){
-            	//grid[halfWay][i] = PATH;
             	gridTile[halfWay][i].setTileValue(PATH);
             }
+            //go to the end of the path
             for(int i = halfWay; i < gridWidth; i++){
-            	//grid[i][6] = PATH;
             	gridTile[i][6].setTileValue(PATH);
             }
+            //set our start and end points
             backdrop= "Generic";
             start1 = 0;
             start2 = 3;
@@ -190,8 +152,7 @@ public class TDMap implements DrawableEntity{
 
     }
     private void initializeGrid() {
-		// TODO Auto-generated method stub
-    	 //grid= new int[gridWidth][gridHeight];
+		//initializes the gridTile array to be all new MapTile objects
          gridTile = new MapTile[gridWidth][gridHeight];
          for(int i = 0; i < gridWidth; i++){
         	 for(int j = 0; j < gridHeight; j++){
@@ -204,20 +165,25 @@ public class TDMap implements DrawableEntity{
     {
     	boolean result;
         File f= new File(add);
+        //make sure it exists
         if(!f.exists())
             return false;
         else
         {
+        	//File and data streams are how we read
             FileInputStream fis;
             DataInputStream dis;
             try
             {
+            	//initialize
                 fis = new FileInputStream(f);
                 dis = new DataInputStream(fis);
+                //read the backdrop, the width, the height
                 backdrop= dis.readUTF();
                 gridWidth= dis.readInt();
                 gridHeight= dis.readInt();
-                initializeGrid();
+                initializeGrid(); //initialize the grid
+                //go through and get the values of the grid
                 for(int i=0; i< gridWidth; i++){
                     for(int j=0; j< gridHeight; j++){
                     	int nextReadInt = dis.readInt();
@@ -225,16 +191,19 @@ public class TDMap implements DrawableEntity{
                         gridTile[i][j].setTileValue(nextReadInt);
                     }
                 }
+                //then read the start and end points
                 start1= dis.readInt();
                 start2= dis.readInt();
                 end1= dis.readInt();
                 end2= dis.readInt();
+                //close our readers
                 dis.close();
                 fis.close();
+                //verify our map
                 result = verifyMap();
                 
             }
-            catch(IOException e)
+            catch(IOException e) //if we get an issue, return false
             {
             	System.out.println("Error with reading map");
                 return false;
@@ -250,27 +219,33 @@ public class TDMap implements DrawableEntity{
      * @param add
      * @return
      */
-        public boolean writeMaptoFile(String add)
+    public boolean writeMaptoFile(String add)
     {
+        //File and data output streams are how we write	
         File f= new File(add);
         FileOutputStream fos;
         DataOutputStream dos;
         try
         {
+        	//initialize
             fos = new FileOutputStream(f);
             dos = new DataOutputStream(fos);
+            //write our backdrop, width, height
             dos.writeUTF(backdrop);
             dos.writeInt(gridWidth);
             dos.writeInt(gridHeight);
+            //go through and write our tiles
             for(int i=0; i< gridWidth; i++){
                 for(int j=0; j< gridHeight; j++){
                     dos.writeInt(gridTile[i][j].getTileValue()); 
                 }
             }
+            //write our start and ends
             dos.writeInt(start1);
             dos.writeInt(start2);
             dos.writeInt(end1);
             dos.writeInt(end2);
+            //close our outputs
             dos.close();
             fos.close();
         }
@@ -289,20 +264,21 @@ public class TDMap implements DrawableEntity{
      * @param i
      * @param j
      */
-        public void toggleGrid(int i, int j)
+    public void toggleGrid(int i, int j)
     {
-        if((((i==start1) && (j==start2))) || (((i==end1) && (j==end2)))){
-        	
-        }else{
+    	//if we are on the start path or the end path, do nothing
+    	if((((i==start1) && (j==start2))) || (((i==end1) && (j==end2)))){
+    		
+        }else{ //otherwise, toggle the path
+        	//make sure we are in bounds
     		if((i<gridWidth)&&(j<gridHeight))
+    			//if we are path, go to tower
     			if(gridTile[i][j].getTileValue()==PATH)
     			{
-    				//grid[i][j]= TOWER;
     				gridTile[i][j].setTileValue(TOWER);
     			}
-    			else
+    			else //if we are tower, go to path
     			{
-    				//grid[i][j]= PATH;
     				gridTile[i][j].setTileValue(PATH);
     			}
         }
@@ -329,11 +305,11 @@ public class TDMap implements DrawableEntity{
      * @param i
      * @param j
      */
-        public void setAsPath(int i, int j)
-    {
+    public void setAsPath(int i, int j)
+    {	//make sure in bounds
         if((i<gridWidth)&&(j<gridHeight)){
-            //grid[i][j]= PATH;
-            gridTile[i][j].setTileValue(PATH);
+        	//set as path
+        	gridTile[i][j].setTileValue(PATH);
         }
     }
     
@@ -344,7 +320,7 @@ public class TDMap implements DrawableEntity{
      */
         public void refresh()
     {
-        //grid = new int[gridWidth][gridHeight];
+        //we reinitialize the grid
         gridTile = new MapTile[gridWidth][gridHeight];
     	for(int i=0; i< gridWidth; i++){
             for(int j=0; j< gridHeight; j++)
@@ -354,10 +330,12 @@ public class TDMap implements DrawableEntity{
             	gridTile[i][j].setTileValue(TOWER);
             }
         }
+    	//and we set our starts and ends to default
         end1= -1;
     	end2= -1;
     	start1= -1;
     	start2= -1;
+    	//and recalculate the width and height
         tileWidth_Pixel = PIXELWIDTH/gridWidth;
         tileHeight_Pixel = PIXELHEIGHT/gridHeight;
     }
@@ -369,10 +347,12 @@ public class TDMap implements DrawableEntity{
      */
     public void setStart(int i, int j)
     {
+    	//set the start point
         start1= i;
         start2= j;
         setAsPath(i,j);
     }
+    //return the start point
     public Point getStart(){
     	return new Point(start1, start2);
     }
@@ -412,13 +392,16 @@ public class TDMap implements DrawableEntity{
         int parent[]= new int [(gridWidth*gridHeight)];
         frontier.addFirst(key(start1,start2));
         int t;
+        //we go through the path and try to find one from the start path to the end path
+        //if we can find one, then we are good, and the map is valid (we don't care
+        //about anything else)
         while(!frontier.isEmpty())
         {
             t= frontier.removeFirst();
             explored.add(t);
             int i= arckeyi(t);
             int j= arckeyj(t);
-            //System.out.println("(" + i + ", " + j + ")");
+            //our conditions to see which one to visit next
             if((i-1)>=0) 
                 if(gridTile[i-1][j].getTileValue()==PATH)
                     if(!explored.contains(key(i-1,j)))
@@ -449,7 +432,9 @@ public class TDMap implements DrawableEntity{
                     }
         }
         t= key(end1,end2);
+        //now we want to make sure that our valid map contains our end path position
         isMapValid= explored.contains(t);
+        //if so, we are good, and we can generate the shortest path
         if(isMapValid){
 	        shortestPath= new LinkedList<>();
 	        while(t!=key(start1,start2))
@@ -584,8 +569,11 @@ public class TDMap implements DrawableEntity{
      * @return
      */
     public ArrayList<Point> getPointsOfShortestPath(){
+    	//initialize the arraylist
 		ArrayList<Point> pointsShortestPath = new ArrayList<Point>();
+		//if the shortestPath is null, then just create a default path.
 		if(shortestPath == null){
+			//this is the same default path as above (to be consistent with graphics)
 			int halfWay = this.gridWidth/2;
             for(int i = 0; i < halfWay; i++){
             	pointsShortestPath.add(new Point(i,3));
@@ -596,7 +584,7 @@ public class TDMap implements DrawableEntity{
             for(int i = halfWay + 1; i < gridWidth; i++){
             	pointsShortestPath.add(new Point(i,6));
             }
-		}else{
+		}else{ //otherwise, convert the shortest path into points.
 			for(int i = 0; i < this.shortestPath.size(); i++){
 				pointsShortestPath.add(new Point(arckeyi(shortestPath.get(i)), arckeyj(shortestPath.get(i))));
 			}
@@ -611,7 +599,8 @@ public class TDMap implements DrawableEntity{
      * @return
      */
     public Point getPosOfBlock_pixel(int x, int y){
-		Point result = new Point((int) Math.ceil((x*tileWidth_Pixel)),(int) Math.ceil(y*tileHeight_Pixel));
+		//we return the pixel position of a block, based on the tile width and height
+    	Point result = new Point((int) Math.ceil((x*tileWidth_Pixel)),(int) Math.ceil(y*tileHeight_Pixel));
 		return result;
 	}
 	
@@ -620,6 +609,7 @@ public class TDMap implements DrawableEntity{
      * @return
      */
     public ArrayList<Point> getPath_ListOfPixels(){
+    	//this returns a list of pixels that make up the path
 		ArrayList<Point> pixelPathToTravel = new ArrayList<Point>();
 		ArrayList<Point> pathToTravel = getPointsOfShortestPath();
 		String fromWhere = "";
@@ -676,10 +666,10 @@ public class TDMap implements DrawableEntity{
 			Point pixelCenterOfBlock = new Point((int)(startBlockTopLeftPixel.getX() + this.tileWidth_Pixel/2), (int)(startBlockTopLeftPixel.getY() + this.tileHeight_Pixel/2));
 			
 			//the  start pixel position is now adjusted to be either top middle, right middle, left middle or bottom middle (depending on fromwhere)
-			startPixelPosition = getPixelPositionH1(fromWhere, startBlockTopLeftPixel, pixelCenterOfBlock);
+			startPixelPosition = getPixelPositionFirstMove(fromWhere, startBlockTopLeftPixel, pixelCenterOfBlock);
 			
 			//the end pixel position is now adjusted to be either top middle, right middle, left middle, or bottom middle (depending on towhere)
-			endPixelPosition = getPixelPositionH2(toWhere, endBlockTopLeft, pixelCenterOfBlock );
+			endPixelPosition = getPixelPositionSecondMove(toWhere, endBlockTopLeft, pixelCenterOfBlock );
 
 			addPixelPoints(pixelPathToTravel, startPixelPosition, pixelCenterOfBlock);
 			addPixelPoints(pixelPathToTravel, pixelCenterOfBlock, endPixelPosition);
@@ -710,8 +700,8 @@ public class TDMap implements DrawableEntity{
 		
 		Point finalPixelPosition = this.getPosOfBlock_pixel(lastPos.getX(), lastPos.getY());
 		Point finalPixelCenterOfBlock = new Point((int)(finalPixelPosition.getX() + this.tileWidth_Pixel/2), (int)(finalPixelPosition.getY() + this.tileHeight_Pixel/2));
-		finalPixelPosition = getPixelPositionH1(toWhere, finalPixelPosition, finalPixelCenterOfBlock);
-		startPixelPosition = getPixelPositionH1(fromWhere, startBlockTopLeftPixel, finalPixelCenterOfBlock);
+		finalPixelPosition = getPixelPositionFirstMove(toWhere, finalPixelPosition, finalPixelCenterOfBlock);
+		startPixelPosition = getPixelPositionFirstMove(fromWhere, startBlockTopLeftPixel, finalPixelCenterOfBlock);
 		
 		addPixelPoints(pixelPathToTravel, startPixelPosition, finalPixelCenterOfBlock);
 		addPixelPoints(pixelPathToTravel, finalPixelCenterOfBlock, finalPixelPosition);
@@ -737,8 +727,9 @@ public class TDMap implements DrawableEntity{
 		}
 		return result;
 	}
-	private Point getPixelPositionH1(String where, Point position, Point center){
-		
+	
+	private Point getPixelPositionFirstMove(String where, Point position, Point center){
+		//this gets the pixel position of the first move (from x to center)
 		Point result = null;
 		if(where.equals("left")){
 			result = new Point(position.getX(),center.getY());
@@ -752,8 +743,8 @@ public class TDMap implements DrawableEntity{
 		
 		return result;
 	}
-	private Point getPixelPositionH2(String where, Point position, Point center){
-		
+	private Point getPixelPositionSecondMove(String where, Point position, Point center){
+		//this gets the pixel position of the second move (from center to x)
 		Point result = null;
 		if(where.equals("left")){
 			result = new Point(position.getX() + this.tileWidth_Pixel,center.getY());
@@ -769,7 +760,7 @@ public class TDMap implements DrawableEntity{
 	}
 	
 	private void addPixelPoints(ArrayList<Point> listToAdd, Point p1, Point p2){
-		//System.out.println("Requested move from " + p1.toString() + " to " + p2.toString());
+		//adds all of the points from one point to another
 		listToAdd.add(p1);
 		if(p1.getX() == p2.getX()){
 			int step = 1;
@@ -798,40 +789,37 @@ public class TDMap implements DrawableEntity{
      * @param g
      */
     public void updateAndDraw(Graphics g){
+    	//uses the artist to draw the map
 		Artist_Swing.drawMap(this, g);
 	}
 
 	    // This method provides an easy way to print out the grid to display the
 	    // map. It also prints out the shortest path the critters will take to move
 	    // from the Start cell to the End Cell.
-
-    /**
-     *
-     */
-    	    public void print()
-	    {
-	        System.out.println("Grid Size is "+gridWidth+" in horizontal width by "+gridHeight+" in vertical height:");
-	        for(int j=-2; j<gridWidth; j++)
-	            System.out.print("-");
-	        for(int i=0; i<gridHeight; i++)
-	        {
-	            System.out.print("\n|");
-	            for(int j=0; j<gridWidth; j++)
-	                if(gridTile[j][i].getTileValue()==TOWER)
-	                    System.out.print(" ");
-	                else if(gridTile[j][i].getTileValue()==PATH)
-	                    System.out.print("O");
-	            System.out.print("|");
-	        }
-	        System.out.println();
-	        for(int j=-2; j<gridWidth; j++)
-	            System.out.print("-");
-	        if(isMapValid)
-	            System.out.print("\nShortest path from Start to End is: ");
-	        for(Integer shortestPath1 : shortestPath) {
-	            System.out.print("(" + arckeyi(shortestPath1) + "," + arckeyj(shortestPath1) + ")\t");
-	        }
-	        System.out.println();
-	    }
+    public void print()
+    {
+        System.out.println("Grid Size is "+gridWidth+" in horizontal width by "+gridHeight+" in vertical height:");
+        for(int j=-2; j<gridWidth; j++)
+            System.out.print("-");
+        for(int i=0; i<gridHeight; i++)
+        {
+            System.out.print("\n|");
+            for(int j=0; j<gridWidth; j++)
+                if(gridTile[j][i].getTileValue()==TOWER)
+                    System.out.print(" ");
+                else if(gridTile[j][i].getTileValue()==PATH)
+                    System.out.print("O");
+            System.out.print("|");
+        }
+        System.out.println();
+        for(int j=-2; j<gridWidth; j++)
+            System.out.print("-");
+        if(isMapValid)
+            System.out.print("\nShortest path from Start to End is: ");
+        for(Integer shortestPath1 : shortestPath) {
+            System.out.print("(" + arckeyi(shortestPath1) + "," + arckeyj(shortestPath1) + ")\t");
+        }
+        System.out.println();
+    }
 }
 

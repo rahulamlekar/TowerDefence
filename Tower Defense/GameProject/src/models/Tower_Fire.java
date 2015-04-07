@@ -38,14 +38,15 @@ public class Tower_Fire extends Tower {
 		DOT = 1;
 	}
 	
-    /**
-     *
-     * @param target
-     * @param g
-     */
+	/*
+	 * (non-Javadoc)
+	 * @see models.Tower#shootTarget(models.Critter, java.awt.Graphics)
+	 * Shoots the critter and applies damage over time
+	 */
     protected void shootTarget(Critter target, Graphics g){
 		super.shootTarget(target, g);
 		target.damageOverTimeCritter(this.DOT, this.damageOverTimeLength);
+		target.slowCritter(this.slowFactor, this.slowTime);
 	}
 	
     /**
@@ -55,6 +56,11 @@ public class Tower_Fire extends Tower {
     public static int getBuyPrice(){	
 		return buyCost;
 	}
+    /*
+     * (non-Javadoc)
+     * @see models.Tower#upgradeTower()
+     * This upgrades the tower and the DOT and slow
+     */
     public void upgradeTower(){
     	if(level < MAXTOWERLEVEL){
 	    	super.upgradeTower();

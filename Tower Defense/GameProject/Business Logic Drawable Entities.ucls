@@ -190,29 +190,30 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="17"/>  
-  </dependency>  
-  <dependency id="23">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
-  <association id="24">    
+  <association id="22">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="25" name="towersOnMap">        
+      <attribute id="23" name="selectedTower">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="26" minimum="0" maximum="2147483647">        
+      <multiplicity id="24" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <generalization id="26">    
+    <bendpoint x="834" y="812"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
   <association id="27">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="28" name="towerBeingPreviewed">        
+      <attribute id="28" name="selectedTower">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="29" minimum="0" maximum="1">        
@@ -224,679 +225,678 @@
   </association>  
   <dependency id="30">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="18"/>  
+    <end type="TARGET" refId="14"/>  
   </dependency>  
   <association id="31">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="32" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="19"/>  
-  </dependency>  
-  <dependency id="36">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="19"/>  
-  </dependency>  
-  <dependency id="37">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <realization id="38">    
-    <bendpoint x="-107" y="872"/>    
-    <bendpoint x="256" y="872"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <dependency id="39">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="40">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="41" name="towerBeingPreviewed">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="43">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="44">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="45" name="selectedTile">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="47">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <association id="48">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="49" name="potentialCrittersInRange">        
-        <position height="18" width="144" x="436" y="1203"/>      
-      </attribute>      
-      <multiplicity id="50" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-1" y="9"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="51">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="18"/>  
-  </dependency>  
-  <dependency id="52">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="19"/>  
-  </dependency>  
-  <dependency id="53">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="54">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="55" name="crittersInWave">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="56" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="57">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="58">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="59" name="selectedTile">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="60" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="61">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="62">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <generalization id="63">    
-    <bendpoint x="854" y="1140"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <dependency id="64">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="65">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="66" name="activity">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="67" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="68">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="69" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="70" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="71">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="72">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="73" name="observers">        
-        <position height="0" width="0" x="-378" y="207"/>      
-      </attribute>      
-      <multiplicity id="74" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-378" y="207"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="75">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="76" name="selectedTower">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="77" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="78">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="79">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="80">    
-    <bendpoint x="256" y="642"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="81" name="drawableEntities">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="82" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="83">    
-    <bendpoint x="854" y="1256"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="84">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="85" name="towerBeingPreviewed">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="86" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="87">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="17"/>  
-  </dependency>  
-  <association id="88">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="89" name="subjects">        
+      <attribute id="32" name="subjects">        
         <position height="18" width="56" x="686" y="543"/>      
       </attribute>      
-      <multiplicity id="90" minimum="0" maximum="2147483647">        
+      <multiplicity id="33" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="75" y="43"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="91">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="92" name="crittersInWave">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="34">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="35" name="potentialCrittersInRange">        
+        <position height="18" width="144" x="436" y="1203"/>      
       </attribute>      
-      <multiplicity id="93" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="36" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-1" y="9"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="94">    
-    <bendpoint x="165" y="1568"/>    
-    <bendpoint x="258" y="1568"/>    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="95">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="96" name="crittersInWave">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="97" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="98">    
-    <end type="SOURCE" refId="7"/>    
+  <dependency id="37">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <association id="99">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="100" name="towersOnMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="101" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="102">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="103" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="104" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="105">    
+  <dependency id="38">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="14"/>  
+    <end type="TARGET" refId="18"/>  
   </dependency>  
-  <association id="106">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="107" name="selectedTower">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="108" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="109">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="110" name="selectedTower">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="111" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="112">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <generalization id="113">    
-    <bendpoint x="855" y="1379"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="114">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="115" name="gamePlayer">        
-        <position height="0" width="0" x="-163" y="140"/>      
-      </attribute>      
-      <multiplicity id="116" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-163" y="140"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="117">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <generalization id="118">    
-    <bendpoint x="490" y="1568"/>    
-    <bendpoint x="258" y="1568"/>    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="119">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="120" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="121" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="122">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="123" name="crittersInWave">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="124" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="125">    
+  <association id="39">    
     <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="126" name="mapController">        
+      <attribute id="40" name="mapController">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="127" minimum="0" maximum="1">        
+      <multiplicity id="41" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="128">    
+  <realization id="42">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="43">    
+    <bendpoint x="855" y="1379"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="44">    
     <bendpoint x="312" y="1568"/>    
     <bendpoint x="258" y="1568"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <association id="129">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="130" name="towersOnMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="131" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="132">    
-    <bendpoint x="703" y="870"/>    
-    <bendpoint x="256" y="872"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <association id="133">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="134" name="playerInstance">        
-        <position height="0" width="0" x="24" y="0"/>      
-      </attribute>      
-      <multiplicity id="135" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-163" y="140"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="false"/>  
-  </association>  
-  <dependency id="136">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
-  <association id="137">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="138" name="gridTile">        
-        <position height="0" width="0" x="-28" y="0"/>      
-      </attribute>      
-      <multiplicity id="139" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-171" y="43"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="140">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="18"/>  
-  </dependency>  
-  <dependency id="141">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <dependency id="142">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="143">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="144" name="selectedTile">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="145" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="146">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="147" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="148" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="149">    
-    <bendpoint x="853" y="923"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
+  <generalization id="45">    
+    <bendpoint x="675" y="1568"/>    
+    <bendpoint x="258" y="1568"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="150">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
-  <association id="151">    
+  <association id="46">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="152" name="gameController">        
+      <attribute id="47" name="gameController">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="153" minimum="0" maximum="1">        
+      <multiplicity id="48" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="154">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="17"/>  
-  </dependency>  
-  <dependency id="155">    
+  <association id="49">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="50" name="selectedTower">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="51" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="52">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <dependency id="53">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="14"/>  
   </dependency>  
-  <generalization id="156">    
-    <bendpoint x="834" y="812"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="157">    
-    <bendpoint x="-236" y="486"/>    
-    <bendpoint x="-238" y="797"/>    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="158" name="tdMap">        
-        <position height="18" width="45" x="-214" y="870"/>      
-      </attribute>      
-      <multiplicity id="159" minimum="0" maximum="1">        
-        <position height="16" width="25" x="-249" y="872"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="160">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="161" name="tdMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="162" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="163">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="164" name="towerBeingPreviewed">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="165" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="166">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="167" name="selectedTower">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="168" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="169">    
+  <dependency id="54">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="16"/>  
+    <end type="TARGET" refId="17"/>  
   </dependency>  
-  <generalization id="170">    
-    <bendpoint x="855" y="1481"/>    
-    <bendpoint x="854" y="1220"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <dependency id="171">    
+  <dependency id="55">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="18"/>  
   </dependency>  
-  <association id="172">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="173" name="towersOnMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="174" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="175">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="176" name="selectedTile">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="177" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="178">    
-    <bendpoint x="138" y="850"/>    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="179" name="towerOnTile">        
-        <position height="18" width="74" x="65" y="855"/>      
-      </attribute>      
-      <multiplicity id="180" minimum="0" maximum="1">        
-        <position height="16" width="25" x="155" y="875"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="181">    
+  <association id="56">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="182" name="activity">        
+      <attribute id="57" name="activity">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="183" minimum="0" maximum="1">        
+      <multiplicity id="58" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="184">    
+  <dependency id="59">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="17"/>  
   </dependency>  
-  <dependency id="185">    
-    <end type="SOURCE" refId="17"/>    
+  <association id="60">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="61" name="gamePlayer">        
+        <position height="0" width="0" x="-163" y="140"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-163" y="140"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="63">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="64">    
+    <bendpoint x="854" y="1140"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="65">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="66" name="towersOnMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="68">    
+    <bendpoint x="853" y="923"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <dependency id="69">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="14"/>  
   </dependency>  
-  <dependency id="186">    
+  <association id="70">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="71" name="playerInstance">        
+        <position height="0" width="0" x="24" y="0"/>      
+      </attribute>      
+      <multiplicity id="72" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-163" y="140"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <association id="73">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="74" name="towersOnMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="75" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="76">    
+    <bendpoint x="165" y="1568"/>    
+    <bendpoint x="258" y="1568"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="77">    
+    <bendpoint x="256" y="642"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="78" name="drawableEntities">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="79" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="81" name="tdMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="84" name="tdMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="85" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="87" name="crittersInWave">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="88" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="90">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="91" name="crittersInWave">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="93">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="187">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <realization id="188">    
+  <dependency id="94">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <dependency id="189">    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="95">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="96">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="19"/>  
   </dependency>  
-  <realization id="190">    
+  <association id="97">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="98" name="towerBeingPreviewed">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="99" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="101" name="towersOnMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="102" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="104" name="towerBeingPreviewed">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="105" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="107">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="108" name="towersOnMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="109" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="111" name="selectedTower">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="112" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="113">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="10"/>  
   </realization>  
-  <generalization id="191">    
-    <bendpoint x="675" y="1568"/>    
+  <association id="114">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="115" name="tdMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="116" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="117">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="118">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="119">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="120">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="121">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="122">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="123" name="gridTile">        
+        <position height="0" width="0" x="-28" y="0"/>      
+      </attribute>      
+      <multiplicity id="124" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-171" y="43"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <bendpoint x="138" y="850"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="126" name="towerOnTile">        
+        <position height="18" width="74" x="65" y="855"/>      
+      </attribute>      
+      <multiplicity id="127" minimum="0" maximum="1">        
+        <position height="16" width="25" x="155" y="875"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <bendpoint x="-236" y="486"/>    
+    <bendpoint x="-238" y="797"/>    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="129" name="tdMap">        
+        <position height="18" width="45" x="-214" y="870"/>      
+      </attribute>      
+      <multiplicity id="130" minimum="0" maximum="1">        
+        <position height="16" width="25" x="-249" y="872"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="131">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="132">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="133">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <association id="134">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="135" name="tdMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="136" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="137">    
+    <bendpoint x="-107" y="872"/>    
+    <bendpoint x="256" y="872"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <dependency id="138">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="139">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="140">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="141" name="selectedTile">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="142" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="143">    
+    <bendpoint x="703" y="870"/>    
+    <bendpoint x="256" y="872"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <dependency id="144">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="145">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="146" name="observers">        
+        <position height="0" width="0" x="-378" y="207"/>      
+      </attribute>      
+      <multiplicity id="147" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-378" y="207"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="148">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="149">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="150" name="selectedTile">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="151" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="152">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="153" name="towerBeingPreviewed">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="154" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="155">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="156">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="157">    
+    <bendpoint x="854" y="1256"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <dependency id="158">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="159">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="160">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="161" name="selectedTile">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="162" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="163">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="164">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="165" name="crittersInWave">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="166" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="167">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <association id="168">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="169" name="selectedTile">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="170" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="171">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <association id="172">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="173" name="crittersInWave">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="174" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="175">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="176" name="tdMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="177" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="178">    
+    <bendpoint x="490" y="1568"/>    
     <bendpoint x="258" y="1568"/>    
-    <end type="SOURCE" refId="19"/>    
+    <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
+  <generalization id="179">    
+    <bendpoint x="855" y="1481"/>    
+    <bendpoint x="854" y="1220"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <dependency id="180">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="181">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="182" name="towerBeingPreviewed">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="183" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="184">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <dependency id="185">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <association id="186">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="187" name="activity">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="188" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="189">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="190" name="tdMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="191" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="false" package="false" protected="false" private="false" static="false"/>    

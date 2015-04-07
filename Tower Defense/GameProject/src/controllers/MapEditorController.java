@@ -92,6 +92,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
+		//set the initially selected indices of the map.
 		this.getControlPanel().getWidthIndexes().setSelectedIndex(tdMap.getGridWidth() - TDMap.MINWIDTH);
 		this.getControlPanel().getHeightIndexes().setSelectedIndex(tdMap.getGridHeight() - TDMap.MINHEIGHT);
 		this.getControlPanel().setStartPointLabel(tdMap.getStart());
@@ -126,37 +127,47 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//bReturn = go back to main menu.
 		if(e.getSource() == bReturn){
 			mainFrame.dispose();
 			new MenuApplicationFrame();
 		}
+		//bInitialize clears the map paths and reinitializes it to the correct size.
 		else if(e.getSource() == bInitialize)
 		{
+			//set the width & height to be correct
 			int widthOfMap= Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem());
 			int heightOfMap= Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem());
+			//reinitialize the map
 			tdMap.reinitialize(widthOfMap, heightOfMap,"Generic");
 			this.TDMapReinitialized();
+			//set the default start and end points (0 and 0)
 			this.controlPanel.setStartPointLabel(new Point(0,0));
 			this.controlPanel.setEndPointLabel(new Point(0,0));
-			controlPanel.repaint();
+			controlPanel.repaint(); //repaint
 		}
+		//bSave saves the current map
 		else if(e.getSource() == bSave)
 		{
+			//show a save dialog
 			int returnVal = fc.showDialog(this, "Save");
-			if(returnVal ==JFileChooser.APPROVE_OPTION){
+			if(returnVal ==JFileChooser.APPROVE_OPTION){ //if they choose to save, save it
 				File file = fc.getSelectedFile();
-				
+				//we write it to a file
 				tdMap.writeMaptoFile(file.getPath() +".TDMap");
 			}
 		}
+		//bSelectStart forces user to select the start point
 		else if(e.getSource() == bSelectStart){
 			selectingStart = true;
 			setControlPanelEnabled(false);
 		}
+		//bSelectEnd forces user to select the end
 		else if(e.getSource() == bSelectEnd){
 			selectingEnd = true;
 			setControlPanelEnabled(false);
 		}
+		//otherwise we just want to draw.
 		else
 			Draw();
 
@@ -172,6 +183,7 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		//update and draw our map (drawable entity)
 		tdMap.updateAndDraw(g);
         Toolkit.getDefaultToolkit().sync();
 
@@ -210,46 +222,58 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		//first, get the point of the grid where we clicked.
 		double XPixels = tdMap.getGridWidth()*tdMap.tileWidth_Pixel;
 		double YPixels = tdMap.getGridHeight()*tdMap.tileHeight_Pixel;
+		//we use ratios to convert the pixel value into grid value
 		double xRatio = ((double)e.getX())/(XPixels);
 		double yRatio = ((double)e.getY())/(YPixels);
-		
+		//we calculate the integer grid position where we clicked
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		
+		//if we are selecting the start
 		if(selectingStart){
+			//if we have a good start or end point, 
 			if(goodStartOrEnd(xGridPos, yGridPos)){
+				//then we set this to be the start point, and stop selecting the start
 				tdMap.setStart(xGridPos, yGridPos);
 				this.controlPanel.setStartPointLabel(new Point(xGridPos, yGridPos));
 				selectingStart = false;
 				setControlPanelEnabled(true);
 				this.controlPanel.setStatusText("Start set to " + new Point(xGridPos, yGridPos).toString());
-			}else{
+			}else{//otherwise inform them to select a valid point
 				this.controlPanel.setStatusText("Please select valid start point.");
 			}
+		//if we are selecting end,
 		}else if(selectingEnd){
+			//make sure the point is good
 			if(goodStartOrEnd(xGridPos, yGridPos)){
+				//set the end point to be the selected point and enable buttons
 				tdMap.setEnd(xGridPos, yGridPos);
 				this.controlPanel.setEndPointLabel(new Point(xGridPos, yGridPos));
 				selectingEnd = false;
 				setControlPanelEnabled(true);
 				this.controlPanel.setStatusText("End set to " + new Point(xGridPos, yGridPos).toString());
 			}else{
+				//or inform them that they have to select a good point
 				this.controlPanel.setStatusText("Please select valid end point.");
 			}
+		//if we aren't selecting the start or the end, just toggle the grid.
 		}else{
 			tdMap.toggleGrid(xGridPos, yGridPos);	
-	        TDMapUpdated();
+	        TDMapUpdated(); //and update map
 		}
 		
 	}
+	/*
+	 * Checks to see if we have a good start or end point (lying on one edge)
+	 */
 	private boolean goodStartOrEnd(int xGridPos, int yGridPos) {
 		//we return true if any of our coordinates are on the boundaries.
 		return (xGridPos == 0 || yGridPos == 0 || xGridPos == tdMap.getGridWidth() -1 || yGridPos == tdMap.getGridHeight() -1);
 	}
-
+	//Sets the control panel to be enabled or diabled (for setting start or end)
 	private void setControlPanelEnabled(boolean b) {
-		
 		Component[] components = this.controlPanel.getComponents();
+		//go through components and disable all of them (except labels)
 		for(Component c : components){
 			if(c instanceof JLabel ==false){
 				c.setEnabled(b);

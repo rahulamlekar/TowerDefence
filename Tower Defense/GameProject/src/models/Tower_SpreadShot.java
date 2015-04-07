@@ -33,24 +33,28 @@ public class Tower_SpreadShot extends Tower {
 		buyCost = 900;
 	}
 	
-	//overrides the updateAndDraw method in the tower class to shoot more than one critter.
 	
-    /**
-     *
-     * @param g
+    /*
+     * (non-Javadoc)
+     * @see models.Tower#updateAndDraw(java.awt.Graphics)
+     * overrides the updateAndDraw method in the tower class to shoot more than one critter.
      */
-    	public void updateAndDraw(Graphics g){	
+    public void updateAndDraw(Graphics g){	
+    	//initialize in range critters and targets
 		ArrayList<Critter> inRangeC = new ArrayList<Critter>();
 		ArrayList<Critter> targets = new ArrayList<Critter>();
-		
-		this.drawTower(g);
+
+		//find our critters in range
 		inRangeC = this.findCrittersInRange(potentialCrittersInRange);
+		//select the target critter
 		Critter targetedCritter = this.selectTarget(this, inRangeC);
+		//remove this target from the list and find the next target
 		for(int i = 0; i < amountOfTargets; i++){
 			targets.add(targetedCritter);
 			inRangeC.remove(targetedCritter);
 			targetedCritter = this.selectTarget(this, inRangeC);
 		}
+		//shoot all of the targets
 		if(!targets.isEmpty()){
 			for(Critter c : targets){
 				if(c != null){
@@ -58,6 +62,8 @@ public class Tower_SpreadShot extends Tower {
 				}
 			}
 		}
+		//draw our tower
+		this.drawTower(g);
 	}
 	
     /**

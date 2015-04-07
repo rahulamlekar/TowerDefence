@@ -37,6 +37,7 @@ public class Artist_Swing extends Helper{
 	//public GameController controller = new GameController();
 	private static Artist_Swing artist = new Artist_Swing();
 	
+	//the artist needs to have a grid and height of the map. It starts by setting the defaults.
 	private Artist_Swing(){
 		gridWidth = TDMap.DEFAULTGRIDWIDTH;
 		gridHeight = TDMap.DEFAULTGRIDHEIGHT;
@@ -75,7 +76,8 @@ public class Artist_Swing extends Helper{
      * @param radius
      */
     public static void drawEmptyCircle(Graphics g, Color c, int x, int y, int radius){
-		g.setColor(c);
+    	//Sets the color, and draws a circle (oval with equal radii)
+    	g.setColor(c);
 		g.drawOval(x-radius, y-radius, radius*2, radius*2);
 	}
 
@@ -88,7 +90,8 @@ public class Artist_Swing extends Helper{
      * @param radius
      */
     public static void drawFilledCircle(Graphics g, Color c, int x, int y, int radius){
-		g.setColor(c);
+		//sets the color, and draws a filled circle (oval with radii equal)
+    	g.setColor(c);
 		g.drawOval(x-radius, y-radius, radius*2, radius*2);
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
 	}
@@ -104,6 +107,7 @@ public class Artist_Swing extends Helper{
      */
     public static void drawFilledQuad(Graphics g, Color c, int x, int y, int width, int height)
 	{
+    	//sets the color and draws the rectangle
 		g.setColor(c);
 		g.drawRect(x,y, width, height);
     	g.fillRect(x,y, width, height);
@@ -119,7 +123,8 @@ public class Artist_Swing extends Helper{
      * @param height
      */
     public static void drawEmptyQuad(Graphics g, Color c, int x, int y, int width, int height){
-		g.setColor(c);
+    	//sets the color and draws the empty rectangle
+    	g.setColor(c);
 		g.drawRect(x, y, width, height);
 	}
 	
@@ -130,22 +135,27 @@ public class Artist_Swing extends Helper{
      */
     public static void drawMap(TDMap tdMap, Graphics g)
 	{
-		
+    	//draws the map
+    	//gets the width and the height
 		int mapWidth=tdMap.getGridWidth();
 		int mapHeight=tdMap.getGridHeight();
+		//finds the width and height of each block
 		int scaledWidth=(int) PIXELWIDTH/mapWidth;
 		int scaledHeight=(int) (GAMEPIXELHEIGHT)/mapHeight;
-		String back= tdMap.getBackdrop();
+		//sets the thickness of the line to 1.
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(1));
+		//goes through the map in a nested for loop
 		for(int i=0; i<mapWidth; i++)
 		{
 			for(int j=0; j<mapHeight; j++)
 			{
 				int tileType= tdMap.getType(i, j);
+				//if we have a path tile, draw it brown
 				if(tileType==TDMap.PATH){
 					drawFilledQuad(g,new Color(102, 51, 0), i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 					drawEmptyQuad(g, Color.gray, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
+				//if we have a scenery tile, draw it green.
 				}else{
 					drawFilledQuad(g,Color.GREEN, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
 					drawEmptyQuad(g, Color.GRAY, i*scaledWidth, j*scaledHeight, scaledWidth, scaledHeight);
@@ -161,30 +171,36 @@ public class Artist_Swing extends Helper{
      * @param g
      */
     	public static void drawCritter(Critter crit, Graphics g){
-		int size = crit.getSize();
-		int posX = crit.getPixelPosition().getX();
-		int posY = crit.getPixelPosition().getY();
-		int healthBarGap = 3;
-		int healthBarHeight = 2;
-		int bufferSize = 2;
-		
-		//drawing the space behind the critter.
-		drawFilledQuad(g, new Color(102, 51, 0), posX - bufferSize, posY - bufferSize - healthBarGap - healthBarHeight,  size + 2*bufferSize,size + healthBarGap + healthBarHeight + 2*bufferSize);
-		//Drawing the actual critter
-		drawFilledQuad(g, crit.getColor(),posX, posY, size, size);
-		//if the critter is burning, we draw an Orange around it
-		if(crit.isBurning()){
-			drawEmptyQuad(g, Color.orange, posX, posY, size, size);
-		}
-		
-		//Healthbar:
-		drawFilledQuad(g, Color.GREEN,posX, posY - healthBarGap - bufferSize,size, healthBarHeight);
-		double currHP = crit.getHitPoints();
-		double maxHP = crit.getMaxHitPoints();
-		int redAmount = (int) (size*(1-currHP/maxHP));
-		if(redAmount != 0){
-			drawFilledQuad(g, Color.RED,posX, posY - healthBarGap - bufferSize,redAmount, healthBarHeight);
-		}
+    	
+    		//gets the critter attribuets
+	    	int size = crit.getSize();
+			int posX = crit.getPixelPosition().getX();
+			int posY = crit.getPixelPosition().getY();
+			int healthBarGap = 3;
+			int healthBarHeight = 2;
+			int bufferSize = 2;
+			double currHP = crit.getHitPoints();
+			double maxHP = crit.getMaxHitPoints();
+			
+			//drawing the space behind the critter.
+			drawFilledQuad(g, new Color(102, 51, 0), posX - bufferSize, posY - bufferSize - healthBarGap - healthBarHeight,  size + 2*bufferSize,size + healthBarGap + healthBarHeight + 2*bufferSize);
+			//Drawing the actual critter
+			drawFilledQuad(g, crit.getColor(),posX, posY, size, size);
+			//if the critter is burning, we draw an Orange around it
+			if(crit.isBurning()){
+				drawEmptyQuad(g, Color.orange, posX, posY, size, size);
+			}
+			
+			//Healthbar:
+			//we draw a green rectangle, and then draw a red rectangle of size depending on how damaged
+			drawFilledQuad(g, Color.GREEN,posX, posY - healthBarGap - bufferSize,size, healthBarHeight);
+			//calculate the ratio of the Critter's health
+			int redAmount = (int) (size*(1-currHP/maxHP));
+			//supposing the critter is damaged,
+			if(redAmount != 0){
+				//draw the red part.
+				drawFilledQuad(g, Color.RED,posX, posY - healthBarGap - bufferSize,redAmount, healthBarHeight);
+			}
 		
 	}
 
@@ -195,21 +211,24 @@ public class Artist_Swing extends Helper{
      */
     
 	public static void drawTower(Tower tow, Graphics g){
+		//sets our stroke to be size 1.
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(1));
-
+		//gets the tile width and height of the gamemap
 		int tileWidth = PIXELWIDTH/Artist_Swing.getInstance().gridWidth;
 		int tileHeight = (GAMEPIXELHEIGHT)/Artist_Swing.getInstance().gridHeight;
-		
+		//our outline tower is either black or blue (blue if selected)
 		Color outlineColor;
 		if(tow.isSelected()){
 			outlineColor = Color.blue;
 		}else{
 			outlineColor = Color.black;
 		}
-
+		//we draw the tower's rectangular part,
 		drawFilledQuad(g, Color.gray, tow.getPosX(), tow.getPosY(), tileWidth, tileHeight);
+		//and the outline
 		drawEmptyQuad(g, outlineColor, tow.getPosX(), tow.getPosY(), tileWidth, tileHeight);
+		//and then we draw the tower's circular part
 		drawFilledCircle(g, tow.getColor(), tow.getPosX() + tileWidth/2, tow.getPosY() + tileHeight/2, tileWidth/4);
 		
 		//for upgrades, we draw a circle (in white) around the main circle of the tower for each upgrade level!
@@ -226,13 +245,16 @@ public class Artist_Swing extends Helper{
      * @param crit
      * @param g
      */
-    	public static void drawShot(Tower tow, Critter crit, Graphics g){
+    public static void drawShot(Tower tow, Critter crit, Graphics g){
+    	//gets the tile width and height
 		int tileWidth = PIXELWIDTH/Artist_Swing.getInstance().gridWidth;
 		int tileHeight = (GAMEPIXELHEIGHT)/Artist_Swing.getInstance().gridHeight;
 		//get tower color info,
 		g.setColor(tow.getShotColor());
+		//we set the stroke to be thicker than usually (2)
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2));
+		//and we draw the line
 		g2d.drawLine(tow.getPosX() +tileWidth/2, tow.getPosY() + tileHeight/2, crit.getPixelPosition().getX() + crit.getSize()/2, crit.getPixelPosition().getY() + crit.getSize()/2);
 	}
 	

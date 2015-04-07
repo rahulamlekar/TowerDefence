@@ -35,13 +35,12 @@ public class Tower_IceBeam extends Tower {
 		slowTime = 30;
 	}
 	
-    /**
-     *
-     * @param target
-     * @param g
-     */
+	/*
+	 * (non-Javadoc)
+	 * @see models.Tower#shootTarget(models.Critter, java.awt.Graphics)
+	 * Shoots the target and applies slow
+	 */
     protected void shootTarget(Critter target, Graphics g){
-    
 		super.shootTarget(target, g);
 		target.slowCritter(this.slowFactor, this.slowTime);
 	}
@@ -53,6 +52,11 @@ public class Tower_IceBeam extends Tower {
     public static int getBuyPrice(){	
 		return buyCost;
 	}
+    /*
+     * (non-Javadoc)
+     * @see models.Tower#upgradeTower()
+     * Upgrades the tower and the slow
+     */
     public void upgradeTower(){
     	if(level < MAXTOWERLEVEL){
 	    	super.upgradeTower();

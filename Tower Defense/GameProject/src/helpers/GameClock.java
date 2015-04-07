@@ -47,14 +47,14 @@ public class GameClock extends Helper {
      *
      */
     public void pause(){
-		setDeltaTime(0);
+		setDeltaTime(0); //we pause by setting deltaTime to 0
 	}
 
     /**
      *
      */
     public void unPause(){
-		setDeltaTime(1);
+		setDeltaTime(1); //we unpause by setting deltaTime to 1.
 	}
 	
 }

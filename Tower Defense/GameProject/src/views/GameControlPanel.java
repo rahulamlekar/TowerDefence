@@ -85,7 +85,12 @@ public class GameControlPanel extends JPanel  {
 		bLaser.setToolTipText(LASERTEXT);
 		bIceBeam.setToolTipText(ICETEXT);
 		bFire.setToolTipText(FIRETEXT);
-		
+		//add initial strategies.
+		cbStrategy.addItem("Closest");
+		cbStrategy.addItem("Farthest");
+		cbStrategy.addItem("Fastest");
+		cbStrategy.addItem("Weakest");
+		cbStrategy.addItem("Strongest");
 		Font oldFont = lblInfo.getFont();
 		lblInfo.setFont(new Font(oldFont.getFontName(), Font.BOLD, oldFont.getSize()));
 		//format the slider

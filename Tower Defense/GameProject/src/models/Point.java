@@ -75,12 +75,16 @@ public class Point {
      * @param P
      * @return
      */
-    	public boolean equals(Point P){
+	public boolean equals(Point P){
+		boolean result = false;
+		//two points are equal IFF x1 = x2 and y1 = y2
 		if(this.x == P.x && this.y == P.y){
-			return true;
+			result = true;
 		}
-		return false;
+		return result;
 	}
+	
+	//tostring
 	public String toString(){
 		String result = "Position: (" + this.x + ", " + this.y + ")";
 		

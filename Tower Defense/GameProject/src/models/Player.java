@@ -6,13 +6,16 @@ package models;
  * 
  */
 public class Player {
+	//Final constants (changed for balancing game)
 	private static final int STARTINGLIVES = 10;
 	private static final int STARTINGMONEY = 400;
-	
+	//default the lives and money to the constants above
 	private int lives = STARTINGLIVES;
 	private int money = STARTINGMONEY;
+	//and we apply singleton pattern to ensure only one player
 	private static Player playerInstance = new Player();
 	
+	//private constructor (singleton)
 	private Player(){
 		
 	}
@@ -92,6 +95,7 @@ public class Player {
      *
      */
     public void resetStats(){
+    	//reset the stats of the player
 		lives = STARTINGLIVES;
 		money = STARTINGMONEY;
 	}

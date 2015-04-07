@@ -17,27 +17,26 @@ import controllers.GameController;
  *
  * 
  */
-public class MouseAndKeyboardHandler extends Helper implements KeyListener, MouseListener, MouseMotionListener{
+public class MouseAndKeyboardHandler extends Helper implements MouseListener, MouseMotionListener{
 	
+	//we need to know the gameController that we are helping
 	private GameController gameController;
-	private MapPanel panel;
 		
     /**
      *
      * @param gameController
      */
     public MouseAndKeyboardHandler(GameController gameController){
+    	//we set the gameController
 		this.gameController = gameController;
-		panel = gameController.getPlayPanel();
-		
 	}
-
+    //on mouse click, we alert the game controller
 	public void mouseClicked(MouseEvent event){
+		//we also want to let the game controller know if it was left or right
 		if(SwingUtilities.isRightMouseButton(event)){
 			gameController.reactToRightClick(new Point(event.getX(), event.getY()));
 		}else{
 			gameController.reactToLeftClick(new Point(event.getX(),event.getY()));
-		//System.out.println(event.getX()+ " " + event.getY());
 		}
 	}
 	
@@ -54,27 +53,11 @@ public class MouseAndKeyboardHandler extends Helper implements KeyListener, Mous
 	//edit
 	
 	public void mouseMoved(MouseEvent event){
+		//we want to let the game controller know if the mouse is moved
 		gameController.reactToMouseMove(new Point(event.getX(),event.getY()));
 
 	}
 	
 	public void mouseDragged(MouseEvent event){}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		gameController.reactToKeypress(e);
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -22,16 +22,16 @@ public abstract class Critter extends Subject implements DrawableEntity {
     /**
      *
      */
-    	public static final int MAXCRITTERLEVEL = 50;
-    	public static final int MAXSPEED = 15;
-    	public static final String CRITTERMESSAGE = "Below is a description of each of the colored critters.\n\n" + "Yellow:\t\t\tBoss Critter. Very hard to kill\n\n" + "White:\t\t\tFast but weak\n\n" + "Red:\t\t\tSlightly below average\n\n" + "Pink:\t\t\tStrong but slow\n\n" + "Orange:\t\t\tCompletely resistant to fire and slow\n\n" + "Cyan:\t\t\tAverage Critter\n\n";  
+	public static final int MAXCRITTERLEVEL = 50;
+	public static final int MAXSPEED = 15;
+	public static final String CRITTERMESSAGE = "Below is a description of each of the colored critters.\n\n" + "Yellow:\t\t\tBoss Critter. Very hard to kill\n\n" + "White:\t\t\tFast but weak\n\n" + "Red:\t\t\tSlightly below average\n\n" + "Pink:\t\t\tStrong but slow\n\n" + "Orange:\t\t\tCompletely resistant to fire and slow\n\n" + "Cyan:\t\t\tAverage Critter\n\n";  
 	//attributes of the critter
 	//tangible properties of critter
 
     /**
      *
      */
-    	protected double currHitPoints;
+	protected double currHitPoints;
 
     /**
      *
@@ -68,17 +68,12 @@ public abstract class Critter extends Subject implements DrawableEntity {
     /**
      *
      */
-    	protected int reward;
+    protected int reward;
 
     /**
      *
      */
     protected int level;
-
-    /**
-     *
-     */
-    //protected double levelMultiplier;
 
     /**
      *
@@ -130,7 +125,6 @@ public abstract class Critter extends Subject implements DrawableEntity {
      *
      */
     protected ArrayList<Point> pixelPathToFollow;
-	//protected ArrayList<Point> newPixelPathToFollow;
 
     /**
      *
@@ -176,6 +170,10 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		beenDOTFor = 0;
 		burning =false;
 	}
+	/*
+	 * calculates the current level multiplier of the critter
+	 * This will be called by extending critters, usually
+	 */
     protected double calculateLevelMultiplier(){
     	double i = 1 + 1*((double)(level-1))/((double)MAXCRITTERLEVEL);
     	
@@ -205,9 +203,6 @@ public abstract class Critter extends Subject implements DrawableEntity {
     public ArrayList<Point> getListPixelPath(){
 		return this.pixelPathToFollow;
 	}
-	/*public ArrayList<Point> getNewListPixelPath(){
-		return this.newPixelPathToFollow;
-	}*/
 
     /**
      *
@@ -387,6 +382,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		return speed;
 	}
 	//END OF Getters and Setters
+    
 	/*
 	 * @see entities.DrawableEntity#updateAndDraw()
 	 * This must have all properties of the critter that change with time
@@ -399,14 +395,15 @@ public abstract class Critter extends Subject implements DrawableEntity {
      */
     
 	public void updateAndDraw(Graphics g){
+		//we only want to do something if the critter is active
 		if(this.isActive()){
-			//do slowing
+			//See if we are being slowed, if so, tick the total amount of time we have been slowed for
 			if(beenSlowedFor < this.slowTime){
 				beenSlowedFor +=1*GameClock.getInstance().deltaTime();
 			}else{
 				slowFactor = 0;
 			}
-			//do damages over time
+			//See if we are being damaged over time, if so, tick the time we have been DOT for
 			if(beenDOTFor < this.dotTime){
 				beenDOTFor +=1*GameClock.getInstance().deltaTime();
 				burning = true;
@@ -414,8 +411,9 @@ public abstract class Critter extends Subject implements DrawableEntity {
 				damageOverTimeVal = 0;
 				burning = false;
 			}
-			
+			//update the health of the critter
 			updateHealth();
+			//update the position of the critter and draw it
 			updatePositionAndDraw(g);
 		}
 	}
@@ -423,9 +421,11 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 * updates the health of the critter (called on every "tick" of the clock)
 	 */
 	private void updateHealth(){
+		//a certain amount of time passed (which is deltaTime)
 		int timePassed = GameClock.getInstance().deltaTime();
 		double dotPerTime = damageOverTimeVal*timePassed;
-		double dotTaken = dotPerTime*(1.0-resistance);
+		double dotTaken = dotPerTime*(1.0-resistance); //this is the amount of DOT we take
+		
 		//simply update the hitpoints. This should be called every update instance.
 		if(this.currHitPoints + this.regen*timePassed - dotTaken <=0){
 			this.currHitPoints = 0;
@@ -451,9 +451,11 @@ public abstract class Critter extends Subject implements DrawableEntity {
 			_pixelPosition = pixelPathToFollow.get(0);
 		}
 		
-		//the next index is our current index + our speed*our clock
+		//the next index is our current index + our speed*our clock.
+		//note that our speed is equal to 1-(1-resistance)*slowfactor;
 		indexInPixelPath += (1.0-(1.0-resistance)*slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
 		int indexToMoveTo = (int) indexInPixelPath;
+		
 		//If we aren't going to pass the end, we move our critter.
 		if(indexInPixelPath < pixelPathToFollow.size()){
 			moveAndDrawCritter(indexToMoveTo, g);
@@ -470,37 +472,40 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	 * Moves the critter to a given position and draws it as it moves.
 	 */
 	private void moveAndDrawCritter(int index, Graphics g){
+		//if we have not moved, we just draw the critter (if paused for instance)
 		if(intIndexInPixelPath == index){
 			this.drawCritter(g);
+		//if we have moved, we go through all of the points that we have moved, and draw it
 		}else{
 			while(intIndexInPixelPath<index){
 				intIndexInPixelPath +=1;
 				this._pixelPosition.setPoint(this.pixelPathToFollow.get(intIndexInPixelPath).getX(), this.pixelPathToFollow.get(intIndexInPixelPath).getY());
-				this.drawCritter(g);
+				this.drawCritter(g); //draws the critter
 			}
 		}
 	}
 	
 	private void drawCritter(Graphics g) {
-		//System.out.println("Just tried to draw a critter at " + this._pixelPosition.toString());
+		//draws the critter using the artist class
 		Artist_Swing.drawCritter(this,g);
     }
 	
-	//Damages the critter for a certain amount (Will likely be removed in final version)
+	//Damages the critter for a certain amount 
 
     /**
      *
      * @param dam
      */
     	public void damage(double dam){
-		if(this.currHitPoints - dam > 0){
-			this.currHitPoints -= dam;
-		}else{
-			this.currHitPoints = 0;
-			this.active = false;
-			this.alive = false;
-			this.notifyObs();
-		}
+	    	//Check to see if we will not die.
+			if(this.currHitPoints - dam > 0){
+				this.currHitPoints -= dam; //if we won't die, damage us
+			}else{ //if we will die, make us inactive, dead, and notify our observers
+				this.currHitPoints = 0;
+				this.active = false;
+				this.alive = false;
+				this.notifyObs();
+			}
 	}
 
     /**
@@ -509,6 +514,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
      * @param sTime
      */
     public void slowCritter(double sFactor, int sTime){
+    	//set the slow factor and slow time
 		this.setSlowFactor(sFactor);
 		this.slowTime = sTime;
 	}
@@ -519,6 +525,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
      * @param damageOverTimeLength
      */
     public void damageOverTimeCritter(double dot, int damageOverTimeLength) {
+    	//set the damage over time factor and time
 		this.setDOTAmount(dot);
 		this.dotTime = damageOverTimeLength;
 		

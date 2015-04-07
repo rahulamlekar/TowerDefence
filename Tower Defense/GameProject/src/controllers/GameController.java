@@ -129,14 +129,15 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		MouseAndKeyboardHandler handler = new MouseAndKeyboardHandler(this);
 		gamePanel.addMouseListener(handler);
 		gamePanel.addMouseMotionListener(handler);
-		gamePanel.addKeyListener(handler);
 
 		
 	}
 	private void setPanelAndButtonProperties(){
-		//create Field pointer defined in controller
+		//So we set this to be our game panel (for mouse click purposes)
 		gamePanel = this;
 		controlPanel = new GameControlPanel();
+		//now we have to get all of our Swing objects, and add action listeners (so we know when clicked).
+		//buttons:
 		bPause = this.getControlPanel().getPauseButton();
 		bPause.addActionListener(this);
 		bReturn = this.getControlPanel().getReturnButton();
@@ -161,17 +162,13 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		bSell.setEnabled(false);
 		bCritterInfo = this.getControlPanel().getCritterInfoButton();
 		bCritterInfo.addActionListener(this);
-		
+		//jsSpeed is the slider for the speed of the game
 		jsSpeed = this.getControlPanel().getSpeedSlider();
 		jsSpeed.addChangeListener(this);
+		//we initialize the strategy box and set its selected index to the first.
 		cbStrategies = this.getControlPanel().getCBStrategy();
-		cbStrategies.addItem("Closest");
-		cbStrategies.addItem("Farthest");
-		cbStrategies.addItem("Fastest");
-		cbStrategies.addItem("Weakest");
-		cbStrategies.addItem("Strongest");
 		cbStrategies.setSelectedIndex(0);
-		cbStrategies.setEnabled(false);
+		cbStrategies.setEnabled(false); //disable it (until a tower is selected)
 		cbStrategies.addItemListener(this);
 		
 	}
@@ -180,25 +177,33 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	 * Also initializes arrays and gets the instances of the singleton classes.
 	 */
 	private void setInitialValues(){
+		//get the instances of our singleton helpers
+		artist = Artist_Swing.getInstance();
 		clock = GameClock.getInstance();
-		clock.pause();
-		gamePaused = true;
-		gameOver = false;
+		//also get our singleton player
+		gamePlayer = Player.getInstance();
+		
+		clock.pause(); //start the game off paused
+		gamePaused = true; //game is paused
+		gameOver = false; //game is not over
+		//initialize arraylists
 		subjects = new ArrayList<Subject>();
 		helpers = new ArrayList<Helper>();
 		drawableEntities = new ArrayList<DrawableEntity>();
 		towersOnMap = new ArrayList<Tower>();
+		//we start on wavenumber 0
 		waveNumber = 0;
-		gamePlayer = Player.getInstance();
+		
+		//we start with the money before any is spent
 		waveStartMoney = gamePlayer.getMoney();
 		waveStartLives = gamePlayer.getLives();
 		//default tower to build
 		selectedTowerToBuild = "None";
-		artist = Artist_Swing.getInstance();
+
 		//add into a list of helpers (currently for UML diagram)
 		helpers.add(artist);
 		helpers.add(clock);
-		bNone.doClick();
+		bNone.doClick(); //start by having no tower selected
 	}
 
     /**
@@ -388,8 +393,10 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
      */
     	public void observerUpdate(){
 		if(gamePaused ==false){
+			//we want to reset the wave stats, and then  check each critter to see what happended
 			resetPlayerWaveStats();
 			boolean anyCrittersLeft = false;
+			//go through subjects and see if we have a critter
 			for(Subject s : subjects){
 				if(s instanceof Critter){
 					//it is a critter. Check to see if it is dead or if it has reached the end.
@@ -397,28 +404,28 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 					//if it is dead, give the appropriate money to the player
 					if(c.isAlive() && c.hasReachedEnd()==false){
 						anyCrittersLeft = true;
-					}else if(c.isAlive()==false){
+					}else if(c.isAlive()==false){ //if it is dead, we want to give the loot to user
 						gamePlayer.addToMoney(c.getLoot()); 
 					}else if(c.hasReachedEnd()==true){//if it has reached the end, take away a life
 						gamePlayer.takeAwayALife();
-						if(gamePlayer.getLives()==0){
+						if(gamePlayer.getLives()==0){ //if no lives, end the game
 							endGame();
 						}
 					}
 				}
 			}
-			//if no critters are left, start a new wave
+			//if no critters are left, allow the player to start a new wave
 			if(anyCrittersLeft == false){
 				bStartWave.setEnabled(true);
-
-				//startNewWave();
 			}
+			//if it isn't Game Over, then update the information labels.
 			if(!gameOver){
 			updateInfoLabelText();
 			updateSelectedTowerInfoAndButtons();
 			}
 		}
 	}
+    	
     /*
      * Ends the game by disabling buttons, and pausing the clock.
      */
@@ -474,7 +481,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	//updates the tower info text
 	private void updateTowerInfoText(){
 		String text = "";
-		if(selectedTower != null){
+		if(selectedTower != null){ //we print the tower's tostring, and show the prices
 			text += selectedTower.toString();
 			bUpgrade.setText("Upgrade (" + selectedTower.getUpPrice() + ")");
 			bSell.setText("Sell (" + selectedTower.getSellPrice() + ")");
@@ -512,34 +519,26 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			Tower towToBuild = null;
 			int moneyToSpend = 0;
 			int playerMoney = gamePlayer.getMoney();
-			//check which tower we want to place --This could be nicer (if we can somehow get the classtype?)
+			//check which tower we want to place, and only build it if we have enough money.
 			if(selectedTowerToBuild.equalsIgnoreCase("Spread")){
 				if(playerMoney >= Tower_SpreadShot.getBuyPrice()){
 					towToBuild =new Tower_SpreadShot("Spread Tower", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_SpreadShot.getBuyPrice();
-				}else{
-					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("Fire")){
 				if(playerMoney >= Tower_Fire.getBuyPrice()){
 					towToBuild = new Tower_Fire("Fire Tower", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_Fire.getBuyPrice();
-				}else{
-					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("IceBeam")){
 				if(playerMoney >= Tower_IceBeam.getBuyPrice()){
 					towToBuild = new Tower_IceBeam("Ice Tower", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_IceBeam.getBuyPrice();
-				}else{
-					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("Laser")){
 				if(playerMoney >= Tower_Laser.getBuyPrice()){
 					towToBuild = new Tower_Laser("Laser Tower", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_Laser.getBuyPrice();
-				}else{
-					alertUserInsufficientFundsForBuying();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("None")){
 				//no tower = don't do anything.
@@ -596,10 +595,6 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		updateTowerInfoText();
 	}
 	
-	
-	private void alertUserInsufficientFundsForBuying(){
-		System.out.println("The " + gamePlayer.getMoney() + " dollars that you have is not enough for the " + selectedTowerToBuild + " tower.");
-	}
 	
     /**
      *
@@ -658,34 +653,26 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 				towerBeingPreviewed.setColor(newColor);  
 				towerBeingPreviewed.setEnabled(false);
 				drawableEntities.add(towerBeingPreviewed);
-				//Draw();
 			}
 		}else{ //if there is a tower on this block
 			//don't do anything if there is a tower on the block
 		}
 	}
 
-    /**
-     *
-     * @param e
-     */
-    public void reactToKeypress(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-			this.bNone.doClick();
-		}
-	}
+
 	
     /**
      *
      * @param point
      */
     public void reactToRightClick(Point point) {
-		this.bNone.doClick();
+		this.bNone.doClick(); //a right click clears the current tower selection
 	}
 	
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		if(e.getSource() == this.cbStrategies){
+		//if our strategies combobox changed, we want to change the strategy of the selected tower
+		if(e.getSource() == this.cbStrategies){ 
 			String item = (String) e.getItem();
 			if(item.equalsIgnoreCase("Closest")){
 				//should we be creating a new strat? Or should we make the strats singleton?

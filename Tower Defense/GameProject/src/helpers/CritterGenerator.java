@@ -81,13 +81,4 @@ public class CritterGenerator extends Helper {
 		return critterGroup;
 	}
 
-    /**
-     *
-     * @param waveLevel
-     * @param exampleMap
-     * @return
-     */
-    public ArrayList<Critter> getGeneratedCritWave(int waveLevel, TDMap exampleMap){
-		return null;
-	}
 }
