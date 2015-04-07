@@ -25,12 +25,12 @@ public class MapEditorApplicationFrame extends JFrame{
     /**
      *  The width of the window of the Map Editor.
      */
-    	public static final int PIXELWIDTH=1280;
+    	public static final int PIXELWIDTH=Artist_Swing.PIXELWIDTH;
 
     /**
      *  The height of the window of the Map Editor.
      */
-    public static final int PIXELHEIGHT=800;
+    public static final int PIXELHEIGHT=Artist_Swing.PIXELHEIGHT;
 
     /**
      *

@@ -18,7 +18,7 @@ public abstract class Tower implements DrawableEntity{
 	final static String DEFAULTSTRATEGY = "Closest";
 	
 	Point position;
-	int slowTime;
+	//int slowTime;
 	double damage;
 	int rateOfFire;
 	int range;
@@ -28,9 +28,8 @@ public abstract class Tower implements DrawableEntity{
 	String name;
 	int level;
 	//boolean slow;
-	double slowFactor;
-	boolean damageOverTime;
-	boolean areaOfAffect;
+	//double slowFactor;
+	//boolean damageOverTime;
 	Color tColor;
 	Color shotColor;
 	private IStrategy strategy;
@@ -179,17 +178,17 @@ public abstract class Tower implements DrawableEntity{
      *
      * @param time
      */
-    public void setSlowTime(int time){
+    /*public void setSlowTime(int time){
 		this.slowTime = time;
-	}
+	}*/
 
     /**
      *
      * @return
      */
-    public int getSlowTime(){
+    /*public int getSlowTime(){
 		return this.slowTime;
-	}
+	}*/
 
     /**
      *
@@ -340,15 +339,11 @@ public abstract class Tower implements DrawableEntity{
     	public void upgradeTower(){
 		if(level < MAXTOWERLEVEL){
 			level = level + 1;
-			upCost = upCost + 50;
-			damage = damage + 0.2; 
-			rateOfFire = rateOfFire + 1;
-			sellPrice = sellPrice + 50;
-			range = range + 1;
-			if(this.slowTime != 0){
-				this.slowTime = (this.slowTime + 20);
-				this.slowFactor = this.slowFactor + 0.1;
-			}
+			upCost = upCost*3;
+			damage = damage*2; 
+			rateOfFire = rateOfFire + level;
+			sellPrice = sellPrice*2;
+			range = (int)(1.5*range);
 		}
 	}
 

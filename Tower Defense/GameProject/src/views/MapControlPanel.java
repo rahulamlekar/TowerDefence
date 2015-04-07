@@ -1,15 +1,9 @@
 package views;
 
-import helpers.Artist_Swing;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import models.Point;
 import models.TDMap;
@@ -21,21 +15,16 @@ import models.TDMap;
  */
 public class MapControlPanel extends JPanel{
 
-	//public JPanel labelPanel = new JPanel();
 	JLabel lblWidthLabel = new JLabel("Width = ");
 	JLabel lblHeightLabel = new JLabel("Height = ");
 	JLabel lblStartLabel = new JLabel("Start = (,)");
-	//JLabel lblInfo4 = new JLabel(",");
 	JLabel lblEndLabel = new JLabel("End = (,)");
-	//JLabel lblInfo6 = new JLabel(",");
-	//JLabel lblInfo7 = new JLabel(")");
-	//JLabel lblInfo8 = new JLabel(".TDMap");
+	JLabel lblStatus = new JLabel("Status:");
 	JLabel lblFormatLabel = new JLabel(" | ");
-	//JTextField textField;
 	JComboBox widthList;
-	JComboBox heightList;// startWidthIndexes, startHeightIndexes, endWidthIndexes, endHeightIndexes;
+	JComboBox heightList;
 	JButton bInitialize = new JButton("Re-Initialize the Map");
-	//JButton bSetStartAndEnd = new JButton("Set Start & End");
+
 	JButton bReturn = new JButton("Main Menu");
 	JButton bSave = new JButton("Save Map");
 	TDMap tdMap;
@@ -52,40 +41,24 @@ public class MapControlPanel extends JPanel{
         this.add(lblWidthLabel);
         this.setWidthIndexes();
         this.add(widthList);
-        this.add(lblFormatLabel);
         this.add(lblHeightLabel);
         this.setHeightIndexes();
         this.add(heightList);
-        this.add(lblFormatLabel);
-        /*startWidthIndexes= this.setIndexes(0, tdMap.getGridWidth()-1);
-        startHeightIndexes= this.setIndexes(0, tdMap.getGridHeight()-1);
-        endWidthIndexes= this.setIndexes(0, tdMap.getGridWidth()-1);
-        endHeightIndexes= this.setIndexes(0, tdMap.getGridHeight()-1);*/
+        this.add(bInitialize);
         this.add(lblStartLabel);
-        
-        //this.add(startWidthIndexes);
         this.add(bSelectStart);
-        this.add(lblFormatLabel);
-        //this.add(lblInfo4);
-        //this.add(startHeightIndexes);
         this.add(lblEndLabel);
         this.add(bSelectEnd);
         this.add(lblFormatLabel);
-        //this.add(endWidthIndexes);
-        //this.add(lblInfo6);
-        //this.add(endHeightIndexes);
-        //this.add(lblInfo7);
-        this.add(bInitialize);
-        //this.add(bSetStartAndEnd);
-        //textField= new JTextField(10);
-        //textField.setEditable(true);
-        //this.add(textField);
-        //this.add(lblInfo8);
+
         this.add(bSave);
         this.add(bReturn);
+        this.add(lblStatus);
 
 	}
-
+    public void setStatusText(String text){
+    	lblStatus.setText(text);
+    }
     /**
      *
      * @return

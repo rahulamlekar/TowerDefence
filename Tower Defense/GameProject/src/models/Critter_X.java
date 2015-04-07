@@ -21,15 +21,16 @@ public class Critter_X extends Critter {
      */
     public Critter_X(int level, TDMap m) {
 		super(level, m);
+		double levelMultiplier = calculateLevelMultiplier();
 		//high reward
-		reward = (int) (20*levelMultiplier);
+		reward = (int) (12*levelMultiplier);
 		//med hitpoints
-		currHitPoints = (100*levelMultiplier);
+		currHitPoints = (175*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//low regen
 		regen = 1*levelMultiplier;
 		//low speed
-		speed = (5*levelMultiplier);
+		speed = Math.min(4*levelMultiplier, MAXSPEED);
 		//pure resistancfe
 		resistance = 1;
 		//set name

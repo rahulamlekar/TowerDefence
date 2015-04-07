@@ -22,15 +22,16 @@ public class Critter_Square extends Critter{
      */
     public Critter_Square(int level, TDMap m) {
 		super(level, m);
+		double levelMultiplier = calculateLevelMultiplier();
 		//low reward
-		reward = (int) (5*levelMultiplier);
+		reward = (int) (12*levelMultiplier);
 		//low hitpoints
-		currHitPoints = (100*levelMultiplier);
+		currHitPoints = (180*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//no regen
 		regen = 0;
 		//low speed
-		speed = (5*levelMultiplier);
+		speed = Math.min(4*levelMultiplier, MAXSPEED);
 		resistance = 0;
 		//set name
 		name = "Square Critter";

@@ -20,15 +20,16 @@ public class Critter_Circle extends Critter{
      */
     public Critter_Circle(int level, TDMap m) {
 		super(level, m);
+		double levelMultiplier = calculateLevelMultiplier();
 		//average reward
 		reward = (int) (10*levelMultiplier);
 		//average hitpoints
-		currHitPoints = (100*levelMultiplier);
+		currHitPoints = (140*levelMultiplier);
 		maxHitPoints = currHitPoints;
 		//low regen
-		regen = (1*levelMultiplier);
+		regen = (0.5*levelMultiplier);
 		//average speed
-		speed = (5*levelMultiplier);
+		speed = Math.min(4*levelMultiplier, MAXSPEED);
 		//no resistance
 		resistance = 0;
 		//set name

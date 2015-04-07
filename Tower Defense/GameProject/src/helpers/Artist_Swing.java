@@ -20,17 +20,17 @@ public class Artist_Swing extends Helper{
     /**
      *  The default pixel width for the screen.
      */
-    public static final int PIXELWIDTH=1280;
+    public static final int PIXELWIDTH=1000;
 
     /**
      *  The default pixel height for the screen.
      */
-    public static final int PIXELHEIGHT=800;
+    public static final int PIXELHEIGHT=700;
 
     /**
      *  The default height for the map shown on the screen.
      */
-    public static final int GAMEPIXELHEIGHT = 700;
+    public static final int GAMEPIXELHEIGHT = PIXELHEIGHT-100;
 	private int gridWidth;
 	private int gridHeight;
 	

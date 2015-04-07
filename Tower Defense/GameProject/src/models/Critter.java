@@ -23,6 +23,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
      *
      */
     	public static final int MAXWAVENUMBER = 50;
+    	public static final int MAXSPEED = 15;
 	//attributes of the critter
 	//tangible properties of critter
 
@@ -76,7 +77,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
     /**
      *
      */
-    protected double levelMultiplier;
+    //protected double levelMultiplier;
 
     /**
      *
@@ -149,17 +150,22 @@ public abstract class Critter extends Subject implements DrawableEntity {
      * @param level
      * @param m
      */
-    	public Critter(int level, TDMap m){
-		//set the level from input
-		this.level = level;
-		//set the default values for all critters
-		levelMultiplier = 1 + 5*((double)(level -1))/((double)MAXWAVENUMBER);
+    public Critter(int level, TDMap m){
+    	this.level = level;
+    	setInitialValues();
+    	//set the level from input
+		pixelPathToFollow = m.getPath_ListOfPixels();
+		//sets the size to scale with the grid size (bigger blocks = bigger critters)
+		size = Math.min(m.getTileWidth_pixel(), m.getTileHeight_pixel())/5; 
+    }
+    /*
+     * sets the initial values of the critter attributes.
+     */
+	public void setInitialValues(){
 		reachedEnd = false; //none have reached end to start
 		active = false; //none are active to start
-		alive = true;
-		pixelPathToFollow = m.getPath_ListOfPixels();
+		alive = true; //they are all alive to start
 		indexInPixelPath = 0; //all start at beginning of path
-		size = 6; //this can be changed...
 		this._pixelPosition = new Point(-1,-1);
 		slowFactor = 0;
 		slowTime = 0;
@@ -169,7 +175,18 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		beenDOTFor = 0;
 		burning =false;
 	}
-	
+    protected double calculateLevelMultiplier(){
+    	double i = 1 + 1*((double)(level-1))/((double)MAXWAVENUMBER);
+    	
+    	if(level > 20){
+    		i = 1 + (level+1)*((double)(level-1))/((double)MAXWAVENUMBER);
+    	}else if(level > 10){
+    		i =1 + 2*(level+1)*((double)(level -1))/((double)MAXWAVENUMBER);
+    	}else if(level > 5){
+    		i =1 + (level+1)*((double)(level -1))/((double)MAXWAVENUMBER);
+    	}
+    	return i;
+    }
 	//getters and setters
 
     /**
@@ -407,15 +424,16 @@ public abstract class Critter extends Subject implements DrawableEntity {
 	private void updateHealth(){
 		int timePassed = GameClock.getInstance().deltaTime();
 		double dotPerTime = damageOverTimeVal*timePassed;
+		double dotTaken = dotPerTime*(1.0-resistance);
 		//simply update the hitpoints. This should be called every update instance.
-		if(this.currHitPoints + this.regen*timePassed - dotPerTime <=0){
+		if(this.currHitPoints + this.regen*timePassed - dotTaken <=0){
 			this.currHitPoints = 0;
 			this.active = false;
 			this.alive = false;
 			this.notifyObs();
 			//if our regen will not push us over our limit, simply regen
-		}else if(this.currHitPoints + this.regen*timePassed - dotPerTime < this.maxHitPoints){
-			this.currHitPoints = this.currHitPoints + this.regen*timePassed - dotPerTime;	
+		}else if(this.currHitPoints + this.regen*timePassed - dotTaken < this.maxHitPoints){
+			this.currHitPoints = this.currHitPoints + this.regen*timePassed - dotTaken;	
 		}else{
 			//otherwise just set us to the max regen value.
 			this.currHitPoints = this.maxHitPoints;
@@ -433,7 +451,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
 		}
 		
 		//the next index is our current index + our speed*our clock
-		indexInPixelPath += (1.0-slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
+		indexInPixelPath += (1.0-(1.0-resistance)*slowFactor)*this.speed*GameClock.getInstance().deltaTime(); //synced with time
 		int indexToMoveTo = (int) indexInPixelPath;
 		//If we aren't going to pass the end, we move our critter.
 		if(indexInPixelPath < pixelPathToFollow.size()){

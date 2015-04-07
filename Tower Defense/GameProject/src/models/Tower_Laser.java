@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  */
 public class Tower_Laser extends Tower{
-	static int buyCost = 100;
+	static int buyCost = 200;
 
     /**
      *
@@ -23,16 +23,12 @@ public class Tower_Laser extends Tower{
 		//all values are place holders
 		damage = 0.5;
 		rateOfFire = 10;
-		range = 300;
-		sellPrice = 50;
+		range = 250;
+		sellPrice = 80;
 		upCost = 200;
-		slowFactor = 0;
-		damageOverTime = false;
-		areaOfAffect = false;
 		tColor = Color.black;
 		shotColor = Color.black;
-		buyCost = 100;
-		slowTime = 0;
+		buyCost = 200;
 	}
 	
     /**

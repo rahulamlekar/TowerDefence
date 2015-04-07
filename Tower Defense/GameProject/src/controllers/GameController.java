@@ -198,9 +198,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
      *
      * @param mFrame
      */
+	//sets the JFrame that the game is displayed on
     public void setMainFrame(JFrame mFrame){
 		mainFrame = mFrame;
 	}
+    //starts a new wave
 	private void startNewWave(){
 		this.setPlaybackSpeed();
 		//increment the wave number
@@ -235,7 +237,10 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -279,29 +284,33 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			bPause.setText("Pause");
 		}
 	}
+	//when main menu is clicked
 	private void doReturnToMainMenu(){
 		mainFrame.dispose();
 		new MenuApplicationFrame();
 		Player.getInstance().resetStats();
 	}
+	//when start wave is clicked
 	private void doStartWave(){
 		clock.unPause();
 		gamePaused =false;
 		bStartWave.setEnabled(false);
 		startNewWave();
 	}
-	
+	//when one of the tower buttons is clicked
 	private void doSelectTower(ActionEvent arg0){
 		if(drawableEntities.contains(towerBeingPreviewed)){
 			drawableEntities.remove(towerBeingPreviewed);
 		}
 		selectedTowerToBuild = ((JToggleButton) arg0.getSource()).getName();
 	}
+	//when upgrade is clicked
 	private void doUpgrade(){
 		spendMoney(this.selectedTower.getUpPrice());
 		this.selectedTower.upgradeTower();
 		this.updateSelectedTowerInfoAndButtons();
 	}
+	//when sell is clicked
 	private void doSell(){
 		//give the player the money by spending the negative amount.
 		this.spendMoney((-1)*selectedTower.getSellPrice());
@@ -312,13 +321,16 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		if(selectedTile != null){
 			selectedTile.setTowerOnTile(null);
 		}
+		//update buttons
 		this.updateSelectedTowerInfoAndButtons();
-		this.Draw();
+		this.Draw(); //redraw
 	}
 	//end of button calls
 	
-	//This method is called every time the timer times out, or when a button is clicked!
-	//The basic Game loop
+	/*
+	 * This method is called every time the timer times out, or when a button is clicked!(non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
@@ -353,20 +365,18 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			
 		
 	}
-	
+	//calls the repaint method
 	private void Draw(){
-		//calls the paintComponent function
 		gamePanel.repaint();
 	}
-	//one of my subjects has changed. Go through them all and check stats.
 
     /**
-     *  This will update the whole screen whenever one of the subjects of the Game Controller is changed,
+     *  This will update the game whenever one of the subjects (Critters)of the Game Controller is changed,
      *  e.g. if a critter dies or a tower is upgraded.
      */
     	public void observerUpdate(){
 		if(gamePaused ==false){
-			resetPlayerStats();
+			resetPlayerWaveStats();
 			boolean anyCrittersLeft = false;
 			for(Subject s : subjects){
 				if(s instanceof Critter){
@@ -393,9 +403,13 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			}
 			if(!gameOver){
 			updateInfoLabelText();
+			updateSelectedTowerInfoAndButtons();
 			}
 		}
 	}
+    /*
+     * Ends the game by disabling buttons, and pausing the clock.
+     */
 	private void endGame(){
 		gameOver = true;
 		gamePaused =true;
@@ -403,20 +417,29 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		this.getControlPanel().setInfoLabelText("GAME OVER. You reached wave " + waveNumber + " with $" + gamePlayer.getMoney() + ".");
 		disableAllGameButtons();
 	}
+	/*
+	 * disables all of the game buttons
+	 */
 	private void disableAllGameButtons(){
 		bStartWave.setEnabled(false);
 		bPause.setEnabled(false);
 		bUpgrade.setEnabled(false);
 		bSell.setEnabled(false);
 		cbStrategies.setEnabled(false);
-		
 	}
-	private void resetPlayerStats() {
+	/*
+	 * resets the player's stats (so that a new game can be started with the same instance
+	 */
+	private void resetPlayerWaveStats() {
 		gamePlayer.setLives(waveStartLives);
 		gamePlayer.setMoney(waveStartMoney);
-		
 	}
-
+	//spends a certain amount of money of the Player
+	private void spendMoney(int amount){
+		gamePlayer.addToMoney((-1)*amount);
+		this.waveStartMoney -=amount;
+		updateInfoLabelText();
+	}
     /**
      *
      * @return
@@ -432,9 +455,11 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
     public MapPanel getPlayPanel(){
 		return gamePanel;
 	}
+    //updates the info text
 	private void updateInfoLabelText(){
 		this.getControlPanel().setInfoLabelText("| Lives = " + gamePlayer.getLives()+ ", Money = " + gamePlayer.getMoney()+ ", Wavenumber = " + waveNumber + " |");
 	}
+	//updates the tower info text
 	private void updateTowerInfoText(){
 		String text = "";
 		if(selectedTower != null){
@@ -445,16 +470,12 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		this.getControlPanel().setTowerInfoLabelText(text);
 	}
 	
-	private void spendMoney(int amount){
-		gamePlayer.addToMoney((-1)*amount);
-		this.waveStartMoney -=amount;
-		updateInfoLabelText();
-	}
+
 	//This method is called from the click handler when we get a click at a point
 
     /**
      *  This method selects an existing tower to upgrade it, or puts a new tower
-     *  on the selected tile, of the desired type.
+     *  on the selected tile, of the desired type. Hence, react to left click
      * @param point
      */
     	public void reactToLeftClick(Point point){
@@ -511,15 +532,20 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			}else{
 				System.out.println("Error: No appropriate tower type (coding error)");
 			}
+			//if we have a tower to build (that isn't null), build it
 			if(towToBuild!= null){
+				//spend the money, build the tower, and put it on the tile
 				spendMoney(moneyToSpend);
 				buildTower(towToBuild);
 				tileAtClick.setTowerOnTile(towToBuild);
 			}
 		}else{ //if there is a tower on this block
+			//if our currently selected tower is not nothing, then deselect.
 			if(selectedTower != null){ selectedTower.setSelected(false);}
+			//now select the new tower
 			selectedTower = tileAtClick.getTowerOnTile();
 			selectedTower.setSelected(true);
+			//update the information
 			updateSelectedTowerInfoAndButtons();
 			selectedTile = tileAtClick;
 		}

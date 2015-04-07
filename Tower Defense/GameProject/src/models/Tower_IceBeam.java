@@ -11,7 +11,8 @@ import java.util.ArrayList;
  */
 public class Tower_IceBeam extends Tower {
 	static int buyCost = 150;
-
+	double slowFactor;
+	int slowTime;
     /**
      *
      * @param n
@@ -22,15 +23,13 @@ public class Tower_IceBeam extends Tower {
 		super(n, p, crittersOnMap);
 		//these variables are all explicitly written as all laser towers will have the same starting stats
 		//all values are place holders
-		damage = 0.1;
+		damage = 0.25;
 		rateOfFire = 10;
 		range = 100;
 		sellPrice = 75;
 		upCost = 200;
 		slowFactor = 0.5;
-		damageOverTime = false;
-		areaOfAffect = false;
-		tColor = Color.white;
+		tColor = Color.WHITE;
 		shotColor = Color.WHITE;
 		buyCost = 150;
 		slowTime = 30;
@@ -44,7 +43,7 @@ public class Tower_IceBeam extends Tower {
     protected void shootTarget(Critter target, Graphics g){
     
 		super.shootTarget(target, g);
-		target.slowCritter(this.slowFactor, this.getSlowTime());
+		target.slowCritter(this.slowFactor, this.slowTime);
 	}
 	
     /**
@@ -54,5 +53,12 @@ public class Tower_IceBeam extends Tower {
     public static int getBuyPrice(){	
 		return buyCost;
 	}
+    public void upgradeTower(){
+    	if(level < MAXTOWERLEVEL){
+	    	super.upgradeTower();
+			this.slowTime = (this.slowTime + 20);
+			this.slowFactor = this.slowFactor + 0.1;
+    	}
+    }
 
 }

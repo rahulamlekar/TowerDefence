@@ -14,6 +14,7 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import views.MapPanel;
@@ -52,11 +53,9 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
      */
     protected TDMap tdMap;
 	
-	//declare frame specific variables
 	private Timer timer;
 	private JButton bReturn;
 	private JButton bInitialize;
-	//private JButton bSetStartAndEnd;
 	private JButton bSave;
 	private JButton bSelectStart;
 	private JButton bSelectEnd;
@@ -84,8 +83,6 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bReturn.addActionListener(this);
 		bInitialize = this.getControlPanel().getInitializeButton();
 		bInitialize.addActionListener(this);
-		//bSetStartAndEnd = this.getControlPanel().getSetStartAndEndButton();
-		//bSetStartAndEnd.addActionListener(this);
 		bSave = this.getControlPanel().getSaveButton();
 		bSave.addActionListener(this);
 		bSelectStart = this.getControlPanel().getSelectStartButton();
@@ -94,21 +91,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bSelectEnd.addActionListener(this);
 		this.tdMap= map;
 		map.addObserver(this);
-		//drawableEntities.add(tdMap);
 		timer = new Timer(MapEditorApplicationFrame.TIMEOUT,this);
 		timer.start();
 		mapPanel.addMouseListener(this);
-		//bInitialize.doClick();
-		
 		this.getControlPanel().getWidthIndexes().setSelectedIndex(tdMap.getGridWidth() - TDMap.MINWIDTH);
 		this.getControlPanel().getHeightIndexes().setSelectedIndex(tdMap.getGridHeight() - TDMap.MINHEIGHT);
 		this.getControlPanel().setStartPointLabel(tdMap.getStart());
 		this.getControlPanel().setEndPointLabel(tdMap.getEnd());
-		/*
-		this.getControlPanel().getStartWidths().setSelectedIndex(tdMap.getStart().getX());
-		this.getControlPanel().getStartHeights().setSelectedIndex(tdMap.getStart().getY());
-		this.getControlPanel().getEndWidths().setSelectedIndex(tdMap.getEnd().getX());
-		this.getControlPanel().getEndHeights().setSelectedIndex(tdMap.getEnd().getY());*/
 	}
 
     /**
@@ -152,13 +141,6 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 			this.controlPanel.setEndPointLabel(new Point(0,0));
 			controlPanel.repaint();
 		}
-		/*else if(e.getSource() == bSetStartAndEnd)
-		{
-			tdMap.setStart(Integer.parseInt((String) this.getControlPanel().getStartWidths().getSelectedItem()),
-					Integer.parseInt((String) this.getControlPanel().getStartHeights().getSelectedItem()));
-			tdMap.setEnd(Integer.parseInt((String) this.getControlPanel().getEndWidths().getSelectedItem()),
-					Integer.parseInt((String) this.getControlPanel().getEndHeights().getSelectedItem()));
-		}*/
 		else if(e.getSource() == bSave)
 		{
 			int returnVal = fc.showDialog(this, "Save");
@@ -238,26 +220,42 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		
 		if(selectingStart){
-			tdMap.setStart(xGridPos, yGridPos);
-			this.controlPanel.setStartPointLabel(new Point(xGridPos, yGridPos));
-			selectingStart = false;
-			setControlPanelEnabled(true);
-
+			if(goodStartOrEnd(xGridPos, yGridPos)){
+				tdMap.setStart(xGridPos, yGridPos);
+				this.controlPanel.setStartPointLabel(new Point(xGridPos, yGridPos));
+				selectingStart = false;
+				setControlPanelEnabled(true);
+				this.controlPanel.setStatusText("Start set to " + new Point(xGridPos, yGridPos).toString());
+			}else{
+				this.controlPanel.setStatusText("Please select valid start point.");
+			}
 		}else if(selectingEnd){
-			tdMap.setEnd(xGridPos, yGridPos);
-			this.controlPanel.setEndPointLabel(new Point(xGridPos, yGridPos));
-			selectingEnd = false;
-			setControlPanelEnabled(true);
+			if(goodStartOrEnd(xGridPos, yGridPos)){
+				tdMap.setEnd(xGridPos, yGridPos);
+				this.controlPanel.setEndPointLabel(new Point(xGridPos, yGridPos));
+				selectingEnd = false;
+				setControlPanelEnabled(true);
+				this.controlPanel.setStatusText("End set to " + new Point(xGridPos, yGridPos).toString());
+			}else{
+				this.controlPanel.setStatusText("Please select valid end point.");
+			}
 		}else{
 			tdMap.toggleGrid(xGridPos, yGridPos);	
 		}
 		
 	}
+	private boolean goodStartOrEnd(int xGridPos, int yGridPos) {
+		//we return true if any of our coordinates are on the boundaries.
+		return (xGridPos == 0 || yGridPos == 0 || xGridPos == tdMap.getGridWidth() -1 || yGridPos == tdMap.getGridHeight() -1);
+	}
+
 	private void setControlPanelEnabled(boolean b) {
 		
 		Component[] components = this.controlPanel.getComponents();
 		for(Component c : components){
-			c.setEnabled(b);
+			if(c instanceof JLabel ==false){
+				c.setEnabled(b);
+			}
 		}
 	}
 
