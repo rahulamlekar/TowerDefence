@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * 
  */
 public class Tower_IceBeam extends Tower {
-	static int buyCost;
+	static int buyCost = 150;
 
     /**
      *

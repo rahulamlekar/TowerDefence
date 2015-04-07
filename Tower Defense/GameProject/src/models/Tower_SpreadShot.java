@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Tower_SpreadShot extends Tower {
 	private int amountOfTargets = 3;
-	static int buyCost;
+	static int buyCost = 250;
 
     /**
      *

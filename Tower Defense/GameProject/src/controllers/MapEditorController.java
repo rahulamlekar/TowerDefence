@@ -2,6 +2,7 @@ package controllers;
 
 import views.*;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import javax.swing.Timer;
 
 import views.MapPanel;
 import models.IObserverTDMap;
+import models.Point;
 import models.TDMap;
 
 /**
@@ -54,9 +56,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 	private Timer timer;
 	private JButton bReturn;
 	private JButton bInitialize;
-	private JButton bSetStartAndEnd;
+	//private JButton bSetStartAndEnd;
 	private JButton bSave;
+	private JButton bSelectStart;
+	private JButton bSelectEnd;
 	JFrame mainFrame;
+	private boolean selectingStart;
+	private boolean selectingEnd;
 	private int tileWidth_Pixel, tileHeight_Pixel;
 	
     /**
@@ -78,10 +84,14 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		bReturn.addActionListener(this);
 		bInitialize = this.getControlPanel().getInitializeButton();
 		bInitialize.addActionListener(this);
-		bSetStartAndEnd = this.getControlPanel().getSetStartAndEndButton();
-		bSetStartAndEnd.addActionListener(this);
+		//bSetStartAndEnd = this.getControlPanel().getSetStartAndEndButton();
+		//bSetStartAndEnd.addActionListener(this);
 		bSave = this.getControlPanel().getSaveButton();
 		bSave.addActionListener(this);
+		bSelectStart = this.getControlPanel().getSelectStartButton();
+		bSelectStart.addActionListener(this);
+		bSelectEnd = this.getControlPanel().getSelectEndButton();
+		bSelectEnd.addActionListener(this);
 		this.tdMap= map;
 		map.addObserver(this);
 		//drawableEntities.add(tdMap);
@@ -92,10 +102,13 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		
 		this.getControlPanel().getWidthIndexes().setSelectedIndex(tdMap.getGridWidth() - TDMap.MINWIDTH);
 		this.getControlPanel().getHeightIndexes().setSelectedIndex(tdMap.getGridHeight() - TDMap.MINHEIGHT);
+		this.getControlPanel().setStartPointLabel(tdMap.getStart());
+		this.getControlPanel().setEndPointLabel(tdMap.getEnd());
+		/*
 		this.getControlPanel().getStartWidths().setSelectedIndex(tdMap.getStart().getX());
 		this.getControlPanel().getStartHeights().setSelectedIndex(tdMap.getStart().getY());
 		this.getControlPanel().getEndWidths().setSelectedIndex(tdMap.getEnd().getX());
-		this.getControlPanel().getEndHeights().setSelectedIndex(tdMap.getEnd().getY());
+		this.getControlPanel().getEndHeights().setSelectedIndex(tdMap.getEnd().getY());*/
 	}
 
     /**
@@ -135,16 +148,17 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 			int widthOfMap= Integer.parseInt((String) this.getControlPanel().getWidthIndexes().getSelectedItem());
 			int heightOfMap= Integer.parseInt((String) this.getControlPanel().getHeightIndexes().getSelectedItem());
 			tdMap.reinitialize(widthOfMap, heightOfMap,"Generic");
-			updateStartAndEnd(widthOfMap, heightOfMap);
+			this.controlPanel.setStartPointLabel(new Point(0,0));
+			this.controlPanel.setEndPointLabel(new Point(0,0));
 			controlPanel.repaint();
 		}
-		else if(e.getSource() == bSetStartAndEnd)
+		/*else if(e.getSource() == bSetStartAndEnd)
 		{
 			tdMap.setStart(Integer.parseInt((String) this.getControlPanel().getStartWidths().getSelectedItem()),
 					Integer.parseInt((String) this.getControlPanel().getStartHeights().getSelectedItem()));
 			tdMap.setEnd(Integer.parseInt((String) this.getControlPanel().getEndWidths().getSelectedItem()),
 					Integer.parseInt((String) this.getControlPanel().getEndHeights().getSelectedItem()));
-		}
+		}*/
 		else if(e.getSource() == bSave)
 		{
 			int returnVal = fc.showDialog(this, "Save");
@@ -153,6 +167,14 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 				
 				tdMap.writeMaptoFile(file.getPath() +".TDMap");
 			}
+		}
+		else if(e.getSource() == bSelectStart){
+			selectingStart = true;
+			setControlPanelEnabled(false);
+		}
+		else if(e.getSource() == bSelectEnd){
+			selectingEnd = true;
+			setControlPanelEnabled(false);
 		}
 		else
 			Draw();
@@ -200,9 +222,9 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
      * @param widthOfMap    The new width of the map
      * @param heightOfMap   The new height of the map
      */
-    public void updateStartAndEnd(int widthOfMap, int heightOfMap){
+   /* public void updateStartAndEnd(int widthOfMap, int heightOfMap){
 		controlPanel.updateStartAndEnd(widthOfMap, heightOfMap);
-	}
+	}*/
 	@Override
 	public void mouseClicked(MouseEvent e) {		
 		
@@ -215,8 +237,30 @@ public class MapEditorController extends MapPanel implements ActionListener, Mou
 		int xGridPos = (int) Math.floor(xRatio * tdMap.getGridWidth());
 		int yGridPos = (int) Math.floor(yRatio * tdMap.getGridHeight());
 		
-		tdMap.toggleGrid(xGridPos, yGridPos);
+		if(selectingStart){
+			tdMap.setStart(xGridPos, yGridPos);
+			this.controlPanel.setStartPointLabel(new Point(xGridPos, yGridPos));
+			selectingStart = false;
+			setControlPanelEnabled(true);
+
+		}else if(selectingEnd){
+			tdMap.setEnd(xGridPos, yGridPos);
+			this.controlPanel.setEndPointLabel(new Point(xGridPos, yGridPos));
+			selectingEnd = false;
+			setControlPanelEnabled(true);
+		}else{
+			tdMap.toggleGrid(xGridPos, yGridPos);	
+		}
+		
 	}
+	private void setControlPanelEnabled(boolean b) {
+		
+		Component[] components = this.controlPanel.getComponents();
+		for(Component c : components){
+			c.setEnabled(b);
+		}
+	}
+
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub

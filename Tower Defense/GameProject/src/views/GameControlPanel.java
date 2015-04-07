@@ -16,6 +16,10 @@ import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 
 import models.Tower;
+import models.Tower_Fire;
+import models.Tower_IceBeam;
+import models.Tower_Laser;
+import models.Tower_SpreadShot;
 
 /**
  *
@@ -28,6 +32,10 @@ public class GameControlPanel extends JPanel  {
     /**
      *
      */
+	private static final String SPREADTEXT = "A Spread-beam tower. Shoots multiple enemies with a slightly less powerful beam.";
+	private static final String LASERTEXT = "A Laser-beam tower. Average stats.";
+	private static final String ICETEXT = "An Ice-beam tower. Slows enemies who are shot by it.";
+	private static final String FIRETEXT = "A Fire-beam tower. Lights critters on fire and damages them over time.";
     public static final int CONTROLPANELHEIGHT = 150;
 	//we have our two control panels.
 	JPanel towerControlPanel = new JPanel();
@@ -39,10 +47,10 @@ public class GameControlPanel extends JPanel  {
 	JLabel lblTowerInfo = new JLabel("No tower selected");
 	JLabel lblBuildTowerPrompt = new JLabel("| Build tower:  ");
 	ButtonGroup towerGroup = new ButtonGroup();
-	JToggleButton bSpread = new JToggleButton("Spread beam");
-	JToggleButton bFire = new JToggleButton("Fire beam");
-	JToggleButton bIceBeam = new JToggleButton("Ice beam");
-	JToggleButton bLaser = new JToggleButton("Laser beam");
+	JToggleButton bSpread = new JToggleButton("Spread (" + Tower_SpreadShot.getBuyPrice() + ")");
+	JToggleButton bFire = new JToggleButton("Fire (" + Tower_Fire.getBuyPrice() + ")");
+	JToggleButton bIceBeam = new JToggleButton("Ice (" + Tower_IceBeam.getBuyPrice() + ")");
+	JToggleButton bLaser = new JToggleButton("Laser (" + Tower_Laser.getBuyPrice() + ")");
 	JToggleButton bNone = new JToggleButton("None");
 	JComboBox<String> cbStrategy = new JComboBox<String>();
 	
@@ -53,7 +61,8 @@ public class GameControlPanel extends JPanel  {
 	JButton bPause = new JButton("Pause");
 	JButton bReturn = new JButton("Main Menu");
 	JSlider jsSpeed = new JSlider(JSlider.HORIZONTAL, 1, 5, 1);
-	
+
+
     /**
      *
      */
@@ -76,6 +85,11 @@ public class GameControlPanel extends JPanel  {
 		bIceBeam.setName("IceBeam");
 		bLaser.setName("Laser");
 		bNone.setName("None");
+		bSpread.setToolTipText(SPREADTEXT);
+		bLaser.setToolTipText(LASERTEXT);
+		bIceBeam.setToolTipText(ICETEXT);
+		bFire.setToolTipText(FIRETEXT);
+		
 		Font oldFont = lblInfo.getFont();
 		lblInfo.setFont(new Font(oldFont.getFontName(), Font.BOLD, oldFont.getSize()));
 		//format the slider

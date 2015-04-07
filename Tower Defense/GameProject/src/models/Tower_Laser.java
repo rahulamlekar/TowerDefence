@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  */
 public class Tower_Laser extends Tower{
-	static int buyCost;
+	static int buyCost = 100;
 
     /**
      *

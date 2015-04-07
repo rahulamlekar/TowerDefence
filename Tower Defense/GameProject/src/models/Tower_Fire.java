@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Tower_Fire extends Tower {
 	double DOT;
 	int damageOverTimeLength = 20;
-	static int buyCost;
+	static int buyCost = 200;
 
     /**
      *
