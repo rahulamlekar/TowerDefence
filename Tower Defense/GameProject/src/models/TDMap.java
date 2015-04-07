@@ -21,7 +21,7 @@ import java.util.LinkedList;
  */
 public class TDMap implements DrawableEntity{
 	//final variables
-	public static final int MINWIDTH = 20, 
+	public static final int MINWIDTH = 5, 
 
     /**
      *
@@ -47,7 +47,7 @@ public class TDMap implements DrawableEntity{
     /**
      *
      */
-    MINHEIGHT = 13, 
+    MINHEIGHT = 5, 
 
     /**
      *
@@ -60,7 +60,7 @@ public class TDMap implements DrawableEntity{
     /**
      *
      */
-    MAXHEIGHT = 50;
+    MAXHEIGHT = 80;
 
     /**
      *

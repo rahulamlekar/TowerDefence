@@ -242,7 +242,9 @@ public abstract class Tower implements DrawableEntity{
 		inRangeC = this.findCrittersInRange(potentialCrittersInRange);
 		Critter targetedCritter = this.selectTarget(this, inRangeC);
 		if(targetedCritter != null){
-			this.shootTarget(targetedCritter, g);
+			if(enabled){
+				this.shootTarget(targetedCritter, g);
+			}
 		}
 	}
 	
@@ -325,12 +327,9 @@ public abstract class Tower implements DrawableEntity{
      * @param g
      */
     	protected void shootTarget(Critter target, Graphics g){
-		if(enabled){
-			for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
-				target.damage(damage);
-				Artist_Swing.drawShot(this, target, g);
-			}
-		
+		for(int i = 0; i < this.rateOfFire * GameClock.getInstance().deltaTime(); i++){
+			target.damage(damage);
+			Artist_Swing.drawShot(this, target, g);
 		}
 	} 
 	//upgrade the towers values and level

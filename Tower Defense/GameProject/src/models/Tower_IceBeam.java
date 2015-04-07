@@ -42,6 +42,7 @@ public class Tower_IceBeam extends Tower {
      * @param g
      */
     protected void shootTarget(Critter target, Graphics g){
+    
 		super.shootTarget(target, g);
 		target.slowCritter(this.slowFactor, this.getSlowTime());
 	}
