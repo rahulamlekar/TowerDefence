@@ -291,7 +291,9 @@ public class TDMap implements DrawableEntity{
      */
         public void toggleGrid(int i, int j)
     {
-        if(((i!=start1) && (j!=start2)) || ((i!=end1) && (j!=end2)))
+        if((((i==start1) && (j==start2))) || (((i==end1) && (j==end2)))){
+        	
+        }else{
     		if((i<gridWidth)&&(j<gridHeight))
     			if(gridTile[i][j].getTileValue()==PATH)
     			{
@@ -303,6 +305,7 @@ public class TDMap implements DrawableEntity{
     				//grid[i][j]= PATH;
     				gridTile[i][j].setTileValue(PATH);
     			}
+        }
         TDMapUpdated();
     }
     // By convention, I will denote background/TOWER cells to be 4.

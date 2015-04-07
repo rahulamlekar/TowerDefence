@@ -77,22 +77,29 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	private int waveNumber;
 	private int activeCritterIndex;
 	ArrayList<DrawableEntity> drawableEntities;
+	
+	//Next we have our drawable entities. We have the Map, critters on it, and towers.
 	private TDMap tdMap;
 	ArrayList<Critter> crittersInWave;
 	ArrayList<Tower> towersOnMap;
+	
+	//Some game states (used to determine what buttons we allow the player to click)
 	private boolean gamePaused;
-
 	private boolean gameOver;
 
+	//now we have our current selections, like the tower we want to build, preview, tile, etc.
 	private String selectedTowerToBuild;
 	private Tower towerBeingPreviewed;
 	private Tower selectedTower;
 	private MapTile selectedTile;
 	
+	//We have two helpers directly with the game controller, the clock, and the artist.
 	private Artist_Swing artist;
-	ArrayList<Subject> subjects;
-	ArrayList<Helper> helpers;
 	private GameClock clock;
+	ArrayList<Helper> helpers; //putting our helpers in an arrayList is mainly for organization.
+	
+	//and we have a list of subjects that this class (as an IObserver) watches.
+	ArrayList<Subject> subjects;
 	
     /**
      * @param map   This takes a TDMap object as the map on 
@@ -161,6 +168,10 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		cbStrategies.addItemListener(this);
 		
 	}
+	/*
+	 * sets the initial values of the variables for the game. 
+	 * Also initializes arrays and gets the instances of the singleton classes.
+	 */
 	private void setInitialValues(){
 		clock = GameClock.getInstance();
 		clock.pause();
@@ -180,7 +191,6 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		//add into a list of helpers (currently for UML diagram)
 		helpers.add(artist);
 		helpers.add(clock);
-		
 		bNone.doClick();
 	}
 
