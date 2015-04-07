@@ -2,12 +2,12 @@ package helpers;
 import java.util.ArrayList;
 
 import models.Critter;
-import models.Critter_Arrow;
-import models.Critter_Circle;
-import models.Critter_Infinity;
-import models.Critter_Shrunken;
-import models.Critter_Square;
-import models.Critter_X;
+import models.Critter_White;
+import models.Critter_Cyan;
+import models.Critter_Yellow;
+import models.Critter_Pink;
+import models.Critter_Red;
+import models.Critter_Orange;
 import models.TDMap;
 
 /**
@@ -43,35 +43,35 @@ public class CritterGenerator extends Helper {
 		//BOSS level
 		if(waveLevel % 5 ==0){
 			for(int i = 0; i < 0.5*amountOfCritters; i ++){
-				critterGroup.add(new Critter_Infinity(waveLevel, exampleMap));
-				critterGroup.add(new Critter_Shrunken(waveLevel, exampleMap));
+				critterGroup.add(new Critter_Yellow(waveLevel, exampleMap));
+				critterGroup.add(new Critter_Pink(waveLevel, exampleMap));
 			}
 		}
 		 // We generate fast (Arrow) critters	
 		 else if(waveLevel % 5 == 4){
 			 for(int i = 0; i < amountOfCritters; i ++){
-			critterGroup.add(new Critter_Arrow(waveLevel, exampleMap));
+			critterGroup.add(new Critter_White(waveLevel, exampleMap));
 			 }
 			 
 		// We generate Resistive (X) critters	
 		}else if(waveLevel % 5 == 3){
 			//We want to create the normal amount of resisitive and fast critters. (and the same amount of each)
 			for(int i = 0; i < (amountOfCritters); i ++){
-				critterGroup.add(new Critter_X(waveLevel, exampleMap));
+				critterGroup.add(new Critter_Orange(waveLevel, exampleMap));
 				
 			}
 			
 			// We generate strong (square) critters
 		}else if(waveLevel % 5 == 2){
 			for(int i = 0; i < amountOfCritters; i ++){
-			critterGroup.add(new Critter_Square(waveLevel, exampleMap));
+			critterGroup.add(new Critter_Red(waveLevel, exampleMap));
 			}
 			
 		// We generate average (circle) critters	
 		}else if(waveLevel % 5 == 1){
 			//We want to create the normal amount of Circle critters
 			for(int i = 0; i < amountOfCritters; i ++){
-				critterGroup.add(new Critter_Circle(waveLevel, exampleMap));
+				critterGroup.add(new Critter_Cyan(waveLevel, exampleMap));
 				
 			}
 		}

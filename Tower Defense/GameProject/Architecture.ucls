@@ -37,8 +37,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="models.Critter_X" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/models/Critter_X.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="models.Critter_Orange" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Critter_Orange.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="401" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="models.Critter_Square" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/models/Critter_Square.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="models.Critter_Red" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Critter_Red.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="518" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="models.Critter_Arrow" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/models/Critter_Arrow.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="models.Critter_White" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Critter_White.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="641" y="913"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="models.Critter_Circle" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/models/Critter_Circle.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="models.Critter_Cyan" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Critter_Cyan.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="759" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,8 +73,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="models.Critter_Infinity" project="GameProjectAsh" 
-    file="/GameProjectAsh/src/models/Critter_Infinity.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="models.Critter_Yellow" project="GameProjectAsh" 
+    file="/GameProjectAsh/src/models/Critter_Yellow.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="883" y="914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

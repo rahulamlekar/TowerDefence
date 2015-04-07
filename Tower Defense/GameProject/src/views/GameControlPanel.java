@@ -2,7 +2,6 @@ package views;
 
 import helpers.Artist_Swing;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -11,11 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
-
-import models.Tower;
 import models.Tower_Fire;
 import models.Tower_IceBeam;
 import models.Tower_Laser;
@@ -61,7 +57,7 @@ public class GameControlPanel extends JPanel  {
 	JButton bPause = new JButton("Pause");
 	JButton bReturn = new JButton("Main Menu");
 	JSlider jsSpeed = new JSlider(JSlider.HORIZONTAL, 1, 5, 1);
-
+	JButton bCritInfo = new JButton("Critter Info");
 
     /**
      *
@@ -108,6 +104,7 @@ public class GameControlPanel extends JPanel  {
 		towerControlPanel.add(bSpread);
 		towerControlPanel.add(bNone);
         //add everything to this panel.
+		generalControlPanel.add(bCritInfo);
 		generalControlPanel.add(bStartWave);
 		generalControlPanel.add(lblInfo);
 		generalControlPanel.add(jsSpeed);
@@ -136,7 +133,9 @@ public class GameControlPanel extends JPanel  {
     public JButton getUpgradeButton(){
 		return this.bUpgradeTower;
 	}
-
+    public JButton getCritterInfoButton(){
+    	return this.bCritInfo;
+    }
     /**
      *
      * @return

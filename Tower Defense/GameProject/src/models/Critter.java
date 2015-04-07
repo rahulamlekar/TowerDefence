@@ -24,6 +24,7 @@ public abstract class Critter extends Subject implements DrawableEntity {
      */
     	public static final int MAXWAVENUMBER = 50;
     	public static final int MAXSPEED = 15;
+    	public static final String CRITTERMESSAGE = "Below is a description of each of the colored critters.\n\n" + "Yellow:\t\t\tBoss Critter. Very hard to kill\n\n" + "White:\t\t\tFast but weak\n\n" + "Red:\t\t\tSlightly below average\n\n" + "Pink:\t\t\tStrong but slow\n\n" + "Orange:\t\t\tCompletely resistant to fire and slow\n\n" + "Cyan:\t\t\tAverage Critter\n\n";  
 	//attributes of the critter
 	//tangible properties of critter
 

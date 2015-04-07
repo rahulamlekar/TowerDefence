@@ -4,7 +4,7 @@ import java.awt.Color;
 
 
 /*
- * Arrow critter is fast but weak compared to other critters
+ * White critter is fast but weak compared to other critters
  */
 
 /**
@@ -12,14 +12,14 @@ import java.awt.Color;
  * 
  */
 
-public class Critter_Arrow extends Critter{
+public class Critter_White extends Critter{
 
     /**
      *
      * @param level
      * @param m
      */
-    public Critter_Arrow(int level, TDMap m) {
+    public Critter_White(int level, TDMap m) {
 		super(level, m);
 		double levelMultiplier = calculateLevelMultiplier();
 		//average reward

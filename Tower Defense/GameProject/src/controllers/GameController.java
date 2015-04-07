@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.Timer;
@@ -69,6 +70,7 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	private JButton bSell;
 	private JSlider jsSpeed;
 	private JComboBox<String> cbStrategies;
+	private JButton bCritterInfo;
 	
 	//declare frame specific variables
 	private Timer timer;
@@ -100,6 +102,8 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 	
 	//and we have a list of subjects that this class (as an IObserver) watches.
 	ArrayList<Subject> subjects;
+	
+	
 	
     /**
      * @param map   This takes a TDMap object as the map on 
@@ -155,6 +159,9 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		bSell = this.getControlPanel().getSellButton();
 		bSell.addActionListener(this);
 		bSell.setEnabled(false);
+		bCritterInfo = this.getControlPanel().getCritterInfoButton();
+		bCritterInfo.addActionListener(this);
+		
 		jsSpeed = this.getControlPanel().getSpeedSlider();
 		jsSpeed.addChangeListener(this);
 		cbStrategies = this.getControlPanel().getCBStrategy();
@@ -325,6 +332,9 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		this.updateSelectedTowerInfoAndButtons();
 		this.Draw(); //redraw
 	}
+	private void doDisplayCritterInfo(){
+		JOptionPane.showMessageDialog(null, Critter.CRITTERMESSAGE, "Critters", JOptionPane.PLAIN_MESSAGE);
+	}
 	//end of button calls
 	
 	/*
@@ -346,6 +356,8 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 				doUpgrade();
 			}else if(arg0.getSource() == bSell){
 				doSell();
+			}else if(arg0.getSource() == bCritterInfo){
+				doDisplayCritterInfo();
 			}else if(!gameOver){
 				if(gamePaused == false){
 					if(activeCritterIndex == 0){

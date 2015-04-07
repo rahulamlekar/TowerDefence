@@ -4,7 +4,7 @@ import java.awt.Color;
 
 
 /*
- * Square Critters are weak but travel in groups
+ * Red Critters are weak 
  */
 
 /**
@@ -13,14 +13,14 @@ import java.awt.Color;
  * 
  */
 
-public class Critter_Square extends Critter{
+public class Critter_Red extends Critter{
 
     /**
      *
      * @param level
      * @param m
      */
-    public Critter_Square(int level, TDMap m) {
+    public Critter_Red(int level, TDMap m) {
 		super(level, m);
 		double levelMultiplier = calculateLevelMultiplier();
 		//low reward

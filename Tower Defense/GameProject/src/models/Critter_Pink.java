@@ -4,7 +4,7 @@ import java.awt.Color;
 
 
 /*
- * shuriken critter is Strong but slow
+ * Pink critter is Strong but slow
  */
 
 /**
@@ -12,14 +12,14 @@ import java.awt.Color;
  * 
  */
 
-public class Critter_Shrunken extends Critter{
+public class Critter_Pink extends Critter{
 
     /**
      *
      * @param level
      * @param m
      */
-    public Critter_Shrunken(int level, TDMap m) {
+    public Critter_Pink(int level, TDMap m) {
 		super(level, m);
 		double levelMultiplier = calculateLevelMultiplier();
 		//average reward

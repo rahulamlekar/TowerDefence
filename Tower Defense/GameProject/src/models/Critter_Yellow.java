@@ -12,14 +12,14 @@ import java.awt.Color;
  * 
  */
 
-public class Critter_Infinity extends Critter{
+public class Critter_Yellow extends Critter{
 
     /**
      *
      * @param level
      * @param m
      */
-    public Critter_Infinity(int level, TDMap m) {
+    public Critter_Yellow(int level, TDMap m) {
 		super(level, m);
 		double levelMultiplier = calculateLevelMultiplier();
 		//high reward

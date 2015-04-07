@@ -11,14 +11,14 @@ import java.awt.Color;
  * 
  */
 
-public class Critter_Circle extends Critter{
+public class Critter_Cyan extends Critter{
 	
     /**
      *
      * @param level
      * @param m
      */
-    public Critter_Circle(int level, TDMap m) {
+    public Critter_Cyan(int level, TDMap m) {
 		super(level, m);
 		double levelMultiplier = calculateLevelMultiplier();
 		//average reward
