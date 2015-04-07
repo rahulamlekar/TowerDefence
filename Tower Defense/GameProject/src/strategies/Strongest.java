@@ -21,6 +21,7 @@ public class Strongest implements IStrategy {
      */
     @Override
 	public Critter findTarget(Tower tower, ArrayList<Critter> g1) {
+    	//finds the strongest enemy
 		Critter strongest_enemy= null;   
         double max_health = 0;
         int count = g1.size(); 			 		 // The number of critters currently within range

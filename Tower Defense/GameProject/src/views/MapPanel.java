@@ -1,14 +1,8 @@
 package views;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.KeyListener;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JPopupMenu;
+
 
 /**
  *  This class sets the background frame for both the GameApplicationFrame and
