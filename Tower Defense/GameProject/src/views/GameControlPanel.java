@@ -45,7 +45,7 @@ public class GameControlPanel extends JPanel  {
 	JButton bSellTower = new JButton("Sell");
 	JButton bUpgradeTower = new JButton("Upgrade");
 	JLabel lblTowerInfo = new JLabel("No tower selected");
-	JLabel lblBuildTowerPrompt = new JLabel("| Build tower:  ");
+	JLabel lblBuildTowerPrompt = new JLabel("| Build:  ");
 	ButtonGroup towerGroup = new ButtonGroup();
 	JToggleButton bSpread = new JToggleButton("Spread (" + Tower_SpreadShot.getBuyPrice() + ")");
 	JToggleButton bFire = new JToggleButton("Fire (" + Tower_Fire.getBuyPrice() + ")");
@@ -73,13 +73,13 @@ public class GameControlPanel extends JPanel  {
 		towerGroup.add(bIceBeam);
 		towerGroup.add(bLaser);
 		towerGroup.add(bNone);
-		bUpgradeTower.setPreferredSize(new Dimension(70,20));
-		bSellTower.setPreferredSize(new Dimension(50, 20));
+		bUpgradeTower.setPreferredSize(new Dimension(buttonSize+20,20));
+		bSellTower.setPreferredSize(new Dimension(buttonSize-10, 20));
 		bSpread.setPreferredSize(new Dimension(buttonSize, 20));
-		bFire.setPreferredSize(new Dimension(buttonSize, 20));
-		bIceBeam.setPreferredSize(new Dimension(buttonSize, 20));
-		bLaser.setPreferredSize(new Dimension(buttonSize,20));
-		bNone.setPreferredSize(new Dimension(50, 20));
+		bFire.setPreferredSize(new Dimension(buttonSize-20, 20));
+		bIceBeam.setPreferredSize(new Dimension(buttonSize-20, 20));
+		bLaser.setPreferredSize(new Dimension(buttonSize-10,20));
+		bNone.setPreferredSize(new Dimension(buttonSize-40, 20));
 		bSpread.setName("Spread");
 		bFire.setName("Fire");
 		bIceBeam.setName("IceBeam");

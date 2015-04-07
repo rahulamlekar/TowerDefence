@@ -347,33 +347,10 @@ public abstract class Tower implements DrawableEntity{
 		}
 	}
 
-	/*
-	//applies slow, damage over time, or area of affect depending on the tower
-	public void applyAffect(Critter a){
-		
-		if(slow==true){
-			
-			System.out.println("Critter is slowed.");
-		}
-		
-		if(damageOverTime==true){
-			
-			System.out.println("Critter is dealt damage over time.");
-		}
-			
-		if(areaOfAffect==true){
-				
-			System.out.println("Critter is dealt area of affect damage.");
-			
-		}
-	}*/
-
 	public String toString(){
 		String result = "";
 		result += this.getName() + ", ";
-		result += "Level = " +this.getLevel() + "/" + MAXTOWERLEVEL + ", ";
-		result += "Upgrade cost = " + this.getUpPrice() +  ", ";
-		result += "Sell price = " + this.getSellPrice() + ", ";
+		result += "Level " + this.getLevel() + "/" + MAXTOWERLEVEL + ", ";
 		result += "Strategy:";
 		
 		return result;

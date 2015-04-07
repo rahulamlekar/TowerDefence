@@ -12,7 +12,7 @@ public class Game {
      * @param args
      */
     public static void main(String[] args){
-		//First display main menu
+		//Begin the game by displaying the main menu
 		new MenuApplicationFrame();
 	}
 }

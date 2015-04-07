@@ -464,6 +464,8 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 		String text = "";
 		if(selectedTower != null){
 			text += selectedTower.toString();
+			bUpgrade.setText("Upgrade (" + selectedTower.getUpPrice() + ")");
+			bSell.setText("Sell (" + selectedTower.getSellPrice() + ")");
 		}else{
 			text += "No tower selected";
 		}
@@ -576,6 +578,8 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			bUpgrade.setEnabled(false);
 			bSell.setEnabled(false); //if there is no tower, don't allow them to sell it.
 			cbStrategies.setEnabled(false);
+			bSell.setText("Sell");
+			bUpgrade.setText("Upgrade");
 		}
 		updateTowerInfoText();
 	}
