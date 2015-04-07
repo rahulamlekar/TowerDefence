@@ -47,7 +47,7 @@ public class GameControlPanel extends JPanel  {
 	JToggleButton bFire = new JToggleButton("Fire (" + Tower_Fire.getBuyPrice() + ")");
 	JToggleButton bIceBeam = new JToggleButton("Ice (" + Tower_IceBeam.getBuyPrice() + ")");
 	JToggleButton bLaser = new JToggleButton("Laser (" + Tower_Laser.getBuyPrice() + ")");
-	JToggleButton bNone = new JToggleButton("None");
+	JToggleButton bNone = new JToggleButton("N");
 	JComboBox<String> cbStrategy = new JComboBox<String>();
 	
 	//our general control panel will have general info (lives, money)
@@ -69,13 +69,13 @@ public class GameControlPanel extends JPanel  {
 		towerGroup.add(bIceBeam);
 		towerGroup.add(bLaser);
 		towerGroup.add(bNone);
-		bUpgradeTower.setPreferredSize(new Dimension(buttonSize+20,20));
+		bUpgradeTower.setPreferredSize(new Dimension(buttonSize+30,20));
 		bSellTower.setPreferredSize(new Dimension(buttonSize, 20));
-		bSpread.setPreferredSize(new Dimension(buttonSize+10, 20));
+		bSpread.setPreferredSize(new Dimension(buttonSize+30, 20));
 		bFire.setPreferredSize(new Dimension(buttonSize, 20));
-		bIceBeam.setPreferredSize(new Dimension(buttonSize-10, 20));
+		bIceBeam.setPreferredSize(new Dimension(buttonSize, 20));
 		bLaser.setPreferredSize(new Dimension(buttonSize+10,20));
-		bNone.setPreferredSize(new Dimension(buttonSize-40, 20));
+		bNone.setPreferredSize(new Dimension(buttonSize-50, 20));
 		bSpread.setName("Spread");
 		bFire.setName("Fire");
 		bIceBeam.setName("IceBeam");

@@ -522,22 +522,22 @@ public class GameController extends MapPanel implements ActionListener, ChangeLi
 			//check which tower we want to place, and only build it if we have enough money.
 			if(selectedTowerToBuild.equalsIgnoreCase("Spread")){
 				if(playerMoney >= Tower_SpreadShot.getBuyPrice()){
-					towToBuild =new Tower_SpreadShot("Spread Tower", adjustedTowerPoint, crittersInWave);
+					towToBuild =new Tower_SpreadShot("Spread", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_SpreadShot.getBuyPrice();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("Fire")){
 				if(playerMoney >= Tower_Fire.getBuyPrice()){
-					towToBuild = new Tower_Fire("Fire Tower", adjustedTowerPoint, crittersInWave);
+					towToBuild = new Tower_Fire("Fire", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_Fire.getBuyPrice();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("IceBeam")){
 				if(playerMoney >= Tower_IceBeam.getBuyPrice()){
-					towToBuild = new Tower_IceBeam("Ice Tower", adjustedTowerPoint, crittersInWave);
+					towToBuild = new Tower_IceBeam("Ice", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_IceBeam.getBuyPrice();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("Laser")){
 				if(playerMoney >= Tower_Laser.getBuyPrice()){
-					towToBuild = new Tower_Laser("Laser Tower", adjustedTowerPoint, crittersInWave);
+					towToBuild = new Tower_Laser("Laser", adjustedTowerPoint, crittersInWave);
 					moneyToSpend = Tower_Laser.getBuyPrice();
 				}
 			}else if(selectedTowerToBuild.equalsIgnoreCase("None")){
