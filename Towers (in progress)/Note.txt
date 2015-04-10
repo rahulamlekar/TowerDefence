@@ -1,9 +1,0 @@
-Hello!
-
-I have implemented the Tower class of the project.
-
-This package creates 3 towers that can be upgraded. I have also coded the logic for changing tower strategy. 
-The problem was that I wasn't able to inout the critter attributes in the method correctly, which gave an error and is hence commented out.
-
-I will now create an arraylist of critters with attributes and pass the list through each function in my Tower class.
-This would correct the problem.
